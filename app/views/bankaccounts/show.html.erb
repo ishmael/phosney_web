@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @bankaccount.name %>
+</p>
+
+<p>
+  <b>Number:</b>
+  <%=h @bankaccount.number %>
+</p>
+
+<p>
+  <b>Bank:</b>
+  <%=h @bankaccount.bank %>
+</p>
+
+
+<%= link_to 'Edit', edit_bankaccount_path(@bankaccount) %> |
+<%= link_to 'Back', bankaccounts_path %>
