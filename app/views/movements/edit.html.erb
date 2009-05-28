@@ -1,0 +1,23 @@
+<h1>Editing movement</h1>
+
+<% form_for([@bankaccount,@movement]) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </p>
+  <p>
+    <%= f.label :movdate %><br />
+    <%= f.datetime_select :movdate %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', [@bankaccount,@movement] %> |
+<%= link_to 'Back', bankaccount_movements_path(@bankaccount) %>

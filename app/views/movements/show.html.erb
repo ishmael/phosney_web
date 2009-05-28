@@ -1,0 +1,19 @@
+
+<p>
+  <b>Description:</b>
+  <%=h @movement.description %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h @movement.amount %>
+</p>
+
+<p>
+  <b>Movdate:</b>
+  <%=h @movement.movdate %>
+</p>
+
+
+<%= link_to 'Edit', edit_bankaccount_movement_path(@bankaccount,@movement) %> |
+<%= link_to 'Back', bankaccount_movements_path(@bankaccount) %>

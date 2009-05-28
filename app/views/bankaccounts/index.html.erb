@@ -12,6 +12,7 @@
     <td><%=h bankaccount.name %></td>
     <td><%=h bankaccount.number %></td>
     <td><%=h bankaccount.bank %></td>
+    <td><%= link_to 'Show movements',  bankaccount_movements_path(bankaccount.id) %></td>
     <td><%= link_to 'Show', bankaccount %></td>
     <td><%= link_to 'Edit', edit_bankaccount_path(bankaccount) %></td>
     <td><%= link_to 'Destroy', bankaccount, :confirm => 'Are you sure?', :method => :delete %></td>

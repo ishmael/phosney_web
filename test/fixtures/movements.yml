@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bankaccount_id: 1
+  description: MyString
+  amount: 9.99
+  movdate: 2009-04-28 19:00:43
+
+two:
+  bankaccount_id: 1
+  description: MyString
+  amount: 9.99
+  movdate: 2009-04-28 19:00:43

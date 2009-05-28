@@ -1,0 +1,26 @@
+<h1>Listing movements</h1>
+
+<table>
+  <tr>
+    <th>Bankaccount</th>
+    <th>Description</th>
+    <th>Amount</th>
+    <th>Movdate</th>
+  </tr>
+
+<% @movements.each do |movement| %>
+  <tr>
+    <td><%=h movement.bankaccount_id %></td>
+    <td><%=h movement.description %></td>
+    <td><%=h movement.amount %></td>
+    <td><%=h movement.movdate %></td>
+    <td><%= link_to 'Show', bankaccount_movement_path(movement.bankaccount_id,movement) %></td>
+    <td><%= link_to 'Edit', edit_bankaccount_movement_path(movement.bankaccount_id,movement) %></td>
+    <td><%= link_to 'Destroy',  bankaccount_movement_path(movement.bankaccount_id,movement), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New movement', new_bankaccount_movement_path %>
