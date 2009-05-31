@@ -1,15 +1,31 @@
-<h1>Login</h1>
- <%= link_to "Register", new_account_path %><br />
-<% form_for @user_session, :url => user_session_path do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :login %><br />
-  <%= f.text_field :login %><br />
-  <br />
-  <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
-  <br />
-  <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
-  
-  <br />
-  <%= f.submit "Login" %>
-<% end %>
+<% form_for @user_session, :html => { :class => "login_form"}, :url => user_session_path do |f| %>
+  <fieldset>
+   <% if not f.error_messages.blank? %>
+  <div class="notification error"><a href="#" class="close">close</a><em><img src="images/icons/cross_circle.png" alt=""/><%= f.error_messages %></em> </div>
+  <% end %>
+  <label for="user_session_username" class="label2">
+  <span>Username</span>
+  <%= f.text_field :login %>	
+  </label>
+
+  <label for="user_session_password" class="label2">
+  <span>Password</span>
+  <%= f.password_field :password %>
+  </label>
+
+  <div class="button">
+  <div class="btn-inner">
+  <span>
+  <em>
+    <button type="submit"><img src="images/icons/lock.png" alt=""/>Log in</button>
+
+  </em>                       
+   </span>					
+  </div>
+  </div>
+  <a href="" class="forgot_login">Forgot your keys?</a>
+ <%= link_to "Register", new_account_path , {:class => "forgot_login"}%>
+  </fieldset>
+  <% end %>
+
+      

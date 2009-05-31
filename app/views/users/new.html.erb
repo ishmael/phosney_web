@@ -1,7 +1,15 @@
-<h1>Register</h1>
+
+
+
  
-<% form_for @user, :url => account_path do |f| %>
-  <%= f.error_messages %>
+<% form_for @user, :html => { :class => "register_form"}, :url => account_path do |f| %>
+  
+   <% if not f.error_messages.blank? %>
+  <div class="notification error"><a href="#" class="close">close</a><em><img src="images/icons/cross_circle.png" alt=""/><%= f.error_messages %></em> </div>
+  <% end %>
+  <fieldset>
+  <legend>Register</legend>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Register" %>
+  </fieldset>
 <% end %>
