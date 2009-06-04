@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
     before_filter :require_no_user, :only => [:new, :create]
     before_filter :require_user, :only => [:show, :edit, :update]
-    layout  "application"
-    layout "loggedout_layout", :only => [:new,:create]
-    #layout  "application", :only => [:show,:edit]
+    layout  :define_layout 
+    
     def new
       @user = User.new
     end
@@ -34,5 +33,10 @@ class UsersController < ApplicationController
       else
         render :action => :edit
       end
+    end
+    
+    private
+    def define_layout
+        current_user.nil? ? "loggedout_layout" : "application"
     end
 end
