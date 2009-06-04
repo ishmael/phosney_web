@@ -15,4 +15,12 @@ module ApplicationHelper
   def company_name
     "Phosney"
   end
+  
+  def last_login
+    if (not current_user.last_login_at.nil?)
+    current_user.last_login_at.to_s(:long)
+    else
+    'Never'
+    end
+  end
 end
