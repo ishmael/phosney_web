@@ -1,0 +1,3 @@
+<% current_user.bankaccounts.each do |bankaccount| %>
+<li><%= link_to bankaccount.name,  bankaccount_movements_path(bankaccount.id) %></li>
+<% end %>
