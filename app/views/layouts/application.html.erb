@@ -69,7 +69,12 @@ type="text/javascript"></script>
             <h4 id="menu_main_h_support"><%= link_to 'Accounts', bankaccounts_path %></h4>
             <ul>
                 <%= render(:partial => "partials/menuaccounts") %>
-                <li><%= link_to 'New Account', new_bankaccount_path %></li>
+                <% if account_selected == 0 %>
+                    <li class="selected"><%= link_to 'New Account', new_bankaccount_path %></li>
+                <% else %>
+                    <li><%= link_to 'New Account', new_bankaccount_path %></li>
+                <% end %>
+                
             </ul>
         </div><!--/end #menu_main_section-->
         
