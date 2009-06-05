@@ -66,10 +66,10 @@ type="text/javascript"></script>
 <div id="wrapper"><!--holds pretty much everything-->
     <div id="menu_main">
         <div class="menu_main_section first">
-            <h4 id="menu_main_h_support">Accounts</h4>
+            <h4 id="menu_main_h_support"><%= link_to 'Accounts', bankaccounts_path %></h4>
             <ul>
                 <%= render(:partial => "partials/menuaccounts") %>
-                <li><%= link_to 'New bankaccount', new_bankaccount_path %></li>
+                <li><%= link_to 'New Account', new_bankaccount_path %></li>
             </ul>
         </div><!--/end #menu_main_section-->
         

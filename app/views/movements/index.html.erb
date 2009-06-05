@@ -1,14 +1,13 @@
         <div class="tabbertab">
             <h2>Movements</h2>
             <div class="container1">
-<h1>Listing movements</h1>
 
 <table class="broom_table">
  <thead>
   <tr>
     <th scope="col">Description</th>
     <th scope="col">Amount</th>
-    <th scope="col">Movdate</th>
+    <th scope="col">Date</th>
     <th scope="col"></th>
   </tr>
 </thead>   
@@ -16,7 +15,7 @@
 <% @movements.each do |movement| %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%=h movement.description %></td>
-    <td><%=h movement.amount %></td>
+    <td><%=h number_to_currency(movement.amount) %></td>
     <td><%=h movement.movdate.to_date %></td>
     <td><%= link_to 'Edit', edit_bankaccount_movement_path(movement.bankaccount_id,movement),:class => 'table_edit' %>
     <%= link_to 'Destroy',  bankaccount_movement_path(movement.bankaccount_id,movement) , :confirm => 'Are you sure?', :method => :delete ,:class => 'table_delete' %></td>
