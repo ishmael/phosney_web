@@ -1,3 +1,7 @@
-<% current_user.bankaccounts.each do |bankaccount| %>
-<li><%= link_to bankaccount.name,  bankaccount_movements_path(bankaccount.id) %></li>
+<% current_user.bankaccounts.each do |menu_bankaccount| %>
+<% if not accountnumber.nil? and accountnumber== menu_bankaccount.id %>
+<li class="selected"><%= link_to menu_bankaccount.name,  bankaccount_movements_path(menu_bankaccount.id) %></li>
+<% else %>
+<li><%= link_to menu_bankaccount.name,  bankaccount_movements_path(menu_bankaccount.id) %></li>
+<% end %>
 <% end %>
