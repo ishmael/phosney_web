@@ -1,6 +1,6 @@
         <div class="tabbertab">
             <h2>Account</h2>
-            <div class="container1">
+            <div class="container2">
 
 <table class="broom_table">
  <thead>
@@ -26,5 +26,13 @@
 <br />
 
 <%= link_to 'New bankaccount', new_bankaccount_path %>
-            </div><!--/end .container1-->
+</div><!--/end .container2-->
+
+ <div class="container2">
+<ul>
+ <% @summary.each do |name,amount| %>
+ <li><%= name %> <%= amount %></li>
+ <% end %>
+</ul>
+            </div><!--/end .container2-->
         </div><!--/end .tabbertab-->
