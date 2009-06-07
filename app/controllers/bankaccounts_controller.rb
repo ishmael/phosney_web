@@ -5,7 +5,7 @@ class BankaccountsController < ApplicationController
   
   def index
     @bankaccounts = @current_user.bankaccounts
-    @summary =  @current_user.bankaccounts.sum(:amount,:joins => :movements, :group => :name)
+    @summary =  @current_user.bankaccounts.sum("amount * mov_type",:include => :movements, :group => :name)
         respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bankaccounts }

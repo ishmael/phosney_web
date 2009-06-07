@@ -25,14 +25,16 @@
 
 <br />
 
-<%= link_to 'New bankaccount', new_bankaccount_path %>
+<%= link_to 'New Account', new_bankaccount_path %>
 </div><!--/end .container2-->
 
  <div class="container2">
 <ul>
+<li>Balance</li>
  <% @summary.each do |name,amount| %>
  <li><%= name %> <%= amount %></li>
  <% end %>
+ <li>Total <%= @summary.values.inject(0){ |result,amount|  amount.to_f+ result } %>
 </ul>
             </div><!--/end .container2-->
         </div><!--/end .tabbertab-->
