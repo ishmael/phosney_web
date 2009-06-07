@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090428180043) do
+ActiveRecord::Schema.define(:version => 20090606190058) do
 
   create_table "bankaccounts", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -23,12 +23,13 @@ ActiveRecord::Schema.define(:version => 20090428180043) do
   create_table "movements", :force => true do |t|
     t.integer  "bankaccount_id"
     t.string   "description"
-    t.decimal  "amount",         :precision => 12, :scale => 2, :default => 0.0
+    t.decimal  "amount",                      :precision => 12, :scale => 2, :default => 0.0
     t.datetime "movdate"
     t.datetime "created_at"
     t.datetime "created_on"
     t.datetime "updated_at"
     t.datetime "updated_on"
+    t.integer  "mov_type",       :limit => 1, :precision => 1,  :scale => 0, :default => 1
   end
 
   create_table "sessions", :force => true do |t|

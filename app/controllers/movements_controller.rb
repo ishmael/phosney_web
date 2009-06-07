@@ -63,7 +63,7 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.update_attributes(params[:movement])
         flash[:notice] = 'Movement was successfully updated.'
-        format.html { redirect_to(@movement) }
+        format.html { redirect_to(bankaccount_movements_path(@bankaccount.id)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
