@@ -4,8 +4,11 @@ class BankaccountsController < ApplicationController
   before_filter :require_user #, :only => [:new, :create,:edit,:update,:index,:destroy]
   
   def index
-    @bankaccounts = @current_user.bankaccounts
-    @summary =  @current_user.bankaccounts.sum("amount * mov_type",:include => :movements, :group => :name)
+    #@bankaccounts = @current_user.bankaccounts.find(:all, :select => "bankaccounts.id,bankaccounts.name, bankaccounts.bank,(select sum(amount*mov_type) from movements where movements.bankaccount_id = bankaccounts.id) as balance")
+    # @bankaccounts = @current_user.bankaccounts.connection.select_rows('SELECT bankaccounts.id,bankaccounts.name, bankaccounts.bank,(select sum(amount*mov_type) from movements where movements.bankaccount_id =bankaccounts.id) as balance FROM bankaccounts WHERE (bankaccounts.user_id = ?)',@current_user.id)
+     @bankaccounts = @current_user.bankaccounts.connection.select_rows('SELECT bankaccounts.id,bankaccounts.name, bankaccounts.bank,(select sum(amount*mov_type) from movements where movements.bankaccount_id =bankaccounts.id) as balance FROM bankaccounts ',:conditions => ['bankaccounts.id = ?',@current_user.id])
+    #@summary =  @current_user.bankaccounts.sum("amount * mov_type",:include => :movements, :group => "bankaccounts.name")
+    #@summary =  @current_user.bankaccounts.find)by_sq
         respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bankaccounts }

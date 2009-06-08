@@ -1,40 +1,36 @@
         <div class="tabbertab">
             <h2>Account</h2>
-            <div class="container2">
+            <div class="container1">
 
 <table class="broom_table">
  <thead>
   <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Number</th>
+    <th scope="col">Name</th>  
     <th scope="col">Bank</th>
+    <th scope="col">Balance</th>    
     <th scope="col"></th>
   </tr>
  </thead>
-<% @bankaccounts.each do |bankaccount| %>
+<% @bankaccounts.each do |id,name,bank,balance| %>
   <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h bankaccount.name %></td>
-    <td><%=h bankaccount.number %></td>
-    <td><%=h bankaccount.bank %></td>
+    <td><%=h name %></td>
+    <td><%=h bank %></td>
+    <td><%=h balance.nil? ? 0 : balance %></td>
     <td>
-    <%= link_to 'Edit', edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
-    <%= link_to 'Destroy', bankaccount, :confirm => 'Are you sure?', :method => :delete ,:class => 'table_delete'%></td>
+    <%= link_to 'Edit', edit_bankaccount_path(id),:class => 'table_edit' %>
+    <%= link_to 'Destroy', id, :confirm => 'Are you sure?', :method => :delete ,:class => 'table_delete'%></td>
   </tr>
 <% end %>
+<tr>
+<td></td>
+<td>Total</td>
+<td></td>
+<td></td>
+</tr>
 </table>
 
 <br />
 
 <%= link_to 'New Account', new_bankaccount_path %>
 </div><!--/end .container2-->
-
- <div class="container2">
-<ul>
-<li>Balance</li>
- <% @summary.each do |name,amount| %>
- <li><%= name %> <%= amount %></li>
- <% end %>
- <li>Total <%= @summary.values.inject(0){ |result,amount|  amount.to_f+ result } %>
-</ul>
-            </div><!--/end .container2-->
-        </div><!--/end .tabbertab-->
+   </div><!--/end .tabbertab-->
