@@ -26,7 +26,7 @@ class MovementsController < ApplicationController
   # GET /movements/new.xml
   def new
     @movement = @bankaccount.movements.new
-
+    @movement.mov_type = -1
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @movement }
