@@ -11,20 +11,20 @@
     <th scope="col"></th>
   </tr>
  </thead>
-<% @bankaccounts.each do |id,name,bank,balance| %>
+<% @bankaccounts.each do |bankaccount| %>
   <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h name %></td>
-    <td><%=h bank %></td>
-    <td><%=h balance.nil? ? 0 : balance %></td>
+    <td><%=h bankaccount.name %></td>
+    <td><%=h bankaccount.bank %></td>
+    <td><%=h bankaccount.balance.nil? ? 0 : bankaccount.balance %></td>
     <td>
-    <%= link_to 'Edit', edit_bankaccount_path(id),:class => 'table_edit' %>
-    <%= link_to 'Destroy', id, :confirm => 'Are you sure?', :method => :delete ,:class => 'table_delete'%></td>
+    <%= link_to 'Edit', edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
+    <%= link_to 'Destroy', bankaccount, :confirm => 'Are you sure?', :method => :delete ,:class => 'table_delete'%></td>
   </tr>
 <% end %>
 <tr>
 <td></td>
 <td>Total</td>
-<td></td>
+<td><%= @bankaccounts.inject(0) { |result,element| result + element['balance'].to_f } %></td>
 <td></td>
 </tr>
 </table>

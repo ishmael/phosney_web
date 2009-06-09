@@ -4,12 +4,14 @@ class BankaccountsController < ApplicationController
   before_filter :require_user #, :only => [:new, :create,:edit,:update,:index,:destroy]
   
   def index
-    #@bankaccounts = @current_user.bankaccounts.find(:all, :select => "bankaccounts.id,bankaccounts.name, bankaccounts.bank,(select sum(amount*mov_type) from movements where movements.bankaccount_id = bankaccounts.id) as balance")
+    @bankaccounts = @current_user.bankaccounts.find(:all, :select => "bankaccounts.id,bankaccounts.name, bankaccounts.bank,(select sum(amount*mov_type) from movements where movements.bankaccount_id = bankaccounts.id) as balance")
     # @bankaccounts = @current_user.bankaccounts.connection.select_rows('SELECT bankaccounts.id,bankaccounts.name, bankaccounts.bank,(select sum(amount*mov_type) from movements where movements.bankaccount_id =bankaccounts.id) as balance FROM bankaccounts WHERE (bankaccounts.user_id = ?)',@current_user.id)
-     @bankaccounts = @current_user.bankaccounts.connection.select_rows('SELECT bankaccounts.id,bankaccounts.name, bankaccounts.bank,(select sum(amount*mov_type) from movements where movements.bankaccount_id =bankaccounts.id) as balance FROM bankaccounts ',:conditions => ['bankaccounts.id = ?',@current_user.id])
+    # @bankaccounts = @current_user.bankaccounts.connection.select_rows('SELECT bankaccounts.id,bankaccounts.name, bankaccounts.bank,(select sum(amount*mov_type) from movements where movements.bankaccount_id =bankaccounts.id) as balance FROM bankaccounts ',:conditions => ['bankaccounts.id = ?',@current_user.id])
+    #@movementsgraph = Movement.find(:all, :select => "movements.bankaccount_id,movements.movdate,(select bankaccounts.name from bankaccounts where bankaccounts.id = movements.bankaccount_id) as name,sum(movements.amount*movements.mov_type) as total", :group => "movements.bankaccount_id,movements.movdate",:conditions => ["movements.bankaccount_id in (select id from bankaccounts where bankaccounts.user_id= ?)",@current_user.id] )
+    
     #@summary =  @current_user.bankaccounts.sum("amount * mov_type",:include => :movements, :group => "bankaccounts.name")
     #@summary =  @current_user.bankaccounts.find)by_sq
-        respond_to do |format|
+    respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bankaccounts }
     end
