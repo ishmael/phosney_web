@@ -15,6 +15,10 @@
     <%= f.text_field :amount %>
   </p>
   <p>
+    <%= f.radio_button :mov_type,"-1" %>Debit
+    <%= f.radio_button :mov_type,"1" %>Credit
+  </p>
+  <p>
     <%= f.label :movdate %><br />
     <%= f.date_select :movdate %>
   </p>
