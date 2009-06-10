@@ -35,8 +35,8 @@
 
 <%= link_to 'New Account', new_bankaccount_path %>
 
-<% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:expending_data => @expending_data
-    render_chart '/FusionCharts/FCF_Pie3D.swf', '', str_xml, 'FactorySum', 350, 250, false, false do-%> 
+<% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:spending_data => @spending_data
+    render_chart '/FusionCharts/FCF_MSLine.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%> 
 <% end-%> 
 </div><!--/end .container2-->
    </div><!--/end .tabbertab-->
