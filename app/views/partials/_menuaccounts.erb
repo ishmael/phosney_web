@@ -1,7 +1,20 @@
-<% current_user.bankaccounts.each do |menu_bankaccount| %>
-<% if not accountnumber.nil? and accountnumber== menu_bankaccount.id %>
-<li class="selected"><%= link_to menu_bankaccount.name,  bankaccount_movements_path(menu_bankaccount.id) %></li>
-<% else %>
-<li><%= link_to menu_bankaccount.name,  bankaccount_movements_path(menu_bankaccount.id) %></li>
-<% end %>
+ <% accounts = current_user.accounts.group_by(&:type).sort.each do |type,menu_account| %>
+      <div class="menu_main_section first">
+          <h4 id="menu_main_h_support"><%= link_to type, bankaccounts_path %></h4>
+          <ul>
+          <% menu_account.each do |menu| %>
+              <% if not accountnumber.nil? and accountnumber== menu_account.id %>
+              <li class="selected"><%= link_to menu.name,  bankaccount_movements_path(menu.id) %></li>
+              <% else %>
+              <li><%= link_to menu.name,  bankaccount_movements_path(menu.id) %></li>
+              <% end %>
+              
+          <% end %>
+          <% if account_selected == 0 %>
+              <li class="selected"><%= link_to 'New Account', new_bankaccount_path %></li>
+          <% else %>
+              <li><%= link_to 'New Account', new_bankaccount_path %></li>
+          <% end %>
+          </ul>
+      </div><!--/end #menu_main_section-->
 <% end %>
