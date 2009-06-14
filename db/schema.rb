@@ -9,27 +9,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090606190058) do
+ActiveRecord::Schema.define(:version => 20090613182008) do
 
-  create_table "bankaccounts", :force => true do |t|
+  create_table "accounts", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.string   "name"
     t.string   "number"
     t.string   "bank"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
   end
 
   create_table "movements", :force => true do |t|
-    t.integer  "bankaccount_id"
+    t.integer  "account_id"
     t.string   "description"
-    t.decimal  "amount",                      :precision => 12, :scale => 2, :default => 0.0
+    t.decimal  "amount",                   :precision => 12, :scale => 2, :default => 0.0
     t.datetime "movdate"
     t.datetime "created_at"
     t.datetime "created_on"
     t.datetime "updated_at"
     t.datetime "updated_on"
-    t.integer  "mov_type",       :limit => 1, :precision => 1,  :scale => 0, :default => 1
+    t.integer  "mov_type",    :limit => 1, :precision => 1,  :scale => 0, :default => 1
   end
 
   create_table "sessions", :force => true do |t|
