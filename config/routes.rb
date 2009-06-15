@@ -1,15 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
   #map.resources :movements
-  map.resources :bankaccounts do |bankaccounts|
-    bankaccounts.resources :movements
-map.root :controller => "bankaccounts", :action => "index" # optional, this just sets the root route
-  map.resource :user_session
-  map.resource :account, :controller => "users"
-  map.resources :users  
+  map.root :controller => "bankaccounts", :action => "index"
+   
+  map.resources :bankaccounts  do |bankaccounts|
+    bankaccounts.resources :movements 
+  end
+   # optional, this just sets the root route
   
+  map.resource :user_session
+  map.resource :account,  :controller => "users"
+  map.resources :users 
+
   #map.resources :bankaccounts
 
-  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
