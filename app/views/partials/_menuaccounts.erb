@@ -1,9 +1,10 @@
- <% accounts = current_user.accounts.group_by(&:type).sort.each do |type,menu_account| %>
+ <% accounts = current_user.accounts.group_by(&:type) %>
+ <% accounts.keys.sort.each do |type,index| %>
       <div class="menu_main_section first">
           <h4 id="menu_main_h_support"><%= link_to type, bankaccounts_path %></h4>
           <ul>
-          <% menu_account.each do |menu| %>
-              <% if not accountnumber.nil? and accountnumber== menu_account.id %>
+          <% accounts[type].each do |menu| %>
+              <% if not accountnumber.nil? and accountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  bankaccount_movements_path(menu.id) %></li>
               <% else %>
               <li><%= link_to menu.name,  bankaccount_movements_path(menu.id) %></li>
