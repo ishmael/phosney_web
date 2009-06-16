@@ -20,7 +20,7 @@
     <td><%=h bankaccount.balance.nil? ? 0 : bankaccount.balance %></td>
     <td>
     <%= link_to 'Edit', edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
-    <%= link_to 'Destroy', bankaccount, :confirm => 'Are you sure?', :method => :delete ,:class => 'table_delete'%></td>
+    <%= link_to 'Destroy', bankaccount_path(bankaccount), :confirm => 'Are you sure?', :method => :delete ,:class => 'table_delete'%></td>
   </tr>
 <% end %>
 <tr>

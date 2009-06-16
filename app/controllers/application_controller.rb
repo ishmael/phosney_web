@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
+  before_filter :set_locale_from_url
+  
   
   private
         def current_user_session
