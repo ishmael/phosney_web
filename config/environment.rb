@@ -13,7 +13,7 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
-
+	config.i18n.load_path += Dir[File.join(RAILS_ROOT, 'config', 'locales', '**', '*.{rb,yml}')] 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
@@ -37,5 +37,5 @@ Rails::Initializer.run do |config|
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
-  # config.i18n.default_locale = :de
+   config.i18n.default_locale = :en
 end
