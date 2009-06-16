@@ -2,4 +2,15 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  layout:
+    application:
+      title: "Phosney | Keeping your finances neatly in order..." 
+      name: "Phosney"
+      tag: "Keeping your finances neatly in order..."  
+      welcome: "Welcome"
+      logout: "Logout"
+      settings: "Profile"
+      lastlogin: "Last Login:"	  
+    bankaccounts:
+      name: "Accounts"
+      newaccount: "Nova Conta Bancária"	  
