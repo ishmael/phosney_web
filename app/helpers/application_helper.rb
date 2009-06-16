@@ -10,7 +10,7 @@ module ApplicationHelper
   
   def last_login
     if (not current_user.last_login_at.nil?)
-    current_user.last_login_at.to_s(:long)
+     l current_user.last_login_at, :format => :long
     else
     'Never'
     end

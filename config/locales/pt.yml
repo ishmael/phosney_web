@@ -1,11 +1,24 @@
-﻿# Portuguese localization for Ruby on Rails
+# Portuguese localization for Ruby on Rails
 # by Ricardo Otero <oterosantos@gmail.com>
 #
 # This localization file targets Rails 2.3.2.
 # If you need a previous version go to http://github.com/weppos/rails-i18n/
 # and choose between available tags.
 pt:
-  support:
+  layout:
+    application:
+      title: "Phosney | Mantendo as suas finanças em ordem..." 
+      name: "Phosney"
+      tag: "Mantendo as suas finanças em ordem..."  
+      welcome: "Bem vindo"
+      logout: "Terminar sessão"
+      settings: "Perfil"
+      lastlogin: "Ultima sessão:"	  
+    bankaccounts:
+      name: "Contas Bancárias"
+      newaccount: "Nova Conta Bancária"
+     
+    support:
     array:
       words_connector: ","
       two_words_connector: "e"

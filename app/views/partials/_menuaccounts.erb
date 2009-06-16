@@ -1,7 +1,7 @@
  <% accounts = current_user.accounts.group_by(&:type) %>
  <% accounts.keys.sort.each do |type,index| %>
-      <div class="menu_main_section first">
-          <h4 id="menu_main_h_support"><%= link_to type, polymorphic_path(type.pluralize.downcase) %></h4>
+      <div class="menu_main_section <%= index == 0 ? 'first' : ""  %>">
+          <h4 id="menu_main_h_support"><%= link_to I18n.t('layout.bankaccounts.name'), type.pluralize.downcase %></h4>
           <ul>
           <% accounts[type].each do |menu| %>
               <% if not accountnumber.nil? and accountnumber== menu.id %>
@@ -12,9 +12,9 @@
               
           <% end %>
           <% if account_selected == 0 %>
-              <li class="selected"><%= link_to 'New Account', new_polymorphic_path(type.downcase) %></li>
+              <li class="selected"><%= link_to I18n.t('layout.bankaccounts.newaccount'), new_polymorphic_path(type.downcase) %></li>
           <% else %>
-              <li><%= link_to 'New Account', new_polymorphic_path(type.downcase) %></li>
+              <li><%= link_to I18n.t('layout.bankaccounts.newaccount'), new_polymorphic_path(type.downcase) %></li>
           <% end %>
           </ul>
       </div><!--/end #menu_main_section-->
