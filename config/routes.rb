@@ -1,10 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   #map.resources :movements
-  map.root :controller => "bankaccounts", :action => "index"
-   
-  map.resources :bankaccounts  do |bankaccounts|
-    bankaccounts.resources :movements 
-  end
+  map.dashboard '/dashboard',:controller => "bankaccounts", :action => "index" 
+  map.root :dashboard
+  map.resources :bankaccounts  , :has_many => :movements 
+  
    # optional, this just sets the root route
   
   map.resource :user_session
@@ -57,3 +56,5 @@ ActionController::Routing::Routes.draw do |map|
   #map.connect ':controller/:action/:id'
   #map.connect ':controller/:action/:id.:format'
   end
+  ActionController::Routing::Translator.i18n('pt')
+  ActionController::Routing::Translator.translate_from_file('config/locales','i18n-routes.yml')
