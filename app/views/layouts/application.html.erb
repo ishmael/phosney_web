@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title><%= app_title %></title>
+<title><%=  t(:application_title) %></title>
 <!--favicon-->
 
 <!--jQuery-->
@@ -52,8 +52,8 @@ type="text/javascript"></script>
 
 <div id="header">
     <div id="logo">
-    <h1 id="header_broomcupboard"><a href="/"><%= app_name %></a></h1>
-    <h4 id="header_strapline"><%= app_tag %></h4>
+    <h1 id="header_broomcupboard"><a href="/"><%=  t(:application_name) %></a></h1>
+    <h4 id="header_strapline"><%=  t(:application_tag)  %></h4>
     <ul id="welcome">
         <li><%= link_to "My Settings", account_path %></li>
         <li><%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %></li>

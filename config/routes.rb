@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   #map.resources :movements
+  map.filter 'locale'
   map.dashboard '/dashboard',:controller => "bankaccounts", :action => "index" 
   map.root :dashboard
   map.resources :bankaccounts  , :has_many => :movements 
@@ -56,5 +57,5 @@ ActionController::Routing::Routes.draw do |map|
   #map.connect ':controller/:action/:id'
   #map.connect ':controller/:action/:id.:format'
   end
-  ActionController::Routing::Translator.i18n('pt')
-  ActionController::Routing::Translator.translate_from_file('config/locales','i18n-routes.yml')
+  #ActionController::Routing::Translator.i18n('pt')
+  #ActionController::Routing::Translator.translate_from_file('config/locales','i18n-routes.yml')

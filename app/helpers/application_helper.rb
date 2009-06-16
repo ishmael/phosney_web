@@ -2,17 +2,7 @@
 module ApplicationHelper
     require "fusioncharts_helper"
     include FusionChartsHelper
-  def app_title
-    "Phosney | Keeping your finances neatly in order.." 
-  end
-  
-  def app_name
-    "Phosney"
-  end
-  
-  def app_tag
-    "Keeping your finances neatly in order.."
-  end
+
   
   def company_name
     "Phosney"
