@@ -1,28 +1,26 @@
         <div class="tabbertab">
-            <h2>Account</h2>
+            <h2><%=  I18n.t('layout.bankaccounts.title') %></h2>
             <div class="container1">
-<h1>Editing bankaccount</h1>
-
 <% form_for(@bankaccount) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label I18n.t('layout.bankaccounts.accountname') %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :number %><br />
+    <%= f.label I18n.t('layout.bankaccounts.accountnumber') %><br />
     <%= f.text_field :number %>
   </p>
   <p>
-    <%= f.label :bank %><br />
+    <%= f.label I18n.t('layout.bankaccounts.accountbank') %><br />
     <%= f.text_field :bank %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit I18n.t('layout.application.update')  %>
   </p>
 <% end %>
 
-<%= link_to 'Back', bankaccounts_path %>
+<%= link_to I18n.t('layout.application.back'), bankaccounts_path %>
             </div><!--/end .container1-->
         </div><!--/end .tabbertab-->

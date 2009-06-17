@@ -1,31 +1,31 @@
         <div class="tabbertab">
-            <h2>Movements</h2>
+            <h2><%=  I18n.t('layout.movements.title') %></h2>
             <div class="container1">
 
 
 <% form_for([@bankaccount,@movement]) do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :description %><br />
+    <%= f.label I18n.t('layout.movements.description') %><br />
     <%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label :amount %><br />
+    <%= f.label I18n.t('layout.movements.amount') %><br />
     <%= f.text_field :amount %>
   </p>
   <p>
-    <%= f.radio_button :mov_type,"-1" %>Debit
-    <%= f.radio_button :mov_type,"1" %>Credit
+    <%= f.radio_button :mov_type,"-1" %><%=  I18n.t('layout.movements.debit') %>
+    <%= f.radio_button :mov_type,"1" %><%=  I18n.t('layout.movements.credit') %>
   </p>
   <p>
-    <%= f.label :movdate %><br />
+    <%= f.label I18n.t('layout.movements.movdate') %><br />
     <%= f.date_select :movdate %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit I18n.t('layout.application.update') %>
   </p>
 <% end %>
 
-<%= link_to 'Back to Movements', bankaccount_movements_path(@bankaccount) %>
+<%= link_to I18n.t('layout.movements.back'), bankaccount_movements_path(@bankaccount) %>
             </div><!--/end .container1-->
         </div><!--/end .tabbertab-->

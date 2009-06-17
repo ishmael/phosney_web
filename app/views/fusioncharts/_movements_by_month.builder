@@ -4,7 +4,7 @@
 #It expects an array in which each element as 
 #a hash with values for "factory_name" and "factory_output"
 xml = Builder::XmlMarkup.new
-xml.graph(:caption=>'Spending', :subCaption=>'By Day' , :xAxisName=>'Day' , :yAxisName=>'Spending' , :hovercapbg=>'FFECAA' , 
+xml.graph(:caption=>I18n.t('layout.fusioncharts.movements_by_month.caption'), :subCaption=>I18n.t('layout.fusioncharts.movements_by_month.subcaption') , :xAxisName=>I18n.t('layout.fusioncharts.movements_by_month.xAxisName') , :yAxisName=>I18n.t('layout.fusioncharts.movements_by_month.yAxisName') , :hovercapbg=>'FFECAA' , 
     :hovercapborder=>'F47E00' , :formatNumberScale=>'0' , :decimalPrecision=>'2' , :showvalues=>'0' , :animation=>'1' , :numdivlines=>'3' ,:numVdivlines=>'0' ,:lineThickness=>'3' ) do
    xml.categories do
     1.upto(Time.days_in_month(Time.now.month,Time.now.year)) {

@@ -13,11 +13,39 @@ pt:
       welcome: "Bem vindo"
       logout: "Terminar sessão"
       settings: "Perfil"
-      lastlogin: "Ultima sessão:"	  
+      lastlogin: "Ultima sessão:"
+      new: "Novo"
+      update: "Actualizar"
+      back: "Voltar"
+      create: "Criar"
+      cancel: "Cancelar"	  
     bankaccounts:
       name: "Contas Bancárias"
+      title: "Conta Bancária"
       newaccount: "Nova Conta Bancária"
-     
+      accountname: "Nome"
+      accountbank: "Banco"
+      accountnumber: "Numêro"
+      accountbalance: "Balanço"
+      total: "Total"
+    movements:
+       name: "Movementos"
+       title: "Movimento"
+       description: "Descrição"
+       amount: "Valor"
+       debit: "Débito"
+       credit: "Crédito"
+       movdate: "Data"
+       type: "Tipo"
+       back: "Voltar para os Movimentos"
+       new: "Novo Movimento"
+    fusioncharts:
+      movements_by_month:
+         caption: "Gastos"
+         subcaption: "Por Dia"
+         xAxisName: "Dia"
+         yAxisName: "Valor"
+
     support:
     array:
       words_connector: ","
