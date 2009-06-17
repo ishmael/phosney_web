@@ -29,7 +29,7 @@ pt:
       accountbalance: "Balanço"
       total: "Total"
     movements:
-       name: "Movementos"
+       name: "Movimentos"
        title: "Movimento"
        description: "Descrição"
        amount: "Valor"
