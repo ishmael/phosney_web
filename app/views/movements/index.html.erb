@@ -1,14 +1,14 @@
         <div class="tabbertab">
-            <h2>Movements</h2>
+            <h2><%=  I18n.t('layout.movements.name') %></h2>
             <div class="container1">
 
 <table class="broom_table">
  <thead>
   <tr>
-    <th scope="col">Description</th>
-    <th scope="col">Amount</th>
-    <th scope="col">Type</th>
-    <th scope="col">Date</th>
+    <th scope="col"><%=  I18n.t('layout.movements.description') %></th>
+    <th scope="col"><%=  I18n.t('layout.movements.amount') %></th>
+    <th scope="col"><%=  I18n.t('layout.movements.type') %></th>
+    <th scope="col"><%=  I18n.t('layout.movements.movdate') %></th>
     <th scope="col"></th>
   </tr>
 </thead>   
@@ -30,6 +30,6 @@
 
 <br />
 
-<%= link_to 'New movement', new_bankaccount_movement_path %>
+<%= link_to I18n.t('layout.movements.new'), new_bankaccount_movement_path %>
             </div><!--/end .container1-->
         </div><!--/end .tabbertab-->

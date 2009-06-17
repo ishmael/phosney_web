@@ -1,15 +1,15 @@
 <%= javascript_include_tag "FusionCharts"%>
 
         <div class="tabbertab">
-            <h2>Account</h2>
+            <h2><%=  I18n.t('layout.bankaccounts.name') %></h2>
             <div class="container1">
 
 <table class="broom_table">
  <thead>
   <tr>
-    <th scope="col">Name</th>  
-    <th scope="col">Bank</th>
-    <th scope="col">Balance</th>    
+    <th scope="col"><%=  I18n.t('layout.bankaccounts.accountname') %></th>  
+    <th scope="col"><%=  I18n.t('layout.bankaccounts.accountbank') %></th>
+    <th scope="col"><%=  I18n.t('layout.bankaccounts.accountbalance') %></th>    
     <th scope="col"></th>
   </tr>
  </thead>
@@ -25,15 +25,13 @@
 <% end %>
 <tr>
 <td></td>
-<td>Total</td>
+<td><%=  I18n.t('layout.bankaccounts.total') %></td>
 <td><%= @bankaccounts.inject(0) { |result,element| result + element['balance'].to_f } %></td>
 <td></td>
 </tr>
 </table>
 
 <br />
-
-<%= link_to 'New Account', new_bankaccount_path %>
 
 <% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:spending_data => @spending_data
     render_chart '/FusionCharts/FCF_MSLine.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%> 
