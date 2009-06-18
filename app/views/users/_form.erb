@@ -1,13 +1,13 @@
-<%= form.label :login  %>
+<%= form.label :login,I18n.t('layout.users.username')  %>
 <%= form.text_field :login %>
 <br />
-<%= form.label :password, form.object.new_record? ? nil : "Change password" %>
+<%= form.label :password, form.object.new_record? ? I18n.t('layout.users.password') : I18n.t('layout.users.changepassword') %>
 <%= form.password_field :password %>
 <br />
-<%= form.label :password_confirmation %>
+<%= form.label :password_confirmation,I18n.t('layout.users.passwordconfirmation')  %>
 <%= form.password_field :password_confirmation %>
 <br />
 <%= form.label :email %><%= form.text_field :email %>
 <br />
-<%= form.label 'Linguagem' %><%= form.select(:locale, [['Português', 'pt'], ['English', 'en']]) %> 
+<%= form.label :locale,I18n.t('layout.users.locale') %><%= form.select(:locale, [['Português', 'pt'], ['English', 'en']]) %> 
 <br />

@@ -4,12 +4,12 @@
   <div class="notification error"><a href="#" class="close">close</a><em><img src="images/icons/cross_circle.png" alt=""/><%= f.error_messages %></em> </div>
   <% end %>
   <label for="user_session_username" class="label2">
-  <span>Username</span>
+  <span><%=  I18n.t('layout.users.username') %></span>
   <%= f.text_field :login %>	
   </label>
 
   <label for="user_session_password" class="label2">
-  <span>Password</span>
+  <span><%=  I18n.t('layout.users.password') %></span>
   <%= f.password_field :password %>
   </label>
 
@@ -23,8 +23,8 @@
    </span>					
   </div>
   </div>
-  <a href="" class="forgot_login">Forgot your keys?</a>
- <%= link_to "Register", new_account_path , {:class => "forgot_login"}%>
+  <a href="" class="forgot_login"><%=  I18n.t('layout.users.recoverpassword') %></a>
+ <%= link_to I18n.t('layout.users.register'), new_account_path , {:class => "forgot_login"}%>
   </fieldset>
   <% end %>
 

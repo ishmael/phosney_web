@@ -9,11 +9,24 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
-  #before_filter :set_locale_from_url
+  before_filter :set_locale
   
   
   private
-        def current_user_session
+		def set_locale
+			if not current_user.nil?
+				I18n.locale = @current_user.locale
+			else
+				xxx = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+				if xxx.match /^(en|pt)$/
+					I18n.locale = xxx
+				else
+					I18n.locale = 'en'
+				end
+			end	
+		end
+        
+		def current_user_session
           return @current_user_session if defined?(@current_user_session)
           @current_user_session = UserSession.find
         end

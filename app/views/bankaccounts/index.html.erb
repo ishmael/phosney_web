@@ -17,16 +17,16 @@
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%=h bankaccount.name %></td>
     <td><%=h bankaccount.bank %></td>
-    <td><%=h bankaccount.balance.nil? ? 0 : bankaccount.balance %></td>
+    <td><%=h bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(bankaccount.balance) %></td>
     <td>
-    <%= link_to 'Edit', edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
-    <%= link_to 'Destroy', bankaccount_path(bankaccount), :confirm => 'Are you sure?', :method => :delete ,:class => 'table_delete'%></td>
+    <%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
+    <%= link_to I18n.t('layout.application.delete'), bankaccount_path(bankaccount), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%></td>
   </tr>
 <% end %>
 <tr>
 <td></td>
 <td><%=  I18n.t('layout.bankaccounts.total') %></td>
-<td><%= @bankaccounts.inject(0) { |result,element| result + element['balance'].to_f } %></td>
+<td><%= number_to_currency(@bankaccounts.inject(0) { |result,element| result + element['balance'].to_f }) %></td>
 <td></td>
 </tr>
 </table>

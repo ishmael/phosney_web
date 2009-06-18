@@ -18,7 +18,10 @@ pt:
       update: "Actualizar"
       back: "Voltar"
       create: "Criar"
-      cancel: "Cancelar"	  
+      cancel: "Cancelar"
+      edit: "Alterar"	  
+      delete: "Apagar"
+      deletemessage: "Tem a certeza?"
     bankaccounts:
       name: "Contas Bancárias"
       title: "Conta Bancária"
@@ -45,6 +48,16 @@ pt:
          subcaption: "Por Dia"
          xAxisName: "Dia"
          yAxisName: "Valor"
+    users:
+       title: "Perfil"
+       username: "Utilizador"
+       password: "Password"
+       recoverpassword: "Recuperar Password"
+       register: "Registrar-se"
+       passwordconfirmation: "Confirme a Password"
+       changepassword: "Trocar a Password"
+       locale: "Linguagem"
+       logout: "Tem a certeza que quer sair?"	   
 
     support:
     array:
