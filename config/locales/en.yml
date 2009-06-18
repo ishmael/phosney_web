@@ -18,7 +18,7 @@ en:
       cancel: "Cancel"
       edit: "Edit"
       delete: "Delete"
-      deletemessage: "Tem a certeza?"
+      deletemessage: "Are you sure?"
     bankaccounts:
       name: "Accounts"
       title: "Account"
