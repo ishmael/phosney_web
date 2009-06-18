@@ -1,18 +1,14 @@
         <div class="tabbertab">
-            <h2>My Settings</h2>
+            <h2><%=  I18n.t('layout.users.title') %></h2>
             <div class="container1">
 <p>
-  <b>Login:</b>
+  <b><%=  I18n.t('layout.users.username') %></b>
   <%=h @user.login %>
 </p>
- 
- 
 <p>
   <b>Email:</b>
   <%=h @user.email %>
 </p>
- 
- 
-<%= link_to 'Edit', edit_account_path %>
+<%= link_to I18n.t('layout.application.edit'), edit_account_path %>
             </div><!--/end .container1-->
         </div><!--/end .tabbertab-->

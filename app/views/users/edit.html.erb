@@ -1,12 +1,12 @@
         <div class="tabbertab">
-            <h2>My Settings</h2>
+            <h2><%=  I18n.t('layout.users.title') %></h2>
             <div class="container1">
-<h1>Edit My Account</h1>
+
  
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Update" %><%= button_to "Cancel", account_path %>
+  <%= f.submit I18n.t('layout.application.update') %><%= button_to I18n.t('layout.application.cancel'), account_path %>
 <% end %>
             </div><!--/end .container1-->
         </div><!--/end .tabbertab-->
