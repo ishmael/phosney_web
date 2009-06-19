@@ -55,7 +55,7 @@ type="text/javascript"></script>
     <h1 id="header_broomcupboard"><a href="/"><%=  I18n.t('layout.application.name') %></a></h1>
     <h4 id="header_strapline"><%=  I18n.t('layout.application.tag')  %></h4>
     <ul id="welcome">
-<li><%= link_to I18n.t('layout.application.logout'), user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %></li>
+		<li><%= link_to I18n.t('layout.application.logout'), user_session_path, :method => :delete, :confirm => I18n.t('layout.users.logout') %></li>
 		<li><%= link_to I18n.t('layout.application.settings'), account_path %></li>      
         <li><%= I18n.t('layout.application.welcome') %> <strong><%= current_user.login %></strong></li>
         <li id="last"><%= I18n.t('layout.application.lastlogin') %> <%=  last_login %></li>
