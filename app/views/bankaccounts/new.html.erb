@@ -6,15 +6,15 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label I18n.t('layout.bankaccounts.accountname') %><br />
+    <%= f.label :name, I18n.t('layout.bankaccounts.accountname') %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label I18n.t('layout.bankaccounts.accountnumber')  %><br />
+    <%= f.label :number,I18n.t('layout.bankaccounts.accountnumber')  %><br />
     <%= f.text_field :number %>
   </p>
   <p>
-    <%= f.label I18n.t('layout.bankaccounts.accountbank') %><br />
+    <%= f.label :bank,I18n.t('layout.bankaccounts.accountbank') %><br />
     <%= f.text_field :bank %>
   </p>
   <p>

@@ -6,11 +6,11 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label I18n.t('layout.movements.description') %><br />
+    <%= f.label :description ,I18n.t('layout.movements.description') %><br />
     <%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label I18n.t('layout.movements.amount') %><br />
+    <%= f.label :amount,I18n.t('layout.movements.amount') %><br />
     <%= f.text_field :amount %>
   </p>
   <p>
@@ -18,7 +18,7 @@
     <%= f.radio_button :mov_type,"1" %><%=  I18n.t('layout.movements.credit') %>
   </p>
   <p>
-    <%= f.label I18n.t('layout.movements.movdate') %><br />
+    <%= f.label :movdate,I18n.t('layout.movements.movdate') %><br />
     <%= f.date_select :movdate %>
   </p>
   <p>

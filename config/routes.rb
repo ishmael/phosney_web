@@ -1,9 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   #map.resources :movements
   map.filter 'locale'
+  map.resources :bankaccounts  , :has_many => :movements
   map.dashboard '/dashboard',:controller => "bankaccounts", :action => "index" 
   map.root :dashboard
-  map.resources :bankaccounts  , :has_many => :movements 
+   
   
    # optional, this just sets the root route
   
