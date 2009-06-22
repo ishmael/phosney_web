@@ -28,7 +28,7 @@ pt:
       newaccount: "Nova Conta Bancária"
       accountname: "Nome"
       accountbank: "Banco"
-      accountnumber: "Numêro"
+      accountnumber: "Número"
       accountbalance: "Balanço"
       total: "Total"
     movements:
@@ -53,14 +53,36 @@ pt:
        username: "Utilizador"
        password: "Password"
        recoverpassword: "Recuperar Password"
-       register: "Registrar-se"
+       register: "Registar-se"
        passwordconfirmation: "Confirme a Password"
        changepassword: "Trocar a Password"
        locale: "Linguagem"
        logout: "Tem a certeza que quer sair?"	   
 
+  authlogic:
+    error_messages:
+      login_blank: "Não pode estar vazio"
+      login_not_found: "Não é válido"
+      login_invalid: "Deve usar apenas letras, numêros,espaços e .-_@."
+      consecutive_failed_logins_limit_exceeded: "Número de tentativas seguidas de autenticação esgotado.A conta foi suspensa"
+      email_invalid: "Tem de ser um email"
+      password_blank: "Não pode estar vazio"
+      password_invalid: "Não é valida"
+      not_active: "A sua conta não está activa"
+      not_confirmed: "A sua conta não foi confirmada"
+      not_approved: "A sua conta não foi aprovada"
+      no_authentication_details: "Não providenciou nenhum elemento para autenticação."
+    models:
+      user_session:  
+       attributes:
+          user_session: "User"
+          login: login
+          email: email
+          password: password
+          remember_me: "lembrar-me"
+      
     support:
-    array:
+     array:
       words_connector: ","
       two_words_connector: "e"
       last_word_connector: ", e"
