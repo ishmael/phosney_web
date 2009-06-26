@@ -5,6 +5,7 @@
 # If you need a previous version go to http://github.com/weppos/rails-i18n/
 # and choose between available tags.
 pt:
+
   layout:
     application:
       title: "Phosney | Mantendo as suas finanças em ordem..." 
