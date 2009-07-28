@@ -1,0 +1,2 @@
+class Creditcardaccount < Account
+end

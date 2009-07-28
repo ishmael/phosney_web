@@ -1,5 +1,5 @@
 module BankaccountsHelper
-	def accountnumber
+	def bankaccountnumber
 		if not @bankaccount.nil?
 			if @bankaccount.id.nil?
 			0
