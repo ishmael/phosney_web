@@ -1,0 +1,27 @@
+        <div class="tabbertab">
+            <h2><%=  I18n.t('layout.creditcardaccounts.title') %></h2>
+            <div class="container1">
+
+<% form_for(@creditcardaccount) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name, I18n.t('layout.creditcardaccounts.accountname') %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :number,I18n.t('layout.creditcardaccounts.accountnumber')  %><br />
+    <%= f.text_field :number %>
+  </p>
+  <p>
+    <%= f.label :bank,I18n.t('layout.creditcardaccounts.accountbank') %><br />
+    <%= f.text_field :bank %>
+  </p>
+  <p>
+    <%= f.submit I18n.t('layout.application.create') %>
+  </p>
+<% end %>
+
+<%= link_to I18n.t('layout.application.cancel'), creditcardaccounts_path %>
+            </div><!--/end .container1-->
+        </div><!--/end .tabbertab-->

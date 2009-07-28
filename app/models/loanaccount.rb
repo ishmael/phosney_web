@@ -1,0 +1,2 @@
+class Loanaccount < Account
+end

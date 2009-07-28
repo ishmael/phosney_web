@@ -1,0 +1,23 @@
+        <div class="tabbertab">
+            <h2>Account</h2>
+            <div class="container1">
+<p>
+  <b>Name:</b>
+  <%=h @loanaccount.name %>
+</p>
+
+<p>
+  <b>Number:</b>
+  <%=h @loanaccount.number %>
+</p>
+
+<p>
+  <b>Bank:</b>
+  <%=h @loanaccount.bank %>
+</p>
+
+
+<%= link_to 'Edit', edit_loanaccount_path(@loanaccount) %> |
+<%= link_to 'Back', loanaccounts_path %>
+            </div><!--/end .container1-->
+        </div><!--/end .tabbertab-->
