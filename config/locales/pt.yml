@@ -59,8 +59,14 @@ pt:
        credit: "Crédito"
        movdate: "Data"
        type: "Tipo"
+       category: "Categoria"	   
        back: "Voltar para os Movimentos"
        new: "Novo Movimento"
+    categories:
+       name: "Categoria"
+       title: "Categorias"
+       new: "Nova Categoria"
+       parent_id: "Categoria Pai"	   
     fusioncharts:
       movements_by_month:
          caption: "Gastos"

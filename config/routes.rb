@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :bankaccounts  , :has_many => :movements
   map.resources :loanaccounts  , :has_many => :movements
   map.resources :creditcardaccounts  , :has_many => :movements
+  map.resources :categories  , :has_many => :movements
   map.dashboard '/dashboard',:controller => "bankaccounts", :action => "index" 
   map.root :dashboard
    

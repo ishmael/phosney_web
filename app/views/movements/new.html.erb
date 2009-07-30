@@ -2,7 +2,7 @@
             <h2><%=  I18n.t('layout.movements.title') %></h2>
             <div class="container1">
 
-<% form_for([@bankaccount,@movement]) do |f| %>
+<% form_for([@account,@movement]) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -22,10 +22,14 @@
     <%= f.date_select :movdate %>
   </p>
   <p>
+  <%= f.label :category_id ,I18n.t('layout.movements.category') %><br />
+  <%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
+  </p>
+  <p>
     <%= f.submit I18n.t('layout.application.create') %>
   </p>
 <% end %>
 
-<%= link_to I18n.t('layout.movements.back'), bankaccount_movements_path(@bankaccount) %>
+<%= link_to I18n.t('layout.movements.back'), polymorphic_path([@account,:movements]) %>
             </div><!--/end .container1-->
         </div><!--/end .tabbertab-->
