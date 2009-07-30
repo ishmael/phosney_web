@@ -55,8 +55,14 @@ en:
        credit: "Credit"
        movdate: "Date"
        type: "Type"
+       category: "Category"
        back: "Back to Movements"
-       new: "New Movement"	   
+       new: "New Movement"	
+    categories:
+       name: "Category"
+       title: "Categories"
+       new: "New Category"
+       parent_id: "Parent Category"	   
     fusioncharts:
       movements_by_month:
          caption: "Spending"

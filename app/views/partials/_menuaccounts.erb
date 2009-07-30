@@ -3,7 +3,7 @@
  <h4 id="menu_main_h_bank"><%= link_to I18n.t('layout.bankaccounts.name'), bankaccounts_path %></h4>
  <ul>
  <% bankaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
-              <% if not bankaccountnumber.nil? and bankaccountnumber== menu.id %>
+              <% if bankaccountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
               <li><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
@@ -22,7 +22,7 @@
  <h4 id="menu_main_h_loan"><%= link_to I18n.t('layout.loanaccounts.name'), loanaccounts_path %></h4>
  <ul>
  <% loanaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
-              <% if not loanaccountnumber.nil? and loanaccountnumber== menu.id %>
+              <% if loanaccountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
               <li><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
@@ -41,7 +41,7 @@
  <h4 id="menu_main_h_credit"><%= link_to I18n.t('layout.creditcardaccounts.name'), creditcardaccounts_path %></h4>
  <ul>
  <% creditcardaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
-              <% if not creditcardaccountnumber.nil? and creditcardaccountnumber== menu.id %>
+              <% if creditcardaccountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
               <li><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
@@ -51,6 +51,17 @@
   <li class="selected"><%= link_to I18n.t('layout.creditcardaccounts.newaccount'), new_creditcardaccount_path %></li>
 <% else %>
   <li><%= link_to I18n.t('layout.creditcardaccounts.newaccount'), new_creditcardaccount_path %></li>
+<% end %>
+</ul>
+</div><!--/end #menu_main_section-->
+
+<div class="menu_main_section ">
+ <h4 id="menu_main_h_categories"><%= link_to I18n.t('layout.categories.title'), categories_path %></h4>
+ <ul>
+<% if categorynumber == 0 %>
+  <li class="selected"><%= link_to I18n.t('layout.categories.new'), new_category_path %></li>
+<% else %>
+  <li><%= link_to I18n.t('layout.categories.new'), new_category_path %></li>
 <% end %>
 </ul>
 </div><!--/end #menu_main_section-->

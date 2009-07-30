@@ -1,0 +1,22 @@
+        <div class="tabbertab">
+            <h2><%=  I18n.t('layout.categories.name') %></h2>
+            <div class="container1">
+<% form_for(@category) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label I18n.t('layout.categories.name') %><br />
+    <%= f.text_field :name %>
+  </p>
+     <p>
+  <%= f.label :parent_id ,I18n.t('layout.categories.parent_id') %><br />
+  <%= f.collection_select :parent_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
+  </p> 
+  <p>
+    <%= f.submit I18n.t('layout.application.update')  %>
+  </p>
+<% end %>
+
+<%= link_to I18n.t('layout.application.back'), categories_path %>
+            </div><!--/end .container1-->
+        </div><!--/end .tabbertab-->
