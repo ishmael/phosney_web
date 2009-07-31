@@ -57,12 +57,17 @@ en:
        type: "Type"
        category: "Category"
        back: "Back to Movements"
-       new: "New Movement"	
+       new: "New Movement"
+       tags: "Tags"	   
     categories:
        name: "Category"
        title: "Categories"
        new: "New Category"
-       parent_id: "Parent Category"	   
+       parent_id: "Parent Category"	
+    tags:
+       name: "Tag"
+       title: "Tags"
+       new: "New Tag"
     fusioncharts:
       movements_by_month:
          caption: "Spending"

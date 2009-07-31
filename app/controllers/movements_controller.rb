@@ -1,5 +1,7 @@
 class MovementsController < ApplicationController
   before_filter(:get_account)
+  before_filter :require_user
+  
   # GET /movements
   # GET /movements.xml
   def index
@@ -42,9 +44,10 @@ class MovementsController < ApplicationController
   # POST /movements.xml
   def create
     @movement = @account.movements.build(params[:movement])
-
+    
     respond_to do |format|
       if @movement.save
+	    @movement.save_tags(current_user)
         flash[:notice] = 'Movement was successfully created.'
         format.html { redirect_to(polymorphic_path([@account,:movements])) }
         format.xml  { render :xml => @movement, :status => :created, :location => @movement }
@@ -59,9 +62,10 @@ class MovementsController < ApplicationController
   # PUT /movements/1.xml
   def update
     @movement = @account.movements.find(params[:id])
-
+	
     respond_to do |format|
       if @movement.update_attributes(params[:movement])
+		@movement.save_tags(current_user)
         flash[:notice] = 'Movement was successfully updated.'
         format.html { redirect_to(polymorphic_path([@account,:movements])) }
         format.xml  { head :ok }
@@ -94,4 +98,5 @@ class MovementsController < ApplicationController
 	@account = Creditcardaccount.find(params[:creditcardaccount_id])
 	end
   end
+  
 end
