@@ -26,6 +26,10 @@
   <%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
   </p> 
   <p>
+	tags:<br />
+	<%= f.text_field :tag_list %>
+  </p>
+  <p>
     <%= f.submit I18n.t('layout.application.update') %>
   </p>
 <% end %>

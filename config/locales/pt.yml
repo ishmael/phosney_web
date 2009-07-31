@@ -62,11 +62,16 @@ pt:
        category: "Categoria"	   
        back: "Voltar para os Movimentos"
        new: "Novo Movimento"
+       tags: "Tags"	   
     categories:
        name: "Categoria"
        title: "Categorias"
        new: "Nova Categoria"
-       parent_id: "Categoria Pai"	   
+       parent_id: "Categoria Pai"
+    tags:
+       name: "Tag"
+       title: "Tags"
+       new: "New Tag"	   
     fusioncharts:
       movements_by_month:
          caption: "Gastos"
