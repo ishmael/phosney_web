@@ -4,6 +4,13 @@ class UserSessionsController < ApplicationController
     layout "loggedout_layout", :only => [:new,:create]
     def new
       @user_session = UserSession.new
+	  
+	  respond_to do |format|
+		  format.html # new.html.erb
+		  format.iphone do  # action.iphone.erb
+			render :layout => false
+		  end
+	  end
     end
 
     def create
