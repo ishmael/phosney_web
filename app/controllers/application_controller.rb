@@ -10,7 +10,10 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
   before_filter :set_locale
-  
+	before_filter :adjust_format_for_iphone
+
+
+   
   
   private
 	def set_locale
@@ -24,6 +27,12 @@ class ApplicationController < ActionController::Base
 				I18n.locale = 'en'
 			end
 		end	
+	end
+  
+	def adjust_format_for_iphone
+		if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(Mobile\/.+Safari)/]
+			request.format = :iphone
+		end
 	end
 
 	def current_user_session

@@ -15,9 +15,8 @@ module ApplicationHelper
     'Never'
     end
   end
-  
-  
-  
+
+
     def tree_select(categories, model, name, selected=0, level=0, init=true)
     html = ""
     # The "Root" option is added
