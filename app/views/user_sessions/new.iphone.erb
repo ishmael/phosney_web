@@ -3,29 +3,23 @@
    <% if not f.error_messages.blank? %>
   <div class="notification error"><a href="#" class="close">close</a><em><img src="images/icons/cross_circle.png" alt=""/><%= f.error_messages %></em> </div>
   <% end %>
-  <label for="user_session_username" class="label2">
+  <div class="row">
+  <label for="user_session_username" class="row">
   <span><%=  I18n.t('layout.users.username') %></span>
   <%= f.text_field :login %>	
   </label>
+</div>
+ <div class="row">
 
-  <label for="user_session_password" class="label2">
+  <label for="user_session_password" class="row">
   <span><%=  I18n.t('layout.users.password') %></span>
   <%= f.password_field :password %>
   </label>
-
-  <div >
-  <div >
-  <span>
-  <em>
-    <button type="submit"><%= image_tag("icons/lock.png") %>Log in</button>
-
-  </em>                       
-   </span>					
   </div>
-  </div>
-  <a href="" class="forgot_login"><%=  I18n.t('layout.users.recoverpassword') %></a>
- <%= link_to I18n.t('layout.users.register'), new_account_path , {:class => "forgot_login"}%>
   </fieldset>
+  <a type="submit" class="whiteButton" href="#">Log in</a>
+  <a href="" class="whiteButton"><%=  I18n.t('layout.users.recoverpassword') %></a>
+  <%= link_to I18n.t('layout.users.register'), new_account_path , {:class => "whiteButton"}%>
   <% end %>
 
       
