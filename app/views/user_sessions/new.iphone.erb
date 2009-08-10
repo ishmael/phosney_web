@@ -1,25 +1,22 @@
-<% form_for @user_session,  :url => user_session_path do |f| %>
-  <fieldset>
-   <% if not f.error_messages.blank? %>
-  <div class="notification error"><a href="#" class="close">close</a><em><img src="images/icons/cross_circle.png" alt=""/><%= f.error_messages %></em> </div>
-  <% end %>
-  <div class="row">
-  <label for="user_session_username" class="row">
-  <span><%=  I18n.t('layout.users.username') %></span>
-  <%= f.text_field :login %>	
-  </label>
-</div>
- <div class="row">
 
-  <label for="user_session_password" class="row">
+<% form_for @user_session,:html => {:class => "dialog"},  :url => user_session_path do |f| %>
+
+  <fieldset>
+	<h1> Login </h1>
+   <label  >
+  <%=  I18n.t('layout.users.username') %></label>
+  <%= f.text_field :login %>	
+
+  <label  >
   <%=  I18n.t('layout.users.password') %></label>
   <%= f.password_field :password %>
-  
-  </div>
+
+ 
   </fieldset>
-  <a type="submit" class="whiteButton" href="#">Log in</a>
-  <a href="" class="whiteButton"><%=  I18n.t('layout.users.recoverpassword') %></a>
-  <%= link_to I18n.t('layout.users.register'), new_account_path , {:class => "whiteButton"}%>
+  <a type="submit" class="button" href="#">Log in</a>
+  <a href="" class="button"><%=  I18n.t('layout.users.recoverpassword') %></a>
+  <%= link_to I18n.t('layout.users.register'), new_account_path , {:class => "button"}%>
+
   <% end %>
 
       
