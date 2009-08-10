@@ -1,22 +1,13 @@
 
-<% form_for @user_session,:html => {:class => "dialog"},  :url => user_session_path do |f| %>
-
+<% form_for @user_session,:html => {:id => "loginForm" ,:class => "panel", :selected => "true" },  :url => user_session_path do |f| %>
   <fieldset>
-	<h1> Login </h1>
-   <label  >
-  <%=  I18n.t('layout.users.username') %></label>
-  <%= f.text_field :login %>	
-
-  <label  >
-  <%=  I18n.t('layout.users.password') %></label>
-  <%= f.password_field :password %>
-
- 
+	<h1> Login </h1><br/>
+   <label><%=  I18n.t('layout.users.username') %></label>
+  <%= f.text_field :login %></br>
+  <label><%=  I18n.t('layout.users.password') %></label>
+  <%= f.password_field :password %></br>
   </fieldset>
-  <a type="submit" class="button" href="#">Log in</a>
-  <a href="" class="button"><%=  I18n.t('layout.users.recoverpassword') %></a>
-  <%= link_to I18n.t('layout.users.register'), new_account_path , {:class => "button"}%>
-
   <% end %>
+
 
       
