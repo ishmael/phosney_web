@@ -1,12 +1,16 @@
-<% form_for @user_session,:html => {:id => "loginForm" ,:class => "panel", :selected => "true" },  :url => user_session_path do |f| %>
+
+<% form_for @user_session, :html => { :class=>"panel", :selected => "true", :title =>  I18n.t('layout.application.name')}, :url => user_session_path do |f| %>
+
   <fieldset>
-	<h1>Login</h1>	
-	<a class="button blueButton" type="submit">Login</a>
-   <label class="altLabel"><%=  I18n.t('layout.users.username') %></label>
-  <%= f.text_field :login ,:class  => "altInput"  %>
-  <label class="altLabel"><%=  I18n.t('layout.users.password') %></label>
-  <%= f.password_field :password ,:class  => "altInput" %>
+	<h2>Login</h2>	
+	
+  <div class="row"> <label ><%=  I18n.t('layout.users.username') %></label>
+  <%= f.text_field :login   %></div>
+  <div class="row"><label ><%=  I18n.t('layout.users.password') %></label>
+  <%= f.password_field :password  %></div>
+  <div class="row"><%= link_to "Login", "#", :class => 'button',:id => 'whiteButton', :type => "submit" %></div>
   </fieldset>
+  
   <% end %>
 
 
