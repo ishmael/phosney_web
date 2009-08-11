@@ -4,9 +4,9 @@
   <fieldset>
 	<h2>Login</h2>	
 	
-  <div class="row"> <label ><%=  I18n.t('layout.users.username') %></label>
+  <div class="row"> <label><%=  I18n.t('layout.users.username') %></label>
   <%= f.text_field :login   %></div>
-  <div class="row"><label ><%=  I18n.t('layout.users.password') %></label>
+  <div class="row"><label><%=  I18n.t('layout.users.password') %></label>
   <%= f.password_field :password  %></div>
   <div class="row"><%= link_to "Login", "#", :class => 'whiteButton', :type => "submit" %></div>
   </fieldset>
