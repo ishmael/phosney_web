@@ -8,11 +8,10 @@
     <%= javascript_include_tag 'iui' %>
 </head>
 <body>
-    <div class="toolbar">
-        <h1 id="pageTitle"><%= I18n.t('layout.application.name') %></h1>
-        <a id="backButton" class="button" href="#"></a>
-    </div>
-
+	<div class="toolbar">
+		<h1 id="pageTitle"></h1>
+		<a id="backButton" class="button" href="#"></a>
+	</div>
     <%= yield %>
 </body>
 </html>
