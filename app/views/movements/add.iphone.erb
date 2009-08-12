@@ -2,9 +2,9 @@
   <fieldset>
    <h1><%=  I18n.t('layout.movements.new')%></h1>
    <a class="button leftButton" type="cancel"><%= I18n.t('layout.application.cancel') %></a>
-   <a class="button blueButton type="submit"><%= I18n.t('layout.application.create') %></a>
+   <a class="button blueButton" type="submit"><%= I18n.t('layout.application.create') %></a>
     <%= f.label :description ,I18n.t('layout.movements.description'),:class=>"altLabel" %>
-    <%= f.text_field :description,:class=>"altBigInput"  %>
+    <%= f.text_field :description  %>
       <%= f.label :amount,I18n.t('layout.movements.amount'),:class=>"altLabel" %>
     <%= f.text_field :amount,:class=>"altInput" %>
   
