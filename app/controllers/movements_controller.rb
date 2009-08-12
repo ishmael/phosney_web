@@ -30,9 +30,13 @@ class MovementsController < ApplicationController
     @movement = Movement.new
     @movement.mov_type = -1
     respond_to do |format|
+	#if @movement.save
+	#    @movement.save_tags(current_user)
+	#else
       format.html # new.html.erb
 	  format.iphone  { render :layout => false }
       format.xml  { render :xml => @movement }
+	 # end
     end
   end
   
