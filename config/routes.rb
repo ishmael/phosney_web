@@ -6,7 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :creditcardaccounts  , :has_many => :movements
   map.resources :categories  , :has_many => :movements
   map.resources :tags
-  #map.resources :dashboard, :action => "index"
+  
+  map.quickmovement '/quickmovement', :controller => "movements" ,:action => "add"
   map.dashboard '/dashboard',:controller => "dashboard", :action => "index" 
   map.root :dashboard
    

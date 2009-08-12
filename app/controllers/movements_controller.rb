@@ -2,6 +2,8 @@ class MovementsController < ApplicationController
   before_filter(:get_account)
   before_filter :require_user
   
+  
+  
   # GET /movements
   # GET /movements.xml
   def index
@@ -24,6 +26,16 @@ class MovementsController < ApplicationController
     end
   end
 
+  def add
+    @movement = Movement.new
+    @movement.mov_type = -1
+    respond_to do |format|
+      format.html # new.html.erb
+	  format.iphone  { render :layout => false }
+      format.xml  { render :xml => @movement }
+    end
+  end
+  
   # GET /movements/new
   # GET /movements/new.xml
   def new

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       if @user.save
 		I18n.locale = @user.locale
         flash[:notice] = "Account registered!"
-        redirect_back_or_default account_url
+        redirect_back_or_default root_url
       else
         render :action => :new
       end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
 		I18n.locale = @user.locale
         flash[:notice] = "Account updated!"
-        redirect_to account_url
+        redirect_to root_url
       else
         render :action => :edit
       end
