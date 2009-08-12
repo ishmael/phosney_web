@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
   before_filter :set_locale
-	before_filter :adjust_format_for_iphone
+  before_filter :adjust_format_for_iphone
 
 
    
