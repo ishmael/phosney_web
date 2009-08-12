@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
 	@tags = @current_user.tags.find(:all)
     respond_to do |format|
       format.html # index.html.erb
-	  format.iphone 
+	  format.iphone  { render :layout => false }
       format.xml  { render :xml => @bankaccounts }
     end
   end

@@ -5,13 +5,13 @@
     <meta id="viewport" name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
     <title><%= I18n.t('layout.application.title') %></title>
   <%= stylesheet_link_tag 'iui' %>
+  <%= stylesheet_link_tag 'phosney.iphone' %>
   <%= javascript_include_tag 'iui' %>
 </head>
 <body>
     <div class="toolbar">
         <h1 id="pageTitle"></h1>
         <a id="backButton" class="button" href="#"></a>
-		<a class="button" href="#movForm">Add Movement</a>
     </div>
 
     <%= yield %>

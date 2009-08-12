@@ -5,7 +5,7 @@
   <%= f.text_field :login   %></div>
   <div class="row"><label><%=  I18n.t('layout.users.password') %></label>
   <%= f.password_field :password  %></div>
-  <div class="row"><%= link_to "Login",{},  :type=>"submit" ,:class=>"serviceButton", :target=>"_replace" %></div>
+  <div class="row"><%= link_to "Login",{},  :type=>"submit" ,:class=>"serviceButton", :target => "_self" %></div>
   </fieldset>
   
   <% end %>

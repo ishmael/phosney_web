@@ -1,9 +1,11 @@
 <ul id="home" title="Dashboard" selected="true">
+<li><%= link_to I18n.t('layout.movements.new'), quickmovement_url %></li> 
 <li><a href="#bankaccounts"><%=  I18n.t('layout.bankaccounts.name') %></a></li>
 <li><a href="#loanaccounts"><%=  I18n.t('layout.loanaccounts.name') %></a></li>
 <li><a href="#creditcardaccounts"><%=  I18n.t('layout.creditcardaccounts.name') %></a></li>
 <li><a href="#categories"><%=  I18n.t('layout.categories.title') %></a></li>
 <li><a href="#tags"><%=  I18n.t('layout.tags.title') %></a></li>
+<li><%= link_to I18n.t('layout.application.logout'), user_session_path, :method => :delete, :confirm => I18n.t('layout.users.logout') %></li>
 </ul>
 
 
@@ -39,3 +41,4 @@
 
 <ul id="tags" title="<%= I18n.t('layout.tags.title') %>">
 </ul>
+

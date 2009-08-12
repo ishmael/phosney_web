@@ -1,7 +1,8 @@
 class UserSessionsController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
-    before_filter :require_user, :only => :destroy
-    layout "loggedout_layout", :only => [:new,:create]
+   before_filter :require_no_user, :only => [:new, :create]
+   before_filter :require_user, :only => :destroy
+   layout "loggedout_layout", :only => [:new,:create] 
+
 	
 	
     def new
@@ -9,16 +10,16 @@ class UserSessionsController < ApplicationController
 	  
 	  respond_to do |format|
 		  format.html # new.html.erb
-		  format.iphone #do  action.iphone.erb
-			#render :layout => false
-		  #end
+		  format.iphone do  #action.iphone.erb
+			render :layout => "application"
+		  end
 	  end
     end
 
     def create
       @user_session = UserSession.new(params[:user_session])
       if @user_session.save
-        flash[:notice] = "Login successful!"
+        #flash[:notice] = "Login successful!"
         redirect_back_or_default dashboard_url
       else
         render :action => :new
