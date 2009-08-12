@@ -16,3 +16,17 @@ select {
 	font-size: 16px;
 	font-weight: normal;
 }
+
+.serviceButton {
+display: block;
+margin: 0;
+border: none;
+padding: 12px 10px 0 0px;
+text-align: center;
+font-weight: bold;
+text-decoration: inherit;
+height: 42px;
+color: #7388a5;
+box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}

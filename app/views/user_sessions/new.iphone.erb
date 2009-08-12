@@ -1,14 +1,11 @@
 
-<% form_for @user_session, :html => { :class=>"panel", :selected => "true", :title =>  I18n.t('layout.application.name')}, :url => user_session_path do |f| %>
-
+<% form_for @user_session, :html => { :id=>"loginForm", :class=>"panel", :selected => "true", :title =>  I18n.t('layout.application.name')}, :url => user_session_path do |f| %>
   <fieldset>
-	<h2>Login</h2>	
-	
   <div class="row"> <label><%=  I18n.t('layout.users.username') %></label>
   <%= f.text_field :login   %></div>
   <div class="row"><label><%=  I18n.t('layout.users.password') %></label>
   <%= f.password_field :password  %></div>
-  <div class="row"><%= link_to "Login", "#", :class => 'whiteButton', :type => "submit" %></div>
+  <div class="row"><%= link_to "Login", "#", :class => 'serviceButton', :type => "submit", :target=>"_self" %></div>
   </fieldset>
   
   <% end %>
