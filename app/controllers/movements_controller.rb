@@ -26,17 +26,31 @@ class MovementsController < ApplicationController
     end
   end
 
-  def add
-    @movement = Movement.new
+  def quickcreate
+	@movement = Movement.new(params[:movement])
+    
+    respond_to do |format|
+      if @movement.save
+	    @movement.save_tags(current_user)
+        
+        format.html { redirect_to(dashboard_url) }
+		format.iphone { redirect_to(dashboard_url) }
+        format.xml  { render :xml => @movement, :status => :created, :location => @movement }
+      else
+        format.html { render :action => "quicknew" }
+		format.iphone { render :action => "quicknew",:layout => false }
+        format.xml  { render :xml => @movement.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  def quicknew
+	@movement = Movement.new
     @movement.mov_type = -1
     respond_to do |format|
-	#if @movement.save
-	#    @movement.save_tags(current_user)
-	#else
       format.html # new.html.erb
 	  format.iphone  { render :layout => false }
       format.xml  { render :xml => @movement }
-	 # end
     end
   end
   
