@@ -1,6 +1,6 @@
 <ul id="home" title="Dashboard" selected="true">
 <li><%= link_to I18n.t('layout.movements.new'), quickmovement_url %></li> 
-<li><a href="#bankaccounts"><%=  I18n.t('layout.bankaccounts.name') %></a></li>
+<li><%= link_to I18n.t('layout.bankaccounts.name'), bankaccounts_path %></li>
 <li><a href="#loanaccounts"><%=  I18n.t('layout.loanaccounts.name') %></a></li>
 <li><a href="#creditcardaccounts"><%=  I18n.t('layout.creditcardaccounts.name') %></a></li>
 <li><a href="#categories"><%=  I18n.t('layout.categories.title') %></a></li>
@@ -9,13 +9,6 @@
 </ul>
 
 
-<ul id="bankaccounts" title="<%= I18n.t('layout.bankaccounts.name') %>"> 
-<% bankaccounts = current_user.bankaccounts.find(:all) %>
-<% bankaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
-<li><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
-<% end %>
-<li><%= link_to I18n.t('layout.bankaccounts.newaccount'), new_bankaccount_path %></li>
-</ul>
 
 
 <% loanaccounts = current_user.loanaccounts.find(:all) %>

@@ -1,0 +1,7 @@
+<ul id="bankaccounts" title="<%= I18n.t('layout.bankaccounts.name') %>"> 
+<% bankaccounts = current_user.bankaccounts.find(:all) -%>
+<% bankaccounts.sort_by(&:name).each_with_index do |menu,index| -%>    
+<li><%= link_to menu.name,  bankaccount_path(menu) %></li>
+<% end -%>
+<li><%= link_to I18n.t('layout.bankaccounts.newaccount'), new_bankaccount_path %></li>
+</ul>

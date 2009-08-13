@@ -13,6 +13,7 @@ class BankaccountsController < ApplicationController
     #@summary =  @current_user.bankaccounts.find)by_sq
     respond_to do |format|
       format.html # index.html.erb
+	  format.iphone  { render :layout => false }
       format.xml  { render :xml => @bankaccounts }
     end
   end
@@ -20,10 +21,11 @@ class BankaccountsController < ApplicationController
   # GET /bankaccounts/1
   # GET /bankaccounts/1.xml
   def show
-    @bankaccount = Bankaccount.find(params[:id])
+    @bankaccount = Bankaccount.find(params[:id], :select => "accounts.id,accounts.name, accounts.number,accounts.bank,(select sum(amount*mov_type) from movements where movements.account_id = accounts.id) as balance")
 
     respond_to do |format|
       format.html # show.html.erb
+	  format.iphone { render :layout => false }
       format.xml  { render :xml => @bankaccount }
     end
   end
@@ -36,6 +38,7 @@ class BankaccountsController < ApplicationController
     
     respond_to do |format|
       format.html # new.html.erb
+	  format.iphone  { render :layout => false }
       format.xml  { render :xml => @bankaccount }
     end
   end
@@ -43,6 +46,9 @@ class BankaccountsController < ApplicationController
   # GET /bankaccounts/1/edit
   def edit
     @bankaccount = Bankaccount.find(params[:id])
+	respond_to do |format|
+	  format.iphone  { render :layout => false }
+    end
   end
 
   # POST /bankaccounts
@@ -55,9 +61,11 @@ class BankaccountsController < ApplicationController
       if @bankaccount.save
         flash[:notice] = 'Bankaccount was successfully created.'
         format.html { redirect_to(@bankaccount) }
+		format.iphone  { redirect_to(@bankaccount) }
         format.xml  { render :xml => @bankaccount, :status => :created, :location => @bankaccount }
       else
         format.html { render :action => "new" }
+		format.iphone  { render :action => "new",:layout => false }
         format.xml  { render :xml => @bankaccount.errors, :status => :unprocessable_entity }
       end
     end
@@ -72,9 +80,11 @@ class BankaccountsController < ApplicationController
       if @bankaccount.update_attributes(params[:bankaccount])
         flash[:notice] = 'Bankaccount was successfully updated.'
         format.html { redirect_to(@bankaccount) }
+		format.iphone  { redirect_to(@bankaccount)  }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
+		format.iphone  { render :action => "edit", :layout => false }
         format.xml  { render :xml => @bankaccount.errors, :status => :unprocessable_entity }
       end
     end
@@ -88,6 +98,7 @@ class BankaccountsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(bankaccounts_url) }
+	  format.iphone  { redirect_to(bankaccounts_url) }
       format.xml  { head :ok }
     end
   end
