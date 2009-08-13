@@ -7,7 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories  , :has_many => :movements
   map.resources :tags
   
-  map.quickmovement '/quickmovement', :controller => "movements" ,:action => "add"
+  map.quickmovement '/quickmovement', :controller => "movements" ,:action => "quickcreate", :conditions => { :method => [:post] } 
+  map.quickmovement '/quickmovement', :controller => "movements" ,:action => "quicknew", :conditions => { :method => [:get] } 
   map.dashboard '/dashboard',:controller => "dashboard", :action => "index" 
   map.root :dashboard
    

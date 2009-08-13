@@ -1,5 +1,5 @@
 
-<% form_for @user_session, :html => {  :class=>"panel", :selected => "true", :title =>  I18n.t('layout.application.name')}, :url => user_session_path do |f| %>
+<% form_for @user_session, :html => { :id=> "loginForm" ,:class=>"panel", :selected => "true", :title =>  I18n.t('layout.application.name')}, :url => user_session_path do |f| %>
   <fieldset>
   <div class="row"> <label><%=  I18n.t('layout.users.username') %></label>
   <%= f.text_field :login   %></div>
