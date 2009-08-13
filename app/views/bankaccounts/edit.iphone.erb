@@ -1,0 +1,16 @@
+
+<% form_for @bankaccount , :html => {  :class=>"dialog", :selected => "true"} do |f| %>
+  <fieldset>
+   <h1><%=  I18n.t('layout.application.edit')%></h1>
+   <a class="button leftButton" type="cancel"><%= I18n.t('layout.application.cancel') %></a>
+   <a class="button blueButton" type="submit"><%= I18n.t('layout.application.update') %></a>
+    <%= f.label :name, I18n.t('layout.bankaccounts.accountname'),:class=>"altLabel"  %>
+    <%= f.text_field :name ,:class=>"altInput"%>
+    <%= f.label :number, I18n.t('layout.bankaccounts.accountnumber'),:class=>"altLabel"  %>
+    <%= f.text_field :number ,:class=>"altInput"%>
+    <%= f.label :bank, I18n.t('layout.bankaccounts.accountbank'),:class=>"altLabel"  %>
+    <%= f.text_field :bank,:class=>"altInput" %>
+  </fieldset>
+
+<% end %>
+

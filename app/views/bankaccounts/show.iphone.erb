@@ -1,0 +1,8 @@
+<ul id="account" title="<%= I18n.t('layout.bankaccounts.title')%>" >
+<li>Name: <%=h @bankaccount.name %></li> 
+<li>Number: <%=h @bankaccount.number %></li> 
+<li>Bank: <%=h @bankaccount.bank %></li>
+<li>Balance: <%= @bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(@bankaccount.balance) %></li> 
+<li><%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(@bankaccount)%></li>
+<li><%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@bankaccount,:movement]) %></li>
+</ul>
