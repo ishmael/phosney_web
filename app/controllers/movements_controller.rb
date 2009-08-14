@@ -71,6 +71,11 @@ class MovementsController < ApplicationController
   # GET /movements/1/edit
   def edit
     @movement = @account.movements.find(params[:id])
+	respond_to do |format|
+      format.html # new.html.erb
+	  format.iphone  { render :layout => false }
+      format.xml  { render :xml => @movement }
+    end
   end
 
   # POST /movements
@@ -101,7 +106,7 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.update_attributes(params[:movement])
 		@movement.save_tags(current_user)
-        flash[:notice] = 'Movement was successfully updated.'
+        #flash[:notice] = 'Movement was successfully updated.'
         format.html { redirect_to(polymorphic_path([@account,:movements])) }
 		format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
         format.xml  { head :ok }

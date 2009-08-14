@@ -1,13 +1,22 @@
+
 <% form_for @movement, :html => {  :class=>"dialog", :selected => "true"}, :url => quickmovement_path do |f| %>
   <fieldset>
    <h1><%=  I18n.t('layout.movements.new')%></h1>
    <a class="button leftButton" type="cancel"><%= I18n.t('layout.application.cancel') %></a>
-   <a class="button blueButton" type="submit"><%= I18n.t('layout.application.create') %></a>
+   <a class="button blueButton" type="submit" ><%= I18n.t('layout.application.create') %></a>
     <%= f.label :description ,I18n.t('layout.movements.description'),:class=>"altLabel" %>
     <%= f.text_field :description  %>
       <%= f.label :amount,I18n.t('layout.movements.amount'),:class=>"altLabel" %>
     <%= f.text_field :amount,:class=>"altInput" %>
-  
+	<label> Include Location </label>
+	<div class="row">
+	  <div class="toggle" id="locationtoggle" toggled="false" onclick="includemovementposition();">
+	  <span class="thumb"></span>
+	  <span class="toggleOn">ON</span>
+	  <span class="toggleOff">OFF</span>
+	  </div>
+	</div>  
+
     <%= f.radio_button :mov_type,"-1",:id => "radiobutton_debit" %><%=  I18n.t('layout.movements.debit') %>
     <%= f.radio_button :mov_type,"1" ,:id => "radiobutton_credit"%><%=  I18n.t('layout.movements.credit') %>
   
@@ -18,7 +27,9 @@
   
 	<label class="altLabel"> tags:</label>
 	<%= f.text_field :tag_list ,:class=>"altInput" %>
-  
+    
+	<%= f.hidden_field :lat, :value => @movement.lat %>
+	<%= f.hidden_field :lng, :value => @movement.lng %>
     
   </fieldset>
   
