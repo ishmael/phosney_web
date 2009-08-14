@@ -19,6 +19,7 @@ en:
       edit: "Edit"
       delete: "Delete"
       deletemessage: "Are you sure?"
+      details: "Details"
     bankaccounts:
       name: "Accounts"
       title: "Account"

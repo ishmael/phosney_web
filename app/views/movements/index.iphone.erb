@@ -1,0 +1,6 @@
+<ul id="movements" title="<%=  I18n.t('layout.movements.name') %>"> 
+<% @movements.each do |movement| -%>
+   <li><%= link_to movement.description << " " << number_to_currency(movement.amount*movement.mov_type), polymorphic_path([@account,movement])%></li>
+    <% end -%>
+</ul>
+

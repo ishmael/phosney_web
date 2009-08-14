@@ -1,0 +1,21 @@
+<div class="panel" title="<%=  I18n.t('layout.movements.title')%>" id="movement_details">
+  <h2><%=  I18n.t('layout.application.details')%></h2>
+  <fieldset>
+	<div class="row">
+		<label><%= I18n.t('layout.movements.description')  %> </label>
+		<p><%=h @movement.description  %></p>
+	</div>
+	<div class="row">
+		<label><%=I18n.t('layout.movements.amount') %> </label>
+		<p><%=h  number_to_currency(@movement.amount*@movement.mov_type) %></p>
+	</div>
+    <div class="row">
+		<label><%=I18n.t('layout.movements.movdate') %> </label>
+		<p><%=h  @movement.movdate %></p>
+	</div>	
+   <div class="row">
+		<label> tags:</label>
+		<p><%=h  @movement.tag_list   %></p>
+	</div>
+  </fieldset>            
+</div>
