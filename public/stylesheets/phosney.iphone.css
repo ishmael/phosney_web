@@ -3,6 +3,43 @@
 /* www.iphog.blogspot.com */ 
 
 /* Contact Header */
+.row > p {
+    display: block;
+    margin: 0;
+    border: none;
+    padding: 12px 10px 0 110px;
+ 		text-align: left;
+    font-weight: bold;
+    text-decoration: inherit;
+    height: 42px;
+    color: inherit;
+		box-sizing: border-box;
+}
+
+.row > label {
+    text-align: right; 
+    width: 80px; 
+    position: absolute;
+    margin: 0 0 0 14px;
+    line-height: 42px;
+    font-weight: bold;
+    color: #7388a5;
+}
+
+.panel p.normalText { 
+ 		text-align: left; 
+ 		padding: 0 10px 0 10px; 
+ 		
+}
+
+.panel img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-bottom: 10px; 
+ 		border: 2px solid #666666;
+    -webkit-border-radius: 6px;
+}
 
 .panel h1.cui {
     margin: 5px 0 0px 80px;

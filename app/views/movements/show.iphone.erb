@@ -1,8 +1,8 @@
-<div class="panel" title="<%=  I18n.t('layout.movements.title')%>" id="movement_details">
+<div class="panel" title="<%=  I18n.t('layout.movements.title')%>" id="movement_details" selected="true">
   <h2><%=  I18n.t('layout.application.details')%></h2>
   <fieldset>
 	<div class="row">
-		<label><%= I18n.t('layout.movements.description')  %> </label>
+		<label><%= I18n.t('layout.movements.description') %></label>
 		<p><%=h @movement.description  %></p>
 	</div>
 	<div class="row">
@@ -17,5 +17,13 @@
 		<label> tags:</label>
 		<p><%=h  @movement.tag_list   %></p>
 	</div>
-  </fieldset>            
+  </fieldset>   
+<fieldset>
+<div class="row">
+<%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,@movement]) ,:class=> "serviceButton"%> 
+</div>
+<div class="row">
+<%= link_to I18n.t('layout.application.delete'),  polymorphic_path([@account,@movement]) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' ,:class=> "serviceButton"%>
+</div>
+</fieldset>  
 </div>
