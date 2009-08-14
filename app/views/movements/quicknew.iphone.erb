@@ -8,8 +8,8 @@
       <%= f.label :amount,I18n.t('layout.movements.amount'),:class=>"altLabel" %>
     <%= f.text_field :amount,:class=>"altInput" %>
   
-    <%= f.radio_button :mov_type,"-1" %><%=  I18n.t('layout.movements.debit') %>
-    <%= f.radio_button :mov_type,"1" %><%=  I18n.t('layout.movements.credit') %>
+    <%= f.radio_button :mov_type,"-1",:id => "radiobutton_debit" %><%=  I18n.t('layout.movements.debit') %>
+    <%= f.radio_button :mov_type,"1" ,:id => "radiobutton_credit"%><%=  I18n.t('layout.movements.credit') %>
   
     <%= f.label :movdate,I18n.t('layout.movements.movdate') ,:class=>"altLabel"%>
     <%= f.date_select :movdate %>
