@@ -390,10 +390,25 @@ function encodeForm(form)
 {
     function encode(inputs)
     {
+		var elm, name, type;
         for (var i = 0; i < inputs.length; ++i)
         {
-            if (inputs[i].name)
-                args.push(inputs[i].name + "=" + encodeURIComponent(inputs[i].value));
+			elm = inputs[i];
+			name = elm.name;
+
+			if (name) {
+				type = elm.getAttribute("type");
+
+				if ((type == "checkbox" && !elm.checked) ||
+					(type == "radio" && !elm.checked) ||
+					(type == "submit") ||
+					(elm.disabled)) {
+					continue;
+				}
+				else {
+					args.push(name + "=" + encodeURIComponent(elm.value));
+				}
+			}
         }
     }
 
