@@ -23,6 +23,7 @@ pt:
       edit: "Alterar"	  
       delete: "Apagar"
       deletemessage: "Tem a certeza?"
+      details: "Detalhes"
     bankaccounts:
       name: "Contas Bancárias"
       title: "Conta Bancária"
