@@ -21,7 +21,7 @@
     <%= f.radio_button :mov_type,"1" ,:id => "radiobutton_credit"%><%=  I18n.t('layout.movements.credit') %>
   
     <%= f.label :movdate,I18n.t('layout.movements.movdate') ,:class=>"altLabel"%>
-    <%= f.date_select :movdate %>
+    <%= f.date_select(:movdate )%>
     <%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => I18n.t('layout.movements.category')  %>
     <%= f.collection_select :account_id, Account.find(:all, :conditions => {:user_id => current_user.id},:order => 'name'), :id, :name,  :include_blank => I18n.t('layout.bankaccounts.title') %>
   
@@ -30,6 +30,7 @@
     
 	<%= f.hidden_field :lat, :value => @movement.lat %>
 	<%= f.hidden_field :lng, :value => @movement.lng %>
+	<%= f.hidden_field :accuracy, :value => @movement.accuracy %>
     
   </fieldset>
   
