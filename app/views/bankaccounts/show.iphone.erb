@@ -1,9 +1,32 @@
-<ul id="account" title="<%= I18n.t('layout.bankaccounts.title')%>" >
-<li>Name: <%=h @bankaccount.name %></li> 
-<li>Number: <%=h @bankaccount.number %></li> 
-<li>Bank: <%=h @bankaccount.bank %></li>
-<li>Balance: <%= @bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(@bankaccount.balance) %></li> 
-<li><%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@bankaccount,:movement]) %></li>
-<li><%= link_to I18n.t('layout.movements.name'),  polymorphic_path([@bankaccount,:movements]) %></li>
-<li><%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(@bankaccount)%></li>
-</ul>
+<div class="panel" title="<%=  I18n.t('layout.bankaccounts.title')%>" id="bankaccount_details" selected="true">
+<h2><%=  I18n.t('layout.application.details')%></h2>
+  <fieldset>
+	<div class="row">
+		<label><%= I18n.t('layout.bankaccounts.accountname') %></label>
+		<p><%=h @bankaccount.name  %></p>
+	</div>
+   <div class="row">
+		<label><%= I18n.t('layout.bankaccounts.accountnumber') %></label>
+		<p><%=h @bankaccount.number  %></p>
+	</div>
+   <div class="row">
+		<label><%= I18n.t('layout.bankaccounts.accountbank') %></label>
+		<p><%=h @bankaccount.bank  %></p>
+	</div>	
+	<div class="row">
+		<label><%= I18n.t('layout.bankaccounts.accountbalance') %></label>
+		<p><%= @bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(@bankaccount.balance) %></p>
+	</div>
+</fieldset>	
+<fieldset>
+	<div class="row">
+		<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@bankaccount,:movement]),:class=> "serviceButton" %>
+	</div>
+	<div class="row">
+		<%= link_to I18n.t('layout.movements.name'),  polymorphic_path([@bankaccount,:movements]),:class=> "serviceButton" %>
+	</div>
+	<div class="row">
+		<%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(@bankaccount),:class=> "serviceButton"%>
+	</div>	
+</fieldset>
+</div>
