@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090814145502) do
+ActiveRecord::Schema.define(:version => 20090817143834) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20090814145502) do
     t.integer  "category_id"
     t.float    "lat"
     t.float    "lng"
+    t.float    "accuracy"
   end
 
   create_table "sessions", :force => true do |t|
