@@ -11,11 +11,19 @@
 	</div>
     <div class="row">
 		<label><%=I18n.t('layout.movements.movdate') %> </label>
-		<p><%=h  @movement.movdate %></p>
+		<p><%=h  @movement.movdate.to_date %></p>
 	</div>	
    <div class="row">
-		<label> tags:</label>
+		<label> Tags:</label>
 		<p><%=h  @movement.tag_list   %></p>
+	</div>
+	<div class="row">
+		<label> Latitude:</label>
+		<p><%=h  @movement.lat   %></p>
+	</div>
+	<div class="row">
+		<label> Longitude:</label>
+		<p><%=h  @movement.lng   %></p>
 	</div>
   </fieldset>   
 <fieldset>
