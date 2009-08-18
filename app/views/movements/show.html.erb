@@ -15,9 +15,12 @@
   <b>Movdate:</b>
   <%=h @movement.movdate %>
 </p>
+<p>
+<%= @map.div(:width => 400, :height => 300) %>
+
+</p>
 
 
-<%= link_to 'Edit', edit_bankaccount_movement_path(@bankaccount,@movement) %> |
-<%= link_to 'Back', bankaccount_movements_path(@bankaccount) %>
+
             </div><!--/end .container1-->
         </div><!--/end .tabbertab-->

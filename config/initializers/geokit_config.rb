@@ -26,7 +26,7 @@ if defined? Geokit
 	# This is your Google Maps geocoder key. 
 	# See http://www.google.com/apis/maps/signup.html
 	# and http://www.google.com/apis/maps/documentation/#Geocoding_Examples
-	Geokit::Geocoders::google = 'REPLACE_WITH_YOUR_GOOGLE_KEY'
+	Geokit::Geocoders::google = {'localhost' =>'ABQIAAAAflqMP-ZZdYvKx2A6PAkicBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxR3qLohbxq3E8sSBk8wJdvj6sTSOQ', '10.250.2.19' =>'ABQIAAAAflqMP-ZZdYvKx2A6PAkicBRIF_blMfxGYlQ5WY8bEe37aacnFhTfRC7w0_EEzRSBxc-zsWcCbkxDtg'}
     
 	# This is your username and password for geocoder.us.
 	# To use the free service, the value can be set to nil or false.  For 
@@ -52,7 +52,7 @@ if defined? Geokit
 	# Be aware that there are Terms of Use restrictions on how you can use the 
 	# various geocoders.  Make sure you read up on relevant Terms of Use for each
 	# geocoder you are going to use.
-	Geokit::Geocoders::provider_order = [:google,:us]
+	Geokit::Geocoders::provider_order = [:google]
 
 	# The IP provider order. Valid symbols are :ip,:geo_plugin.
 	# As before, make sure you read up on relevant Terms of Use for each
