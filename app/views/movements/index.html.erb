@@ -15,7 +15,7 @@
 <tbody>
 <% @movements.each do |movement| %>
   <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h movement.description %></td>
+    <td><%= link_to movement.description, polymorphic_path([@account,movement])%></td>
     <td><%=h number_to_currency(movement.amount) %></td>
     
     <td><%=h case movement.mov_type when -1 then "D" when 1 then "C" end %></td>

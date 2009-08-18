@@ -1,3 +1,7 @@
+
+<%= @map.to_html(:no_load => true)%>
+
+
 <div class="panel" title="<%=  I18n.t('layout.movements.title')%>" id="movement_details" selected="true">
   <h2><%=  I18n.t('layout.application.details')%></h2>
   <fieldset>
@@ -25,11 +29,13 @@
 		<label>Longitude:</label>
 		<p><%=h  @movement.lng   %></p>
 	</div>
-		<div class="row">
+	<div class="row">
 		<label>Accuracy:</label>
 		<p><%=h  @movement.accuracy   %></p>
 	</div>
-  </fieldset>   
+	
+
+  </fieldset> 
 <fieldset>
 <div class="row">
 <%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,@movement]) ,:class=> "serviceButton"%> 

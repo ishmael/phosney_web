@@ -1,4 +1,5 @@
 class MovementsController < ApplicationController
+  include GeoKit::Mappable
   before_filter(:get_account)
   before_filter :require_user
   
@@ -20,6 +21,10 @@ class MovementsController < ApplicationController
   # GET /movements/1.xml
   def show
     @movement = @account.movements.find(params[:id])
+	@map = GMap.new("map")
+    @map.center_zoom_init([@movement.lat, @movement.lng], 14)
+	ianazones = GMarker.new([@movement.lat, @movement.lng])
+	@map.overlay_init(ianazones)
 
     respond_to do |format|
       format.html # show.html.erb

@@ -5,7 +5,9 @@ function includemovementposition()
 {	
 	if (navigator.geolocation ) 
 	{
-		navigator.geolocation.getCurrentPosition( handler);
+		navigator.geolocation.getCurrentPosition( handler,
+                                             errorCallback,
+                                             {maximumAge:60000,enableHighAccuracy:true});
  	} 
 	else 
  	{
@@ -37,4 +39,14 @@ function handler(location) {
 		lngelement.value = '';
 		accuracyelement.value = '';
 	}
+}
+
+function errorCallback(error) {
+      // Update a div element with error.message.
+	var latelement = document.getElementById("movement_lat");
+	var lngelement = document.getElementById("movement_lng");
+	var accuracyelement = document.getElementById("movement_accuracy");
+	latelement.value = '';
+	lngelement.value = '';
+	accuracyelement.value = '';
 }
