@@ -84,6 +84,12 @@ window.iui =
                     var frag = document.createElement("div");
                     frag.innerHTML = req.responseText;
                     iui.insertPages(frag.childNodes);
+					var elements = document.getElementsByClassName('javascript');
+					for (var element in elements) { 
+					  eval(elements[element].innerHTML);
+					  elements[element].parentNode.removeChild(elements[element]);
+					}
+
                 }
                 if (cb)
                     setTimeout(cb, 1000, true);

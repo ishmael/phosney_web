@@ -1,8 +1,11 @@
 
-<%= @map.to_html(:no_load => true)%>
+
 
 
 <div class="panel" title="<%=  I18n.t('layout.movements.title')%>" id="movement_details" selected="true">
+<div  class="javascript" >
+<%= @map.to_html(:no_load => true, :no_script_tag=> true)%>
+</div>
   <h2><%=  I18n.t('layout.application.details')%></h2>
   <fieldset>
 	<div class="row">
@@ -33,7 +36,8 @@
 		<label>Accuracy:</label>
 		<p><%=h  @movement.accuracy   %></p>
 	</div>
-	
+	 <%= @map.div(:width => 100, :height => 100, :class=>"serviceButton") %>
+
 
   </fieldset> 
 <fieldset>
