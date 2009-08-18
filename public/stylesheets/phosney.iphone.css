@@ -3,6 +3,9 @@
 /* www.iphog.blogspot.com */ 
 
 /* Contact Header */
+
+.javascript { display: none; }
+
 .row > p {
     display: block;
     margin: 0;
