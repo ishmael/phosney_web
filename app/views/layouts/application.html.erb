@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title><%=  I18n.t('layout.application.title') %></title>
-<%= if (defined? GMap) then GMap.header end %>
+<%= GMap.header %>
 <%= @map.to_html unless @map.blank? %>
 <!--favicon-->
 
