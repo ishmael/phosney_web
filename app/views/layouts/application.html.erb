@@ -4,9 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title><%=  I18n.t('layout.application.title') %></title>
+<%= if (defined? GMap) then GMap.header end %>
+<%= @map.to_html unless @map.blank? %>
 <!--favicon-->
 
-	<%= @map.to_html unless @map.blank? %>
+	
 
 <!--jQuery-->
 <%= javascript_include_tag 'jquery-1.3.2' %>
