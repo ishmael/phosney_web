@@ -270,6 +270,15 @@ body > .panel {
     text-align: right;
 }
 
+.rowmap {
+   position: relative;
+    min-height: 42px;
+    border-bottom: 1px solid #999999;
+    -webkit-border-radius: 0;
+    text-align: center;
+	margin: 0 auto;
+}
+
 fieldset > .row:last-child {
     border-bottom: none !important;
 }

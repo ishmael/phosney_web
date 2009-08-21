@@ -24,6 +24,7 @@
 		<label> Tags:</label>
 		<p><%=h  @movement.tag_list   %></p>
 	</div>
+	<% if (not @movement.lng.blank?) and (not @movement.lat.blank?) %>
 	<div class="row">
 		<label>Latitude:</label>
 		<p><%=h  @movement.lat   %></p>
@@ -36,8 +37,8 @@
 		<label>Accuracy:</label>
 		<p><%=h  @movement.accuracy   %></p>
 	</div>
-	 <%= @map.div(:width => 100, :height => 100, :class=>"serviceButton") %>
-
+	 <%= @map.div(:width => 260, :height => 200, :class=>"rowmap") %>
+	<% end %>
 
   </fieldset> 
 <fieldset>
