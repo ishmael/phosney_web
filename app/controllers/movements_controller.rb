@@ -8,7 +8,7 @@ class MovementsController < ApplicationController
   # GET /movements
   # GET /movements.xml
   def index
-    @movements = @account.movements.find(:all)
+    @movements = @account.movements.find(:all,:order => "movdate asc")
 
     respond_to do |format|
       format.html # index.html.erb
