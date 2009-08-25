@@ -35,7 +35,7 @@ class MovementsController < ApplicationController
 
   def quickcreate
 	@movement = Movement.new(params[:movement])
-    
+    @movement.movdate = Date.today
     respond_to do |format|
       if @movement.save
 	    @movement.save_tags(current_user)
