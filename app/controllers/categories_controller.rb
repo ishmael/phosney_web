@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_filter :require_user 
   
   def index
-    @categories = @current_user.categories.find(:all)
+    @categories = @current_user.categories.find(:all,:order => "name asc")
 
     respond_to do |format|
       format.html # index.html.erb
