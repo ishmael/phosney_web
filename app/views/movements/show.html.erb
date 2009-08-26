@@ -15,11 +15,12 @@
   <b>Movdate:</b>
   <%=h @movement.movdate %>
 </p>
+<% if (not @movement.lng.blank?) and (not @movement.lat.blank?) %>
 <p>
 <%= @map.div(:width => 400, :height => 300) %>
 
 </p>
-
+<% end %>
 
 
             </div><!--/end .container1-->
