@@ -64,6 +64,7 @@ en:
        name: "Category"
        title: "Categories"
        new: "New Category"
+       mobile: "Display in Mobile Platforms (iPhone, Windows Mobile, Android)"
        parent_id: "Parent Category"	
     tags:
        name: "Tag"
