@@ -21,11 +21,13 @@ class MovementsController < ApplicationController
   # GET /movements/1.xml
   def show
     @movement = @account.movements.find(params[:id])
+	if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
 	@map = GMap.new("map")
-    @map.center_zoom_init([@movement.lat, @movement.lng], 14)
+    @map.center_zoom_init([@movement.lat, @movement.lng], 18)
 	ianazones = GMarker.new([@movement.lat, @movement.lng])
 	@map.overlay_init(ianazones)
-
+	end
+	
     respond_to do |format|
       format.html # show.html.erb
 	  format.iphone  { render :layout => false }
