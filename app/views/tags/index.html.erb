@@ -13,7 +13,7 @@
 <% @tags.each do |tag| %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%=h tag.name %></td>   
-    <td><!--<%= link_to I18n.t('layout.application.edit'), edit_category_path(tag.id),:class => 'table_edit' %>-->
+    <td><%= link_to I18n.t('layout.application.edit'), edit_tag_path(tag.id),:class => 'table_edit' %>
     <%= link_to I18n.t('layout.application.delete'),  tag_path(tag.id) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %></td>
   </tr>
 <% end %>
