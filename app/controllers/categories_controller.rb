@@ -35,6 +35,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit
     @category = @current_user.categories.find(params[:id])
+	respond_to do |format|
+	  format.html 
+	  format.iphone  { render :layout => false }
+	  format.xml  { render :xml => @category }
+    end
   end
 
   # POST /categories

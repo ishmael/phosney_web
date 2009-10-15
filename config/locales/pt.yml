@@ -73,7 +73,7 @@ pt:
     tags:
        name: "Tag"
        title: "Tags"
-       new: "New Tag"	   
+       new: "Nova Tag"	   
     fusioncharts:
       movements_by_month:
          caption: "Gastos"

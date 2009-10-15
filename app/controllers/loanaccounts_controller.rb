@@ -41,6 +41,11 @@ class LoanaccountsController < ApplicationController
   # GET /loanaccounts/1/edit
   def edit
     @loanaccount = Loanaccount.find(params[:id])
+	respond_to do |format|
+	  format.html 
+	  format.iphone  { render :layout => false }
+	  format.xml  { render :xml => @loanaccount }
+    end
   end
 
   # POST /loanaccounts
@@ -52,7 +57,7 @@ class LoanaccountsController < ApplicationController
     respond_to do |format|
       if @loanaccount.save
         flash[:notice] = 'Loanaccount was successfully created.'
-        format.html { redirect_to(@loanaccount) }
+        format.html { redirect_to([@loanaccount,:movements]) }
         format.xml  { render :xml => @loanaccount, :status => :created, :location => @loanaccount }
       else
         format.html { render :action => "new" }
@@ -69,7 +74,7 @@ class LoanaccountsController < ApplicationController
     respond_to do |format|
       if @loanaccount.update_attributes(params[:loanaccount])
         flash[:notice] = 'Loanaccount was successfully updated.'
-        format.html { redirect_to(@loanaccount) }
+        format.html { redirect_to([@loanaccount,:movements]) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

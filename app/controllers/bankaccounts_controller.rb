@@ -47,7 +47,9 @@ class BankaccountsController < ApplicationController
   def edit
     @bankaccount = Bankaccount.find(params[:id])
 	respond_to do |format|
+	  format.html 
 	  format.iphone  { render :layout => false }
+	  format.xml  { render :xml => @bankaccount }
     end
   end
 
@@ -60,8 +62,8 @@ class BankaccountsController < ApplicationController
     respond_to do |format|
       if @bankaccount.save
         flash[:notice] = 'Bankaccount was successfully created.'
-        format.html { redirect_to(@bankaccount) }
-		format.iphone  { redirect_to(@bankaccount) }
+        format.html { redirect_to([@bankaccount,:movements]) }
+		format.iphone  { redirect_to([@bankaccount,:movements]) }
         format.xml  { render :xml => @bankaccount, :status => :created, :location => @bankaccount }
       else
         format.html { render :action => "new" }
@@ -79,8 +81,8 @@ class BankaccountsController < ApplicationController
     respond_to do |format|
       if @bankaccount.update_attributes(params[:bankaccount])
         flash[:notice] = 'Bankaccount was successfully updated.'
-        format.html { redirect_to(@bankaccount) }
-		format.iphone  { redirect_to(@bankaccount)  }
+        format.html { redirect_to([@bankaccount,:movements]) }
+		format.iphone  { redirect_to([@bankaccount,:movements])  }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -41,6 +41,11 @@ class CreditcardaccountsController < ApplicationController
   # GET /creditcardaccounts/1/edit
   def edit
     @creditcardaccount = Creditcardaccount.find(params[:id])
+	respond_to do |format|
+	  format.html 
+	  format.iphone  { render :layout => false }
+	  format.xml  { render :xml => @creditcardaccount }
+    end
   end
 
   # POST /creditcardaccounts
@@ -52,7 +57,7 @@ class CreditcardaccountsController < ApplicationController
     respond_to do |format|
       if @creditcardaccount.save
         flash[:notice] = 'Creditcardaccount was successfully created.'
-        format.html { redirect_to(@creditcardaccount) }
+        format.html { redirect_to([@creditcardaccount,:movements]) }
         format.xml  { render :xml => @creditcardaccount, :status => :created, :location => @bankaccount }
       else
         format.html { render :action => "new" }
@@ -69,7 +74,7 @@ class CreditcardaccountsController < ApplicationController
     respond_to do |format|
       if @creditcardaccount.update_attributes(params[:creditcardaccount])
         flash[:notice] = 'creditcardaccount was successfully updated.'
-        format.html { redirect_to(@creditcardaccount) }
+        format.html { redirect_to([@creditcardaccount,:movements]) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
