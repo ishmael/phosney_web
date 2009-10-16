@@ -30,5 +30,6 @@ class PasswordResetsController < ApplicationController
 		"from your email into your browser or restarting the " +
 		"reset password process."
 		redirect_to root_url
+		end
 	end
 end
