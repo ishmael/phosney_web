@@ -9,4 +9,9 @@ class User < ActiveRecord::Base
   #do |c|
   #      c.my_config_option = my_value # for available options see documentation in: Authlogic::ActsAsAuthentic
   #    end # block optional
+  def deliver_password_reset_instructions!
+	reset_perishable_token!
+	Notifier.deliver_password_reset_instructions(self)
+  end
+  
 end
