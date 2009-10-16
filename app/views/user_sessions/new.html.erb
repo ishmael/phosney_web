@@ -23,7 +23,7 @@
    </span>					
   </div>
   </div>
-  <a href="" class="forgot_login"><%=  I18n.t('layout.users.recoverpassword') %></a>
+ <%= link_to I18n.t('layout.users.recoverpassword'), new_password_reset_path , {:class => "forgot_login"}%>
  <%= link_to I18n.t('layout.users.register'), new_account_path , {:class => "forgot_login"}%>
   </fieldset>
   <% end %>

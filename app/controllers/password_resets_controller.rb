@@ -1,9 +1,10 @@
 class PasswordResetsController < ApplicationController
-	before_filter :require_no_user
+	before_filter :require_no_user , :only => [:new, :create,:edit,:update]
 	before_filter :load_user_using_perishable_token,:only => [:edit, :update]  
-
+  layout "loggedout_layout"
 
 	def new
+	  flash[:notice]= ""
 		render
 	end
 
@@ -20,6 +21,21 @@ class PasswordResetsController < ApplicationController
 		end
 	end
 	
+  def edit
+    render
+  end
+ 
+  def update
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+    if @user.save
+      flash[:notice] = "Password successfully updated"
+      redirect_to account_url
+    else
+      render :action => :edit
+    end
+  end
+
 	
 	private
 	def load_user_using_perishable_token
