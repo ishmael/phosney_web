@@ -1,0 +1,17 @@
+<h1>Forgot Password</h1>
+ 
+Fill out the form below and instructions to reset your password will be emailed to you:<br />
+<br />
+ 
+<% form_tag password_resets_path ,  :class => "register_form" do  %>
+<% if not flash[:notice].blank? %>
+  <div class="notification error"><a href="#" class="close">close</a><em><img src="/images/icons/cross_circle.png" alt=""/>
+<%= flash[:notice] %></em> </div>
+  <% end %>
+<fieldset>
+  <label class="label2">Email:</label><br />
+  <%= text_field_tag "email" %><br />
+  <br />
+  <%= submit_tag "Reset my password" %>
+</fieldset>
+<% end %>

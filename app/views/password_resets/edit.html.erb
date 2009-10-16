@@ -1,0 +1,18 @@
+<h1>Change My Password</h1>
+ 
+<% form_for @user , :html => { :class => "register_form"}, :url => password_reset_path, :method => :put do |f| %>
+<% if not  f.error_messages.blank? %>
+  <div class="notification error"><a href="#" class="close">close</a><em><img src="/images/icons/cross_circle.png" alt=""/>
+<%=  f.error_messages %></em> </div>
+  <% end %>
+<fieldset>
+  <%= f.error_messages %>
+  <%= f.label :password %><br />
+  <%= f.password_field :password %><br />
+  <br />
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %><br />
+  <br />
+  <%= f.submit "Update my password and log me in" %>
+  </fieldset>
+<% end %>
