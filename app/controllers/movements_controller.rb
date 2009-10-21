@@ -70,7 +70,7 @@ class MovementsController < ApplicationController
     @movement.mov_type = -1
     respond_to do |format|
       format.html # new.html.erb
-	  format.iphone  { render :layout => false }
+	    format.iphone  { render :layout => false }
       format.xml  { render :xml => @movement }
     end
   end
@@ -92,7 +92,7 @@ class MovementsController < ApplicationController
     
     respond_to do |format|
       if @movement.save
-	    @movement.save_tags(current_user)
+	       @movement.save_tags(current_user)
         flash[:notice] = 'Movement was successfully created.'
         format.html { redirect_to(polymorphic_path([@account,:movements])) }
 		format.iphone { redirect_to(polymorphic_path([@account,:movements])) }

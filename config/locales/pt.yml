@@ -24,6 +24,7 @@ pt:
       delete: "Apagar"
       deletemessage: "Tem a certeza?"
       details: "Detalhes"
+      send: "Enviar"
     bankaccounts:
       name: "Contas Bancárias"
       title: "Conta Bancária"
@@ -89,7 +90,19 @@ pt:
        passwordconfirmation: "Confirme a Password"
        changepassword: "Trocar a Password"
        locale: "Linguagem"
-       logout: "Tem a certeza que quer sair?"	   
+       logout: "Tem a certeza que quer sair?"
+    sharedinvitations:
+       name: "Partilhar Conta"
+       new: "Partilhar esta Conta"
+       email: "Email"
+       candelete: "Apaga"
+       caninsert: "Insere"
+       canupdate: "Actualiza"	   
+    sharedaccounts:
+       user: "Utilizador"
+       candelete: "Apaga"
+       caninsert: "Insere"
+       canupdate: "Actualiza"
 
   authlogic:
     error_messages:
