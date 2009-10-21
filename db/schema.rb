@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(:version => 20091019142647) do
   end
 
   create_table "categories", :force => true do |t|
-    t.string   "name",                                   :null => false
-    t.integer  "user_id",                                :null => false
+    t.string   "name",                                                                 :null => false
+    t.integer  "user_id",                                                              :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_id",               :default => 0
-    t.integer  "mobile",     :limit => 2, :default => 0
+    t.integer  "parent_id",                                             :default => 0
+    t.integer  "mobile",     :limit => 1, :precision => 1, :scale => 0, :default => 0
   end
 
   add_index "categories", ["name", "user_id"], :name => "categories_name_ukey", :unique => true
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20091019142647) do
     t.datetime "created_on"
     t.datetime "updated_at"
     t.datetime "updated_on"
-    t.integer  "mov_type",    :limit => 2,                                :default => 1
+    t.integer  "mov_type",    :limit => 1, :precision => 1,  :scale => 0, :default => 1
     t.integer  "category_id"
     t.float    "lat"
     t.float    "lng"
