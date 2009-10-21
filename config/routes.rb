@@ -6,7 +6,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :creditcardaccounts  , :has_many => :movements
   map.resources :categories  , :has_many => :movements
   map.resources :tags
-    map.resources :password_resets
+  map.resources :password_resets
+  map.resources :shared_account_invitations, :as => 'sharedacccount' ,:member => {:create =>:post},:only => [:create]
+  map.resources :bankaccounts, :has_many => :shared_account_invitations 
+  #map.resources :bankaccounts, :has_many => :shared_account_invitations  
+
   
   map.quickmovement '/quickmovement', :controller => "movements" ,:action => "quickcreate", :conditions => { :method => [:post] } 
   map.quickmovement '/quickmovement', :controller => "movements" ,:action => "quicknew", :conditions => { :method => [:get] } 

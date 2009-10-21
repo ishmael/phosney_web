@@ -1,0 +1,31 @@
+        <div class="tabbertab">
+            <h2><%=  I18n.t('layout.sharedinvitations.name') %></h2>
+            <div class="container1">
+
+<% form_for([@account,@sharedinvitation]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :email, I18n.t('layout.sharedinvitations.email') %><br />
+    <%= f.text_field :recipient_email %>
+  </p>
+  <p>
+    <%= f.check_box :allow_insert %>
+	<%= f.label I18n.t('layout.sharedinvitations.caninsert') %><br />
+  </p>
+  <p>
+    <%= f.check_box :allow_edit %>
+	<%= f.label I18n.t('layout.sharedinvitations.canupdate') %><br />
+  </p>
+  <p>
+    <%= f.check_box :allow_delete %>
+	<%= f.label I18n.t('layout.sharedinvitations.candelete') %><br />
+  </p>
+  <p>
+    <%= f.submit I18n.t('layout.application.send') %>
+  </p>
+<% end %>
+
+<%= link_to I18n.t('layout.application.cancel'), polymorphic_path([@account,:movements]) %>
+            </div><!--/end .container1-->
+        </div><!--/end .tabbertab-->

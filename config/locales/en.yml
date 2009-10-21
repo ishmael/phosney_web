@@ -20,6 +20,7 @@ en:
       delete: "Delete"
       deletemessage: "Are you sure?"
       details: "Details"
+      send: "Send"
     bankaccounts:
       name: "Accounts"
       title: "Account"
@@ -86,3 +87,15 @@ en:
        changepassword: "Change Password"
        locale: "Language"
        logout: "Are you sure you want to logout?"
+    sharedinvitations:
+       name: "Share Account"
+       new: "Shared this account"
+       email: "Email"
+       candelete: "Delete"
+       caninsert: "Insert"
+       canupdate: "Update"
+    sharedaccounts:
+       user: "User"
+       candelete: "Delete"
+       caninsert: "Insert"
+       canupdate: "Update"

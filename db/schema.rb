@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091017222742) do
+ActiveRecord::Schema.define(:version => 20091019142647) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -57,6 +57,29 @@ ActiveRecord::Schema.define(:version => 20091017222742) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "shared_account_invitations", :force => true do |t|
+    t.integer  "user_id",                                                                   :null => false
+    t.string   "recipient_email"
+    t.string   "token"
+    t.integer  "account_id",                                                                :null => false
+    t.integer  "allow_delete",    :limit => 1, :precision => 1, :scale => 0, :default => 0
+    t.integer  "allow_edit",      :limit => 1, :precision => 1, :scale => 0, :default => 0
+    t.integer  "allow_insert",    :limit => 1, :precision => 1, :scale => 0, :default => 1
+    t.datetime "sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shared_accounts", :force => true do |t|
+    t.integer  "user_id",                                                                :null => false
+    t.integer  "account_id",                                                             :null => false
+    t.integer  "allow_delete", :limit => 1, :precision => 1, :scale => 0, :default => 0
+    t.integer  "allow_edit",   :limit => 1, :precision => 1, :scale => 0, :default => 0
+    t.integer  "allow_insert", :limit => 1, :precision => 1, :scale => 0, :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
