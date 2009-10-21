@@ -1,0 +1,29 @@
+This is an application to track your personal finances!
+ 
+With it you(or will be able to in the near future):
+ 
+- add different types of accounts: bank, loans, credit cards
+- create categories that can have parent categories
+- create tags
+- using the iphone interface know the gps position of where you spend your money
+- share an account with your spouse/girlfriend/friend/son/daughter/dog/cat or with whoever else
+- plot the speding or see in a map where your dangerous spending areas are
+- have recurring items
+- transfer money from one account to the other
+- have goals and see how you are doing
+- anything else that is needed
+ 
+ 
+This depends on:
+- geokit 1.5.0
+- authlogic
+- postgres (just because of the foreign keys, but i haven't tested it with any other database, so it might work)
+There are two files that need to be edited:
+ 
+- config/database.example should be changed to database.yml with your database information
+- config/initializers/mailer.example if you want to send mail through an account in gmail. if you aren't going to do that, you'll probably need some other configuration
+ 
+ 
+you can see this code live in:
+ 
+www.phosney.com
