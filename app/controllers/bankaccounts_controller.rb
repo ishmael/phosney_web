@@ -21,13 +21,16 @@ class BankaccountsController < ApplicationController
   # GET /bankaccounts/1
   # GET /bankaccounts/1.xml
   def show
-    @bankaccount = Bankaccount.find(params[:id], :select => "accounts.id,accounts.name, accounts.number,accounts.bank,(select sum(amount*mov_type) from movements where movements.account_id = accounts.id) as balance")
-
-    respond_to do |format|
-      format.html # show.html.erb
-	  format.iphone { render :layout => false }
-      format.xml  { render :xml => @bankaccount }
-    end
+    @bankaccount = @current_user.bankaccounts.find_by_id(params[:id], :select => "accounts.id,accounts.name, accounts.number,accounts.bank,(select sum(amount*mov_type) from movements where movements.account_id = accounts.id) as balance")
+	if @bankaccount
+		respond_to do |format|
+		  format.html # show.html.erb
+		  format.iphone { render :layout => false }
+		  format.xml  { render :xml => @bankaccount }
+		end
+	else
+		redirect_to(dashboard_url)
+	end
   end
 
   # GET /bankaccounts/new
@@ -45,12 +48,16 @@ class BankaccountsController < ApplicationController
 
   # GET /bankaccounts/1/edit
   def edit
-    @bankaccount = Bankaccount.find(params[:id])
-	respond_to do |format|
-	  format.html 
-	  format.iphone  { render :layout => false }
-	  format.xml  { render :xml => @bankaccount }
-    end
+    @bankaccount = @current_user.bankaccounts.find_by_id(params[:id])
+	if @bankaccount
+		respond_to do |format|
+		  format.html 
+		  format.iphone  { render :layout => false }
+		  format.xml  { render :xml => @bankaccount }
+		end
+	else
+		redirect_to(dashboard_url)
+	end
   end
 
   # POST /bankaccounts
@@ -76,32 +83,39 @@ class BankaccountsController < ApplicationController
   # PUT /bankaccounts/1
   # PUT /bankaccounts/1.xml
   def update
-    @bankaccount = Account.find(params[:id])
-
-    respond_to do |format|
-      if @bankaccount.update_attributes(params[:bankaccount])
-        flash[:notice] = 'Bankaccount was successfully updated.'
-        format.html { redirect_to([@bankaccount,:movements]) }
-		format.iphone  { redirect_to([@bankaccount,:movements])  }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-		format.iphone  { render :action => "edit", :layout => false }
-        format.xml  { render :xml => @bankaccount.errors, :status => :unprocessable_entity }
-      end
-    end
+    @bankaccount =@current_user.bankaccounts.find_by_id(params[:id])
+	if @bankaccount
+		respond_to do |format|
+		  if @bankaccount.update_attributes(params[:bankaccount])
+			flash[:notice] = 'Bankaccount was successfully updated.'
+			format.html { redirect_to([@bankaccount,:movements]) }
+			format.iphone  { redirect_to([@bankaccount,:movements])  }
+			format.xml  { head :ok }
+		  else
+			format.html { render :action => "edit" }
+			format.iphone  { render :action => "edit", :layout => false }
+			format.xml  { render :xml => @bankaccount.errors, :status => :unprocessable_entity }
+		  end
+		end
+	else
+		redirect_to(dashboard_url)
+	end
   end
 
   # DELETE /bankaccounts/1
   # DELETE /bankaccounts/1.xml
   def destroy
-    @bankaccount = Account.find(params[:id])
-    @bankaccount.destroy
+    @bankaccount = @current_user.bankaccounts.find_by_id(params[:id])
+	if @bankaccount	
+		@bankaccount.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(bankaccounts_url) }
-	  format.iphone  { redirect_to(bankaccounts_url) }
-      format.xml  { head :ok }
-    end
+		respond_to do |format|
+		  format.html { redirect_to(bankaccounts_url) }
+		  format.iphone  { redirect_to(bankaccounts_url) }
+		  format.xml  { head :ok }
+		end
+	else
+		redirect_to(dashboard_url)
+	end
   end
 end

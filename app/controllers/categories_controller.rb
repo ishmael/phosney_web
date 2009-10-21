@@ -13,12 +13,15 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.xml
   def show
-    @categories = @current_user.categories.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @categories }
-    end
+    @categories = @current_user.categories.find_by_id(params[:id])
+	if @categories
+		respond_to do |format|
+		  format.html # show.html.erb
+		  format.xml  { render :xml => @categories }
+		end
+	else
+		redirect_to(categories_path)
+	end
   end
 
   # GET /categories/new
@@ -34,12 +37,16 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
-    @category = @current_user.categories.find(params[:id])
-	respond_to do |format|
-	  format.html 
-	  format.iphone  { render :layout => false }
-	  format.xml  { render :xml => @category }
-    end
+    @category = @current_user.categories.find_by_id(params[:id])
+	if @category
+		respond_to do |format|
+		  format.html 
+		  format.iphone  { render :layout => false }
+		  format.xml  { render :xml => @category }
+		end
+	else
+		redirect_to(categories_path)
+	end
   end
 
   # POST /categories
@@ -62,30 +69,37 @@ class CategoriesController < ApplicationController
   # PUT /categories/1
   # PUT /categories/1.xml
   def update
-    @category = @current_user.categories.find(params[:id])
-
-    respond_to do |format|
-      if @category.update_attributes(params[:category])
-        flash[:notice] = 'Category was successfully updated.'
-        format.html { redirect_to(categories_path) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
-      end
-    end
+    @category = @current_user.categories.find_by_id(params[:id])
+	if @category
+		respond_to do |format|
+		  if @category.update_attributes(params[:category])
+			flash[:notice] = 'Category was successfully updated.'
+			format.html { redirect_to(categories_path) }
+			format.xml  { head :ok }
+		  else
+			format.html { render :action => "edit" }
+			format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
+		  end
+		end
+	else
+		redirect_to(categories_path)
+	end
   end
 
   # DELETE /categories/1
   # DELETE /categories/1.xml
   def destroy
-    @category = @current_user.categories.find(params[:id])
-    @category.destroy
+    @category = @current_user.categories.find_by_id(params[:id])
+	if @category
+		@category.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(categories_path) }
-      format.xml  { head :ok }
-    end
+		respond_to do |format|
+		  format.html { redirect_to(categories_path) }
+		  format.xml  { head :ok }
+		end
+	else
+		redirect_to(categories_path)
+	end
   end
 
 end
