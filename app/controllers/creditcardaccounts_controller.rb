@@ -18,12 +18,15 @@ class CreditcardaccountsController < ApplicationController
   # GET /creditcardaccounts/1
   # GET /creditcardaccounts/1.xml
   def show
-    @creditcardaccount = Creditcardaccount.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @creditcardaccount }
-    end
+    @creditcardaccount = @current_user.creditcardaccounts.find_by_id(params[:id])
+	if @creditcardaccount 
+		respond_to do |format|
+		  format.html # show.html.erb
+		  format.xml  { render :xml => @creditcardaccount }
+		end
+	else
+		redirect_to(dashboard_url)
+	end
   end
 
   # GET /creditcardaccounts/new
@@ -40,12 +43,16 @@ class CreditcardaccountsController < ApplicationController
 
   # GET /creditcardaccounts/1/edit
   def edit
-    @creditcardaccount = Creditcardaccount.find(params[:id])
-	respond_to do |format|
-	  format.html 
-	  format.iphone  { render :layout => false }
-	  format.xml  { render :xml => @creditcardaccount }
-    end
+    @creditcardaccount = @current_user.creditcardaccounts.find_by_id(params[:id])
+	if @creditcardaccount
+		respond_to do |format|
+		  format.html 
+		  format.iphone  { render :layout => false }
+		  format.xml  { render :xml => @creditcardaccount }
+		end
+	else
+		redirect_to(dashboard_url)
+	end
   end
 
   # POST /creditcardaccounts
@@ -69,30 +76,37 @@ class CreditcardaccountsController < ApplicationController
   # PUT /creditcardaccounts/1
   # PUT /creditcardaccounts/1.xml
   def update
-    @creditcardaccount = Account.find(params[:id])
-
-    respond_to do |format|
-      if @creditcardaccount.update_attributes(params[:creditcardaccount])
-        flash[:notice] = 'creditcardaccount was successfully updated.'
-        format.html { redirect_to([@creditcardaccount,:movements]) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @creditcardaccount.errors, :status => :unprocessable_entity }
-      end
-    end
+    @creditcardaccount = @current_user.creditcardaccounts.find(params[:id])
+	if @creditcardaccount
+		respond_to do |format|
+		  if @creditcardaccount.update_attributes(params[:creditcardaccount])
+			flash[:notice] = 'creditcardaccount was successfully updated.'
+			format.html { redirect_to([@creditcardaccount,:movements]) }
+			format.xml  { head :ok }
+		  else
+			format.html { render :action => "edit" }
+			format.xml  { render :xml => @creditcardaccount.errors, :status => :unprocessable_entity }
+		  end
+		end
+	else
+		redirect_to(dashboard_url)
+	end
   end
 
   # DELETE /creditcardaccounts/1
   # DELETE /creditcardaccounts/1.xml
   def destroy
-    @creditcardaccount = Account.find(params[:id])
-    @creditcardaccount.destroy
+    @creditcardaccount = @current_user.creditcardaccounts.find(params[:id])
+	if @creditcardaccount
+		@creditcardaccount.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(creditcardaccounts_url) }
-      format.xml  { head :ok }
-    end
+		respond_to do |format|
+		  format.html { redirect_to(creditcardaccounts_url) }
+		  format.xml  { head :ok }
+		end
+	else
+		redirect_to(dashboard_url)
+	end
   end
 
 end

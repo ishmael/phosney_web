@@ -34,40 +34,50 @@ before_filter :require_user
 	end
 
 	def edit
-		@tag = @current_user.tags.find(params[:id])
-		
-		respond_to do |format|
-		  format.html 
-		  format.iphone  { render :layout => false }
-		  format.xml  { render :xml => @tag }
+		@tag = @current_user.tags.find_by_id(params[:id])
+		if @tag
+			respond_to do |format|
+			  format.html 
+			  format.iphone  { render :layout => false }
+			  format.xml  { render :xml => @tag }
+			end
+		else
+			redirect_to(tags_path)
 		end
 	end
 	
 	def update
-		@tag = @current_user.tags.find(params[:id])
-
-		respond_to do |format|
-		  if @tag.update_attributes(params[:tag])
-			flash[:notice] = 'Tag was successfully updated.'
-			format.html { redirect_to(tags_path) }
-			format.xml  { head :ok }
-		  else
-			format.html { render :action => "edit" }
-			format.xml  { render :xml => @tag.errors, :status => :unprocessable_entity }
-		  end
+		@tag = @current_user.tags.find_by_id(params[:id])
+		if @tag
+			respond_to do |format|
+			  if @tag.update_attributes(params[:tag])
+				flash[:notice] = 'Tag was successfully updated.'
+				format.html { redirect_to(tags_path) }
+				format.xml  { head :ok }
+			  else
+				format.html { render :action => "edit" }
+				format.xml  { render :xml => @tag.errors, :status => :unprocessable_entity }
+			  end
+			end
+		else
+			redirect_to(tags_path)
 		end
 	end
 	
 	
 	
     def destroy
-		@tags = @current_user.tags.find(params[:id])
-		@tags.destroy
+		@tags = @current_user.tags.find_by_id(params[:id])
+		if @tag
+			@tags.destroy
 
-		respond_to do |format|
-		  format.html { redirect_to(tags_url) }
-		  format.xml  { head :ok }
-		end
+			respond_to do |format|
+			  format.html { redirect_to(tags_url) }
+			  format.xml  { head :ok }
+			end
+		else
+			redirect_to(tags_path)
+		end			
 	end
   
 end
