@@ -165,11 +165,11 @@ class MovementsController < ApplicationController
   private
   def get_account
 	if not params[:bankaccount_id].nil?
-  	@account = @current_user.bankaccounts.find_by_id(params[:bankaccount_id])
+		@account = @current_user.bankaccounts.find_by_id(params[:bankaccount_id])
 	elsif not params[:loanaccount_id].nil?
-	@account = @current_user.loanaccounts.find_by_id(params[:loanaccount_id])
+		@account = @current_user.loanaccounts.find_by_id(params[:loanaccount_id])
 	elsif not params[:creditcardaccount_id].nil?
-	@account = @current_user.creditcardaccounts.find_by_id(params[:creditcardaccount_id])
+		@account = @current_user.creditcardaccounts.find_by_id(params[:creditcardaccount_id])
 	end
   end
   

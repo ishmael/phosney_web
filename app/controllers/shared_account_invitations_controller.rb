@@ -21,7 +21,7 @@ class SharedAccountInvitationsController < ApplicationController
     	@account = @current_user.bankaccounts.find_by_id(params[:bankaccount_id])
 	    if @account		
 		    @sharedinvitation = @account.shared_account_invitations.build(params[:shared_account_invitation])
-		    @sharedinvitation.user_id = @account.user_id
+		    @sharedinvitation.user_id = @current_user.id
     
     
     	respond_to do |format|
@@ -61,20 +61,20 @@ class SharedAccountInvitationsController < ApplicationController
   def accept
     @sharedinvitation = SharedAccountInvitation.find_by_token(params[:id])
     if @sharedinvitation
-      @sharedaccount = SharedAccount.new
-      @sharedaccount.user_id = @current_user.id
-      @sharedaccount.account_id = @sharedinvitation.account_id
-      @sharedaccount.allow_insert =  @sharedinvitation.allow_insert
-      @sharedaccount.allow_edit =  @sharedinvitation.allow_edit
-      @sharedaccount.allow_delete =  @sharedinvitation.allow_delete
+      @accountuser = AccountsUser.new
+      @accountuser.user_id = @current_user.id
+      @accountuser.account_id = @sharedinvitation.account_id
+      @accountuser.allow_insert =  @sharedinvitation.allow_insert
+      @accountuser.allow_edit =  @sharedinvitation.allow_edit
+      @accountuser.allow_delete =  @sharedinvitation.allow_delete
       
         respond_to do |format|
-      	  if @sharedaccount.save
-      		
+      	  if @accountuser.save
+      		@sharedinvitation.destroy
       		flash[:notice] = 'Invitation was successfully created.'
       		format.html { redirect_to(dashboard_url) }
       		format.iphone { redirect_to(dashboard_url) }
-      		format.xml  { render :xml => @sharedaccount, :status => :created, :location => @sharedaccount }
+      		format.xml  { render :xml => @accountuser, :status => :created, :location => @accountuser }
       	  end
       	end
     else

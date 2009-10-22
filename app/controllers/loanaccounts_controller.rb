@@ -56,9 +56,21 @@ class LoanaccountsController < ApplicationController
     
     respond_to do |format|
       if @loanaccount.save
-        flash[:notice] = 'Loanaccount was successfully created.'
-        format.html { redirect_to([@loanaccount,:movements]) }
-        format.xml  { render :xml => @loanaccount, :status => :created, :location => @loanaccount }
+		@accountuser = AccountsUser.new
+		@accountuser.user_id = @current_user.id
+		@accountuser.account_id = @loanaccount.id
+		@accountuser.allow_insert =  1
+		@accountuser.allow_edit =  1
+		@accountuser.allow_delete =  1
+		@accountuser.owner = 1
+		if @accountuser.save
+			flash[:notice] = 'Loanaccount was successfully created.'
+			format.html { redirect_to([@loanaccount,:movements]) }
+			format.xml  { render :xml => @loanaccount, :status => :created, :location => @loanaccount }
+		else
+			format.html { render :action => "new" }
+			format.xml  { render :xml => @accountuser.errors, :status => :unprocessable_entity }
+		end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @loanaccount.errors, :status => :unprocessable_entity }

@@ -9,16 +9,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091019142647) do
+ActiveRecord::Schema.define(:version => 20091022142400) do
 
   create_table "accounts", :force => true do |t|
-    t.integer  "user_id",    :null => false
     t.string   "name"
     t.string   "number"
     t.string   "bank"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+  end
+
+  create_table "accounts_users", :force => true do |t|
+    t.integer  "user_id",                                                                :null => false
+    t.integer  "account_id",                                                             :null => false
+    t.integer  "allow_delete", :limit => 1, :precision => 1, :scale => 0, :default => 0
+    t.integer  "allow_edit",   :limit => 1, :precision => 1, :scale => 0, :default => 0
+    t.integer  "allow_insert", :limit => 1, :precision => 1, :scale => 0, :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "owner",        :limit => 1, :precision => 1, :scale => 0, :default => 0
   end
 
   create_table "categories", :force => true do |t|
@@ -67,16 +77,6 @@ ActiveRecord::Schema.define(:version => 20091019142647) do
     t.integer  "allow_edit",      :limit => 1, :precision => 1, :scale => 0, :default => 0
     t.integer  "allow_insert",    :limit => 1, :precision => 1, :scale => 0, :default => 1
     t.datetime "sent_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "shared_accounts", :force => true do |t|
-    t.integer  "user_id",                                                                :null => false
-    t.integer  "account_id",                                                             :null => false
-    t.integer  "allow_delete", :limit => 1, :precision => 1, :scale => 0, :default => 0
-    t.integer  "allow_edit",   :limit => 1, :precision => 1, :scale => 0, :default => 0
-    t.integer  "allow_insert", :limit => 1, :precision => 1, :scale => 0, :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
