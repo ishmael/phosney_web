@@ -11,11 +11,11 @@ class Notifier <ActionMailer::Base
 	
 	
 	def shared_account_invitation(user,invitation)
-	  subject       ""
+	  subject       "Someone wants to share an account with you"
 	  from          "support@phosney.com"
 	  recipients    invitation.recipient_email
 	  sent_on       Time.now
-	  body          :user_email => user.email, :create_url => create_shared_account_invitation_url(invitation.token)
+	  body          :user_email => user.email, :create_url => accept_shared_account_invitation_url(invitation.token)
   end
 	
 end

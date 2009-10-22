@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories  , :has_many => :movements
   map.resources :tags
   map.resources :password_resets
-  map.resources :shared_account_invitations, :as => 'sharedacccount' ,:member => {:create =>:post},:only => [:create]
+  map.resources :shared_account_invitations, :as => 'sharedaccount' ,:member => {:accept =>:get},:only => [:accept]
   map.resources :bankaccounts, :has_many => :shared_account_invitations 
   #map.resources :bankaccounts, :has_many => :shared_account_invitations  
 

@@ -5,7 +5,7 @@ class SharedAccountInvitation < ActiveRecord::Base
   before_create :generate_token
   validates_presence_of :recipient_email
   
-  def shared_account_invitation(user)
+  def send_invitation(user)
   	Notifier.deliver_shared_account_invitation(user,self)
   end
   
