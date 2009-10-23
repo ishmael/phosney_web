@@ -19,11 +19,9 @@
     <td><%=h bankaccount.bank %></td>
     <td><%=h bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(bankaccount.balance) %></td>
     <td>
-	<% if bankaccount.allow_edit == 1 %>
+	<% if bankaccount.owner == '1' %>
     <%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
-	<% end %>
-    <% if bankaccount.allow_delete == 1 %>
-    <%= link_to I18n.t('layout.application.delete'), bankaccount_path(bankaccount), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%>
+	<%= link_to I18n.t('layout.application.delete'), bankaccount_path(bankaccount), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%>
 	<% end %></td>
   </tr>
 <% end %>

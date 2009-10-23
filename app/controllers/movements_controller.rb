@@ -10,7 +10,7 @@ class MovementsController < ApplicationController
   def index
 	if @account
 		@movements = @account.movements.find(:all,:order => "movdate asc")
-		@accountinfo = @account.accounts_users.find_by_user_id(@current_user.id)
+		
 		@shares = @account.accounts_users.find(:all,:select => "accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,(select login from users where users.id = accounts_users.user_id) as login" ,:conditions => ["user_id != ?",@current_user.id])
 		respond_to do |format|
 		  format.html # index.html.erb
@@ -167,11 +167,11 @@ class MovementsController < ApplicationController
   private
   def get_account
 	if not params[:bankaccount_id].nil?
-		@account = @current_user.bankaccounts.find_by_id(params[:bankaccount_id])
+		@account = @current_user.bankaccounts.find_by_id(params[:bankaccount_id],:select => "accounts.*,accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,accounts_users.owner")
 	elsif not params[:loanaccount_id].nil?
-		@account = @current_user.loanaccounts.find_by_id(params[:loanaccount_id])
+		@account = @current_user.loanaccounts.find_by_id(params[:loanaccount_id],:select => "accounts.*,accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,accounts_users.owner")
 	elsif not params[:creditcardaccount_id].nil?
-		@account = @current_user.creditcardaccounts.find_by_id(params[:creditcardaccount_id])
+		@account = @current_user.creditcardaccounts.find_by_id(params[:creditcardaccount_id],:select => "accounts.*,accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,accounts_users.owner")
 	end
   end
   

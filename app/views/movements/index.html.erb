@@ -29,7 +29,7 @@
 </table>
 
 <br />
-<% if @accountinfo.allow_insert == 1 %>
+<% if @account.allow_insert == '1' %>
 <%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) %>
 <% end %>
             </div><!--/end .container1-->
@@ -56,7 +56,7 @@
 
 
 	
-	<% if @account.type == 'Bankaccount' and @accountinfo.owner == 1 %>
+	<% if @account.type == 'Bankaccount' and @account.owner == '1' %>
 	 <%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(@account),:class => 'table_edit' %>| <%= link_to I18n.t('layout.application.delete'), bankaccount_path(@account), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%>
 	<br/>
 	<br/>
