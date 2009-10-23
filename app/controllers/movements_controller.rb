@@ -77,6 +77,7 @@ class MovementsController < ApplicationController
   def new
     @movement = @account.movements.new
     @movement.mov_type = -1
+	
     respond_to do |format|
       format.html # new.html.erb
 	    format.iphone  { render :layout => false }
@@ -104,7 +105,7 @@ class MovementsController < ApplicationController
   def create
 	if @account
 		@movement = @account.movements.build(params[:movement])
-		
+		@movement.user_id = @current_user.id
 		respond_to do |format|
 		  if @movement.save
 			   @movement.save_tags(current_user)

@@ -21,8 +21,19 @@
     <td><%=h case movement.mov_type when -1 then "D" when 1 then "C" end %></td>
     
     <td><%=h movement.movdate.to_date %></td>
-    <td><%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,movement]),:class => 'table_edit' %>
-    <%= link_to I18n.t('layout.application.delete'),  polymorphic_path([@account,movement]) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %></td>
+    <td>
+	<% if movement.user_id == @current_user.id %>
+		<%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,movement]),:class => 'table_edit' %>
+		<%= link_to I18n.t('layout.application.delete'),  polymorphic_path([@account,movement]) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %>			
+	<% else %>
+		<% if @account.allow_edit == '1' %>
+		<%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,movement]),:class => 'table_edit' %>
+		<% end %>
+		<% if @account.allow_delete == '1' %>
+		<%= link_to I18n.t('layout.application.delete'),  polymorphic_path([@account,movement]) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %>
+		<% end %>
+	<% end %>
+	</td>
   </tr>
 <% end %>
 </tbody>
