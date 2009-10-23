@@ -63,9 +63,21 @@ class CreditcardaccountsController < ApplicationController
     
     respond_to do |format|
       if @creditcardaccount.save
+      	@accountuser = AccountsUser.new
+    		@accountuser.user_id = @current_user.id
+    		@accountuser.account_id = @creditcardaccount.id
+    		@accountuser.allow_insert =  1
+    		@accountuser.allow_edit =  1
+    		@accountuser.allow_delete =  1
+    		@accountuser.owner = 1
+    		if @accountuser.save
         flash[:notice] = 'Creditcardaccount was successfully created.'
         format.html { redirect_to([@creditcardaccount,:movements]) }
         format.xml  { render :xml => @creditcardaccount, :status => :created, :location => @bankaccount }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @accountuser.errors, :status => :unprocessable_entity }
+        end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @creditcardaccount.errors, :status => :unprocessable_entity }

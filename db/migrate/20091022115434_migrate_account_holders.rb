@@ -1,4 +1,6 @@
 class MigrateAccountHolders < ActiveRecord::Migration
+  class AccountHolder < ActiveRecord::Base
+    end
   def self.up
 	@account = Account.find(:all)
 	 @account.each do |account| 

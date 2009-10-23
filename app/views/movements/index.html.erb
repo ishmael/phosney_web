@@ -29,8 +29,9 @@
 </table>
 
 <br />
-
+<% if @accountinfo.allow_insert == 1 %>
 <%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) %>
+<% end %>
             </div><!--/end .container1-->
         </div><!--/end .tabbertab-->
 
@@ -53,11 +54,12 @@
 	</p>
 
 
+
+	
+	<% if @account.type == 'Bankaccount' and @accountinfo.owner == 1 %>
 	 <%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(@account),:class => 'table_edit' %>| <%= link_to I18n.t('layout.application.delete'), bankaccount_path(@account), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%>
 	<br/>
 	<br/>
-	
-	<% if @account.type == 'Bankaccount' %>
 		<% sharedaccountinvitations = @account.shared_account_invitations.find(:all) %>
 		<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]) %>
 		<br/>
@@ -77,9 +79,9 @@
 			<% sharedaccountinvitations.each do |sharedaccountinvitation| %>
 			  <tr class="<%= cycle('odd', 'even') %>">
 				<td><%=h sharedaccountinvitation.recipient_email %></td>
-				<td><%= check_box_tag "allow_insert",sharedaccountinvitation.allow_insert,sharedaccountinvitation.allow_insert =1,:disabled => true %></td>
-				<td><%= check_box_tag "allow_edit", sharedaccountinvitation.allow_edit,sharedaccountinvitation.allow_edit=1,:disabled => true %></td>
-				<td><%= check_box_tag "allow_delete", sharedaccountinvitation.allow_delete,sharedaccountinvitation.allow_delete=1,:disabled => true %></td>    
+				<td><%= check_box_tag "allow_insert",sharedaccountinvitation.allow_insert,sharedaccountinvitation.allow_insert ==1,:disabled => true %></td>
+				<td><%= check_box_tag "allow_edit", sharedaccountinvitation.allow_edit,sharedaccountinvitation.allow_edit==1,:disabled => true %></td>
+				<td><%= check_box_tag "allow_delete", sharedaccountinvitation.allow_delete,sharedaccountinvitation.allow_delete==1,:disabled => true %></td>    
 				<td><%= link_to I18n.t('layout.application.delete'),  polymorphic_path([@account,sharedaccountinvitation]) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %></td>
 			  </tr>
 			<% end %>
@@ -87,6 +89,35 @@
 			</table>
 			<br/>
 		<% end %>
+		
+			<% if not @shares.empty? %>
+				<table class="broom_table">
+				 <thead>
+				  <tr>
+					<th scope="col"><%=  I18n.t('layout.accountsusers.user') %></th>
+					<th scope="col"><%=  I18n.t('layout.accountsusers.caninsert') %></th>
+					<th scope="col"><%=  I18n.t('layout.accountsusers.canupdate') %></th>
+					<th scope="col"><%=  I18n.t('layout.accountsusers.candelete') %></th>
+					<th scope="col"></th>
+				  </tr>
+				</thead>   
+				<tbody>
+				<% @shares.each do |myshares| %>
+				  <tr class="<%= cycle('odd', 'even') %>">
+					<td><%=h myshares.login %></td>
+					<td><%= check_box_tag "allow_insert",myshares.allow_insert,myshares.allow_insert ==1,:disabled => true %></td>
+					<td><%= check_box_tag "allow_edit", myshares.allow_edit,myshares.allow_edit==1,:disabled => true %></td>
+					<td><%= check_box_tag "allow_delete", myshares.allow_delete,myshares.allow_delete==1,:disabled => true %></td>    
+					<td></td>
+				  </tr>
+				<% end %>
+				</tbody>
+				</table>
+				<br/>
+			<% end %>
+		
+		
+		
 	<% end %>
 	
 	            </div><!--/end .container1-->

@@ -98,7 +98,7 @@ pt:
        candelete: "Apaga"
        caninsert: "Insere"
        canupdate: "Actualiza"	   
-    sharedaccounts:
+    accountsusers:
        user: "Utilizador"
        candelete: "Apaga"
        caninsert: "Insere"

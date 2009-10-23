@@ -13,20 +13,24 @@
     <th scope="col"></th>
   </tr>
  </thead>
-<% @bankaccounts.each do |bankaccount| %>
+<% @bankaccountsdata.each do |bankaccount| %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%=h bankaccount.name %></td>
     <td><%=h bankaccount.bank %></td>
     <td><%=h bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(bankaccount.balance) %></td>
     <td>
+	<% if bankaccount.allow_edit == 1 %>
     <%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
-    <%= link_to I18n.t('layout.application.delete'), bankaccount_path(bankaccount), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%></td>
+	<% end %>
+    <% if bankaccount.allow_delete == 1 %>
+    <%= link_to I18n.t('layout.application.delete'), bankaccount_path(bankaccount), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%>
+	<% end %></td>
   </tr>
 <% end %>
 <tr>
 <td></td>
 <td><%=  I18n.t('layout.bankaccounts.total') %></td>
-<td><%= number_to_currency(@bankaccounts.inject(0) { |result,element| result + element['balance'].to_f }) %></td>
+<td><%= number_to_currency(@bankaccountsdata.inject(0) { |result,element| result + element['balance'].to_f }) %></td>
 <td></td>
 </tr>
 </table>

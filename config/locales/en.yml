@@ -94,7 +94,7 @@ en:
        candelete: "Delete"
        caninsert: "Insert"
        canupdate: "Update"
-    sharedaccounts:
+    accountsusers:
        user: "User"
        candelete: "Delete"
        caninsert: "Insert"

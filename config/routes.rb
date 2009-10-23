@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :shared_account_invitations, :as => 'sharedaccount' ,:member => {:accept =>:get},:only => [:accept]
   map.resources :bankaccounts, :has_many => :shared_account_invitations 
   #map.resources :bankaccounts, :has_many => :shared_account_invitations  
-
+ 
   
   map.quickmovement '/quickmovement', :controller => "movements" ,:action => "quickcreate", :conditions => { :method => [:post] } 
   map.quickmovement '/quickmovement', :controller => "movements" ,:action => "quicknew", :conditions => { :method => [:get] } 
