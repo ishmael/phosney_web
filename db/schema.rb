@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091023143448) do
+ActiveRecord::Schema.define(:version => 20091026115450) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20091023143448) do
     t.float    "lng"
     t.float    "accuracy"
     t.integer  "user_id",                                                                  :null => false
+    t.integer  "private",     :limit => 1, :precision => 1,  :scale => 0, :default => 0
   end
 
   create_table "sessions", :force => true do |t|

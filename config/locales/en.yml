@@ -61,6 +61,7 @@ en:
        back: "Back to Movements"
        new: "New Movement"
        tags: "Tags"	   
+       private: "Private"
     categories:
        name: "Category"
        title: "Categories"

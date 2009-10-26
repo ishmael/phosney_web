@@ -64,7 +64,8 @@ pt:
        category: "Categoria"	   
        back: "Voltar para os Movimentos"
        new: "Novo Movimento"
-       tags: "Tags"	   
+       tags: "Tags"
+       private: "Privado"	   
     categories:
        name: "Categoria"
        title: "Categorias"
