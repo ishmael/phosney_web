@@ -11,7 +11,7 @@ class MovementsController < ApplicationController
 	if @account
 		@movements = @account.movements.find(:all,:conditions => ["movements.user_id =:user_id or  (movements.private =0 and movements.user_id<> :user_id ) ",{:user_id => @current_user.id }],:order => "movdate asc")
 		
-		@shares = @account.accounts_users.find(:all,:select => "accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,(select login from users where users.id = accounts_users.user_id) as login" ,:conditions => ["user_id != ?",@current_user.id])
+		@shares = @account.accounts_users.find(:all,:select => "accounts_users.id,accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,(select login from users where users.id = accounts_users.user_id) as login" ,:conditions => ["user_id != ?",@current_user.id])
 		respond_to do |format|
 		  format.html # index.html.erb
 		  format.iphone  { render :layout => false }

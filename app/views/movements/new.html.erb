@@ -18,13 +18,13 @@
     <%= f.radio_button :mov_type,"1" %><%=  I18n.t('layout.movements.credit') %>
   </p>
   <p>
-    <%= f.check_box :private %>
-	<%= f.label I18n.t('layout.movements.private') %><br />
-  </p>  
-  <p>
     <%= f.label :movdate,I18n.t('layout.movements.movdate') %><br />
     <%= f.date_select :movdate %>
   </p>
+  <p>
+    <%= f.check_box :private %>
+	<%= f.label I18n.t('layout.movements.private') %><br />
+  </p>  
   <p>
   <%= f.label :category_id ,I18n.t('layout.movements.category') %><br />
   <%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>

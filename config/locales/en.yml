@@ -96,6 +96,7 @@ en:
        caninsert: "Insert"
        canupdate: "Update"
     accountsusers:
+       name: "Shared Account"
        user: "User"
        candelete: "Delete"
        caninsert: "Insert"

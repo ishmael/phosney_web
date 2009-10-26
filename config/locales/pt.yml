@@ -100,6 +100,7 @@ pt:
        caninsert: "Insere"
        canupdate: "Actualiza"	   
     accountsusers:
+       name: "Conta Partilhada"
        user: "Utilizador"
        candelete: "Apaga"
        caninsert: "Insere"
