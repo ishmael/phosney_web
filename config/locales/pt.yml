@@ -28,6 +28,7 @@ pt:
     bankaccounts:
       name: "Contas Bancárias"
       title: "Conta Bancária"
+      tagline: "Os seus saldos bancários:"
       newaccount: "Adicionar Conta Bancária"
       accountname: "Nome"
       accountbank: "Banco"
@@ -56,6 +57,7 @@ pt:
        name: "Movimentos"
        title: "Movimento"
        description: "Descrição"
+       tag5line: "Os seus ultimos 5 movimentos:"	   
        amount: "Valor"
        debit: "Débito"
        credit: "Crédito"

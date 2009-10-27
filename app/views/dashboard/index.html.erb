@@ -2,39 +2,48 @@
 
         <div class="tabbertab">
             <h2><%=  I18n.t('layout.bankaccounts.name') %></h2>
-            <div class="container1">
-
+            <div class="container2">
+<h4><%=  I18n.t('layout.bankaccounts.tagline') %></h4>
 <table class="broom_table">
  <thead>
   <tr>
-    <th scope="col"><%=  I18n.t('layout.bankaccounts.accountname') %></th>  
-    <th scope="col"><%=  I18n.t('layout.bankaccounts.accountbank') %></th>
+    <th scope="col"><%=  I18n.t('layout.bankaccounts.title') %></th>  
     <th scope="col"><%=  I18n.t('layout.bankaccounts.accountbalance') %></th>    
-    <th scope="col"></th>
   </tr>
  </thead>
 <% @bankaccounts.each do |bankaccount| %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%=h bankaccount.name %></td>
-    <td><%=h bankaccount.bank %></td>
     <td><%=h bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(bankaccount.balance) %></td>
-    <td>
-	<% if bankaccount.owner == '1' %>
-    <%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
-    <%= link_to I18n.t('layout.application.delete'), bankaccount_path(bankaccount), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%>
-	<% end %>
-	</td>
   </tr>
 <% end %>
 <tr>
-<td></td>
 <td><%=  I18n.t('layout.bankaccounts.total') %></td>
 <td><%= number_to_currency(@bankaccounts.inject(0) { |result,element| result + element['balance'].to_f }) %></td>
-<td></td>
 </tr>
 </table>
+</div>
+<div class="container2">
 
-<br />
+<h4><%=  I18n.t('layout.movements.tag5line') %></h4>
+<table class="broom_table">
+ <thead>
+  <tr>
+    <th scope="col"><%=  I18n.t('layout.movements.description') %></th>    
+	<th scope="col"><%=  I18n.t('layout.movements.amount') %></th>    
+	<th scope="col"><%=  I18n.t('layout.movements.type') %></th>    
+  </tr>
+ </thead>
+<% @last5movements.each do |movement| %>
+  <tr class="<%= cycle('odd', 'even') %>">
+    <td><%=h movement.description %></td>
+    <td><%=h  number_to_currency(movement.amount) %></td>
+	<td><%=h  case movement.mov_type when -1 then "D" when 1 then "C" end  %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<div class="container1 separator">
 
 <% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:spending_data => @spending_data
     render_chart '/FusionCharts/FCF_MSLine.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%> 
