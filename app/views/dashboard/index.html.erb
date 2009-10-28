@@ -17,9 +17,9 @@
     <td><%=h bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(bankaccount.balance) %></td>
   </tr>
 <% end %>
-<tr>
-<td><%=  I18n.t('layout.bankaccounts.total') %></td>
-<td><%= number_to_currency(@bankaccounts.inject(0) { |result,element| result + element['balance'].to_f }) %></td>
+<tr class="total">
+<td ><%=  I18n.t('layout.bankaccounts.total') %></td>
+<td ><%= number_to_currency(@bankaccounts.inject(0) { |result,element| result + element['balance'].to_f }) %></td>
 </tr>
 </table>
 </div>

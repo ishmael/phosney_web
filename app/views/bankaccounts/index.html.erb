@@ -25,7 +25,7 @@
 	<% end %></td>
   </tr>
 <% end %>
-<tr>
+<tr class="total">
 <td></td>
 <td><%=  I18n.t('layout.bankaccounts.total') %></td>
 <td><%= number_to_currency(@bankaccountsdata.inject(0) { |result,element| result + element['balance'].to_f }) %></td>

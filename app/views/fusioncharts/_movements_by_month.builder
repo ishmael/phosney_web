@@ -19,7 +19,7 @@ xml.graph(:caption=>I18n.t('layout.fusioncharts.movements_by_month.caption'), :s
           days_of_month[mov.movdate.day] = mov.total
         end
         days_of_month.each do |total|
-          total.nil? ? xml.set(:value=>0) : xml.set(:value=>total)
+          total.nil? ? xml.set(:value=>0) : xml.set(:value=>total )
         end
 	  end
 	end

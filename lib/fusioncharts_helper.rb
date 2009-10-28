@@ -78,14 +78,14 @@ module FusionChartsHelper
     if str_xml==""
       concat("\t\t\t\t<!-- Set the dataURL of the chart -->\n")
       concat("\t\t\t\tchart_"+chart_id+".setDataURL(\""+str_url+"\");\n")
-      #logger.info("The method used is setDataURL.The URL is " + str_url)
+      logger.info("The method used is setDataURL.The URL is " + str_url)
     else
       concat("\t\t\t\t<!-- Provide entire XML data using DataXML method -->\n")
       #concat("\t\t\t\tchart_"+chart_id+".setDataXML(\""+str_xml+"\");\n",block.binding)
       concat("\t\t\t\t")
       concat('chart_'+chart_id+'.setDataXML(\''+str_xml+'\');')
       concat("\n")
-      #logger.info("The method used is setDataXML.The XML is " + str_xml)
+      logger.info("The method used is setDataXML.The XML is " + str_xml)
     end
     
     concat("\t\t\t\t<!-- Finally render the chart. -->\n")
