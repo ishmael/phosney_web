@@ -4,4 +4,5 @@ class Account < ActiveRecord::Base
   has_many :movements, :dependent => :destroy
   has_many :shared_account_invitations, :dependent => :destroy
   
+
 end

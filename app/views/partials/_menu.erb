@@ -1,8 +1,8 @@
- <% bankaccounts = current_user.bankaccounts.find(:all) %>
+ <% menu_bankaccounts = current_user.bankaccounts.find_user_bankaccounts(:all) %>
  <div class="menu_main_section 'first'">
  <h4 id="menu_main_h_bank"><%= link_to I18n.t('layout.bankaccounts.name'), bankaccounts_path %></h4>
  <ul>
- <% bankaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
+ <% menu_bankaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
               <% if bankaccountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
@@ -17,11 +17,11 @@
 </ul>
 </div><!--/end #menu_main_section-->
 
- <% loanaccounts = current_user.loanaccounts.find(:all) %>
+ <% menu_loanaccounts = current_user.loanaccounts.find_user_loanaccounts(:all) %>
  <div class="menu_main_section ">
  <h4 id="menu_main_h_loan"><%= link_to I18n.t('layout.loanaccounts.name'), loanaccounts_path %></h4>
  <ul>
- <% loanaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
+ <% menu_loanaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
               <% if loanaccountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
@@ -36,11 +36,11 @@
 </ul>
 </div><!--/end #menu_main_section-->
 
-<% creditcardaccounts = current_user.creditcardaccounts.find(:all) %>
+<% menu_creditcardaccounts = current_user.creditcardaccounts.find_user_creditcardsaccounts(:all) %>
  <div class="menu_main_section ">
  <h4 id="menu_main_h_credit"><%= link_to I18n.t('layout.creditcardaccounts.name'), creditcardaccounts_path %></h4>
  <ul>
- <% creditcardaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
+ <% menu_creditcardaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
               <% if creditcardaccountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
