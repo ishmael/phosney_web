@@ -84,6 +84,13 @@ pt:
          subcaption: "Por Dia"
          xAxisName: "Dia"
          yAxisName: "Valor"
+      months_balance:
+         caption: "Receitas/Gastos"
+         subcaption: "Por Mês"
+         xAxisName: "Mês"
+         yAxisName: "Valor"
+         income: "Receitas"
+         expenses: "Gastos"         
     users:
        title: "Perfil"
        username: "Utilizador"

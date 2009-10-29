@@ -8,7 +8,7 @@ class BankaccountsController < ApplicationController
     @spending_data = Movement.data_by_month(:all, :conditions => ["movements.mov_type=-1 and accounts_users.user_id= :id and accounts.type =:account_type and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Bankaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
     
     respond_to do |format|
-      format.html # index.html.erb
+		format.html # index.html.erb
 	    format.iphone  { render :layout => false }
     end
   end
@@ -36,7 +36,6 @@ class BankaccountsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
 	  format.iphone  { render :layout => false }
-      format.xml  { render :xml => @bankaccount }
     end
   end
 
@@ -47,7 +46,6 @@ class BankaccountsController < ApplicationController
 		respond_to do |format|
 		  format.html 
 		  format.iphone  { render :layout => false }
-		  format.xml  { render :xml => @bankaccount }
 		end
 	else
 		redirect_to(dashboard_url)
@@ -70,19 +68,17 @@ class BankaccountsController < ApplicationController
     		@accountuser.allow_delete =  1
     		@accountuser.owner = 1
     		if @accountuser.save
-          flash[:notice] = 'Bankaccount was successfully created.'
-          format.html { redirect_to([@bankaccount,:movements]) }
+			flash[:notice] = 'Bankaccount was successfully created.'
+			format.html { redirect_to([@bankaccount,:movements]) }
   		    format.iphone  { redirect_to([@bankaccount,:movements]) }
-          format.xml  { render :xml => @bankaccount, :status => :created, :location => @bankaccount }
         else
-          format.html { render :action => "new" }
-		      format.iphone  { render :action => "new",:layout => false }
-          format.xml  { render :xml => @accountuser.errors, :status => :unprocessable_entity }
+			format.html { render :action => "new" }
+		    format.iphone  { render :action => "new",:layout => false }
+
         end
       else
-        format.html { render :action => "new" }
+			format.html { render :action => "new" }
 		    format.iphone  { render :action => "new",:layout => false }
-        format.xml  { render :xml => @bankaccount.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -97,11 +93,9 @@ class BankaccountsController < ApplicationController
 			flash[:notice] = 'Bankaccount was successfully updated.'
 			format.html { redirect_to([@bankaccount,:movements]) }
 			format.iphone  { redirect_to([@bankaccount,:movements])  }
-			format.xml  { head :ok }
 		  else
 			format.html { render :action => "edit" }
 			format.iphone  { render :action => "edit", :layout => false }
-			format.xml  { render :xml => @bankaccount.errors, :status => :unprocessable_entity }
 		  end
 		end
 	else
@@ -119,7 +113,6 @@ class BankaccountsController < ApplicationController
 		respond_to do |format|
 		  format.html { redirect_to(bankaccounts_url) }
 		  format.iphone  { redirect_to(bankaccounts_url) }
-		  format.xml  { head :ok }
 		end
 	else
 		redirect_to(dashboard_url)

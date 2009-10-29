@@ -9,7 +9,6 @@ class AccountsUsersController < ApplicationController
 			respond_to do |format|
 			  format.html 
 			  format.iphone  { render :layout => false }
-			  format.xml  { render :xml => @sharedaccount }
 			end
 		else
 			redirect_to(dashboard_url)
@@ -27,10 +26,8 @@ class AccountsUsersController < ApplicationController
 		  if @sharedaccount.update_attributes(params[:accounts_user])
 			flash[:notice] = 'Acccounts Users was successfully updated.'
 			format.html { redirect_to([@account,:movements]) }
-			format.xml  { head :ok }
 		  else
 			format.html { render :action => "edit" }
-			format.xml  { render :xml => @sharedaccount.errors, :status => :unprocessable_entity }
 		  end
 		end
 	else

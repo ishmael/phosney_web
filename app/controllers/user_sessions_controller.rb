@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
 	  respond_to do |format|
 		  format.html # new.html.erb
 		  format.iphone do  #action.iphone.erb
-			render :layout => "application"
+          render :layout => "application"
 		  end
 	  end
     end

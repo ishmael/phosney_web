@@ -10,7 +10,6 @@ class SharedAccountInvitationsController < ApplicationController
 		    respond_to do |format|
 			    format.html # new.html.erb
 			    format.iphone  { render :layout => false }
-			    format.xml  { render :xml => @sharedinvitation }
 		    end
 	    else
 		    redirect( dashboard_url)
@@ -29,12 +28,10 @@ class SharedAccountInvitationsController < ApplicationController
     		@sharedinvitation.send_invitation(@current_user)
     		flash[:notice] = 'Invitation was successfully created.'
     		format.html { redirect_to(polymorphic_path([@account,:movements])) }
-    			format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
-    		format.xml  { render :xml => @sharedinvitation, :status => :created, :location => @sharedinvitation }
+   			format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
     	  else
     		format.html { render :action => "new" }
-    			format.iphone { render :action => "new", :layout=> false }
-    		format.xml  { render :xml => @sharedinvitation.errors, :status => :unprocessable_entity }
+   			format.iphone { render :action => "new", :layout=> false }
     	  end
 		end
   	else
@@ -51,7 +48,6 @@ class SharedAccountInvitationsController < ApplicationController
       respond_to do |format|
 				format.html { redirect_to(polymorphic_path([@account,:movements])) }
 				format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
-				format.xml	{ head :ok }
 			end
 	  else
 		    redirect( dashboard_url)
@@ -74,18 +70,14 @@ class SharedAccountInvitationsController < ApplicationController
       		flash[:notice] = 'Invitation was successfully created.'
       		format.html { redirect_to(dashboard_url) }
       		format.iphone { redirect_to(dashboard_url) }
-      		format.xml  { render :xml => @accountuser, :status => :created, :location => @accountuser }
       	  end
       	end
     else
       respond_to do |format|
-    	  format.html { redirect_to(dashboard_url) }
-    		format.iphone { redirect_to(dashboard_url) }
+			format.html { redirect_to(dashboard_url) }
+			format.iphone { redirect_to(dashboard_url) }
     	end   
     end
     
   end 
-  
-
-
 end

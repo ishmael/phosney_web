@@ -6,7 +6,6 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @categories }
     end
   end
 
@@ -17,7 +16,6 @@ class CategoriesController < ApplicationController
 	if @categories
 		respond_to do |format|
 		  format.html # show.html.erb
-		  format.xml  { render :xml => @categories }
 		end
 	else
 		redirect_to(categories_path)
@@ -31,7 +29,6 @@ class CategoriesController < ApplicationController
     
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @category }
     end
   end
 
@@ -42,7 +39,6 @@ class CategoriesController < ApplicationController
 		respond_to do |format|
 		  format.html 
 		  format.iphone  { render :layout => false }
-		  format.xml  { render :xml => @category }
 		end
 	else
 		redirect_to(categories_path)
@@ -58,10 +54,8 @@ class CategoriesController < ApplicationController
       if @category.save
         flash[:notice] = 'Category was successfully created.'
         format.html { redirect_to(categories_path) }
-        format.xml  { render :xml => @category, :status => :created, :location => @category }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -75,10 +69,8 @@ class CategoriesController < ApplicationController
 		  if @category.update_attributes(params[:category])
 			flash[:notice] = 'Category was successfully updated.'
 			format.html { redirect_to(categories_path) }
-			format.xml  { head :ok }
 		  else
 			format.html { render :action => "edit" }
-			format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
 		  end
 		end
 	else
@@ -95,7 +87,6 @@ class CategoriesController < ApplicationController
 
 		respond_to do |format|
 		  format.html { redirect_to(categories_path) }
-		  format.xml  { head :ok }
 		end
 	else
 		redirect_to(categories_path)

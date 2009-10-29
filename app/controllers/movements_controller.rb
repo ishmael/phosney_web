@@ -15,7 +15,6 @@ class MovementsController < ApplicationController
 		respond_to do |format|
 		  format.html # index.html.erb
 		  format.iphone  { render :layout => false }
-		  format.xml  { render :xml => @movements }
 		end
 	else
 	redirect_to(dashboard_url)
@@ -37,7 +36,6 @@ class MovementsController < ApplicationController
 		respond_to do |format|
 		  format.html # show.html.erb
 		  format.iphone  { render :layout => false }
-		  format.xml  { render :xml => @movement }
 		end
 	else
 	redirect_to(dashboard_url)
@@ -53,11 +51,9 @@ class MovementsController < ApplicationController
 			
 			format.html { redirect_to(dashboard_url) }
 			format.iphone { redirect_to(dashboard_url) }
-			format.xml  { render :xml => @movement, :status => :created, :location => @movement }
 		  else
 			format.html { render :action => "quicknew" }
 			format.iphone { render :action => "quicknew",:layout => false }
-			format.xml  { render :xml => @movement.errors, :status => :unprocessable_entity }
 		  end
 		end
   end
@@ -68,7 +64,6 @@ class MovementsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
 	  format.iphone  { render :layout => false }
-      format.xml  { render :xml => @movement }
     end
   end
   
@@ -79,9 +74,8 @@ class MovementsController < ApplicationController
     @movement.mov_type = -1
 	
     respond_to do |format|
-      format.html # new.html.erb
+		format.html # new.html.erb
 	    format.iphone  { render :layout => false }
-      format.xml  { render :xml => @movement }
     end
   end
 
@@ -92,7 +86,6 @@ class MovementsController < ApplicationController
 		respond_to do |format|
 		  format.html # new.html.erb
 		  format.iphone  { render :layout => false }
-		  format.xml  { render :xml => @movement }
 		end
 	else
 		redirect_to(dashboard_url)
@@ -112,11 +105,9 @@ class MovementsController < ApplicationController
 			flash[:notice] = 'Movement was successfully created.'
 			format.html { redirect_to(polymorphic_path([@account,:movements])) }
 			format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
-			format.xml  { render :xml => @movement, :status => :created, :location => @movement }
 		  else
 			format.html { render :action => "new" }
 			format.iphone { render :action => "new", :layout=> false }
-			format.xml  { render :xml => @movement.errors, :status => :unprocessable_entity }
 		  end
 		end
 	else
@@ -136,11 +127,9 @@ class MovementsController < ApplicationController
 			#flash[:notice] = 'Movement was successfully updated.'
 			format.html { redirect_to(polymorphic_path([@account,:movements])) }
 			format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
-			format.xml  { head :ok }
 		  else
 			format.html { render :action => "edit" }
 			format.iphone { render :action => "edit",:layout => false }
-			format.xml  { render :xml => @movement.errors, :status => :unprocessable_entity }
 		  end
 		end
 	else
@@ -158,7 +147,6 @@ class MovementsController < ApplicationController
 		respond_to do |format|
 		  format.html { redirect_to(polymorphic_path([@account,:movements])) }
 		  format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
-		  format.xml  { head :ok }
 		end
 	else
 		redirect_to(dashboard_url)

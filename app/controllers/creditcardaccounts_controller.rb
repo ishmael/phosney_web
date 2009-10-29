@@ -6,7 +6,6 @@ class CreditcardaccountsController < ApplicationController
     @spending_data = Movement.data_by_month(:all,:conditions => ["movements.mov_type=-1 and accounts_users.user_id= :id and accounts.type =:account_type and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Creditcardaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @creditcardaccounts }
     end
   end
 
@@ -17,7 +16,6 @@ class CreditcardaccountsController < ApplicationController
 	if @creditcardaccount 
 		respond_to do |format|
 		  format.html # show.html.erb
-		  format.xml  { render :xml => @creditcardaccount }
 		end
 	else
 		redirect_to(dashboard_url)
@@ -32,7 +30,6 @@ class CreditcardaccountsController < ApplicationController
     
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @creditcardaccount }
     end
   end
 
@@ -43,7 +40,6 @@ class CreditcardaccountsController < ApplicationController
 		respond_to do |format|
 		  format.html 
 		  format.iphone  { render :layout => false }
-		  format.xml  { render :xml => @creditcardaccount }
 		end
 	else
 		redirect_to(dashboard_url)
@@ -68,14 +64,11 @@ class CreditcardaccountsController < ApplicationController
     		if @accountuser.save
         flash[:notice] = 'Creditcardaccount was successfully created.'
         format.html { redirect_to([@creditcardaccount,:movements]) }
-        format.xml  { render :xml => @creditcardaccount, :status => :created, :location => @bankaccount }
         else
           format.html { render :action => "new" }
-          format.xml  { render :xml => @accountuser.errors, :status => :unprocessable_entity }
         end
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @creditcardaccount.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -89,10 +82,8 @@ class CreditcardaccountsController < ApplicationController
 		  if @creditcardaccount.update_attributes(params[:creditcardaccount])
 			flash[:notice] = 'creditcardaccount was successfully updated.'
 			format.html { redirect_to([@creditcardaccount,:movements]) }
-			format.xml  { head :ok }
 		  else
 			format.html { render :action => "edit" }
-			format.xml  { render :xml => @creditcardaccount.errors, :status => :unprocessable_entity }
 		  end
 		end
 	else
@@ -109,7 +100,6 @@ class CreditcardaccountsController < ApplicationController
 
 		respond_to do |format|
 		  format.html { redirect_to(creditcardaccounts_url) }
-		  format.xml  { head :ok }
 		end
 	else
 		redirect_to(dashboard_url)

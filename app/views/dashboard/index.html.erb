@@ -46,7 +46,7 @@
 <div class="container1 separator">
 
 <% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
-    render_chart '/FusionCharts/FCF_MSLine.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%> 
+    render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%> 
 <% end-%> 
 </div><!--/end .container2-->
    </div><!--/end .tabbertab-->

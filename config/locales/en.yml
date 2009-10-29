@@ -80,6 +80,13 @@ en:
          subcaption: "By Day"
          xAxisName: "Day"
          yAxisName: "Amount"
+      months_balance:
+         caption: "Income/Expenses"
+         subcaption: "By Month"
+         xAxisName: "Mmonth"
+         yAxisName: "Amount"
+         income: "Income"
+         expenses: "Expenses"		 
     users:
        title: "Profile"
        username: "Username"

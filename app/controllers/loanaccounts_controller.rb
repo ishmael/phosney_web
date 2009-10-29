@@ -6,7 +6,6 @@ class LoanaccountsController < ApplicationController
     @spending_data =  Movement.data_by_month(:all, :conditions => ["movements.mov_type=-1 and accounts_users.user_id= :id and accounts.type =:account_type and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Loanaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @loanaccounts }
     end
   end
 
@@ -17,7 +16,6 @@ class LoanaccountsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @loanaccount }
     end
   end
 
@@ -29,7 +27,6 @@ class LoanaccountsController < ApplicationController
     
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @loanaccount }
     end
   end
 
@@ -39,7 +36,6 @@ class LoanaccountsController < ApplicationController
 	respond_to do |format|
 	  format.html 
 	  format.iphone  { render :layout => false }
-	  format.xml  { render :xml => @loanaccount }
     end
   end
 
@@ -61,14 +57,11 @@ class LoanaccountsController < ApplicationController
 		if @accountuser.save
 			flash[:notice] = 'Loanaccount was successfully created.'
 			format.html { redirect_to([@loanaccount,:movements]) }
-			format.xml  { render :xml => @loanaccount, :status => :created, :location => @loanaccount }
 		else
 			format.html { render :action => "new" }
-			format.xml  { render :xml => @accountuser.errors, :status => :unprocessable_entity }
 		end
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @loanaccount.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -82,10 +75,8 @@ class LoanaccountsController < ApplicationController
       if @loanaccount.update_attributes(params[:loanaccount])
         flash[:notice] = 'Loanaccount was successfully updated.'
         format.html { redirect_to([@loanaccount,:movements]) }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @loanaccount.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -98,7 +89,6 @@ class LoanaccountsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(bankaccounts_url) }
-      format.xml  { head :ok }
     end
   end
 
