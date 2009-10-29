@@ -4,25 +4,23 @@ class BankaccountsController < ApplicationController
   before_filter :require_user #, :only => [:new, :create,:edit,:update,:index,:destroy]
   
   def index
-    @bankaccountsdata = @current_user.bankaccounts.find_user_bankaccounts(:all, :select => "accounts.id,accounts.name, accounts.bank,(select sum(amount*mov_type) from movements where movements.account_id = accounts.id and (movements.user_id = accounts_users.user_id  or (movements.private = 0 and movements.user_id <> accounts_users.user_id))) as balance, accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,accounts_users.owner")
-    @spending_data = Movement.spending_data(:all, :conditions => ["movements.account_id in (select account_id from accounts_users,accounts where accounts_users.user_id= :id and accounts.type =:account_type and accounts_users.account_id = accounts.id) and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Bankaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
+    @bankaccountsdata = @current_user.bankaccounts.find_accounts_with_balance(:all)
+    @spending_data = Movement.data_by_month(:all, :conditions => ["movements.mov_type=-1 and accounts_users.user_id= :id and accounts.type =:account_type and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Bankaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
     
     respond_to do |format|
       format.html # index.html.erb
 	    format.iphone  { render :layout => false }
-      format.xml  { render :xml => @bankaccounts }
     end
   end
 
   # GET /bankaccounts/1
   # GET /bankaccounts/1.xml
   def show
-    @bankaccount = @current_user.bankaccounts.find_by_id(params[:id], :select => "accounts.id,accounts.name, accounts.number,accounts.bank,(select sum(amount*mov_type) from movements where movements.account_id = accounts.id) as balance")
+    @bankaccount = @current_user.bankaccounts.find_by_id(params[:id])
 	if @bankaccount
 		respond_to do |format|
 		  format.html # show.html.erb
 		  format.iphone { render :layout => false }
-		  format.xml  { render :xml => @bankaccount }
 		end
 	else
 		redirect_to(dashboard_url)

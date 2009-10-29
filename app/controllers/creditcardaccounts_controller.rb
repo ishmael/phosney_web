@@ -2,8 +2,8 @@ class CreditcardaccountsController < ApplicationController
 	before_filter :require_user
  
    def index
-    @creditcardaccounts = @current_user.creditcardaccounts.find(:all, :select => "accounts.id,accounts.name, accounts.bank,(select sum(amount*mov_type) from movements where movements.account_id = accounts.id) as balance")
-    @spending_data = Movement.spending_data(:all, :conditions => ["movements.account_id in (select account_id from accounts_users,accounts where accounts_users.user_id= :id and accounts.type =:account_type and accounts_users.account_id = accounts.id) and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Creditcardaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
+    @creditcardaccounts = @current_user.creditcardaccounts.find_accounts_with_balance(:all)
+    @spending_data = Movement.data_by_month(:all,:conditions => ["movements.mov_type=-1 and accounts_users.user_id= :id and accounts.type =:account_type and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Creditcardaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @creditcardaccounts }
