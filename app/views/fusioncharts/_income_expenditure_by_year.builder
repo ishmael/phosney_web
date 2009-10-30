@@ -8,7 +8,7 @@ xml.graph(:caption=>I18n.t('layout.fusioncharts.months_balance.caption'), :subCa
     :hovercapborder=>'F47E00' , :formatNumberScale=>'0' , :decimalPrecision=>'2' , :showvalues=>'0' , :animation=>'1' , :numdivlines=>'3' ,:numVdivlines=>'0' ,:lineThickness=>'3' ) do
    xml.categories do
     1.upto(12) {
-      |i| xml.category(:name=> Date::MONTHNAMES[i] )
+      |i| xml.category(:name=> I18n.t('date.month_names')[i] )
       } 
     end
     
