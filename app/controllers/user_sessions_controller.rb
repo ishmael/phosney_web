@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
    layout "loggedout_layout", :only => [:new,:create] 
 
 	def show 
-			redirect_back_or_default new_user_url
+			redirect_back_or_default new_user_session_url
 	end
 	
     def new
@@ -24,8 +24,8 @@ class UserSessionsController < ApplicationController
         #flash[:notice] = "Login successful!"
         redirect_back_or_default dashboard_url
       else
-		@user_session.errors.clear
-		@user_session.errors.add_to_base("Invalid username or password")
+		    #@user_session.errors.clear
+		    #@user_session.errors.add_to_base("Invalid username or password")
         render :action => :new
       end
     end
