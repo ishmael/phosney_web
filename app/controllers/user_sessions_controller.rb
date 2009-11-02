@@ -24,8 +24,8 @@ class UserSessionsController < ApplicationController
         #flash[:notice] = "Login successful!"
         redirect_back_or_default dashboard_url
       else
-		    #@user_session.errors.clear
-		    #@user_session.errors.add_to_base("Invalid username or password")
+		   @user_session.errors.clear
+		   @user_session.errors.add_to_base(I18n.t('layout.users.loginerror'))
         render :action => :new
       end
     end

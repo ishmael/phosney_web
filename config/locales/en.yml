@@ -97,6 +97,7 @@ en:
        changepassword: "Change Password"
        locale: "Language"
        logout: "Are you sure you want to logout?"
+       loginerror: "Unable to login: Username or Password are incorrect"
     sharedinvitations:
        name: "Share Account"
        new: "Shared this account"

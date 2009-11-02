@@ -101,6 +101,7 @@ pt:
        changepassword: "Trocar a Password"
        locale: "Linguagem"
        logout: "Tem a certeza que quer sair?"
+       loginerror: "Não foi possivel autenticar: Utilizador ou Password incorrectos"	   
     sharedinvitations:
        name: "Partilhar Conta"
        new: "Partilhar esta Conta"
