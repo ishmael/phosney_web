@@ -1,8 +1,7 @@
- <% menu_bankaccounts = current_user.bankaccounts.find_accounts(:all) %>
  <div class="menu_main_section 'first'">
  <h4 id="menu_main_h_bank"><%= link_to I18n.t('layout.bankaccounts.name'), bankaccounts_path %></h4>
  <ul>
- <% menu_bankaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
+ <% @menu_bankaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
               <% if bankaccountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
@@ -16,12 +15,10 @@
 <% end %>
 </ul>
 </div><!--/end #menu_main_section-->
-
- <% menu_loanaccounts = current_user.loanaccounts.find_accounts(:all) %>
  <div class="menu_main_section ">
  <h4 id="menu_main_h_loan"><%= link_to I18n.t('layout.loanaccounts.name'), loanaccounts_path %></h4>
  <ul>
- <% menu_loanaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
+ <% @menu_loanaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
               <% if loanaccountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
@@ -36,11 +33,11 @@
 </ul>
 </div><!--/end #menu_main_section-->
 
-<% menu_creditcardaccounts = current_user.creditcardaccounts.find_accounts(:all) %>
+
  <div class="menu_main_section ">
  <h4 id="menu_main_h_credit"><%= link_to I18n.t('layout.creditcardaccounts.name'), creditcardaccounts_path %></h4>
  <ul>
- <% menu_creditcardaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
+ <% @menu_creditcardaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
               <% if creditcardaccountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>

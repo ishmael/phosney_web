@@ -11,11 +11,20 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   before_filter :set_locale
   before_filter :adjust_format_for_iphone
-
+  before_filter :generate_menu 
 
    
   
   private
+	def generate_menu
+		if not current_user.nil?
+			@menu_accounts = current_user.accounts.find_accounts(:all)
+			@menu_bankaccounts = @menu_accounts.select { |item| item.class == Bankaccount}
+			@menu_loanaccounts = @menu_accounts.select { |item| item.class == Loanaccount}
+			@menu_creditcardaccounts = @menu_accounts.select { |item| item.class == Creditcardaccount}
+		end
+	end
+	
 	def set_locale
 		if not current_user.nil?
 			I18n.locale = @current_user.locale

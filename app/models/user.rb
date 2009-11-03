@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   acts_as_authentic 
   has_many :accounts_users, :dependent => :destroy
   has_many :movements, :dependent => :destroy
+  has_many :accounts,:through => :accounts_users,:source => :account, :dependent => :destroy  
   has_many :bankaccounts,:through => :accounts_users,:source => :account,:class_name => 'Bankaccount', :dependent => :destroy
   has_many :loanaccounts,:through => :accounts_users,:source => :account,:class_name => 'Loanaccount', :dependent => :destroy
   has_many :creditcardaccounts, :through => :accounts_users,:source => :account,:class_name => 'Creditcardaccount', :dependent => :destroy
