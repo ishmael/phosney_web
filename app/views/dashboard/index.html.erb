@@ -14,12 +14,12 @@
 <% @bankaccounts.each do |bankaccount| %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%=h bankaccount.name %></td>
-    <td><%=h bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(bankaccount.balance) %></td>
+    <td><%=h number_to_currency(bankaccount.account_balance) %></td>
   </tr>
 <% end %>
 <tr class="total">
 <td ><%=  I18n.t('layout.bankaccounts.total') %></td>
-<td ><%= number_to_currency(@bankaccounts.inject(0) { |result,element| result + element['balance'].to_f }) %></td>
+<td ><%= number_to_currency(@bankaccounts.sum { |item| item.account_balance }) %></td>
 </tr>
 </table>
 </div>
@@ -38,7 +38,7 @@
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%=h movement.description %></td>
     <td><%=h  number_to_currency(movement.amount) %></td>
-	<td><%=h  case movement.mov_type when -1 then "D" when 1 then "C" end  %></td>
+	<td><%=h  movement.type_of_movement %></td>
   </tr>
 <% end %>
 </table>

@@ -17,7 +17,7 @@
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%=h bankaccount.name %></td>
     <td><%=h bankaccount.bank %></td>
-    <td><%=h bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(bankaccount.balance) %></td>
+    <td><%=h number_to_currency(bankaccount.account_balance) %></td>
     <td>
 	<% if bankaccount.owner == '1' %>
     <%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
@@ -28,7 +28,7 @@
 <tr class="total">
 <td></td>
 <td><%=  I18n.t('layout.bankaccounts.total') %></td>
-<td><%= number_to_currency(@bankaccountsdata.inject(0) { |result,element| result + element['balance'].to_f }) %></td>
+<td><%= number_to_currency(@bankaccountsdata.sum { |item| item.account_balance }) %></td>
 <td></td>
 </tr>
 </table>

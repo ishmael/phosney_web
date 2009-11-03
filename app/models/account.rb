@@ -15,4 +15,13 @@ class Account < ActiveRecord::Base
         find(*args)
       end
   end
+  
+  def pseudo_id
+    new_record? ? 0 : id
+  end
+  
+  def account_balance
+    balance.nil? ? 0 : balance.to_f 
+  end
+  
 end

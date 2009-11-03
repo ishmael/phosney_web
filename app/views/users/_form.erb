@@ -1,13 +1,18 @@
+<div class="FormRow">
 <%= form.label :login,I18n.t('layout.users.username')  %>
 <%= form.text_field :login %>
-<br />
+</div>
+<div class="FormRow">
 <%= form.label :password, form.object.new_record? ? I18n.t('layout.users.password') : I18n.t('layout.users.changepassword') %>
 <%= form.password_field :password %>
-<br />
+</div>
+<div class="FormRow">
 <%= form.label :password_confirmation,I18n.t('layout.users.passwordconfirmation')  %>
 <%= form.password_field :password_confirmation %>
-<br />
+</div>
+<div class="FormRow">
 <%= form.label :email %><%= form.text_field :email %>
-<br />
+</div>
+<div class="FormRow">
 <%= form.label :locale,I18n.t('layout.users.locale') %><%= form.select(:locale, [['Português', 'pt'], ['English', 'en']]) %> 
-<br />
+</div>

@@ -5,7 +5,8 @@
 <% form_for @user, :html => { :class => "register_form"}, :url => account_path do |f| %>
   
    <% if not f.error_messages.blank? %>
-  <div class="notification error"><a href="#" class="close">close</a><em><img src="/images/icons/cross_circle.png" alt=""/><%= f.error_messages %></em> </div>
+  <div class="notification error"><a href="#" class="close">close</a><em>
+	<%= f.error_messages %></em> </div>
   <% end %>
   <fieldset>
   <legend><%=  I18n.t('layout.users.register') %></legend>

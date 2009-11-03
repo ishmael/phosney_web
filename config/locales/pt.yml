@@ -61,6 +61,8 @@ pt:
        amount: "Valor"
        debit: "Débito"
        credit: "Crédito"
+       type_mov_credit: "C"
+       type_mov_debit: "D"       
        movdate: "Data"
        type: "Tipo"
        category: "Categoria"	   
@@ -101,7 +103,8 @@ pt:
        changepassword: "Trocar a Password"
        locale: "Linguagem"
        logout: "Tem a certeza que quer sair?"
-       loginerror: "Não foi possivel autenticar: Utilizador ou Password incorrectos"	   
+       loginerror: "Não foi possivel autenticar: Utilizador ou Password incorrectos."
+       lastlogin: "Nunca"
     sharedinvitations:
        name: "Partilhar Conta"
        new: "Partilhar esta Conta"

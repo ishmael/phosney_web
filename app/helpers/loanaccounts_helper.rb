@@ -1,17 +1,9 @@
 module LoanaccountsHelper
 	def loanaccountnumber
 		if not @loanaccount.nil?
-			if @loanaccount.id.nil?
-			0
-			else
-			@loanaccount.id
-			end
+   		@loanaccount.pseudo_id
 		elsif not @account.nil? and @account.kind_of? Loanaccount
-			if @account.id.nil?
-			0
-			else
-			@account.id
-			end
+			@account.pseudo_id
 		end
 	end
 end

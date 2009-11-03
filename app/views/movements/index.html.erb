@@ -18,7 +18,7 @@
     <td><%= link_to movement.description, polymorphic_path([@account,movement])%></td>
     <td><%=h number_to_currency(movement.amount) %></td>
     
-    <td><%=h case movement.mov_type when -1 then "D" when 1 then "C" end %></td>
+    <td><%=h movement.type_of_movement %></td>
     
     <td><%=h movement.movdate.to_date %></td>
     <td>

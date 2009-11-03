@@ -17,7 +17,7 @@
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%=h creditcardaccount.name %></td>
     <td><%=h creditcardaccount.bank %></td>
-    <td><%=h creditcardaccount.balance.nil? ? number_to_currency(0) : number_to_currency(creditcardaccount.balance) %></td>
+    <td><%=h number_to_currency(creditcardaccount.account_balance) %></td>
     <td>
     <%= link_to I18n.t('layout.application.edit'), edit_creditcardaccount_path(creditcardaccount),:class => 'table_edit' %>
     <%= link_to I18n.t('layout.application.delete'), creditcardaccount_path(creditcardaccount), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%></td>
@@ -26,7 +26,7 @@
 <tr>
 <td></td>
 <td><%=  I18n.t('layout.creditcardaccounts.total') %></td>
-<td><%= number_to_currency(@creditcardaccounts.inject(0) { |result,element| result + element['balance'].to_f }) %></td>
+<td><%= number_to_currency(@creditcardaccounts.sum { |item| item.account_balance }) %></td>
 <td></td>
 </tr>
 </table>

@@ -33,7 +33,7 @@
 			<li><%= link_to I18n.t('layout.application.logout'), user_session_path, :method => :delete, :confirm => I18n.t('layout.users.logout') %></li>
 			<li><%= link_to I18n.t('layout.application.settings'), account_path %></li>      
 			<li><%= I18n.t('layout.application.welcome') %> <strong><%= current_user.login %></strong></li>
-			<li id="last"><%= I18n.t('layout.application.lastlogin') %> <%=  last_login %></li>
+			<li id="last"><%= I18n.t('layout.application.lastlogin') %> <%=  current_user.last_login %></li>
 		</ul><!--/end #welcome-->
 	
     </div><!--/end #logo-->

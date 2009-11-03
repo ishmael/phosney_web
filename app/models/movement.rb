@@ -17,4 +17,9 @@ class Movement < ActiveRecord::Base
       find(*args)
     end
   end
+  
+  
+  def type_of_movement
+    case mov_type when -1 then I18n.t('layout.movements.type_mov_debit') when 1 then I18n.t('layout.movements.type_mov_credit') end 
+  end
 end
