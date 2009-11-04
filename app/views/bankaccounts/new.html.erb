@@ -2,7 +2,7 @@
             <h2><%=  I18n.t('layout.bankaccounts.title') %></h2>
             <div class="container1">
 
-<% form_for (@bankaccount ,:html =>{:class => 'broom_form'}) do |f| %>
+<% form_for(@bankaccount ,:html =>{:class => 'broom_form'}) do |f| %>
   <% if not f.error_messages.blank? %>
 		<div class="notification error">
 		<a href="/#" class="close">close</a>
