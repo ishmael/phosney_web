@@ -2,13 +2,13 @@
  <h4 id="menu_main_h_bank"><%= link_to I18n.t('layout.bankaccounts.name'), bankaccounts_path %></h4>
  <ul>
  <% @menu_bankaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
-              <% if bankaccountnumber== menu.id %>
+              <% if accountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
               <li><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% end %>          
 <% end %>
-<% if bankaccountnumber == 0  %>
+<% if accountnumber == 0  and accounttype == Bankaccount %>
   <li class="selected"><%= link_to I18n.t('layout.bankaccounts.newaccount'), new_bankaccount_path %></li>
 <% else %>
   <li><%= link_to I18n.t('layout.bankaccounts.newaccount'), new_bankaccount_path %></li>
@@ -19,13 +19,13 @@
  <h4 id="menu_main_h_loan"><%= link_to I18n.t('layout.loanaccounts.name'), loanaccounts_path %></h4>
  <ul>
  <% @menu_loanaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
-              <% if loanaccountnumber== menu.id %>
+              <% if accountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
               <li><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% end %>          
 <% end %>
-<% if loanaccountnumber == 0 %>
+<% if accountnumber == 0 and accounttype == Loanaccount  %>
   <li class="selected"><%= link_to I18n.t('layout.loanaccounts.newaccount'), new_loanaccount_path %></li>
 <% else %>
   <li><%= link_to I18n.t('layout.loanaccounts.newaccount'), new_loanaccount_path %></li>
@@ -38,13 +38,13 @@
  <h4 id="menu_main_h_credit"><%= link_to I18n.t('layout.creditcardaccounts.name'), creditcardaccounts_path %></h4>
  <ul>
  <% @menu_creditcardaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
-              <% if creditcardaccountnumber== menu.id %>
+              <% if accountnumber== menu.id %>
               <li class="selected"><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% else %>
               <li><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
               <% end %>          
 <% end %>
-<% if creditcardaccountnumber == 0 %>
+<% if accountnumber == 0  and accounttype == Creditcardaccount %>
   <li class="selected"><%= link_to I18n.t('layout.creditcardaccounts.newaccount'), new_creditcardaccount_path %></li>
 <% else %>
   <li><%= link_to I18n.t('layout.creditcardaccounts.newaccount'), new_creditcardaccount_path %></li>

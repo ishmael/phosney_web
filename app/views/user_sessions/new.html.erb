@@ -21,21 +21,19 @@
 
   <div class="FormColumn"> 
   	<%= f.label :password, I18n.t('layout.users.password') %>	 
-    
-  <%= f.password_field :password %>
-            <!--/end .label2-->
-            </div>
+    <%= f.password_field :password %>
+  </div>
 
-  <div class="button">
+    <div class="button">
   <div class="btn-inner">
   <span>
   <em>
     <button type="submit"><%= image_tag("icons/lock.png") %>Log in</button>
-
-  </em>                       
+	</em>                       
    </span>
   </div>
   </div>
+  
   
  <%= link_to I18n.t('layout.users.recoverpassword'), new_password_reset_path , {:class => "forgot_login"}%>
  <%= link_to I18n.t('layout.users.register'), new_account_path , {:class => "forgot_login"}%>

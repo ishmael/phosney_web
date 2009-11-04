@@ -2,27 +2,39 @@
             <h2><%=  I18n.t('layout.bankaccounts.title') %></h2>
             <div class="container1">
 
-<% form_for(@bankaccount) do |f| %>
-  <%= f.error_messages %>
+<% form_for (@bankaccount ,:html =>{:class => 'broom_form'}) do |f| %>
+  <% if not f.error_messages.blank? %>
+		<div class="notification error">
+		<a href="/#" class="close">close</a>
+		<em>
+		<%= f.error_messages :header_message => nil, 
+		:message => nil, 
+		:header_tag => :h3 %>
+		</em> 
+		</div>
+		
+	<% end %>
 
-  <p>
-    <%= f.label :name, I18n.t('layout.bankaccounts.accountname') %><br />
+  <fieldset>
+  <div class="FormColumn">
+    <%= f.label :name, I18n.t('layout.bankaccounts.accountname') %>
     <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :number,I18n.t('layout.bankaccounts.accountnumber')  %><br />
+  </div>
+  <div class="FormColumn">
+    <%= f.label :number,I18n.t('layout.bankaccounts.accountnumber')  %>
     <%= f.text_field :number %>
-  </p>
-  <p>
-    <%= f.label :bank,I18n.t('layout.bankaccounts.accountbank') %><br />
+  </div>
+  <div class="FormColumn">
+    <%= f.label :bank,I18n.t('layout.bankaccounts.accountbank') %>
     <%= f.text_field :bank %>
-  </p>
-
-  <p>
-    <%= f.submit I18n.t('layout.application.create') %>
-  </p>
+  </div>
+<div class="FormColumn">
+    <%= f.submit I18n.t('layout.application.create'),:class => 'form_button' %>
+	<%= link_to I18n.t('layout.application.cancel'), bankaccounts_path %>
+</div>	
+  </fieldset>
 <% end %>
 
-<%= link_to I18n.t('layout.application.cancel'), bankaccounts_path %>
+
             </div><!--/end .container1-->
         </div><!--/end .tabbertab-->
