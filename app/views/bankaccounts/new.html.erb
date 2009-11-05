@@ -17,7 +17,7 @@
 
   <fieldset>
   <div class="FormColumn">
-    <%= f.label :name, I18n.t('layout.bankaccounts.accountname') %>
+    <%= f.label :name , t('activerecord.attributes.account.name')%>
     <%= f.text_field :name %>
   </div>
   <div class="FormColumn">
@@ -29,7 +29,7 @@
     <%= f.text_field :bank %>
   </div>
 <div class="FormColumn">
-    <%= f.submit I18n.t('layout.application.create'),:class => 'form_button' %>
+    <%= f.submit I18n.t('layout.application.create'),:class => 'form_button' %> <%= I18n.t('layout.application.or') %> 
 	<%= link_to I18n.t('layout.application.cancel'), bankaccounts_path %>
 </div>	
   </fieldset>

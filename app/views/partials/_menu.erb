@@ -1,11 +1,13 @@
- <% @menu_bankaccounts.each do |tipo,contas| %>  
+<% accounts_type = [Bankaccount,Loanaccount,Creditcardaccount] %>
+ <% accounts_type.each do |tipo| %>  
  <div class="menu_main_section <% if tipo == Bankaccount %>'first' <%end%>">
- <h4 id="menu_main_h_<%=tipo.name.downcase%>"><%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.name'), bankaccounts_path %></h4>
+ <h4 id="menu_main_h_<%=tipo.name.downcase%>"><%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.name'), polymorphic_path(tipo.name.pluralize.downcase) %></h4>
  <ul>
+	<% contas = @menu_accounts.select { |item| item.class == tipo }%>
 	<% contas.sort_by(&:name).each  do |menu| %>        
 		<li <% if accountnumber== menu.id %>class="selected"<% end %>><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>                
 	<% end %>	   
-		<li <% if accountnumber == 0  and accounttype == tipo %>class="selected"<%end%>><%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.newaccount'), new_bankaccount_path %></li>
+		<li <% if accountnumber == 0  and accounttype == tipo %>class="selected"<%end%>><%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.newaccount'), new_polymorphic_path(tipo) %></li>
 </ul>
 </div><!--/end #menu_main_section-->
 <% end %> 

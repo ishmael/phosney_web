@@ -25,6 +25,7 @@ pt:
       deletemessage: "Tem a certeza?"
       details: "Detalhes"
       send: "Enviar"
+      or : "ou"      
     bankaccounts:
       name: "Contas Bancárias"
       title: "Conta Bancária"
@@ -241,6 +242,9 @@ pt:
           tb: "TB"
  
   activerecord:
+    attributes:
+        account:
+          name: "Nome"
     errors:
       template:
         header:

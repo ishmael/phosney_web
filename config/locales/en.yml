@@ -21,6 +21,7 @@ en:
       deletemessage: "Are you sure?"
       details: "Details"
       send: "Send"
+      or : "or"
     bankaccounts:
       name: "Accounts"
       title: "Account"
@@ -114,3 +115,8 @@ en:
        candelete: "Delete"
        caninsert: "Insert"
        canupdate: "Update"
+
+  activerecord:
+     attributes:
+       account:
+         name: "Name"
