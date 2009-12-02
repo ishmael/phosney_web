@@ -1,0 +1,37 @@
+<% form_for @quick_movement, :url => quickmovement_path do |f| %>
+			<fieldset>
+			<legend><%=I18n.t('layout.bankaccounts.accountname')%></legend>			
+			<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
+			</fieldset>
+			<fieldset>
+			<legend><%=I18n.t('layout.movements.description') %></legend>
+			<%= f.text_field :description %>
+			</fieldset>
+			<fieldset>
+			<legend><%=I18n.t('layout.movements.amount') %></legend>
+			<%= f.text_field :amount %>
+			</fieldset>
+			<fieldset>
+			<legend><%=  I18n.t('layout.movements.movdate') %></legend>
+			<select id="movement_movdate_3i" name="movement[movdate(3i)]">
+				<option value="31">31</option>
+			</select>
+			</fieldset>
+			<fieldset>
+			<legend><%= I18n.t('layout.movements.private') %></legend>
+			<input name="movement[private]" type="hidden" value="0" /><input id="movement_private" name="movement[private]" type="checkbox" value="1" />
+			</fieldset>
+			<fieldset>
+			<legend><%= I18n.t('layout.movements.category') %></legend>
+			<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
+			</fieldset>
+			<fieldset>
+			<legend><%= I18n.t('layout.tags.title') %></legend>
+			<%= f.text_field :tag_list %>
+			</fieldset>
+			<fieldset>
+			<legend>Foi uma...</legend>
+			<%= f.radio_button :mov_type,"-1" %><%=  I18n.t('layout.movements.debit') %>
+			<%= f.radio_button :mov_type,"1" %><%=  I18n.t('layout.movements.credit') %>
+			</fieldset>
+		<% end %>

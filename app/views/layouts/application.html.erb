@@ -7,62 +7,113 @@
 <%= GMap.header %>
 <%= @map.to_html unless @map.blank? %>
 <!--jQuery-->
-<%= javascript_include_tag 'jquery-1.3.2' %>
-<!--tabber-->
-<%= javascript_include_tag 'tabber-minimized' %>    
+<%= javascript_include_tag 'jquery-1.3.2','jquery.quickflip','application' %>
 <!--css-->
-<%= stylesheet_link_tag 'reset' %>
-<%= stylesheet_link_tag 'main' %>
-<%= stylesheet_link_tag 'tabber' %>
-<script type="text/javascript">
-   $(document).ready(function(){
-    
-	$("a.close").click(function(){   $(this).parent().slideUp(); return false;});  //links with class 'close' close parent div
-    });   
-</script>
+<%= stylesheet_link_tag 'reset','main' %>
+
+
 </head>
-
-<body id="b_main">
-
-<div id="header">
-    <div id="logo">
-		<h1 id="header_broomcupboard"><a href="/"><%=  I18n.t('layout.application.name') %></a></h1>
-		<h4 id="header_strapline"><%=  I18n.t('layout.application.tag')  %></h4>
-		<ul id="welcome">
-			<li><%= link_to I18n.t('layout.application.logout'), user_session_path, :method => :delete, :confirm => I18n.t('layout.users.logout') %></li>
-			<li><%= link_to I18n.t('layout.application.settings'), account_path %></li>      
-			<li><%= I18n.t('layout.application.welcome') %> <strong><%= current_user.login %></strong></li>
-			<li id="last"><%= I18n.t('layout.application.lastlogin') %> <%=  current_user.last_login %></li>
-		</ul><!--/end #welcome-->
+<body>
+	<div id=login>
 	
-    </div><!--/end #logo-->
-	
-</div><!--/end #header-->
+	</div>
+	<div id="logo">
+	</div>
+	<div id="navigation">
+	<ul >
+      <li class="current"><a href="/">Dashboard</a></li>
+      <li><a href="/">Working</a></li>
+      <li><a href="/">Failed</a></li>
+      <li><a href="/">Queues</a></li>
+      <li><a href="/">Workers</a></li>
+      <li><a href="/">Stats</a></li>
+    </ul>
+	</div>
+	<div id="quickmovement">
+		<%= render(:partial => "partials/quickmovement") %>
+	</div>
+	<div id="main" >
+        <div id="content">
+            <div class="toolbox">Wide view:&nbsp;<a id="wideView" href="#"></a></div>
+				<div id="primary">
+				<%= yield %>            
+				</div>
+				<div id="search"> 
+				<p>
+		      The new common language will be more simple and regular than the existing 
+                European languages. It will be as simple as Occidental; in fact, it will be 
+                Occidental.</p>
+				</div>
+				
+        </div>
+
+        <div id="sidebar" >
+			<div class="quickflip-wrapper">
+							<div id="detalhe" class="quickflip-div">
+					<h3>Detalhes</h3>
+					<ul>
+						<li>Nome</li>
+						<li>Numero</li>
+						<li>Banco</li>
+					</ul>
+					<a href="#" class="quickFlipCta">Contas</a>
+				</div>	
+				<div id="contas" class="quickflip-div">
+					<h3>Accounts</h3>
+					<h4>BankAccounts</h4>
+					<ul>
+						<li>BCPsdfsdfsdfdf sdfsdfsfsdfsdfsfsf</li>
+						<li>Caixa</li>
+						<li>BPI</li>			
+						<li>BCP</li>
+						<li>Caixa</li>
+						<li>BPI</li>	
+						<li>BCP</li>
+						<li>Caixa</li>
+						<li>BPI</li>	
+						<li>BCP</li>
+						<li>Caixa</li>
+						<li>BPI</li>	
+												<li>BCP</li>
+						<li>Caixa</li>
+						<li>BPI</li>	
+						<li>BCP</li>
+						<li>Caixa</li>
+						<li>BPI</li>							
+						<li>Caixa</li>
+						<li>BPI</li>	
+						
+					</ul>
+					<a href="#" class="quickFlipCta">Detalhes</a>
+				</div>				
+			
+			</div>
+        </div>
+        <div id="comments">
+            <h3>Comments</h3>
+            <p>
+                <span>Visitor 1</span>
+                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
+                there live the blind texts. Separated they live in Bookmarksgrove right at the coast of 
+                the Semantics, a large language ocean.
+            </p>
+            <p>
+
+                <span>Visitor 2</span>
+                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
+                there live the blind texts. Separated they live in Bookmarksgrove right at the coast of 
+                the Semantics, a large language ocean.
+            </p>
+            <p>
+                <span>Visitor 3</span>
+                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
+                there live the blind texts. Separated they live in Bookmarksgrove right at the coast of 
+                the Semantics, a large language ocean.
+            </p>
+        </div>
+    </div>
+
+    <div id="footer">Copyright &copy; JankoAtWarpSpeed 2009.</div>
     
-<div id="wrapper"><!--holds pretty much everything-->
-    <div id="menu_main">
-   <%= render(:partial => "partials/menu") %>
-    </div><!--/end #menu_main-->
-
-	<div id="content">
-        <div class="tabber">
-        
-            <%= yield %>            
-        
-        </div><!--/end .tabber-->
-    </div><!--/end #content-->
-    
-
-
-</div>
-<!--/end #wrapper-->
-
-<div class="clear"></div><!--/end .clear-->
-
-
-
 </body><!--/end #b_main-->
-
-
-
 </html>
