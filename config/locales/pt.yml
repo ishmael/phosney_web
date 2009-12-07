@@ -27,8 +27,8 @@ pt:
       send: "Enviar"
       or : "ou"      
     bankaccounts:
-      name: "Contas Bancárias"
-      title: "Conta Bancária"
+      name: "Contas Bancária"
+      title: "Conta Bancárias"
       tagline: "Os seus saldos bancários:"
       newaccount: "Adicionar Conta Bancária"
       accountname: "Nome"

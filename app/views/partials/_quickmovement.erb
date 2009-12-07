@@ -1,36 +1,31 @@
 <% form_for @quick_movement, :url => quickmovement_path do |f| %>
 			<fieldset>
-			<legend><%=I18n.t('layout.bankaccounts.accountname')%></legend>			
+			<legend><%= f.label :account_id, I18n.t('layout.bankaccounts.accountname')%></legend>			
 			<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
 			</fieldset>
 			<fieldset>
-			<legend><%=I18n.t('layout.movements.description') %></legend>
-			<%= f.text_field :description %>
+			<legend><%= f.label :description, I18n.t('layout.movements.description') %></legend>
+			<%= f.text_field :description , :size => 20 %>
 			</fieldset>
 			<fieldset>
-			<legend><%=I18n.t('layout.movements.amount') %></legend>
-			<%= f.text_field :amount %>
+			<legend><%= f.label  :amount, I18n.t('layout.movements.amount') %></legend>
+			<%= f.text_field :amount , :size => 10 %>
 			</fieldset>
 			<fieldset>
-			<legend><%=  I18n.t('layout.movements.movdate') %></legend>
-			<select id="movement_movdate_3i" name="movement[movdate(3i)]">
-				<option value="31">31</option>
-			</select>
+			<legend><%= f.label :movdate,  I18n.t('layout.movements.movdate') %></legend>
+			<%= f.text_field :movdate,:size => 10 %>
+				
 			</fieldset>
 			<fieldset>
-			<legend><%= I18n.t('layout.movements.private') %></legend>
-			<input name="movement[private]" type="hidden" value="0" /><input id="movement_private" name="movement[private]" type="checkbox" value="1" />
-			</fieldset>
-			<fieldset>
-			<legend><%= I18n.t('layout.movements.category') %></legend>
+			<legend><%= f.label :category_id, I18n.t('layout.movements.category') %></legend>
 			<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
 			</fieldset>
 			<fieldset>
-			<legend><%= I18n.t('layout.tags.title') %></legend>
-			<%= f.text_field :tag_list %>
+			<legend><%= f.label :tag_list, I18n.t('layout.tags.title') %></legend>
+			<%= f.text_field :tag_list , :size => 20%>
 			</fieldset>
 			<fieldset>
-			<legend>Foi uma...</legend>
+			<legend>Foi um...</legend>
 			<%= f.radio_button :mov_type,"-1" %><%=  I18n.t('layout.movements.debit') %>
 			<%= f.radio_button :mov_type,"1" %><%=  I18n.t('layout.movements.credit') %>
 			</fieldset>

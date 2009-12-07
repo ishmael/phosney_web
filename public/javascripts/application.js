@@ -9,6 +9,14 @@ $(document).ready(function() {
             });
         });
 		
-		$(function() {
-			$('.quickflip-wrapper').quickFlip();
-		});
+
+		
+$(function(){
+				  $("#movement_movdate").datepicker({
+						changeMonth: true,
+						changeYear: true,
+						dateFormat: 'dd/mm/yy'
+					});
+
+			 });
+	

@@ -1,7 +1,7 @@
 body { font-family: Lucida Sans Unicode, Arial, Sans-Serif; font-size:13px;margin:0px;}
 
 /* Structure */
-#header, #content, #comments, #sidebar, #footer { background-color:#CCCCCC; margin:10px 0px;
+#header, #content, #comments, #sidebar, #footer ,#dashboard { background-color:#CCCCCC; margin:10px 0px;
 	 -moz-border-radius:10px;  -webkit-border-radius:10px; padding:30px;}
 #header h1 { float:right; margin: 20px 0 0 0; font-size:36px; font-weight:bold;}
 #header h2 {font-size:16px; font-weight:normal; margin:0px; padding:0px;}
@@ -22,19 +22,13 @@ background-color:#CCCCCC;
 #navigation {
 width:960px; 
 margin: 0px auto;
-height:45px;
+height:35px;
 background-color:#CCCCCC;
-/*-moz-border-radius-bottomleft:10px; 
--moz-border-radius-bottomright:10px; 
--webkit-border-bottom-right-radius:10px; 
--webkit-border-bottom-left-radius:10px;*/
-border-bottom:5px solid #ce1212;
-padding-top:5px;
+ -moz-border-radius:10px;  -webkit-border-radius:10px;
 }
-
-#navigation ul li { display:inline;}
-#navigation  ul li a { color:#000000;background-color: #ffffff; text-decoration:none; margin-right:10px; display:inline-block;  padding:8px; 
--moz-border-radius-topright:6px; -moz-border-radius-topleft:6px;  -webkit-border-top-right-radius:6px; -webkit-border-top-left-radius:6px;}
+#navigation ul { height: 35px; margin: 0px ; padding-left: 15px;}
+#navigation ul li { display:inline;  }
+#navigation  ul li a { color:#000000;background-color: #ffffff; text-decoration:none; margin-right: 10px; display:inline-block; height: 20px; padding:10px 10px 5px 10px;}
 #navigation  ul li a:hover { background:#333; color: #ffffff;}
 #navigation  ul li.current a { background:#ce1212; font-weight:bold; color:#fff;}
 
@@ -58,6 +52,7 @@ padding-top:5px;
 #toolbox { text-align:right; float:right;}
 #content { width:710px; float:left; }
 #primary { width:710px; float:left;}
+#dashboard { width:900px; float:left;}
 #search { width:160px; float:right; visibility:hidden; height: 0;}
 #comments { width:710px; float:left;}
 #comments p span {display:block; font-size:16px; color:#B0232A;}

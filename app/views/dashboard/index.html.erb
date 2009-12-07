@@ -1,108 +1,78 @@
 <%= javascript_include_tag "FusionCharts"%>
-
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.bankaccounts.name') %></h2>
-            <div class="container2">
-<h4><%=  I18n.t('layout.bankaccounts.tagline') %></h4>
-<table class="broom_table">
- <thead>
-  <tr>
-    <th scope="col"><%=  I18n.t('layout.bankaccounts.title') %></th>  
-    <th scope="col"><%=  I18n.t('layout.bankaccounts.accountbalance') %></th>    
-  </tr>
- </thead>
-<% @bankaccounts.each do |bankaccount| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h bankaccount.name %></td>
-    <td><%=h number_to_currency(bankaccount.account_balance) %></td>
-  </tr>
-<% end %>
-<tr class="total">
-<td ><%=  I18n.t('layout.bankaccounts.total') %></td>
-<td ><%= number_to_currency(@bankaccounts.sum { |item| item.account_balance }) %></td>
-</tr>
-</table>
-</div>
-<div class="container2">
-
-<h4><%=  I18n.t('layout.movements.tag5line') %></h4>
-<table class="broom_table">
- <thead>
-  <tr>
-    <th scope="col"><%=  I18n.t('layout.movements.description') %></th>    
-	<th scope="col"><%=  I18n.t('layout.movements.amount') %></th>    
-	<th scope="col"><%=  I18n.t('layout.movements.type') %></th>    
-  </tr>
- </thead>
-<% @last5movements.each do |movement| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h movement.description %></td>
-    <td><%=h  number_to_currency(movement.amount) %></td>
-	<td><%=h  movement.type_of_movement %></td>
-  </tr>
-<% end %>
-</table>
-</div>
-<div class="container1 separator">
-
-<% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
-    render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%> 
-<% end-%> 
-</div><!--/end .container2-->
-   </div><!--/end .tabbertab-->
-   
-<div class="tabbertab">
-            <h2><%=  I18n.t('layout.categories.title') %></h2>
-            <div class="container1">
-
-<table class="broom_table">
- <thead>
-  <tr>
-    <th scope="col"><%=  I18n.t('layout.categories.name') %></th>   
-    <th scope="col"></th>
-  </tr>
-</thead>   
-<tbody>
-<% @categories.each do |category| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h category.name %></td>   
-    <td><%= link_to I18n.t('layout.application.edit'), edit_category_path(category.id),:class => 'table_edit' %>
-    <%= link_to I18n.t('layout.application.delete'),  category_path(category.id) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
-
-<br />
-
-<%= link_to I18n.t('layout.categories.new'), new_category_path %>
-            </div><!--/end .container1-->
+       <div id="dashboard">
+          <h2>
+            <%=  I18n.t('layout.bankaccounts.name') %>
+          </h2>
+          <div >
+            <h4>
+              <%=  I18n.t('layout.bankaccounts.tagline') %>
+            </h4>
+            <table class="broom_table">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <%=  I18n.t('layout.bankaccounts.title') %>
+                  </th>
+                  <th scope="col">
+                    <%=  I18n.t('layout.bankaccounts.accountbalance') %>
+                  </th>
+                </tr>
+              </thead><% @bankaccounts.each do |bankaccount| %>
+              <tr class="<%= cycle('odd', 'even') %>">
+                <td>
+                  <%=h bankaccount.name %>
+                </td>
+                <td>
+                  <%=h number_to_currency(bankaccount.account_balance) %>
+                </td>
+              </tr><% end %>
+              <tr class="total">
+                <td>
+                  <%=  I18n.t('layout.bankaccounts.total') %>
+                </td>
+                <td>
+                  <%= number_to_currency(@bankaccounts.sum { |item| item.account_balance }) %>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div >
+            <h4>
+              <%=  I18n.t('layout.movements.tag5line') %>
+            </h4>
+            <table class="broom_table">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <%=  I18n.t('layout.movements.description') %>
+                  </th>
+                  <th scope="col">
+                    <%=  I18n.t('layout.movements.amount') %>
+                  </th>
+                  <th scope="col">
+                    <%=  I18n.t('layout.movements.type') %>
+                  </th>
+                </tr>
+              </thead><% @last5movements.each do |movement| %>
+              <tr class="<%= cycle('odd', 'even') %>">
+                <td>
+                  <%=h movement.description %>
+                </td>
+                <td>
+                  <%=h  number_to_currency(movement.amount) %>
+                </td>
+                <td>
+                  <%=h  movement.type_of_movement %>
+                </td>
+              </tr><% end %>
+            </table>
+          </div>
+          <div >
+            <% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
+                render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%><% end-%>
+          </div><!--/end .container2-->
         </div><!--/end .tabbertab-->
-		
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.tags.title') %></h2>
-            <div class="container1">
+      </div>
+    
 
-<table class="broom_table">
- <thead>
-  <tr>
-    <th scope="col"><%=  I18n.t('layout.tags.name') %></th>   
-    <th scope="col"></th>
-  </tr>
-</thead>   
-<tbody>
-<% @tags.each do |tag| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h tag.name %></td>   
-    <td><!--<%= link_to I18n.t('layout.application.edit'), edit_category_path(tag.id),:class => 'table_edit' %>
-    <%= link_to I18n.t('layout.application.delete'),  category_path(tag.id) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %>--></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
-
-<br />
-
-<!--<%= link_to I18n.t('layout.tags.new'), new_category_path %>-->
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->		
+       

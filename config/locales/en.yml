@@ -23,8 +23,8 @@ en:
       send: "Send"
       or : "or"
     bankaccounts:
-      name: "Accounts"
-      title: "Account"
+      name: "Account"
+      title: "Accounts"
       tagline: "Your accounts balances:"	  
       newaccount: "Add Account"
       accountname: "Name"
