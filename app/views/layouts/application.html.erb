@@ -6,9 +6,9 @@
 <%= GMap.header %>
 <%= @map.to_html unless @map.blank? %>
 <!--jQuery-->
-<%= javascript_include_tag 'jquery-1.3.2','jquery-ui-1.7.2.custom.min','daterangepicker.jQuery','application' %>
+<%= javascript_include_tag 'jquery-1.3.2','jquery-ui-1.7.2.custom.min','daterangepicker.jQuery','ui.selectmenu','application' %>
 <!--css-->
-<%= stylesheet_link_tag 'reset','main','redmond/jquery-ui-1.7.2.custom','ui.daterangepicker' %>
+<%= stylesheet_link_tag 'reset','main','redmond/jquery-ui-1.7.2.custom','ui.daterangepicker','ui.selectmenu' %>
 
 
 </head>

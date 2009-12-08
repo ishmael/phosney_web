@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
     def addmovement
 		if not current_user.nil?
 			@quick_movement = Movement.new
+			@quick_movement.movdate = Date.today
 		end
 	end
 	def generate_menu

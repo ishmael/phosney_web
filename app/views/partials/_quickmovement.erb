@@ -1,7 +1,7 @@
 <% form_for @quick_movement, :url => quickmovement_path do |f| %>
 			<fieldset>
 			<legend><%= f.label :account_id, I18n.t('layout.bankaccounts.accountname')%></legend>			
-			<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
+			<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  :include_blank => false %>
 			</fieldset>
 			<fieldset>
 			<legend><%= f.label :description, I18n.t('layout.movements.description') %></legend>
@@ -14,11 +14,10 @@
 			<fieldset>
 			<legend><%= f.label :movdate,  I18n.t('layout.movements.movdate') %></legend>
 			<%= f.text_field :movdate,:size => 10 %>
-				
 			</fieldset>
 			<fieldset>
 			<legend><%= f.label :category_id, I18n.t('layout.movements.category') %></legend>
-			<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
+			<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => 'None' %>
 			</fieldset>
 			<fieldset>
 			<legend><%= f.label :tag_list, I18n.t('layout.tags.title') %></legend>
@@ -26,7 +25,9 @@
 			</fieldset>
 			<fieldset>
 			<legend>Foi um...</legend>
-			<%= f.radio_button :mov_type,"-1" %><%=  I18n.t('layout.movements.debit') %>
-			<%= f.radio_button :mov_type,"1" %><%=  I18n.t('layout.movements.credit') %>
+			<div class="fg-buttonset fg-buttonset-single">
+				<button class="fg-button ui-state-default ui-priority-primary ui-corner-left"><%=  I18n.t('layout.movements.debit') %></button>
+				<button class="fg-button ui-state-default ui-priority-primary ui-corner-right"><%=  I18n.t('layout.movements.credit') %></button>
+			</div>
 			</fieldset>
 		<% end %>
