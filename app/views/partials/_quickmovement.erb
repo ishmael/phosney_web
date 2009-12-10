@@ -26,8 +26,12 @@
 			<div>
 			<label>Foi um...</label>
 			<div class="fg-buttonset fg-buttonset-single">
-				<button class="fg-button ui-state-default ui-priority-primary ui-corner-left"><%=  I18n.t('layout.movements.debit') %></button>
-				<button class="fg-button ui-state-default ui-priority-primary ui-corner-right"><%=  I18n.t('layout.movements.credit') %></button>
+				<%= f.hidden_field :mov_type %>
+				<input type="button" id="mov_type_debit" class="fg-button ui-state-default ui-priority-primary ui-corner-left" value="<%=  I18n.t('layout.movements.debit') %>" />
+				<input type="button"  id="mov_type_credit" class="fg-button ui-state-default ui-priority-primary ui-corner-right" value="<%=  I18n.t('layout.movements.credit') %>" />
+			</div>
+			<div>
+				 <%= f.submit '+',:class=>"fg-button ui-state-default ui-corner-all" %>
 			</div>
 			</div>
 		<% end %>

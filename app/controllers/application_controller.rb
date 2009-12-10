@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
 		if not current_user.nil?
 			@quick_movement = Movement.new
 			@quick_movement.movdate = Date.today
+			@quick_movement.mov_type = -1
 		end
 	end
 	def generate_menu

@@ -7,6 +7,8 @@ $(document).ready(function() {
 				$("#primary").toggleClass("wide");
                 $(this).toggleClass("wide");
             });
+
+			$("#mov_type_debit").addClass("ui-state-active"); 
         });
 		
 
@@ -41,8 +43,16 @@ $(function(){
 								)
 								.mousedown(function(){
 										$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
-										if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ $(this).removeClass("ui-state-active"); }
-										else { $(this).addClass("ui-state-active"); }	
+										if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') )
+										{
+											 $(this).removeClass("ui-state-active");
+											  
+										}
+										else { 
+											$(this).addClass("ui-state-active"); 
+											
+											 //$("#movement_mov_type")
+											}	
 								})
 								.mouseup(function(){
 									if(! $(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
@@ -51,4 +61,6 @@ $(function(){
 								});
 
 			 });
+			
+
 	
