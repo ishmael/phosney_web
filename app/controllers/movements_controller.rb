@@ -43,24 +43,20 @@ class MovementsController < ApplicationController
   end
 
   def quickcreate
-		@movement = Movement.new(params[:movement])
-		@movement.movdate = Date.today
-		respond_to do |format|
-		  if @movement.save
+  		@movement = Movement.new(params[:movement])
+		@movement.user_id = @current_user.id	
+		if @movement.save
 			@movement.save_tags(current_user)
-			
-			format.html { redirect_to(dashboard_url) }
-			format.iphone { redirect_to(dashboard_url) }
-		  else
-			format.html { render :action => "quicknew" }
-			format.iphone { render :action => "quicknew",:layout => false }
-		  end
+			redirect_to( request.referer ) 
+        else
+			redirect_to( request.referer )  
 		end
   end
   
   def quicknew
-	@movement = Movement.new
-    @movement.mov_type = -1
+	@quick_movement = Movement.new
+	@quick_movement.movdate = Date.today
+    @quick_movement.mov_type = -1
     respond_to do |format|
       format.html # new.html.erb
 	  format.iphone  { render :layout => false }
@@ -155,7 +151,6 @@ class MovementsController < ApplicationController
   
   private
   def get_account
-    
     if not params[:bankaccount_id].nil?
     	@account = @current_user.bankaccounts.find_accounts(params[:bankaccount_id])
     elsif not params[:loanaccount_id].nil?

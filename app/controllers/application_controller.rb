@@ -19,12 +19,13 @@ class ApplicationController < ActionController::Base
   private
   
     def addmovement
-		if not current_user.nil?
-			@quick_movement = Movement.new
-			@quick_movement.movdate = Date.today
-			@quick_movement.mov_type = -1
+		if not current_user.nil? 
+			@movement = Movement.new
+			@movement.movdate = Date.today
+			@movement.mov_type = -1
 		end
 	end
+	
 	def generate_menu
 		if not current_user.nil?
 			@menu_accounts = current_user.accounts.find_accounts(:all)

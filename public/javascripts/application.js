@@ -8,59 +8,68 @@ $(document).ready(function() {
                 $(this).toggleClass("wide");
             });
 
-			$("#mov_type_debit").addClass("ui-state-active"); 
+			$("#mov_type_debit")
+				.addClass("ui-state-active")
+				.click(function () { 
+				var mov_type = document.getElementById("movement_mov_type");
+					mov_type.value = "-1";
+				});
+			
+			$("#mov_type_credit")
+				.click(function () { 
+				var mov_type = document.getElementById("movement_mov_type");
+					mov_type.value = "1";
+				});
+; 
         });
 		
 
 		
 $(function(){
-				  $("#movement_movdate").datepicker({
-						changeMonth: true,
-						changeYear: true,
-						dateFormat: 'yy-mm-dd'
-					});
-					
-					$('select#movement_account_id').selectmenu({
-									style:'dropdown', 
-									menuWidth: 400,
-									width: 100
-								});
-								
-					$('select#movement_category_id').selectmenu({
+	  $("#movement_movdate").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'yy-mm-dd'
+		});
+		
+		$('select#movement_account_id').selectmenu({
 						style:'dropdown', 
 						menuWidth: 400,
 						width: 100
-						});	
-						
-						$(".fg-button:not(.ui-state-disabled)")
-								.hover(
-									function(){ 
-										$(this).addClass("ui-state-hover"); 
-									},
-									function(){ 
-										$(this).removeClass("ui-state-hover"); 
-									}
-								)
-								.mousedown(function(){
-										$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
-										if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') )
-										{
-											 $(this).removeClass("ui-state-active");
-											  
-										}
-										else { 
-											$(this).addClass("ui-state-active"); 
-											
-											 //$("#movement_mov_type")
-											}	
-								})
-								.mouseup(function(){
-									if(! $(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
-										$(this).removeClass("ui-state-active");
-									}
-								});
-
-			 });
+					});
+					
+		$('select#movement_category_id').selectmenu({
+			style:'dropdown', 
+			menuWidth: 400,
+			width: 100
+			});	
+			
+			$(".fg-button:not(.ui-state-disabled)")
+				.hover(
+					function(){ 
+						$(this).addClass("ui-state-hover"); 
+					},
+					function(){ 
+						$(this).removeClass("ui-state-hover"); 
+					}
+				)
+				.mousedown(function(){
+						$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+						if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') )
+						{
+							 $(this).removeClass("ui-state-active");
+							  
+						}
+						else { 
+							$(this).addClass("ui-state-active"); 
+							}	
+				})
+				.mouseup(function(){
+					if(! $(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+						$(this).removeClass("ui-state-active");
+					}
+				});
+		});
 			
 
 	

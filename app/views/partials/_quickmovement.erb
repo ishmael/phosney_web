@@ -1,4 +1,14 @@
-<% form_for @quick_movement, :url => quickmovement_path do |f| %>
+<% form_for @movement, :url => { :controller => 'movements',:action => "quickcreate"} do |f| %>
+<% if not f.error_messages.blank? %>
+		<div class="notification error">
+		
+		<em>
+		<%= f.error_messages :header_message => nil, 
+		:message => nil, 
+		:header_tag => :h3 %>
+		</em> 
+		</div>
+	<% end %>
 			<div>
 			<%= f.label :account_id, I18n.t('layout.bankaccounts.accountname')%>			
 			<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  :include_blank => false %>
@@ -13,7 +23,7 @@
 			</div>
 			<div>
 			<%= f.label :movdate,  I18n.t('layout.movements.movdate') %>
-			<%= f.text_field :movdate,:size => 10 %>
+			<%= f.text_field :movdate,:size => 10 , :value => @movement.movdate.to_date %>
 			</div>
 			<div>
 			<%= f.label :category_id, I18n.t('layout.movements.category') %>
