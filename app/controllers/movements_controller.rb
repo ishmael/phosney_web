@@ -49,19 +49,19 @@ class MovementsController < ApplicationController
 			@movement.save_tags(current_user)
 			redirect_to( request.referer ) 
         else
-			redirect_to( request.referer )  
+    		redirect_to request.referer 
 		end
   end
   
-  def quicknew
-	@quick_movement = Movement.new
-	@quick_movement.movdate = Date.today
-    @quick_movement.mov_type = -1
-    respond_to do |format|
-      format.html # new.html.erb
-	  format.iphone  { render :layout => false }
-    end
-  end
+  # def quicknew
+	# @quick_movement = Movement.new
+	# @quick_movement.movdate = Date.today
+    # @quick_movement.mov_type = -1
+    # respond_to do |format|
+      # format.html # new.html.erb
+	  # format.iphone  { render :layout => false }
+    # end
+  # end
   
   # GET /movements/new
   # GET /movements/new.xml

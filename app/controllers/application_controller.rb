@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   private
   
     def addmovement
-		if not current_user.nil? 
+		if  not current_user.nil?
 			@movement = Movement.new
 			@movement.movdate = Date.today
 			@movement.mov_type = -1
