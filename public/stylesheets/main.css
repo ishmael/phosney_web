@@ -19,6 +19,7 @@ background-color:#CCCCCC;
 }
 
 
+
 #navigation {
 width:960px; 
 margin: 0px auto;
@@ -67,6 +68,15 @@ background-color:#CCCCCC;
 	padding-right:5px;
 		height: 35px;
 	}
+
+#quickmovement  div.errormessages 
+{ display : block;
+
+width: 700px;
+float:left;
+clear:both;
+}
+	
 #quickmovement  div  label{
 	display: block;
 	padding-bottom: 3px;

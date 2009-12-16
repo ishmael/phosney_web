@@ -49,6 +49,7 @@ class MovementsController < ApplicationController
 			@movement.save_tags(current_user)
 			redirect_to( request.referer ) 
         else
+			flash[:quickmovement] = @movement
     		redirect_to request.referer 
 		end
   end
