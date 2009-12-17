@@ -1,5 +1,4 @@
 <% form_for @movement, :url => { :controller => 'movements',:action => "quickcreate"} do |f| %>
-
 			<div class="quickmovement-div">
 				<%= f.label :account_id, I18n.t('layout.bankaccounts.accountname')%>			
 				<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  :include_blank => false %>
@@ -32,10 +31,7 @@
 					<input type="button"  id="mov_type_credit" class="fg-button ui-state-default ui-priority-primary ui-corner-right" value="<%=  I18n.t('layout.movements.credit') %>" />
 				</div>
 			</div>
-			<div class="quickmovement-submit"	>
+			<div class="quickmovement-submit">
 				 <%= f.submit '+',:class=>" fg-button ui-state-default ui-corner-all" %>
 			</div>
-			<div>
-				<%= f.error_messages %>
-			</div>
-		<% end %>
+<% end %>
