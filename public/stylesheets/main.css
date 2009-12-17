@@ -7,16 +7,7 @@ body { font-family: Lucida Sans Unicode, Arial, Sans-Serif; font-size:13px;margi
 #header h2 {font-size:16px; font-weight:normal; margin:0px; padding:0px;}
 #header { width:940px; margin:0px auto; padding:10px;}
 
-#logo {
-width:960px; 
-margin: 0px auto;
-height:100px;
-background-color:#CCCCCC;
--moz-border-radius-topleft:10px; 
--moz-border-radius-topright:10px; 
--webkit-border-top-right-radius:10px; 
--webkit-border-top-left-radius:10px;
-}
+
 
 
 
@@ -40,7 +31,7 @@ background-color:#CCCCCC;
 	-moz-border-radius-bottomleft:10px; -moz-border-radius-bottomright:10px; 
 	-webkit-border-bottom-right-radius:10px; -webkit-border-bottom-left-radius:10px;}
 
-#quickmovement { background-color:#B4D7B8;width:940px; margin:10px auto 0px auto; padding:10px;  -moz-border-radius:10px;  -webkit-border-radius:10px;	height: 50px;}
+#quickmovement { background-color:#B4D7B8;width:940px; margin:10px auto 0px auto; padding:10px;  -moz-border-radius:10px;  -webkit-border-radius:10px;	display: block; }
 #addedmovementslist {width:980px; margin: 10px auto 0px auto; padding-left: 20px; padding-top: 2px; overflow:auto; height:100px;}
 .addedmovements{ height:30px;background-color:#B4D7B8;width:960px; margin:0px 0px 5px 0px; padding:0px;  -moz-border-radius:10px;  -webkit-border-radius:10px;}
 
@@ -63,24 +54,36 @@ background-color:#CCCCCC;
 #sidebar .quickflip-div ul { width:100px;}
 #sidebar .quickflip-div {background-color:#ffffff; -moz-border-radius:10px;  -webkit-border-radius:10px;}
 
-#quickmovement  div {
-	float: left;
+#quickmovement  .quickmovement-div {
+	display: inline-block;
 	padding-right:5px;
-		height: 35px;
+		height: 45px;
+		vertical-align: top;
 	}
-
+	
+#quickmovement  div label{
+		display: block;
+		padding-bottom: 3px;
+		}
+		
+#quickmovement .quickmovement-submit {
+	display: inline-block;
+vertical-align: bottom;
+height:29px;
+}
+		
+#quickmovement .fieldWithErrors input {
+	border: 1px solid red;
+}		
 #quickmovement  div.errormessages 
-{ display : block;
-
-width: 700px;
-float:left;
-clear:both;
+{ 
+	margin-top : 5px;
+	display : inline;
+	width: 900px;
+	clear:right;
 }
 	
-#quickmovement  div  label{
-	display: block;
-	padding-bottom: 3px;
-	}
+
 
           
 /* Change view sprites */

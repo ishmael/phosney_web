@@ -1,40 +1,41 @@
 <% form_for @movement, :url => { :controller => 'movements',:action => "quickcreate"} do |f| %>
-			<div>
-			<%= f.label :account_id, I18n.t('layout.bankaccounts.accountname')%>			
-			<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  :include_blank => false %>
+
+			<div class="quickmovement-div">
+				<%= f.label :account_id, I18n.t('layout.bankaccounts.accountname')%>			
+				<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  :include_blank => false %>
+			</div>
+			<div class="quickmovement-div">
+				<%= f.label :description, I18n.t('layout.movements.description') %>
+				<%= f.text_field :description , :size => 20 %>
+			</div>
+			<div class="quickmovement-div">
+				<%= f.label  :amount, I18n.t('layout.movements.amount') %>
+				<%= f.text_field :amount ,:size => 10 %>
+			</div>
+			<div class="quickmovement-div">
+				<%= f.label :movdate,  I18n.t('layout.movements.movdate') %>
+				<%= f.text_field :movdate,:size => 10 , :value => @movement.movdate.to_date %>
+			</div>
+			<div class="quickmovement-div">
+				<%= f.label :category_id, I18n.t('layout.movements.category') %>
+				<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => 'None' %>
+			</div>
+			<div class="quickmovement-div">
+				<%= f.label :tag_list, I18n.t('layout.tags.title') %>
+				<%= f.text_field :tag_list , :size => 20%>
+			</div>
+			<div class="quickmovement-div">
+				<label>Foi um...</label>
+				<div class="fg-buttonset fg-buttonset-single">
+					<%= f.hidden_field :mov_type %>
+					<input type="button" id="mov_type_debit" class="fg-button ui-state-default ui-priority-primary ui-corner-left" value="<%=  I18n.t('layout.movements.debit') %>" />
+					<input type="button"  id="mov_type_credit" class="fg-button ui-state-default ui-priority-primary ui-corner-right" value="<%=  I18n.t('layout.movements.credit') %>" />
+				</div>
+			</div>
+			<div class="quickmovement-submit"	>
+				 <%= f.submit '+',:class=>" fg-button ui-state-default ui-corner-all" %>
 			</div>
 			<div>
-			<%= f.label :description, I18n.t('layout.movements.description') %>
-			<%= f.text_field :description , :size => 20 %>
-			</div>
-			<div>
-			<%= f.label  :amount, I18n.t('layout.movements.amount') %>
-			<%= f.text_field :amount ,:size => 10 %>
-			</div>
-			<div>
-			<%= f.label :movdate,  I18n.t('layout.movements.movdate') %>
-			<%= f.text_field :movdate,:size => 10 , :value => @movement.movdate.to_date %>
-			</div>
-			<div>
-			<%= f.label :category_id, I18n.t('layout.movements.category') %>
-			<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => 'None' %>
-			</div>
-			<div>
-			<%= f.label :tag_list, I18n.t('layout.tags.title') %>
-			<%= f.text_field :tag_list , :size => 20%>
-			</div>
-			<div>
-			<label>Foi um...</label>
-			<div class="fg-buttonset fg-buttonset-single">
-				<%= f.hidden_field :mov_type %>
-				<input type="button" id="mov_type_debit" class="fg-button ui-state-default ui-priority-primary ui-corner-left" value="<%=  I18n.t('layout.movements.debit') %>" />
-				<input type="button"  id="mov_type_credit" class="fg-button ui-state-default ui-priority-primary ui-corner-right" value="<%=  I18n.t('layout.movements.credit') %>" />
-			</div>
-			<div>
-				 <%= f.submit '+',:class=>"fg-button ui-state-default ui-corner-all" %>
-			</div>
-			</div>
-			<div class="errormessages">
-				<%= f.error_messages  %>
+				<%= f.error_messages %>
 			</div>
 		<% end %>
