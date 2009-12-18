@@ -9,7 +9,6 @@ $(document).ready(function() {
             });
 
 			$("#mov_type_debit")
-				.addClass("ui-state-active")
 				.click(function () { 
 				var mov_type = document.getElementById("movement_mov_type");
 					mov_type.value = "-1";
@@ -20,7 +19,18 @@ $(document).ready(function() {
 				var mov_type = document.getElementById("movement_mov_type");
 					mov_type.value = "1";
 				});
-; 
+			var initial_mov_type = document.getElementById("movement_mov_type");
+			if (initial_mov_type.value == "-1")
+			{
+				$("#mov_type_debit").addClass("ui-state-active"); 
+			}
+			else if (initial_mov_type.value == "1")
+			{
+				$("#mov_type_credit").addClass("ui-state-active"); 
+			}
+			
+			
+			
         });
 		
 

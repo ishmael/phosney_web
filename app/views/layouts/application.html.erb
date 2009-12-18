@@ -13,10 +13,10 @@
 
 </head>
 <body>
-	<div id=login>
+	<div id=login class="ui-corner-bl ui-corner-br">
 	
 	</div>
-	<div id="navigation">
+	<div id="navigation" class="ui-corner-all">
 	<ul>
       <li class="current"><%= link_to 'Dashboard', dashboard_path %></li>
       <li><%= link_to I18n.t('layout.bankaccounts.title'), bankaccounts_path %></li>
@@ -24,7 +24,7 @@
       <li><%= link_to I18n.t('layout.tags.title'), tags_path %></li>   
     </ul>
 	</div>
-	<div id="quickmovement">
+	<div id="quickmovement" class="ui-corner-all ui-header"> 
 		<%= render :partial => 'partials/quickmovement'  %>
 	</div>
 
@@ -34,7 +34,7 @@
        
     </div>
 
-    <div id="footer">Copyright &copy; Phosney.com 2009.</div>
+    <div id="footer" class="ui-corner-all">Copyright &copy; Phosney.com 2009.</div>
     
 </body><!--/end #b_main-->
 </html>

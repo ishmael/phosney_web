@@ -2,7 +2,7 @@ body { font-family: Lucida Sans Unicode, Arial, Sans-Serif; font-size:13px;margi
 
 /* Structure */
 #header, #content, #comments, #sidebar, #footer ,#dashboard { background-color:#CCCCCC; margin:10px 0px;
-	 -moz-border-radius:10px;  -webkit-border-radius:10px; padding:30px;}
+	  padding:30px;}
 #header h1 { float:right; margin: 20px 0 0 0; font-size:36px; font-weight:bold;}
 #header h2 {font-size:16px; font-weight:normal; margin:0px; padding:0px;}
 #header { width:940px; margin:0px auto; padding:10px;}
@@ -16,7 +16,6 @@ width:960px;
 margin: 0px auto;
 height:35px;
 background-color:#CCCCCC;
- -moz-border-radius:10px;  -webkit-border-radius:10px;
 }
 #navigation ul { height: 35px; margin: 0px ; padding-left: 15px;}
 #navigation ul li { display:inline;  }
@@ -28,10 +27,9 @@ background-color:#CCCCCC;
 
 /*272C36,46474C,849B8B,B4D7B8,EDF7D2*/
 #login {background-color:#CCCCCC;top:0px; width:960px; margin:0px auto 10px auto; height:35px; 
-	-moz-border-radius-bottomleft:10px; -moz-border-radius-bottomright:10px; 
-	-webkit-border-bottom-right-radius:10px; -webkit-border-bottom-left-radius:10px;}
+	}
 
-#quickmovement { background-color:#B4D7B8;width:940px; margin:10px auto 0px auto; padding:10px;  -moz-border-radius:10px;  -webkit-border-radius:10px;	display: block; }
+#quickmovement { background-color:#B4D7B8;width:940px; margin:10px auto 0px auto; padding:10px;  	display: block; }
 #addedmovementslist {width:980px; margin: 10px auto 0px auto; padding-left: 20px; padding-top: 2px; overflow:auto; height:100px;}
 
 #main {width:960px; margin:0px auto; overflow:hidden; }
@@ -46,7 +44,7 @@ background-color:#CCCCCC;
 #footer { width:900px; margin:0px auto; margin-bottom: 5px; }
 
 #sidebar .quickflip-div ul { width:100px;}
-#sidebar .quickflip-div {background-color:#ffffff; -moz-border-radius:10px;  -webkit-border-radius:10px;}
+#sidebar .quickflip-div {background-color:#ffffff; }
 
 #filter {
 	width:940px;
@@ -94,7 +92,13 @@ display:inline-block;
 	clear:right;
 }
 	
-
+.phosney-input { height: 2em; 
+padding:3px;}
+.phosney-input  input{ 
+margin: 0.3em 0;
+height: 1em;
+}
+	
 .addedmovements{ height:30px;background-color:#B4D7B8;width:960px; margin:0px 0px 5px 0px; padding:0px;  -moz-border-radius:10px;  -webkit-border-radius:10px;}
           
 /* Change view sprites */

@@ -5,11 +5,15 @@
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label :description, I18n.t('layout.movements.description') %>
+				<div class="phosney-input ui-corner-all ui-widget-header">
 				<%= f.text_field :description , :size => 20 %>
+				</div>
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label  :amount, I18n.t('layout.movements.amount') %>
-				<%= f.text_field :amount ,:size => 10 %>
+				<div class="phosney-input ui-corner-all ui-widget-header">
+				<%= f.text_field :amount ,{:size => 10 ,:class=> "ui-widget-content:"}%>
+				</div>
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label :movdate,  I18n.t('layout.movements.movdate') %>
