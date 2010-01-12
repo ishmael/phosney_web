@@ -63,15 +63,27 @@
 						nMonth = aDate[1];
 						nDay = aDate[2];
 						nYear = aDate[0];
-	
+						// Sync the Calendar instance's selected date with the date form fields
+						Dom.get("movement_movdate_2i").selectedIndex = (nMonth - 1);
+						Dom.get("movement_movdate_3i").selectedIndex = (nDay - 1);
+						Dom.get("movement_movdate_1i").value = nYear;
+						
+						if (String(nDay).length == 1)
+						{
+							nDay = "0" + nDay;
+						}
+						
+						if (String(nMonth).length == 1)
+						{
+							nMonth = "0" + nMonth;
+						}
+						
+						
 						oButton.set("label", ( nDay + "/" + nMonth + "/" + nYear));
 	
 	
-						// Sync the Calendar instance's selected date with the date form fields
+						
 	
-						Dom.get("month").selectedIndex = (nMonth - 1);
-						Dom.get("day").selectedIndex = (nDay - 1);
-						Dom.get("year").value = nYear;
 	
 					}
 					
@@ -161,6 +173,7 @@
 				oMonthField = Dom.get("movement_movdate_2i"),
 				oDayField = Dom.get("movement_movdate_3i"),
 				oYearField = Dom.get("movement_movdate_1i");
+				oDateLabel= "";
 	
 	
 			// Hide the form fields used for the date so that they can be replaced by the 
@@ -169,8 +182,27 @@
 			oMonthField.style.display = "none";
 			oDayField.style.display = "none";
 			oYearField.style.display = "none";
-	
-	
+			
+			if (oDayField.value.length == 1)
+			{
+				oDateLabel = "0" + oDayField.value + "/";
+			}
+			else
+			{
+				oDateLabel = oDayField.value + "/";
+			}
+			
+			if (oMonthField.value.length == 1)
+			{
+				oDateLabel = oDateLabel+ "0" + oMonthField.value + "/";
+			}	
+			else
+			{
+				oDateLabel = oDateLabel+ oMonthField.value + "/";
+			}
+			
+			oDateLabel = oDateLabel+ "/"+ oYearField.value ;
+			
 			// Create a Overlay instance to house the Calendar instance
 	
 			oCalendarMenu = new YAHOO.widget.Overlay("calendarmenu", { visible: false });
@@ -181,7 +213,7 @@
 			var oButton = new YAHOO.widget.Button({ 
 											type: "menu", 
 											id: "calendarpicker", 
-											label: oDayField.value+"/"+oMonthField.value+"/"+oYearField.value, 
+											label: oDateLabel, 
 											menu: oCalendarMenu, 
 											container: "datefields" });
 	
