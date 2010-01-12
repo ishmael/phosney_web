@@ -5,20 +5,16 @@
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label :description, I18n.t('layout.movements.description') %>
-				<div class="phosney-input ui-corner-all ui-widget-header">
 				<%= f.text_field :description , :size => 20 %>
-				</div>
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label  :amount, I18n.t('layout.movements.amount') %>
-				<div class="phosney-input ui-corner-all ui-widget-header">
-				<%= f.text_field :amount ,{:size => 10 ,:class=> "ui-widget-content:"}%>
-				</div>
+				<%= f.text_field :amount ,{:size => 10 ,:value=> "0"}%>
 			</div>
-			<div class="quickmovement-div">
-				<%= f.label :movdate,  I18n.t('layout.movements.movdate') %>
-				<%= f.text_field :movdate,:size => 10 , :value => @movement.movdate.to_date %>
-			</div>
+			<div  id="datefields"  class="quickmovement-div">
+					<%= f.label :movdate,  I18n.t('layout.movements.movdate') %>
+					<%= f.date_select :movdate %>
+				</div
 			<div class="quickmovement-div">
 				<%= f.label :category_id, I18n.t('layout.movements.category') %>
 				<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => 'None' %>
@@ -29,13 +25,13 @@
 			</div>
 			<div class="quickmovement-div">
 				<label>Foi um...</label>
-				<div class="fg-buttonset fg-buttonset-single">
-					<%= f.hidden_field :mov_type %>
-					<input type="button" id="mov_type_debit" class="fg-button ui-state-default ui-priority-primary ui-corner-left" value="<%=  I18n.t('layout.movements.debit') %>" />
-					<input type="button"  id="mov_type_credit" class="fg-button ui-state-default ui-priority-primary ui-corner-right" value="<%=  I18n.t('layout.movements.credit') %>" />
+				<div id="quickmovement_type_bgroup" class="yui-buttongroup">
+					<%= f.hidden_field :mov_type, {:id => "quickmovement_type"}%>
+					<input type="radio" id="qm_mov_debit" name="qm_mov_debit" value="<%=  I18n.t('layout.movements.debit') %>" checked />
+					<input type="radio"  id="qm_mov_credit" name="qm_mov_credit" value="<%=  I18n.t('layout.movements.credit') %>" />				
 				</div>
 			</div>
-			<div class="quickmovement-submit">
-				 <%= f.submit '+',:class=>" fg-button ui-state-default ui-corner-all" %>
+			<div class="quickmovement-submit" id="div-quickmovement-submit">
+				 <%= f.submit 'Add',{:id=> "qm-submit"} %>
 			</div>
 <% end %>
