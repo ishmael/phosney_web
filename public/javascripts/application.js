@@ -10,7 +10,14 @@
 		
 		
 		Event.onContentReady("quickmovement_type_bgroup", function () {
+		   var mov_type = document.getElementById("quickmovement_type");
            var oButtonGroupQM = new ButtonGroup("quickmovement_type_bgroup");
+		   
+		   if (mov_type.value == "-1")
+			oButtonGroupQM.check(0);
+		   else 
+		   oButtonGroupQM.check(1);
+  
 		   oButtonGroupQM.on("checkedButtonChange", onCheckedButtonChange);
         });
 
