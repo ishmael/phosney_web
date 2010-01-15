@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title><%=  I18n.t('layout.application.title') %></title>
@@ -12,19 +12,22 @@
 
 </head>
 
-<body id="b_login">
+<body class="yui-skin-sam">
+	<div id=login >
+   <%= yield %>	
+	</div>
+	<div id="navigation">
+   <h1 id="header_broomcupboard"><a href="/"><%=  I18n.t('layout.application.name') %></a></h1>
+    <h4 id="header_strapline"><%=  I18n.t('layout.application.tag')  %></h4>	
+	</div>
+	
 
-<div id="header">
-    <div id="logo">
-    <h1 id="header_broomcupboard"><a href="/"><%=  I18n.t('layout.application.name') %></a></h1>
-    <h4 id="header_strapline"><%=  I18n.t('layout.application.tag')  %></h4>
-    </div><!--/end #logo-->
-</div><!--/end #header-->
- 
- 
-   <%= yield %>
+	<div id="main" >
+	
+	
+       
+    </div>
 
-<div class="clear"></div><!--/end .clear-->
-
+    <div id="footer" >Copyright &copy; Phosney.com 2009.</div>
 </body>
 </html>

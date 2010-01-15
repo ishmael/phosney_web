@@ -61,10 +61,10 @@ body {
 
 #quickmovement .quickmovement-submit {
 	display:inline-block;
-	height:29px;
+	padding-top: 19px;
 	padding-right : 0px;
-	vertical-align: bottom;	
-	width: 40px;
+	
+	
 }
 		
 #quickmovement .fieldWithErrors input {
@@ -99,17 +99,4 @@ body {
  #calendarmenu {
  position: absolute;
  } 
-		
 
-
-          
-.yui-button#qm-submit button{
-        background: url(/stylesheets/yui/button/assets/add.gif) center center no-repeat;
-        text-indent: -4em;
-        overflow: hidden;
-        padding: 0 .75em;
-        width: 2em;
-        *margin-left: 4em;   /* IE only */
-        *padding: 0 1.75em;  /* IE only */
-
-    }

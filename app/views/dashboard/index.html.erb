@@ -3,15 +3,19 @@
 		  <div id="filter">
 			<div class="filter-div">
 				<label>Tipo</label>
-				<div >
-					Todos
-					Debito
-					Credito
+				<div  id="filter_type_bgroup">
+					<input type="radio" id="filter_mov_all" name="filter_mov_all" value="Todos" checked />
+					<input type="radio" id="filter_mov_debit" name="filter_mov_debit" value="Debito" />
+					<input type="radio"  id="filter_mov_credit" name="filter_mov_credit" value="Credito" />				
 				</div>
 			</div>
 			<div class="filter-div">
 				<label>Quando</label>	
-				2009,Novembro,Dezembro,Semana
+				<div  id="filter_when_bgroup">
+					<input type="radio"  id="filter_mov_year" name="filter_mov_year" value="2010" checked/>				
+					<input type="radio"  id="filter_mov_lastmonth" name="filter_mov_lastmonth" value="Dezembro" />				
+					<input type="radio"  id="filter_mov_thismonth" name="filter_mov_thismonth" value="Janeiro" />				
+					<input type="radio"  id="filter_mov_week" name="filter_mov_week"" value="Esta Semana" />									
 				</div>
 			</div>
 		  </div>
@@ -89,5 +93,17 @@
         </div><!--/end .tabbertab-->
       </div>
     
+<script type="text/javascript">
+		var Event = YAHOO.util.Event;
+		var ButtonGroup = YAHOO.widget.ButtonGroup;
+		
+		Event.onContentReady("filter_type_bgroup", function () {
+		   var oButtonGroupQM = new ButtonGroup("filter_type_bgroup");
+        });
+		
+		Event.onContentReady("filter_when_bgroup", function () {
+		   var oButtonGroupQM = new ButtonGroup("filter_when_bgroup");
+        });
+  </script>
 
        
