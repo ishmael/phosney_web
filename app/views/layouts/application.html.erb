@@ -6,9 +6,9 @@
 <%= GMap.header %>
 <%= @map.to_html unless @map.blank? %>
 <!--javascript-->
-<%= javascript_include_tag 'yui/yahoo-dom-event/yahoo-dom-event','yui/calendar/calendar-min','yui/container/container_core-min','yui/element/element-min','yui/button/button-min','application' %>
+<%= javascript_include_tag 'yui/yahoo-dom-event/yahoo-dom-event','yui/calendar/calendar-min','yui/container/container_core-min','yui/element/element-min','yui/button/button-min','yui/tabview/tabview-min','application' %>
 <!--css-->
-<%= stylesheet_link_tag 'reset','main','yui/fonts/fonts-min','yui/calendar/assets/skins/sam/calendar','yui/button/assets/skins/sam/button' %>
+<%= stylesheet_link_tag 'reset','main','yui/fonts/fonts-min','yui/calendar/assets/skins/sam/calendar','yui/button/assets/skins/sam/button','yui/tabview/assets/skins/sam/tabview' %>
 
 
 </head>
