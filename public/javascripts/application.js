@@ -6,7 +6,6 @@
 			Dom = YAHOO.util.Dom;	
 
 		var ButtonGroup = YAHOO.widget.ButtonGroup;
-		var tabView = new YAHOO.widget.TabView('demo');
 		
 		
 		Event.onContentReady("quickmovement_type_bgroup", function () {
