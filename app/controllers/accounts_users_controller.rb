@@ -1,6 +1,7 @@
 class AccountsUsersController < ApplicationController
   before_filter :require_user 
   
+    
   def edit
 	  @account = @current_user.bankaccounts.find_by_id(params[:bankaccount_id])
 	  if

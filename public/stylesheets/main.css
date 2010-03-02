@@ -1,65 +1,99 @@
-body {
-	margin:0px;
-	padding:0xp;
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    }
+
+.clearfix {display: inline-block;}
+
+/*---------------------------------------------------------------------------------------
+--- BASICS
+---------------------------------------------------------------------------------------*/
+body{ background: #91b5eb;}
+
+.left{ float:left; }
+.right{ float:right; }
+.clear{	clear:both; }
+.padding{	padding:10px; }
+
+/* ------------------------------------------------------------------------------------
+STRUCTURE					 */
+#container{	overflow:hidden;   width:1000px; margin:0 auto;}
+#header{height:75px; background:#ffc053; }
+#footer{clear:both; }
+#content_main{background:#f1f1f1;width:980px;padding:10px;}
+#top_menu{width:1000px;margin-top:5px;}
+#quick_movement{margin:0px 0px 0px 0px;padding: 5px;background:#cb8000;}
+#profile_info{ background:#4780ae;float:right; width:200px;height:50px;margin:5px 10px 0px 0px;color:#fff;line-height:10px;}
+#avatar{float:left;margin:0px 10px 0px 5px;padding-top:5px;}
+#footer{background:#f1f1f1;width:980px;padding:10px;margin-top:5px;}
+#footer p{background:none;padding:0px;margin:0px}
+#applicationmenu {
+	margin-bottom:5px;
+	border: 0px;
 }
 
-#login, 
-#navigation,
-#quickmovement ,
-#main ,
-#footer{
-	background-color:#CCCCCC;
-	margin:0px 0px 10px 0px;
-	width:1000px; 
-	padding: 5px;
+.menutop {
+	border:0px !important;
+}
+/* 
+CORNERS
+*/
+
+.cr-top {
+	 -moz-border-radius-topleft :5px;  
+	 -webkit-border-top-left-radius :5px;
+    -moz-border-radius-topright  :5px;
+	 -webkit-border-top-right-radius :5px;	
+}
+
+.cr-botton {
+    -moz-border-radius-bottomleft  :5px;
+    -webkit-border-bottom-left-radius :5px;
+    -moz-border-radius-bottomright  :5px;
+    -webkit-border-bottom-right-radius :5px;
+	
+}
+
+.cr-all {
+	 -moz-border-radius-topleft :5px;  
+	 -webkit-border-top-left-radius :5px;
+     -moz-border-radius-topright  :5px;
+ 	 -webkit-border-top-right-radius :5px;
+     -moz-border-radius-bottomleft  :5px;
+     -webkit-border-bottom-left-radius :5px;
+     -moz-border-radius-bottomright  :5px;
+     -webkit-border-bottom-right-radius :5px;
+    
+}
+/* ------------------------------------------------------------------------------------
+LOGO				 */
+div#logo h1{padding:0px;margin:0px;}
+div#logo h1 a{display:block;text-indent:-9999px;width:367px;height:107px;}
+#profile_info p{
+	font-size:11px;
+	padding-top:4px;
+	padding-bottom:4px;
 	}
-#login {
-	height:35px;
-}
-#navigation ul { 
-	height: 35px; 
-	margin: 0px ; 
-	padding-left: 15px;
-}
 
-#navigation ul li { 
-	display:inline;  
-}
-
-#navigation  ul li a { 
-	background-color: #ffffff; 
-	color:#000000;	
-	display:inline-block; 
-	height: 20px; 
-	margin-right: 10px; 
-	padding:10px 10px 5px 10px;
-	text-decoration:none; 
-}
-
-#navigation  ul li a:hover { 
-	background:#333; 
-	color: #ffffff;
-}
-
-#navigation  ul li.current a { 
-	background:#ce1212; 
-	color:#fff;
-	font-weight:bold; 
-}
-
-#quickmovement  .quickmovement-div {
+/* ------------------------------------------------------------------------------------
+LOGO				 */
+#quick_movement  .quickmovement-div {
 	display: inline-block;
 	height: 45px;
 	padding-right:5px;
 	vertical-align: top;
 }
 	
-#quickmovement  div label{
+#quick_movement  div label{
 	display: block;
 	padding-bottom: 3px;
+	color: #ffffff;
 }
 
-#quickmovement .quickmovement-submit {
+#quick_movement .quickmovement-submit {
 	display:inline-block;
 	padding-top: 19px;
 	padding-right : 0px;
@@ -67,36 +101,58 @@ body {
 	
 }
 		
-#quickmovement .fieldWithErrors input {
+#quick_movement .fieldWithErrors input {
 	border: 1px solid red;
 }		
-#quickmovement  div.errormessages  { 
+#quick_movement  div.errormessages  { 
 	clear:right;
 	display : inline;
 	margin-top : 5px;
 	width: 900px;
-}	
-
-#main {  overflow:hidden; }
-
-#dashboard { width:990px;  padding:10px;}
-
-#filter {
-	width:940px;
-	padding:3px;
-	}
-#filter .filter-div {
-	display: inline-block;
-	padding-right:5px;
-		height: 45px;
-		vertical-align: top;
 }
-#filter  div label{
-		display: block;
-		padding-bottom: 3px;
+
+#profile_info span {
+	margin:0px;
 }
-		
- #calendarmenu {
+
+#profile_info a {
+	padding:0px 5px 0px 5px;
+	font-size:77%;
+}
+
+#quickmov_accountbutton button {
+        outline: none;
+		width:110px;
+}
+
+
+
+#quickmov_accountbutton button em {
+        font-style: normal;
+        display: block;
+        text-align: left;
+        white-space: nowrap;
+        width: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+}
+#quickmov_categorybutton button {
+        outline: none;
+		width:110px;
+}
+
+#quickmov_categorybutton button em {
+        font-style: normal;
+        display: block;
+        text-align: left;
+        white-space: nowrap;
+        width: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+}
+
+#calendarmenu {
  position: absolute;
- } 
-
+ }

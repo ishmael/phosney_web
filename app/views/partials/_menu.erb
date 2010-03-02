@@ -1,31 +1,37 @@
-<% accounts_type = [Bankaccount,Loanaccount,Creditcardaccount] %>
- <% accounts_type.each do |tipo| %>  
- <div class="menu_main_section <% if tipo == Bankaccount %>'first' <%end%>">
- <h4 id="menu_main_h_<%=tipo.name.downcase%>"><%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.name'), polymorphic_path(tipo.name.pluralize.downcase) %></h4>
- <ul>
-	<% contas = @menu_accounts.select { |item| item.class == tipo }%>
-	<% contas.sort_by(&:name).each  do |menu| %>        
-		<li <% if accountnumber== menu.id %>class="selected"<% end %>><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>                
-	<% end %>	   
-		<li <% if accountnumber == 0  and accounttype == tipo %>class="selected"<%end%>><%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.newaccount'), new_polymorphic_path(tipo) %></li>
-</ul>
-</div><!--/end #menu_main_section-->
-<% end %> 
+<div id="applicationmenu" class="cr-all yuimenubar yuimenubarnav">
+   <div class="bd">
+   		<ul class="first-of-type">
+    		<li class="yuimenubaritem first-of-type"><a class="menutop yuimenubaritemlabel" href="/">Dashboard</a></li>
 
-<div class="menu_main_section ">
- <h4 id="menu_main_h_categories"><%= link_to I18n.t('layout.categories.title'), categories_path %></h4>
- <ul>
-<% if categorynumber == 0 %>
-  <li class="selected"><%= link_to I18n.t('layout.categories.new'), new_category_path %></li>
-<% else %>
-  <li><%= link_to I18n.t('layout.categories.new'), new_category_path %></li>
-<% end %>
-</ul>
-</div><!--/end #menu_main_section-->
-
-<div class="menu_main_section ">
- <h4 id="menu_main_h_tags"><%= link_to I18n.t('layout.tags.title'), tags_path %></h4>
- <ul>
- <li><%= link_to I18n.t('layout.tags.new'), new_tag_path %></li>
- </ul>
-</div><!--/end #menu_main_section-->
+			<li class="yuimenubaritem"><%= link_to I18n.t('layout.application.accounts'), accounts_path, :class =>  'menutop   yuimenubaritemlabel' %>
+	 			<div id="accounts" class="yuimenu">
+                    <div class="bd">
+	                    <ul>	
+							<% accounts_type = [Bankaccount,Loanaccount,Creditcardaccount] %>
+ 							<% accounts_type.each do |tipo| %>  
+							<li class="yuimenuitem"><%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.name'), polymorphic_path(tipo.name.pluralize.downcase) , :class => 'yuimenuitemlabel'%>
+								<div id="<%= tipo%>" class="yuimenu">
+	      							<div class="bd">
+	       								<ul class="first-of-type">
+											<% contas = @menu_accounts.select { |item| item.class == tipo }%>
+											<% contas.sort_by(&:name).each  do |menu| %>        
+											<li class="yuimenuitem"><%= link_to menu.name,  polymorphic_path([menu,:movements]) , :class => 'yuimenuitemlabel'%></li>                
+							<% end %>
+		      								<li class="yuimenuitem">
+											<%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.newaccount'), new_polymorphic_path(tipo),:class => 'yuimenuitemlabel'%> 				
+											</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<% end %>	
+					</ul>
+					</div>
+				</div>
+			</li>
+			<li class="yuimenubaritem"><%= link_to I18n.t('layout.categories.title'), categories_path, :class => 'menutop yuimenuitemlabel' %></li>			
+			<li class="yuimenubaritem"><%= link_to I18n.t('layout.tags.title'), tags_path, :class => 'menutop yuimenuitemlabel' %></li>		
+		</ul>
+	</div>
+</div>
+			

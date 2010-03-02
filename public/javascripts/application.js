@@ -7,7 +7,89 @@
 
 		var ButtonGroup = YAHOO.widget.ButtonGroup;
 		
+		Event.onContentReady("profile_info", function () {
+			 var oLinkSettingsButton = new YAHOO.widget.Button("settingsbutton");
+			 var oLinkLogoutButton = new YAHOO.widget.Button("logoutbutton");
+			});
 		
+		Event.onContentReady("quick_movement", function () {
+			var oSelectButtonAccount = new YAHOO.widget.Button({  
+				                    id: "quickmov_accountbutton", 
+				                    type: "menu",   
+				                    menu: "quickmov_account",
+									lazyloadmenu: false, 
+									container: "quickmov_account_container"
+				});
+				
+ 			var oSelectButtonCategory = new YAHOO.widget.Button({  
+					                    id: "quickmov_categorybutton", 
+					                    type: "menu",   
+					                    menu: "quickmov_category",
+										lazyloadmenu: false, 
+										container: "quickmov_category_container"
+					});
+
+		    var onMenuRenderCategory = function (type, args, button) { 
+						    button.set("selectedMenuItem", this.getItem(0)); 
+			};
+				
+			var onMenuRenderAccount = function (type, args, button) { 
+						    button.set("selectedMenuItem", this.getItem(0)); 
+			};
+						
+			var onSelectedMenuItemChangeAccount = function (event) {
+
+					var oMenuItem = event.newValue;
+
+					this.set("label", ("<em class=\"yui-button-label\">" + 
+								oMenuItem.cfg.getProperty("text") + "</em>"));
+
+				};
+				
+			var onSelectedMenuItemChangeCategory = function (event) {
+
+						var oMenuItem = event.newValue;
+
+						this.set("label", ("<em class=\"yui-button-label\">" + 
+									oMenuItem.cfg.getProperty("text") + "</em>"));
+
+					};
+
+
+           	var oMenuButtonCategoryMenu = oSelectButtonCategory.getMenu();
+				//oMenuButtonCategoryMenu.subscribe("render", onMenuRenderCategory, oSelectButtonCategory);
+		
+			var oMenuButtonAccountMenu = oSelectButtonAccount.getMenu();
+				oMenuButtonAccountMenu.subscribe("render", onMenuRenderAccount, oSelectButtonAccount);
+
+				oSelectButtonAccount.on("selectedMenuItemChange", onSelectedMenuItemChangeAccount);
+			    oSelectButtonCategory.on("selectedMenuItemChange", onSelectedMenuItemChangeCategory);
+
+	    });
+	
+		Event.onContentReady("applicationmenu", function () {
+
+	                /*
+						Instantiate a MenuBar:  The first argument passed to the constructor
+						is the id for the Menu element to be created, the second is an 
+						object literal of configuration properties.
+	                */
+
+	                var oMenuBar = new YAHOO.widget.MenuBar("applicationmenu", { 
+	                                                            autosubmenudisplay: true, 
+	                                                            hidedelay: 750, 
+	                                                            lazyload: true });
+
+	                /*
+	                     Call the "render" method with no arguments since the 
+	                     markup for this MenuBar instance is already exists in 
+	                     the page.
+	                */
+
+	                oMenuBar.render();
+
+	    });
+	
 		Event.onContentReady("quickmovement_type_bgroup", function () {
 		   var mov_type = document.getElementById("quickmovement_type");
            var oButtonGroupQM = new ButtonGroup("quickmovement_type_bgroup");
@@ -248,4 +330,3 @@
 	}());
 
 
-	

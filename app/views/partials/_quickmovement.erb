@@ -1,7 +1,8 @@
 <% form_for @movement, :url => { :controller => 'movements',:action => "quickcreate"} do |f| %>
 			<div class="quickmovement-div">
-				<%= f.label :account_id, I18n.t('layout.bankaccounts.accountname')%>			
-				<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  :include_blank => false %>
+				<label  for='quickmov_account'><%= I18n.t('layout.bankaccounts.accountname')%></label>	
+				<div id="quickmov_account_container"></div>	
+				<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  {:include_blank => false }, { :id => 'quickmov_account' }%>
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label :description, I18n.t('layout.movements.description') %>
@@ -14,10 +15,11 @@
 			<div  id="datefields"  class="quickmovement-div">
 					<%= f.label :movdate,  I18n.t('layout.movements.movdate') %>
 					<%= f.date_select :movdate %>
-				</div
+				</div>
 			<div class="quickmovement-div">
-				<%= f.label :category_id, I18n.t('layout.movements.category') %>
-				<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => 'None' %>
+				<label  for='quickmov_account'><%=  I18n.t('layout.movements.category') %></label>
+				<div id="quickmov_category_container"></div>	
+				<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name, { :include_blank => 'None'}, { :id => 'quickmov_category' } %>
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label :tag_list, I18n.t('layout.tags.title') %>

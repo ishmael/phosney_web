@@ -6,35 +6,39 @@
 <%= GMap.header %>
 <%= @map.to_html unless @map.blank? %>
 <!--javascript-->
-<%= javascript_include_tag 'yui/yahoo-dom-event/yahoo-dom-event','yui/calendar/calendar-min','yui/container/container_core-min','yui/element/element-min','yui/button/button-min','application' %>
+<%= javascript_include_tag 'yui/yahoo-dom-event/yahoo-dom-event','yui/calendar/calendar-min','yui/container/container_core-min','yui/element/element-min','yui/button/button-min','yui/menu/menu-min','application' %>
 <!--css-->
-<%= stylesheet_link_tag 'reset','main','yui/fonts/fonts-min','yui/calendar/assets/skins/sam/calendar','yui/button/assets/skins/sam/button' %>
+<%= stylesheet_link_tag 'reset','main','yui/fonts/fonts-min','yui/calendar/assets/skins/sam/calendar','yui/button/assets/skins/sam/button', 'yui/menu/assets/skins/sam/menu' %>
 
 
 </head>
 <body class="yui-skin-sam">
-	<div id=login >
-	
+	<div  id="container">
+	    <div  id="header">
+	    	<div id="profile_info" class="cr-all">
+				<img src="<%= gravatar_url(@current_user.email, :size=>"41px") %>" id="avatar" alt="avatar" />
+				<p>Welcome <%= @current_user.login	%>.</p> 
+				<a id="settingsbutton" href="#">Settings</a>
+				<%= link_to I18n.t('layout.application.logout'),  user_session_path, :method => :delete, :confirm => I18n.t('layout.users.logout'), :id => 'logoutbutton' %>
+			</div>
+			<div id="logo"><h1><a href="/">AdmintTheme</a></h1></div>
+		</div>
+		<div id="quick_movement" class="cr-botton"> 
+			<%= render :partial => 'partials/quickmovement'  %>
+		</div>
+		<div id="content" >
+	    	<div id="top_menu">
+				<%= render :partial => 'partials/menu'  %>
+	    	</div>
+			<div id="content_main" class="cr-all clearfix">	
+				<%=	yield%>
+			</div>
+		</div>
+		<div  id="footer" class="cr-all clearfix">
+    		<p class="left">Copyright &copy; </p>
+			<p class="right">Phosney.com 2009.</p>
+		</div>
 	</div>
-	<div id="navigation">
-		<ul>
-		  <li class="current"><%= link_to 'Dashboard', dashboard_path %></li>
-		  <li><%= link_to I18n.t('layout.bankaccounts.title'), bankaccounts_path %></li>
-		  <li><%= link_to I18n.t('layout.categories.title'), categories_path %></li>
-		  <li><%= link_to I18n.t('layout.tags.title'), tags_path %></li>   
-		</ul>
-	</div>
-	<div id="quickmovement" > 
-		<%= render :partial => 'partials/quickmovement'  %>
-	</div>
-
-	<div id="main" >
-	
-	<%= yield %> 
-       
-    </div>
-
-    <div id="footer" >Copyright &copy; Phosney.com 2009.</div>
     
 </body><!--/end #b_main-->
 </html>

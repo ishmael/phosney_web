@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   before_filter :set_locale
   before_filter :adjust_format_for_iphone
-  #before_filter :generate_menu 
+  before_filter :generate_menu 
   before_filter :addmovement 
 
    

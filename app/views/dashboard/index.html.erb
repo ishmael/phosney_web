@@ -15,7 +15,7 @@
 					<input type="radio"  id="filter_mov_year" name="filter_mov_year" value="2010" checked/>				
 					<input type="radio"  id="filter_mov_lastmonth" name="filter_mov_lastmonth" value="Dezembro" />				
 					<input type="radio"  id="filter_mov_thismonth" name="filter_mov_thismonth" value="Janeiro" />				
-					<input type="radio"  id="filter_mov_week" name="filter_mov_week"" value="Esta Semana" />									
+					<input type="radio"  id="filter_mov_week" name="filter_mov_week" value="Esta Semana" />									
 				</div>
 			</div>
 		  </div>
@@ -91,7 +91,7 @@
             <% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
                 render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%><% end-%>
           </div><!--/end .container2-->
-        </div><!--/end .tabbertab-->
+   
       </div>
     
 <script type="text/javascript">

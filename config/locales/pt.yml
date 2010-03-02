@@ -25,7 +25,8 @@ pt:
       deletemessage: "Tem a certeza?"
       details: "Detalhes"
       send: "Enviar"
-      or : "ou"      
+      or : "ou"     
+      accounts: "Contas" 
     bankaccounts:
       name: "Contas Bancária"
       title: "Conta Bancárias"

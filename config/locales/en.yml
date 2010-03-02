@@ -22,6 +22,7 @@ en:
       details: "Details"
       send: "Send"
       or : "or"
+      accounts: "Accounts"      
     bankaccounts:
       name: "Account"
       title: "Accounts"

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   
   def last_login
     if (not last_login_at.nil?)
-     I18n.l last_login_at, :format => :long
+     I18n.l last_login_at, :format => :short
     else
      I18n.t('layout.users.lastlogin')
     end
