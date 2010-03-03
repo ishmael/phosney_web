@@ -31,12 +31,6 @@ class ApplicationController < ActionController::Base
 	def generate_menu
 		if not current_user.nil?
 			@menu_accounts = current_user.accounts.find_accounts(:all)
-			#menu_accounts = menu_accounts.sort_by(&:class)
-			#@menu_bankaccounts = menu_accounts.group_by(&:class)
-			#@menu_bankaccounts = @menu_bankaccounts.sort_by(&:class)
-			#@menu_bankaccounts = menu_accounts.select { |item| item.class == Bankaccount}
-			#@menu_loanaccounts = menu_accounts.select { |item| item.class == Loanaccount}
-			#@menu_creditcardaccounts = menu_accounts.select { |item| item.class == Creditcardaccount}
 		end
 	end
 	

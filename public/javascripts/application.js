@@ -9,7 +9,8 @@
 		
 		Event.onContentReady("profile_info", function () {
 			 var oLinkSettingsButton = new YAHOO.widget.Button("settingsbutton");
-			 var oLinkLogoutButton = new YAHOO.widget.Button("logoutbutton");
+			 var curEvent = YAHOO.util.Dom.get('logoutbutton').onclick;   
+			 var oLinkLogoutButton = new YAHOO.widget.Button("logoutbutton", { onclick : { fn: curEvent } });	
 			});
 		
 		Event.onContentReady("quick_movement", function () {

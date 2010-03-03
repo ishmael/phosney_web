@@ -19,7 +19,7 @@
 				<img src="<%= gravatar_url(@current_user.email, :size=>"41px") %>" id="avatar" alt="avatar" />
 				<p>Welcome <%= @current_user.login	%>.</p> 
 				<a id="settingsbutton" href="#">Settings</a>
-				<%= link_to I18n.t('layout.application.logout'),  user_session_path, :method => :delete, :confirm => I18n.t('layout.users.logout'), :id => 'logoutbutton' %>
+				<%= link_to I18n.t('layout.application.logout'), logout_path,  :id => 'logoutbutton' %>
 			</div>
 			<div id="logo"><h1><a href="/">AdmintTheme</a></h1></div>
 		</div>
