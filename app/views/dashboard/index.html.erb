@@ -1,110 +1,73 @@
 <%= javascript_include_tag "FusionCharts"%>
-       <div id="dashboard" >
-		  <div id="filter">
-			<div class="filter-div">
-				<label>Tipo</label>
-				<div  id="filter_type_bgroup">
-					<input type="radio" id="filter_mov_all" name="filter_mov_all" value="Todos" checked />
-					<input type="radio" id="filter_mov_debit" name="filter_mov_debit" value="Debito" />
-					<input type="radio"  id="filter_mov_credit" name="filter_mov_credit" value="Credito" />				
+<div id="dashboard" >
+    		<div class="box box-first box-50 altbox "><!-- .altbox for alternative box's color -->
+				<div class="boxin">
+					<div class="header">
+						<h3><%=  I18n.t('layout.bankaccounts.tagline') %></h3>
+					</div>
+					<div class="content">
+						<table cellspacing="0">
+							<thead>
+								<tr>
+									<th><%=  I18n.t('layout.bankaccounts.title') %></th>
+									<td class="tc"><%=  I18n.t('layout.bankaccounts.accountbalance') %></td>
+								</tr>
+							</thead>
+							<tbody>
+							<% @bankaccounts.each do |bankaccount| %>	
+								<tr ><!--  class="first" .first for first row of the table (only if there is thead) -->
+									<th><%=h bankaccount.name %></th>
+									<td class="tc"><%=h number_to_currency(bankaccount.account_balance) %></td>
+								</tr>
+							<% end %>	
+								<tr>
+									<th><%=  I18n.t('layout.bankaccounts.total') %></th>
+									<td class="tc"><%= number_to_currency(@bankaccounts.sum { |item| item.account_balance }) %></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
-			<div class="filter-div">
-				<label>Quando</label>	
-				<div  id="filter_when_bgroup">
-					<input type="radio"  id="filter_mov_year" name="filter_mov_year" value="2010" checked/>				
-					<input type="radio"  id="filter_mov_lastmonth" name="filter_mov_lastmonth" value="Dezembro" />				
-					<input type="radio"  id="filter_mov_thismonth" name="filter_mov_thismonth" value="Janeiro" />				
-					<input type="radio"  id="filter_mov_week" name="filter_mov_week" value="Esta Semana" />									
+				<div class="box box-50  altbox"><!-- .altbox for alternative box's color -->
+					<div class="boxin">
+						<div class="header">
+							<h3> <%=  I18n.t('layout.movements.tag5line') %></h3>
+						</div>
+						<div class="content">
+							<table cellspacing="0">
+								<thead>
+									<tr>
+										<th> <%=  I18n.t('layout.movements.description') %></th>
+										<td class="tc"><%=  I18n.t('layout.movements.amount') %></td>
+										<td class="tc"><%=  I18n.t('layout.movements.type') %></td>
+									</tr>
+								</thead>
+								<tbody>
+								<% @last5movements.each do |movement| %>	
+									<tr ><!--  class="first" .first for first row of the table (only if there is thead) -->
+										<th><%=h movement.description %></th>
+										<td class="tc"><%=h  number_to_currency(movement.amount) %></td>
+										<td class="tc"><%=h  movement.type_of_movement %></td>
+									</tr>
+								<% end %>	
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
+					<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
+						<div class="boxin">
+							<div class="header">
+								<h3>Movimentos por Dia</h3>
+							</div>
+							<div class="content">
+			  <div style="height:200px;" >
+	<!-->		 	   <% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
+				        render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%><% end-%>-->
+			  </div>
 			</div>
-		  </div>
-		  
-		     <h2>
-            <%=  I18n.t('layout.bankaccounts.name') %>
-          </h2>
-          <div >
-            <h4>
-              <%=  I18n.t('layout.bankaccounts.tagline') %>
-            </h4>
-            <table class="broom_table">
-              <thead>
-                <tr>
-                  <th scope="col">
-                    <%=  I18n.t('layout.bankaccounts.title') %>
-                  </th>
-                  <th scope="col">
-                    <%=  I18n.t('layout.bankaccounts.accountbalance') %>
-                  </th>
-                </tr>
-              </thead><% @bankaccounts.each do |bankaccount| %>
-              <tr class="<%= cycle('odd', 'even') %>">
-                <td>
-                  <%=h bankaccount.name %>
-                </td>
-                <td>
-                  <%=h number_to_currency(bankaccount.account_balance) %>
-                </td>
-              </tr><% end %>
-              <tr class="total">
-                <td>
-                  <%=  I18n.t('layout.bankaccounts.total') %>
-                </td>
-                <td>
-                  <%= number_to_currency(@bankaccounts.sum { |item| item.account_balance }) %>
-                </td>
-              </tr>
-            </table>
-          </div>
-          <div >
-            <h4>
-              <%=  I18n.t('layout.movements.tag5line') %>
-            </h4>
-            <table class="broom_table">
-              <thead>
-                <tr>
-                  <th scope="col">
-                    <%=  I18n.t('layout.movements.description') %>
-                  </th>
-                  <th scope="col">
-                    <%=  I18n.t('layout.movements.amount') %>
-                  </th>
-                  <th scope="col">
-                    <%=  I18n.t('layout.movements.type') %>
-                  </th>
-                </tr>
-              </thead><% @last5movements.each do |movement| %>
-              <tr class="<%= cycle('odd', 'even') %>">
-                <td>
-                  <%=h movement.description %>
-                </td>
-                <td>
-                  <%=h  number_to_currency(movement.amount) %>
-                </td>
-                <td>
-                  <%=h  movement.type_of_movement %>
-                </td>
-              </tr><% end %>
-            </table>
-          </div>
-          <div >
-            <% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
-                render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%><% end-%>
-          </div><!--/end .container2-->
-   
-      </div>
-    
-<script type="text/javascript">
-		var Event = YAHOO.util.Event;
-		var ButtonGroup = YAHOO.widget.ButtonGroup;
-		
-		Event.onContentReady("filter_type_bgroup", function () {
-		   var oButtonGroupQM = new ButtonGroup("filter_type_bgroup");
-        });
-		
-		Event.onContentReady("filter_when_bgroup", function () {
-		   var oButtonGroupQM = new ButtonGroup("filter_when_bgroup");
-        });
-  </script>
-
-       
+		</div>
+	</div>
+</div>
+         

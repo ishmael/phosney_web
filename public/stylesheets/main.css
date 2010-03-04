@@ -11,35 +11,62 @@
 /*---------------------------------------------------------------------------------------
 --- BASICS
 ---------------------------------------------------------------------------------------*/
-body{ background: #91b5eb;}
+body{ 
+	background:none repeat scroll 0 0 #DDDDDD;
+	}
 
 .left{ float:left; }
 .right{ float:right; }
 .clear{	clear:both; }
 .padding{	padding:10px; }
 
+input.txt,
+textarea {
+	border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;
+	border: 1px solid #999; background: #ffffff url("/images/txt.gif") repeat-x; padding: 4px 2px 5px 4px;
+}
+
 /* ------------------------------------------------------------------------------------
 STRUCTURE					 */
-#container{	overflow:hidden;   width:1000px; margin:0 auto;}
-#header{height:75px; background:#ffc053; }
+#container{	overflow:hidden;   width:1000px; margin:0px auto 0px auto;}
+#mainheader{
+	background:url("/images/header.png") repeat-x scroll 0 0 #0F508D;
+	border-bottom:1px solid #2A9FEC;
+	height:70px;
+	width:100%;
+}
+#header{height:60px; background: transparent; width:1000px;margin:0 auto;}
 #footer{clear:both; }
-#content_main{background:#f1f1f1;width:980px;padding:10px;}
+#content_main{background:transparent;width:1000px;padding:10px 0px 0px 0px;;}
 #top_menu{width:1000px;margin-top:5px;}
-#quick_movement{margin:0px 0px 0px 0px;padding: 5px;background:#cb8000;}
+#quick_movement{margin:0 auto;padding: 3px;background:#ffffff;width:994px;height:50px;}
 #profile_info{ background:#4780ae;float:right; width:200px;height:50px;margin:5px 10px 0px 0px;color:#fff;line-height:10px;}
 #avatar{float:left;margin:0px 10px 0px 5px;padding-top:5px;}
-#footer{background:#f1f1f1;width:980px;padding:10px;margin-top:5px;}
+#footer{background:#ffffff;width:980px;margin:0px auto 10px auto;height:15px;padding:10px;}
 #footer p{background:none;padding:0px;margin:0px}
 #applicationmenu {
 	margin-bottom:5px;
 	border: 0px;
+	font-size:138.5% ;
 }
 
 .menutop {
 	border:0px !important;
 }
+
+#accountsbalance {
+	border:1px solid black;
+	border-bottom-style:none;
+	width: 400px;
+}
+
 /* 
 CORNERS
+* -moz-border-radius-topleft  / -webkit-border-top-left-radius
+* -moz-border-radius-topright / -webkit-border-top-right-radius
+* -moz-border-radius-bottomleft / -webkit-border-bottom-left-radius
+* -moz-border-radius-bottomright / -webkit-border-bottom-right-radius
+
 */
 
 .cr-top {
@@ -70,8 +97,29 @@ CORNERS
 }
 /* ------------------------------------------------------------------------------------
 LOGO				 */
-div#logo h1{padding:0px;margin:0px;}
-div#logo h1 a{display:block;text-indent:-9999px;width:367px;height:107px;}
+#logo {
+	padding-top:5px;
+	width:300px;
+}
+div#logo h1{
+	padding:0px;
+	margin:0px;
+	}
+div#logo h1 a{
+	display:block;
+	text-indent:-9999px;
+	width:155px;
+	height:40px;
+	
+	background:url("/images/logo_top.png") no-repeat scroll 0 0 transparent;
+	}
+div#logo h4{
+	color:#ffffff;
+	/*left:230px;
+	position:absolute;
+	top:95px;*/
+	
+}
 #profile_info p{
 	font-size:11px;
 	padding-top:4px;
@@ -89,8 +137,9 @@ LOGO				 */
 	
 #quick_movement  div label{
 	display: block;
+	padding-left:3px;
 	padding-bottom: 3px;
-	color: #ffffff;
+	color: #000000;
 }
 
 #quick_movement .quickmovement-submit {
@@ -156,3 +205,77 @@ LOGO				 */
 #calendarmenu {
  position: absolute;
  }
+
+.box {float: left; width: 400px; margin: 0 0px 20px 0;}
+.box-25 {width: 250px;} /* 25% box */
+.box-50 {width: 500px;} /* 50% box */
+.box-75 {width: 715px;} /* 75% box */
+.box-100 {width: 1000px;} /* 100% box */
+.altbox {} /* class for alternative (emphasized) boxes (blue headings and colors) */
+/* wrap of box's content */
+.boxin {box-shadow: #aaa 0 0 10px; -webkit-box-shadow: #aaa 0 0 10px; -moz-box-shadow: #aaa 0 0 10px; border: 1px solid #999; border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px; background: #fff;}
+/* boxes' headers */
+.box .header {
+	background: #3d3d3d url("/images/headerbox.png") repeat-x;
+	border-top: 1px solid #444;
+	border-radius: 5px 5px 0 0;
+   -moz-border-radius-topleft: 5px;
+   -moz-border-radius-topright: 5px;
+   -webkit-border-top-left-radius: 5px;
+   -webkit-border-top-right-radius: 5px;
+	position: relative; margin: -1px -1px 0 -1px; padding: 7px 0 9px 20px;
+}
+.box-first {
+	margin-right:20px !important;  
+	width:480px !important;
+}
+.altbox .header {border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x;}
+.box .header h3 {position: relative; top: 2px; display: inline; font-size: 150%; color: #fff; text-shadow: #151515 0 1px 0;}
+.altbox .header h3 {text-shadow: #003d68 0 1px 0;}
+
+
+
+/* boxes' content types – tabular */
+.box .content {margin-bottom: 5px;}
+.box .content table {width: 100%;}
+.box .content table th,
+.box .content table td {padding: 10px 10px 8px 10px;}
+.box .content table th {text-align: left; font-weight: normal;}
+.box .content table tr.even th,
+.box .content table tr.even td {background: #f5f5f5;}
+.altbox .content table tr.even th,
+.altbox .content table tr.even td {background: #f0f9ff;}
+.box .content table th.first,
+.box .content table td.first {padding-left: 20px;}
+.box .content table thead th,
+.box .content table thead td {border-left: 1px solid #f2f2f2; border-right: 1px solid #d5d5d5; background: #ddd url("/images/thead.gif") repeat-x; text-shadow: #fff 0 1px 0;}
+.box .content table tbody tr.first th,
+.box .content table tbody tr.first td {border-top: 1px solid #bbb;}
+.altbox .content table tbody {color: #00305d;}
+.box .content table a.ico-comms {border: 0; background: url("/images/ico-tablecomms.gif") 50% 60% no-repeat; padding: 10px; color: #fff;}
+.box .content table tfoot th,
+.box .content table tfoot td {border-top: 1px solid #ccc; background: #fff url("/images/tfoot.gif") repeat-x;}
+/* boxes' content types – simple list */
+.box .content ul.simple li {clear: both; padding: 10px 20px 8px 20px; overflow: hidden;}
+.box .content table tr.even th,
+.box .content ul.simple li.even {background: #f5f5f5;}
+.altbox .content table tr.even th,
+.altbox .content ul.simple li.even {background: #f0f9ff;}
+.box .content ul.simple strong {float: left; font-weight: normal;}
+.box .content ul.simple span {float: right;}
+/* boxes' content types – grid */
+.box .content .grid {}
+.box .content .grid .line {border-bottom: 1px solid #ddd; width: 100%; overflow: hidden;}
+.altbox .content .grid .line {border-bottom-color: #c7dfef;}
+.box .content .grid .even {background: #f5f5f5;}
+.altbox .content .grid .even {background: #f0f9ff;}
+.box .content .grid .item {float: left; width: 50%;}
+.box .content .grid .item .inner {padding: 17px 15px 12px 20px;}
+.box .content .grid .firstline {border-top: 0 !important;}
+.box .content .grid .lastline {border-bottom: 0 !important;}
+.box .content .grid .item a.thumb {border: 0; float: left;}
+.box .content .grid .item .data {margin-left: 165px;}
+.box .content .grid .item h4 {margin: 0 0 10px 0; font-size: 110%; font-weight: bold;}
+.box .content .grid .item h4 span {margin-right: 5px; font-weight: normal; font-size: 90%;}
+.box .content .grid .item p {margin: 0 0 5px 0; color: #666;}
+.box .content .grid ul.actions {margin-top: 8px;}

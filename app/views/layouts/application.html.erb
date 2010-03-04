@@ -13,19 +13,23 @@
 
 </head>
 <body class="yui-skin-sam">
-	<div  id="container">
-	    <div  id="header">
+	<div id='mainheader'>
+    	<div  id="header">
 	    	<div id="profile_info" class="cr-all">
 				<img src="<%= gravatar_url(@current_user.email, :size=>"41px") %>" id="avatar" alt="avatar" />
 				<p>Welcome <%= @current_user.login	%>.</p> 
 				<a id="settingsbutton" href="#">Settings</a>
 				<%= link_to I18n.t('layout.application.logout'), logout_path,  :id => 'logoutbutton' %>
 			</div>
-			<div id="logo"><h1><a href="/">AdmintTheme</a></h1></div>
+			<div id="logo"><h1><a href="/"><%=  I18n.t('layout.application.name') %></a></h1>
+			<h4><%=  I18n.t('layout.application.tag')  %></h4>
+			</div>
 		</div>
-		<div id="quick_movement" class="cr-botton"> 
+	</div>
+	<div id="quick_movement" class="cr-botton"> 
 			<%= render :partial => 'partials/quickmovement'  %>
-		</div>
+	</div>
+	<div  id="container">
 		<div id="content" >
 	    	<div id="top_menu">
 				<%= render :partial => 'partials/menu'  %>
@@ -34,11 +38,11 @@
 				<%=	yield%>
 			</div>
 		</div>
-		<div  id="footer" class="cr-all clearfix">
-    		<p class="left">Copyright &copy; </p>
-			<p class="right">Phosney.com 2009.</p>
-		</div>
 	</div>
-    
+
+	<div  id="footer" class="cr-all">
+		<p class="left">Copyright &copy; </p>
+		<p class="right">Phosney.com 2009.</p>
+	</div>    
 </body><!--/end #b_main-->
 </html>

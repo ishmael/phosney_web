@@ -26,7 +26,7 @@ en:
     bankaccounts:
       name: "Account"
       title: "Accounts"
-      tagline: "Your accounts balances:"	  
+      tagline: "Account balances:"	  
       newaccount: "Add Account"
       accountname: "Name"
       accountbank: "Bank"
@@ -55,7 +55,7 @@ en:
        name: "Movements"
        title: "Moviment"
        description: "Description"
-       tag5line: "Your last 5 movements:"
+       tag5line: "Last 5 movements:"
        amount: "Amount"
        debit: "Debit"
        credit: "Credit"
