@@ -62,9 +62,9 @@
 								<h3>Movimentos por Dia</h3>
 							</div>
 							<div class="content">
-			  <div style="height:200px;" >
-	<!-->		 	   <% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
-				        render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%><% end-%>-->
+			  <div >
+		 	   <% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
+		        render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%><% end-%>
 			  </div>
 			</div>
 		</div>

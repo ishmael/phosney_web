@@ -204,6 +204,7 @@ LOGO				 */
 
 #calendarmenu {
  position: absolute;
+z-index:10;
  }
 
 .box {float: left; width: 400px; margin: 0 0px 20px 0;}
@@ -224,12 +225,13 @@ LOGO				 */
    -webkit-border-top-left-radius: 5px;
    -webkit-border-top-right-radius: 5px;
 	position: relative; margin: -1px -1px 0 -1px; padding: 7px 0 9px 20px;
+	z-index:0;
 }
 .box-first {
 	margin-right:20px !important;  
 	width:480px !important;
 }
-.altbox .header {border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x;}
+.altbox .header { z-index:0;border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x;}
 .box .header h3 {position: relative; top: 2px; display: inline; font-size: 150%; color: #fff; text-shadow: #151515 0 1px 0;}
 .altbox .header h3 {text-shadow: #003d68 0 1px 0;}
 
