@@ -1,12 +1,6 @@
-  <div class="FormColumn">
-    <%= form.label :name , I18n.t('layout.creditcardaccounts.accountname')%>
-    <%= form.text_field :name %>
-  </div>
-  <div class="FormColumn">
-    <%= form.label :number,I18n.t('layout.creditcardaccounts.accountnumber')  %>
-    <%= form.text_field :number %>
-  </div>
-  <div class="FormColumn">
-    <%= form.label :bank,I18n.t('layout.creditcardaccounts.accountbank') %>
-    <%= form.text_field :bank %>
-  </div>
+  <dt><%= form.label :name , I18n.t('layout.creditcardaccounts.accountname') %></dt>
+  <dd><%= form.text_field :name , :class => 'txt' %></dd>
+  <dt><%= form.label :number,I18n.t('layout.creditcardaccounts.accountnumber')  %></dt>
+  <dd><%= form.text_field :number , :class => 'txt'%></dd>
+  <dt><%= form.label :bank,I18n.t('layout.creditcardaccounts.accountbank') %></dt>
+  <dd><%= form.text_field :bank , :class => 'txt'%></dd>

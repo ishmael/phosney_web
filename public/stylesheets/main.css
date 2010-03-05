@@ -26,6 +26,11 @@ textarea {
 	border: 1px solid #999; background: #ffffff url("/images/txt.gif") repeat-x; padding: 4px 2px 5px 4px;
 }
 
+.fieldWithErrors input,textarea {
+	border: 1px solid red;
+	 background-image: url("/images/txt-error.gif");
+}
+
 /* ------------------------------------------------------------------------------------
 STRUCTURE					 */
 #container{	overflow:hidden;   width:1000px; margin:0px auto 0px auto;}
@@ -144,15 +149,19 @@ LOGO				 */
 
 #quick_movement .quickmovement-submit {
 	display:inline-block;
-	padding-top: 19px;
+	padding-top: 18px;
 	padding-right : 0px;
-	
-	
+}
+
+#quick_movement .quickmovement-submit input {
+	padding:4px 8px;
 }
 		
-#quick_movement .fieldWithErrors input {
+#quick_movement .fieldWithErrors input,textarea {
 	border: 1px solid red;
+	 background-image: url("/images/txt-error.gif");
 }		
+
 #quick_movement  div.errormessages  { 
 	clear:right;
 	display : inline;
@@ -225,16 +234,62 @@ z-index:10;
    -webkit-border-top-left-radius: 5px;
    -webkit-border-top-right-radius: 5px;
 	position: relative; margin: -1px -1px 0 -1px; padding: 7px 0 9px 20px;
-	z-index:0;
 }
 .box-first {
 	margin-right:20px !important;  
 	width:480px !important;
 }
-.altbox .header { z-index:0;border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x;}
+.altbox .header { border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x;}
 .box .header h3 {position: relative; top: 2px; display: inline; font-size: 150%; color: #fff; text-shadow: #151515 0 1px 0;}
 .altbox .header h3 {text-shadow: #003d68 0 1px 0;}
 
+/* forms */
+form {padding: 18px;}
+form.plain {padding: 0;} /* plain forms - used in tabular and grid data structures, TAKE CARE of it, please */
+form.plain fieldset {border: 0 !important; padding: 0 !important;}
+form.basic dl {width: 100%; overflow: hidden;} /* basic layout for forms */
+form.basic dl dt,
+form.basic dl dd {float: left;}
+form.basic dl dt {padding: 3px 5px 3px 0; width: 20%;}
+form.basic dl dd {padding: 3px 0 3px 5px; width: 76%;}
+form.basic dl dd.submit {padding: 3px 0px 0px 0px; width: 100%;}
+form.basic dl dd.submit div {float:right;}
+form small {color: #999;}
+
+form.basic input.txt,
+form.basic textarea {width: 100%;}
+
+form.fields {} /* plain and clean layout for forms */
+form.fields fieldset {
+	border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;
+	border: 1px solid #ccc; margin-bottom: 15px; padding: 10px 15px 15px 15px;
+}
+form.fields fieldset.last {margin-bottom: 0; border-right: 1px solid #ccc !important;}
+form.fields fieldset legend {padding: 0 10px; font-size: 110%;}
+form.fields label,
+form.fields div.sep {display: block; margin-top: 6px;}
+form.fields label.check,
+form.fields label.radio {display: inline; margin-top: 0;}
+form.fields span.loading {margin-left: 10px;}
+
+/* stylish buttons with rounded corners */
+.button {border: 1px solid #00487a; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; background: #0567ad url("/images/button.gif") repeat-x; padding: 5px 9px 5px; text-shadow: #00487a 1px 1px 0; color: #fff; cursor: pointer;}
+	.button:hover,
+	.button:focus,
+	.button:active {border-color: #272727; background: #2a2a2a url("/images/altbutton.gif") repeat-x; text-shadow: #000 1px 1px 0; color: #fff;}
+	/* alternative colors */
+	.altbox .button {border: 1px solid #272727; background: #2a2a2a url("/images/altbutton.gif") repeat-x; text-shadow: #000 1px 1px 0;}
+	.altbox .button:hover,
+	.altbox .button:focus,
+	.altbox .button:active {border-color: #00487a; background: #0567ad url("/images/button.gif") repeat-x; text-shadow: #00487a 1px 1px 0; color: #fff;}
+	.altbutton {border: 1px solid #272727; background: #2a2a2a url("/images/altbutton.gif") repeat-x; text-shadow: #000 1px 1px 0;}
+	.altbutton:hover,
+	.altbutton:focus,
+	.altbutton:active {border-color: #00487a; background: #0567ad url("/images/button.gif") repeat-x; text-shadow: #00487a 1px 1px 0; color: #fff;}
+	.altbox .altbutton {border: 1px solid #00487a; background: #0567ad url("/images/button.gif") repeat-x; text-shadow: #00487a 1px 1px 0;}
+	.altbox .altbutton:hover,
+	.altbox .altbutton:focus,
+	.altbox .altbutton:active {border-color: #272727; background: #2a2a2a url("/images/altbutton.gif") repeat-x; text-shadow: #000 1px 1px 0; color: #fff;}
 
 
 /* boxes' content types – tabular */

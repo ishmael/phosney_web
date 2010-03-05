@@ -115,9 +115,9 @@
 			
         };
 
-		Event.onContentReady("div-quickmovement-submit", function () {
-           var oPushButton2 = new YAHOO.widget.Button("qm-submit"); 
-        });
+		//Event.onContentReady("div-quickmovement-submit", function () {
+        //   var oPushButton2 = new YAHOO.widget.Button("qm-submit"); 
+        //});
 		
 		
 		Event.onContentReady("datefields", function () {

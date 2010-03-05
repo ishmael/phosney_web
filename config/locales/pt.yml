@@ -28,8 +28,8 @@ pt:
       or : "ou"     
       accounts: "Contas" 
     bankaccounts:
-      name: "Contas Bancária"
-      title: "Conta Bancárias"
+      name: "Conta Bancária"
+      title: "Contas Bancárias"
       tagline: "Saldos bancários:"
       newaccount: "Adicionar Conta Bancária"
       accountname: "Nome"

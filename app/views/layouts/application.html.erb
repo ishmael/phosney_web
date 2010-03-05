@@ -3,8 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><%=  I18n.t('layout.application.title') %></title>
-<%= GMap.header %>
-<%= @map.to_html unless @map.blank? %>
+
 <!--javascript-->
 <%= javascript_include_tag 'yui/yahoo-dom-event/yahoo-dom-event','yui/calendar/calendar-min','yui/container/container_core-min','yui/element/element-min','yui/button/button-min','yui/menu/menu-min','application' %>
 <!--css-->
