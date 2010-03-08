@@ -1,18 +1,20 @@
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.tags.name') %></h2>
-            <div class="container1">
-<% form_for(@tag) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label I18n.t('layout.tags.name') %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit I18n.t('layout.application.update')  %>
-  </p>
-<% end %>
-
-<%= link_to I18n.t('layout.application.back'), tags_path %>
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->
+<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.tags.name') %></h3>
+		</div>	
+		<% form_for(@tag,:html =>{:class => 'basic'}) do |f| %>
+		<div class="inner-form">
+			<dl>    
+				<%= render :partial => "form", :object => f %>
+					<dd class="submit">
+						<div>
+							<%= f.submit I18n.t('layout.application.update'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
+							<%= link_to I18n.t('layout.application.cancel'), tags_path %>
+						</div>
+					</dd>
+			</dl>				
+		</div>
+		<% end %>
+	</div>
+</div>

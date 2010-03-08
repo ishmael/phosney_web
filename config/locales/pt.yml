@@ -26,7 +26,8 @@ pt:
       details: "Detalhes"
       send: "Enviar"
       or : "ou"     
-      accounts: "Contas" 
+      accounts: "Contas"
+      actions: "Acções" 
     bankaccounts:
       name: "Conta Bancária"
       title: "Contas Bancárias"
@@ -110,10 +111,11 @@ pt:
     sharedinvitations:
        name: "Partilhar Conta"
        new: "Partilhar esta Conta"
+       pending: "Partilhas pendentes"
        email: "Email"
        candelete: "Apaga"
        caninsert: "Insere"
-       canupdate: "Actualiza"	   
+       canupdate: "Actualiza"
     accountsusers:
        name: "Conta Partilhada"
        user: "Utilizador"

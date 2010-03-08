@@ -1,27 +1,43 @@
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.categories.title') %></h2>
-            <div class="container1">
-
-<table class="broom_table">
- <thead>
-  <tr>
-    <th scope="col"><%=  I18n.t('layout.categories.name') %></th>   
-    <th scope="col"></th>
-  </tr>
-</thead>   
-<tbody>
-<% @categories.each do |category| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h category.name %></td>   
-    <td><%= link_to I18n.t('layout.application.edit'), edit_category_path(category.id),:class => 'table_edit' %>
-    <%= link_to I18n.t('layout.application.delete'),  category_path(category.id) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
-
-<br />
-
-<%= link_to I18n.t('layout.categories.new'), new_category_path %>
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->
+<div class="box box-100 altbox "><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.categories.title') %></h3>
+			<% if not  @categories.empty? %>
+				<%= link_to I18n.t('layout.categories.new'), new_category_path ,:class => 'button'%>
+			<% end%>
+		</div>
+		<div class="content">
+			<% if not  @categories.empty? %>
+			<table cellspacing="0">
+				<thead>
+					<tr>
+						<th class="first"><%=  I18n.t('layout.categories.name') %></th>
+						<td class="tc last actions"><%=  I18n.t('layout.application.actions') %></td>
+					</tr>
+				</thead>
+				<tbody>
+						<% @categories.each_with_index do |category,i| %>	
+							<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+								<th class="first"><%=h category.name %></th>
+								<td class="tc last">
+									 <ul class="actions">
+										<li>
+											<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_category_path(category.id),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
+										</li>
+										<li>
+							    <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  category_path(category.id) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						<% end %>	
+				</tbody>
+			</table>
+			<% else %>
+				<div class="tc" style="margin:10px;">
+					<%= link_to I18n.t('layout.categories.new'), new_category_path %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

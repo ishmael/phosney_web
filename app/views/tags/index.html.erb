@@ -1,27 +1,35 @@
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.tags.title') %></h2>
-            <div class="container1">
+<div class="box box-first box-100 altbox "><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.tags.title') %></h3>
+		</div>
+		<div class="content">
+			<table cellspacing="0">
+				<thead>
+					<tr>
+						<th class="first"><%=  I18n.t('layout.tags.name') %></th>
+						<td class="tc last actions"><%=  I18n.t('layout.application.actions') %></td>
+					</tr>
+					</thead>
+						<tbody>
+						<% @tags.each_with_index do |tag,i| %>	
+							<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+								<th class="first"><%=h tag.name %></th>
+								<td  class="tc last">
+									 <ul class="actions">
+										<li>
+											<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_tag_path(tag.id),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
+										</li>
+										<li>
+							    <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  tag_path(tag.id) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
+										</li>
+									</ul>							
+								</td>
+							</tr>
+						<% end %>	
+						</tbody>
+			</table>
 
-<table class="broom_table">
- <thead>
-  <tr>
-    <th scope="col"><%=  I18n.t('layout.tags.name') %></th>   
-    <th scope="col"></th>
-  </tr>
-</thead>   
-<tbody>
-<% @tags.each do |tag| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h tag.name %></td>   
-    <td><%= link_to I18n.t('layout.application.edit'), edit_tag_path(tag.id),:class => 'table_edit' %>
-    <%= link_to I18n.t('layout.application.delete'),  tag_path(tag.id) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
-
-<br />
-
-<!--<%= link_to I18n.t('layout.tags.new'), new_category_path %>-->
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->
+		</div>
+	</div>
+</div>

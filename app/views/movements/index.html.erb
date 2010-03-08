@@ -1,135 +1,204 @@
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.movements.name') %></h2>
-            <div class="container1">
-
-<table class="broom_table">
- <thead>
-  <tr>
-    <th scope="col"><%=  I18n.t('layout.movements.description') %></th>
-    <th scope="col"><%=  I18n.t('layout.movements.amount') %></th>
-    <th scope="col"><%=  I18n.t('layout.movements.type') %></th>
-    <th scope="col"><%=  I18n.t('layout.movements.movdate') %></th>
-    <th scope="col"></th>
-  </tr>
-</thead>   
-<tbody>
-<% @movements.each do |movement| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%= link_to movement.description, polymorphic_path([@account,movement])%></td>
-    <td><%=h number_to_currency(movement.amount) %></td>
-    
-    <td><%=h movement.type_of_movement %></td>
-    
-    <td><%=h movement.movdate.to_date %></td>
-    <td>
-	<% if movement.user_id == @current_user.id %>
-		<%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,movement]),:class => 'table_edit' %>
-		<%= link_to I18n.t('layout.application.delete'),  polymorphic_path([@account,movement]) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %>			
-	<% else %>
-		<% if @account.allow_edit == '1' %>
-		<%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,movement]),:class => 'table_edit' %>
-		<% end %>
-		<% if @account.allow_delete == '1' %>
-		<%= link_to I18n.t('layout.application.delete'),  polymorphic_path([@account,movement]) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %>
-		<% end %>
-	<% end %>
-	</td>
-  </tr>
-<% end %>
-</tbody>
-</table>
-
-<br />
-<% if @account.allow_insert == '1' %>
-<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) %>
-<% end %>
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->
-
-		  <div class="tabbertab">
-	            <h2><%=  I18n.t('layout.bankaccounts.title') %></h2>
-	            <div class="container1">
-	<p>
-	  <b><%=I18n.t('layout.bankaccounts.accountname') %></b>
-	  <%=h @account.name %>
-	</p>
-
-	<p>
-	  <b><%=  I18n.t('layout.bankaccounts.accountnumber') %></b>
-	  <%=h @account.number %>
-	</p>
-
-	<p>
-	  <b><%=  I18n.t('layout.bankaccounts.accountbank') %></b>
-	  <%=h @account.bank %>
-	</p>
-
-
-
-	
-	<% if @account.type == 'Bankaccount' and @account.owner == '1' %>
-	 <%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(@account),:class => 'table_edit' %>| <%= link_to I18n.t('layout.application.delete'), bankaccount_path(@account), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%>
-	<br/>
-	<br/>
-		<% sharedaccountinvitations = @account.shared_account_invitations.find(:all) %>
-		<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]) %>
-		<br/>
-		<br/>	
-		<% if not sharedaccountinvitations.empty? %>
-			<table class="broom_table">
-			 <thead>
-			  <tr>
-				<th scope="col"><%=  I18n.t('layout.sharedinvitations.email') %></th>
-				<th scope="col"><%=  I18n.t('layout.sharedinvitations.caninsert') %></th>
-				<th scope="col"><%=  I18n.t('layout.sharedinvitations.canupdate') %></th>
-				<th scope="col"><%=  I18n.t('layout.sharedinvitations.candelete') %></th>
-				<th scope="col"></th>
-			  </tr>
-			</thead>   
-			<tbody>
-			<% sharedaccountinvitations.each do |sharedaccountinvitation| %>
-			  <tr class="<%= cycle('odd', 'even') %>">
-				<td><%=h sharedaccountinvitation.recipient_email %></td>
-				<td><%= check_box_tag "allow_insert",sharedaccountinvitation.allow_insert,sharedaccountinvitation.allow_insert ==1,:disabled => true %></td>
-				<td><%= check_box_tag "allow_edit", sharedaccountinvitation.allow_edit,sharedaccountinvitation.allow_edit==1,:disabled => true %></td>
-				<td><%= check_box_tag "allow_delete", sharedaccountinvitation.allow_delete,sharedaccountinvitation.allow_delete==1,:disabled => true %></td>    
-				<td><%= link_to I18n.t('layout.application.delete'),  polymorphic_path([@account,sharedaccountinvitation]) , :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete' %></td>
-			  </tr>
+<div class="box box-first box-75 altbox "><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.movements.name') %></h3>
+			<% if not  @movements.empty? %>
+					<% if @account.allow_insert == '1' %>
+					<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) ,:class => 'button'%>
+					<% end %>
 			<% end %>
-			</tbody>
-			</table>
-			<br/>
-		<% end %>
-		
-			<% if not @shares.empty? %>
-				<table class="broom_table">
-				 <thead>
-				  <tr>
-					<th scope="col"><%=  I18n.t('layout.accountsusers.user') %></th>
-					<th scope="col"><%=  I18n.t('layout.accountsusers.caninsert') %></th>
-					<th scope="col"><%=  I18n.t('layout.accountsusers.canupdate') %></th>
-					<th scope="col"><%=  I18n.t('layout.accountsusers.candelete') %></th>
-					<th scope="col"></th>
-				  </tr>
-				</thead>   
+		</div>
+		<div class="content">
+			<% if not  @movements.empty? %>
+			<table cellspacing="0">
+				<thead>
+					<tr>
+						<th class="first"><%=  I18n.t('layout.movements.description') %></th>
+						<th class="first"><%=  I18n.t('layout.movements.amount') %></th>
+						<th class="first"><%=  I18n.t('layout.movements.type') %></th>
+						<th class="first"><%=  I18n.t('layout.movements.movdate') %></th>
+						<td class="tc last actions"><%=  I18n.t('layout.application.actions') %></td>
+					</tr>
+				</thead>
 				<tbody>
-				<% @shares.each do |myshares| %>
-				  <tr class="<%= cycle('odd', 'even') %>">
-					<td><%=h myshares.login %></td>
-					<td><%= check_box_tag "allow_insert",myshares.allow_insert,myshares.allow_insert ==1,:disabled => true %></td>
-					<td><%= check_box_tag "allow_edit", myshares.allow_edit,myshares.allow_edit==1,:disabled => true %></td>
-					<td><%= check_box_tag "allow_delete", myshares.allow_delete,myshares.allow_delete==1,:disabled => true %></td>    
-					<td><%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,myshares]),:class => 'table_edit' %></td>
-				  </tr>
-				<% end %>
+						<% @movements.each_with_index do |movement,i| %>	
+							<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+								<td class="first"><%= link_to movement.description, polymorphic_path([@account,movement])%></td>
+							    <td class="tr"><%=h number_to_currency(movement.amount) %></td>
+
+							    <td class="tc"><%=h movement.type_of_movement %></td>
+
+							    <td><%=h movement.movdate.to_date %></td>				
+								<td class="tc last">
+									<% if movement.user_id == @current_user.id %>
+									<ul class="actions">
+										<li>
+											<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_polymorphic_path([@account,movement]),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
+										</li>
+										<li>
+							    <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  polymorphic_path([@account,movement]) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
+										</li>
+									</ul>		
+									<% else %>
+									<ul class="actions">
+										
+										<% if @account.allow_edit == '1' %>
+										<li>
+										<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_polymorphic_path([@account,movement]),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>
+										</li>
+										<% end %>
+										<% if @account.allow_delete == '1' %>
+										<li>
+										<%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  polymorphic_path([@account,movement]) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
+										</li>
+										
+										<% end %>
+									</ul>
+									<% end %>
+									
+									 
+								</td>
+							</tr>
+						<% end %>	
 				</tbody>
-				</table>
-				<br/>
+			</table>
+			<% else %>
+				<div class="tc" style="margin:10px;">	<% if @account.allow_insert == '1' %>
+					<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) %>
+					<% end %></div>
 			<% end %>
-		
-		
-		
-	<% end %>
+		</div>
+	</div>
+</div>
+<div class="box box-25 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3> <%=  I18n.t('layout.bankaccounts.name') %></h3>
+		</div>
+		<div class="inner-form">
+			<div class="basic">
+			<dl>
+			  <dt><%= I18n.t('layout.bankaccounts.accountname') %></dt>
+			  <dd><%=h @account.name %></dd>
+			  <dt><%= I18n.t('layout.bankaccounts.accountnumber')  %></dt>
+			  <dd><%=h @account.number%></dd>
+			  <dt><%= I18n.t('layout.bankaccounts.accountbank') %></dt>
+			  <dd><%=h @account.bank  %></dd>
+			  <dd class="submit">
+					<div>
+						<% if @account.type == 'Bankaccount' and @account.owner == '1' %>
+						<ul class="actions">
+							
+							<li>
+							<%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(@account),:class  =>'button' %>
+							</li>
+							<li>
+							<%= link_to I18n.t('layout.application.delete'),  bankaccount_path(@account), {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'button' } %>
+							</li>
+							</ul>
+						<% end %>
+					</div>
+				</dd>
+			</dl>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% if @account.type == 'Bankaccount' and @account.owner == '1' %>  
+<% sharedaccountinvitations = @account.shared_account_invitations.find(:all) %>
+
+<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.sharedinvitations.pending') %></h3>
+			<% if not sharedaccountinvitations.empty? %>
+			<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'button' %>
+			<% end %>
+		</div>
+		<div class="content">
+		<div >
+				<% if not sharedaccountinvitations.empty? %>
+				<table cellspacing="0">
+					<thead>
+						<tr>
+							<th class="first"><%=  I18n.t('layout.sharedinvitations.email') %></th>
+							<td class="tc"><%=  I18n.t('layout.sharedinvitations.caninsert') %></td>
+							<td class="tc"><%=  I18n.t('layout.sharedinvitations.canupdate') %></td>
+							<td class="tc"><%=  I18n.t('layout.sharedinvitations.candelete') %></td>
+							<td class="tc actions last"><%=  I18n.t('layout.application.actions') %></td>
+						</tr>
+					</thead>
+					<tbody>
+					<% @sharedaccountinvitations.each_with_index do |sharedaccountinvitation,i| %>	
+						<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+							<th  class="first"><%=h sharedaccountinvitation.recipient_email %></td>
+							<td class="tc"><%= check_box_tag "allow_insert",sharedaccountinvitation.allow_insert,sharedaccountinvitation.allow_insert ==1,:disabled => true %></td>
+							<td class="tc"><%= check_box_tag "allow_edit", sharedaccountinvitation.allow_edit,sharedaccountinvitation.allow_edit==1,:disabled => true %></td>
+							<td class="tc"><%= check_box_tag "allow_delete", sharedaccountinvitation.allow_delete,sharedaccountinvitation.allow_delete==1,:disabled => true %></td>    
+							<td class="tc last">
+								<ul class="actions">
+									<li>
+						    <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  polymorphic_path([@account,sharedaccountinvitation]) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
+									</li>
+								</ul>							
+							</td>
+						  </tr>
+						</tr>
+					<% end %>	
+					</tbody>
+				</table>	
+				<% else %>
+					<div class="tc" style="margin:10px;">	<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]) %></div>
+				<% end %>		
+		</div>
+ </div>
+</div>      
+	<% end %>	
 	
-	            </div><!--/end .container1-->
-	        </div><!--/end .tabbertab-->
+	<% if not @shares.empty? %>	
+	<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+		<div class="boxin">
+			<div class="header">
+				<h3><%=  I18n.t('layout.sharedinvitations.pending') %></h3>
+				<% if not sharedaccountinvitations.empty? %>
+				<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'button' %>
+				<% end %>
+			</div>
+			<div class="content">
+			<div >
+					
+					<table cellspacing="0">
+						<thead>
+							<tr>
+								<th class="first"><%=  I18n.t('layout.accountsusers.user') %></th>
+								<td class="tc"><%=  I18n.t('layout.accountsusers.caninsert') %></td>
+								<td class="tc"><%=  I18n.t('layout.accountsusers.canupdate') %></td>
+								<td class="tc"><%=  I18n.t('layout.accountsusers.candelete') %></td>							
+								<td class="tc actions last"><%=  I18n.t('layout.application.actions') %></td>
+							</tr>
+						</thead>
+						<tbody>
+						<% @shares.each_with_index do |myshares,i| %>	
+							<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+								<th  class="first"><%=h myshares.login %></td>
+								<td class="tc"><%= check_box_tag "allow_insert",myshares.allow_insert,myshares.allow_insert ==1,:disabled => true %></td>
+								<td class="tc"><%= check_box_tag "allow_edit", myshares.allow_edit,myshares.allow_edit==1,:disabled => true %></td>
+								<td class="tc"><%= check_box_tag "allow_delete", myshares.allow_delete,myshares.allow_delete==1,:disabled => true %></td>    
+								<td><%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,myshares]),:class => 'table_edit' %></td>								
+								<td class="tc last">
+									<ul class="actions">
+										<li>
+									<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_polymorphic_path([@account,myshares]),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>
+									   </li>
+									</ul>							
+								</td>
+							  </tr>
+							</tr>
+						<% end %>	
+						</tbody>
+					</table>	
+					<% end %>		
+			</div>
+	 </div>
+	</div>

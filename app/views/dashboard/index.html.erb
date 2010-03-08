@@ -9,27 +9,27 @@
 						<table cellspacing="0">
 							<thead>
 								<tr>
-									<th><%=  I18n.t('layout.bankaccounts.name') %></th>
-									<td class="tc"><%=  I18n.t('layout.bankaccounts.accountbalance') %></td>
+									<th class="first"><%=  I18n.t('layout.bankaccounts.name') %></th>
+									<td class="last"><%=  I18n.t('layout.bankaccounts.accountbalance') %></td>
 								</tr>
 							</thead>
 							<tbody>
-							<% @bankaccounts.each do |bankaccount| %>	
-								<tr ><!--  class="first" .first for first row of the table (only if there is thead) -->
-									<th><%=h bankaccount.name %></th>
-									<td class="tc"><%=h number_to_currency(bankaccount.account_balance) %></td>
+							<% @bankaccounts.each_with_index do |bankaccount,i| %>	
+								<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+									<th class="first"><%=h bankaccount.name %></th>
+									<td class="tr"><%=h number_to_currency(bankaccount.account_balance) %></td>
 								</tr>
 							<% end %>	
 								<tr>
-									<th><%=  I18n.t('layout.bankaccounts.total') %></th>
-									<td class="tc"><%= number_to_currency(@bankaccounts.sum { |item| item.account_balance }) %></td>
+									<th class="first"><%=  I18n.t('layout.bankaccounts.total') %></th>
+									<td class="tr"><%= number_to_currency(@bankaccounts.sum { |item| item.account_balance }) %></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
-				<div class="box box-50  altbox"><!-- .altbox for alternative box's color -->
+				<div class="box box-last box-50  altbox"><!-- .altbox for alternative box's color -->
 					<div class="boxin">
 						<div class="header">
 							<h3> <%=  I18n.t('layout.movements.tag5line') %></h3>
@@ -38,17 +38,17 @@
 							<table cellspacing="0">
 								<thead>
 									<tr>
-										<th> <%=  I18n.t('layout.movements.description') %></th>
+										<th class="first"> <%=  I18n.t('layout.movements.description') %></th>
 										<td class="tc"><%=  I18n.t('layout.movements.amount') %></td>
-										<td class="tc"><%=  I18n.t('layout.movements.type') %></td>
+										<td class="last"><%=  I18n.t('layout.movements.type') %></td>
 									</tr>
 								</thead>
 								<tbody>
-								<% @last5movements.each do |movement| %>	
-									<tr ><!--  class="first" .first for first row of the table (only if there is thead) -->
-										<th><%=h movement.description %></th>
-										<td class="tc"><%=h  number_to_currency(movement.amount) %></td>
-										<td class="tc"><%=h  movement.type_of_movement %></td>
+								<% @last5movements.each_with_index do |movement,i| %>	
+									<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+										<th class="first"><%=h movement.description %></th>
+										<td class="tr"><%=h  number_to_currency(movement.amount) %></td>
+										<td ><%=h  movement.type_of_movement %></td>
 									</tr>
 								<% end %>	
 								</tbody>
@@ -56,18 +56,18 @@
 						</div>
 					</div>
 				</div>
-					<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
-						<div class="boxin">
-							<div class="header">
-								<h3>Movimentos por Dia</h3>
-							</div>
-							<div class="content">
-			  <div >
-		 	   <% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
-		        render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%><% end-%>
-			  </div>
+				<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
+					<div class="boxin">
+						<div class="header">
+							<h3>Movimentos por Mês</h3>
+						</div>
+						<div class="content">
+			  			<div >
+		 	   				<% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
+		        			render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 950, 250, false, false do-%><% end-%>
+			  			</div>
+			     </div>
 			</div>
-		</div>
 	</div>
 </div>
          

@@ -10,7 +10,7 @@
 				<dd class="submit">
 					<div>
 					<%= f.submit I18n.t('layout.application.update'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
-					<%= link_to I18n.t('layout.application.cancel'), creditcardaccounts_path %>
+					<%= link_to I18n.t('layout.application.cancel'), polymorphic_path([@creditcardaccount,:movements]) %>
 					</div>
 				</dd>
 			</dl>				
