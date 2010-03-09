@@ -1,36 +1,30 @@
-<% form_for @user_session, :html => { :class => "login_form"}, :url => user_session_path do |f| %>
-  <fieldset>
-	<% if not f.error_messages.blank? %>
-		<div class="notification error">
-		<a href="#" class="close">close</a>
-		<em>
-		<%= f.error_messages :header_message => nil, 
-		:message => nil, 
-		:header_tag => :h3 %>
-		</em> 
-		</div>
-		
-	<% end %>
-	
-	 <div style="display:inline-block;">    
-	<%= f.label :login, I18n.t('layout.users.username') %>	 
-	<%= f.text_field :login %>	
-    </div>
-
-
-  <div style="display:inline-block;">    
-  	<%= f.label :password, I18n.t('layout.users.password') %>	 
-    <%= f.password_field :password %>
-  </div>
-<div style="display:inline-block;">    
-<button type="submit">Log in</button>
+<div class="header">
+	<h3><img src="/images/logo_top.png" alt="Phosney" /></h3>
+	<ul>
+		<li><%= link_to 'Login', login_path  , {:class => "active"} %></li><!-- .active for active tab -->
+		<li><%= link_to I18n.t('layout.users.register'), new_account_path %></li>
+		<li> <%= link_to I18n.t('layout.users.recoverpassword'), new_password_reset_path%></li>
+	</ul>
 </div>
-      
-  
- <%= link_to I18n.t('layout.users.recoverpassword'), new_password_reset_path , {:class => "forgot_login"}%>
- <%= link_to I18n.t('layout.users.register'), new_account_path , {:class => "forgot_login"}%>
-  
-  </fieldset>
+<% form_for @user_session, :html => { :class => "basic"}, :url => user_session_path do |f| %>
+<div class="inner-form">
+	<% if not f.error_messages.blank? %>
+  		<div class="msg msg-error">
+			<%= f.error_messages  :header_message => nil, :message => nil %>
+		</div>
   <% end %>
+<dl>
+	<dt><%= f.label :login,I18n.t('layout.users.username') %></dt>
+	<dd><%= f.text_field :login , :class => 'txt' %></dd>
+	<dt><%= f.label :password, I18n.t('layout.users.password')  %></dt>
+	<dd><%= f.password_field :password , :class => 'txt' %></dd>
+	<dd class="submit">
+		<div>
+		<%= f.submit 'Login',:class => 'button' %> 
+		</div>
+	</dd>
+</dl>
+</div>
+<% end %>
 
       

@@ -1,17 +1,27 @@
-<h1>Forgot Password</h1>
- 
-Fill out the form below and instructions to reset your password will be emailed to you:<br />
-<br />
- 
-<% form_tag password_resets_path ,  :class => "register_form" do  %>
+<div class="header">
+	<h3><img src="/images/logo_top.png" alt="Phosney" /></h3>
+	<ul>
+		<li><%= link_to 'Login', login_path  %></li><!-- .active for active tab -->
+		<li><%= link_to I18n.t('layout.users.register'), new_account_path %></li>
+		<li> <%= link_to I18n.t('layout.users.recoverpassword'), new_password_reset_path, {:class => "active"} %></li>
+	</ul>
+</div>
+<% form_tag password_resets_path ,  :class => "basic" do  %>
+<div class="inner-form">
 <% if not flash[:notice].blank? %>
-  <div class="notification error"><a href="#" class="close">close</a><em><img src="/images/icons/cross_circle.png" alt=""/>
-<%= flash[:notice] %></em> </div>
+  		<div class="msg msg-error">
+			<div><%= flash[:notice] %></div>
+		</div>
   <% end %>
-<fieldset>
-  <label class="label2">Email:</label><br />
-  <%= text_field_tag "email" %><br />
-  <br />
-  <%= submit_tag "Reset my password" %>
-</fieldset>
+<dl>
+	Fill out the form below and instructions to reset your password will be emailed to you:
+	<dt><label class="label2">Email:</label></dt>
+	<dd><%= text_field_tag :email , nil,:class => 'txt' %></dd>	
+	<dd class="submit">
+		<div>
+		<%= submit_tag "Reset my password",:class => 'button' %> 
+		</div>
+	</dd>
+</dl>
+</div>
 <% end %>

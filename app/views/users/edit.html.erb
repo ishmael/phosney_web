@@ -1,13 +1,20 @@
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.users.title') %></h2>
-            <div class="container1">
-
- 
-<% form_for @user, :url => account_path do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit I18n.t('layout.application.update') %><%= button_to I18n.t('layout.application.cancel'), account_path %>
-<% end %>
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->
- 
+<div id="users_div" class="box box-first box-75 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.users.title') %></h3>
+		</div>
+		<% form_for(@user , :url => account_path,:html =>{:class => 'basic'}) do |f| %>
+		<div class="inner-form">
+			<dl>
+			    <%= render :partial => "form", :object => f %>
+				<dd class="submit">
+					<div>
+							<%= f.submit I18n.t('layout.application.update'),:class => 'button' %> <%= I18n.t('layout.application.or') %>
+							<%= link_to I18n.t('layout.application.cancel'), account_path %>
+					</div>
+				</dd>
+			</dl>				
+		</div>
+		<% end %>
+	</div>
+</div>   

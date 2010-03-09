@@ -1,14 +1,27 @@
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.users.title') %></h2>
-            <div class="container1">
-<p>
-  <b><%=  I18n.t('layout.users.username') %></b>
-  <%=h @user.login %>
-</p>
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
-<%= link_to I18n.t('layout.application.edit'), edit_account_path %>
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->
+<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.users.title') %></h3>
+		</div>
+		<div  class="inner-form">
+			<div class="basic">			
+				<dl>
+				  <dt><%= I18n.t('layout.users.username') %></dt>
+				  <dd><%=h @user.login %></dd>
+				  <dt>Email</dt>
+				  <dd><%=h @user.email%></dd>
+				  <dd class="submit">
+						<div>
+							<ul class="actions">
+
+								<li>	
+						<%= link_to I18n.t('layout.application.edit'), edit_account_path ,:class => 'button' %>
+						</li>
+						</ul>
+						</div>
+				 </dd>	   
+				</dl>			
+		   </div>
+		</div>
+	</div>
+</div>

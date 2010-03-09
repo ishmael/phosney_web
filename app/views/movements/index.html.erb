@@ -63,7 +63,7 @@
 				</tbody>
 			</table>
 			<% else %>
-				<div class="tc" style="margin:10px;">	<% if @account.allow_insert == '1' %>
+				<div class="basic tc" style="margin:10px;">	<% if @account.allow_insert == '1' %>
 					<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) %>
 					<% end %></div>
 			<% end %>
@@ -86,7 +86,7 @@
 			  <dd><%=h @account.bank  %></dd>
 			  <dd class="submit">
 					<div>
-						<% if @account.type == 'Bankaccount' and @account.owner == '1' %>
+						<% if @account.owner == '1' %>
 						<ul class="actions">
 							
 							<li>
@@ -116,8 +116,7 @@
 			<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'button' %>
 			<% end %>
 		</div>
-		<div class="content">
-		<div >
+		<div class="basic">
 				<% if not sharedaccountinvitations.empty? %>
 				<table cellspacing="0">
 					<thead>
@@ -149,9 +148,8 @@
 					</tbody>
 				</table>	
 				<% else %>
-					<div class="tc" style="margin:10px;">	<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]) %></div>
+				<div class="tc" style="margin:10px;"><%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]) %></div>
 				<% end %>		
-		</div>
  </div>
 </div>      
 	<% end %>	
