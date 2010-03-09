@@ -43,13 +43,13 @@ class MovementsController < ApplicationController
   end
 
   def quickcreate
-  		@movement = Movement.new(params[:movement])
-		@movement.user_id = @current_user.id	
-		if @movement.save
-			@movement.save_tags(current_user)
+  		@quick_movement = Movement.new(params[:movement])
+		@quick_movement.user_id = @current_user.id	
+		if @quick_movement.save
+			@quick_movement.save_tags(current_user)
 			redirect_to( request.referer ) 
         else
-			flash[:quickmovement] = @movement
+			flash[:quickmovement] = @quick_movement
     		redirect_to request.referer 
 		end
   end
@@ -69,7 +69,7 @@ class MovementsController < ApplicationController
   def new
     @movement = @account.movements.new
     @movement.mov_type = -1
-	
+	  @movement.user_id = @current_user.id
     respond_to do |format|
 		format.html # new.html.erb
 	    format.iphone  { render :layout => false }

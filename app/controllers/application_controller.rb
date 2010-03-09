@@ -20,11 +20,11 @@ class ApplicationController < ActionController::Base
   
     def addmovement
 		if  not flash[:quickmovement] and not current_user.nil?
-			@movement = Movement.new
-			@movement.movdate = Date.today
-			@movement.mov_type = -1
+			@quick_movement = Movement.new
+			@quick_movement.movdate = Date.today
+			@quick_movement.mov_type = -1
 		elsif flash[:quickmovement]
-			@movement = flash[:quickmovement]
+			@quick_movement = flash[:quickmovement]
 		end
 	end
 	

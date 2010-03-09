@@ -24,6 +24,8 @@ en:
       or : "or"
       accounts: "Accounts" 
       actions: "Actions"     
+      movsbyday: "Movements by Day"
+      movsbymonth: "Movements by Month"  
     bankaccounts:
       name: "Account"
       title: "Accounts"

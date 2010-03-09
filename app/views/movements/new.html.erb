@@ -1,43 +1,20 @@
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.movements.title') %></h2>
-            <div class="container1">
-
-<% form_for([@account,@movement]) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :description ,I18n.t('layout.movements.description') %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :amount,I18n.t('layout.movements.amount') %><br />
-    <%= f.text_field :amount %>
-  </p>
-  <p>
-    <%= f.radio_button :mov_type,"-1" %><%=  I18n.t('layout.movements.debit') %>
-    <%= f.radio_button :mov_type,"1" %><%=  I18n.t('layout.movements.credit') %>
-  </p>
-  <p>
-    <%= f.label :movdate,I18n.t('layout.movements.movdate') %><br />
-    <%= f.date_select :movdate %>
-  </p>
-  <p>
-    <%= f.check_box :private %>
-	<%= f.label I18n.t('layout.movements.private') %><br />
-  </p>  
-  <p>
-  <%= f.label :category_id ,I18n.t('layout.movements.category') %><br />
-  <%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => true %>
-  </p>
-  <p>
-	tags:<br />
-	<%= f.text_field :tag_list %>
-  </p>
-  <p>
-    <%= f.submit I18n.t('layout.application.create') %>
-  </p>
-<% end %>
-
-<%= link_to I18n.t('layout.movements.back'), polymorphic_path([@account,:movements]) %>
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->
+<div id="movements_div" class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.movements.title') %></h3>
+		</div>
+			<% form_for([@account,@movement],:html =>{:class => 'basic'}) do |f| %>
+    		<div  class="inner-form">
+				<dl>
+					<%= render :partial => "form", :object => f %>
+					<dd class="submit">
+						<div>
+							<%= f.submit I18n.t('layout.application.create'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
+							<%= link_to I18n.t('layout.application.cancel'), polymorphic_path([@account,:movements]) %>
+						</div>
+					</dd>
+				</dl>				
+			</div>
+			<% end %>
+	</div>
+</div>

@@ -1,40 +1,57 @@
 <%= javascript_include_tag "FusionCharts"%>
+<div class="box box-first box-50 altbox "><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.bankaccounts.tagline') %></h3>
+		</div>
+		<div class="content">
+			<table cellspacing="0">
+				<thead>
+					<tr>
+						<th class="first"><%=  I18n.t('layout.loanaccounts.name') %></th>
+						<td class="tr"><%=  I18n.t('layout.loanaccounts.accountbalance') %></td>
+						<td class="tc last actions"><%=  I18n.t('layout.application.actions') %></td>
+					</tr>
+				</thead>
+				<tbody>
+				<% @loanaccounts.each_with_index do |loanaccount,i| %>	
+					<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+						<th class="first"><%=h loanaccount.name %></th>
+						<td class="tr"><%=h number_to_currency(loanaccount.account_balance) %></td>
+						<td class="tc last">
+							<ul class="actions">
+								<li>
+									<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_loanaccount_path(loanaccount),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
+								</li>
+								<li>
+						    <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  loanaccount_path(loanaccount) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				<% end %>	
+					<tr>
+						<th class="first"><%=  I18n.t('layout.loanaccounts.total') %></th>
+						<td class="tr"><%= number_to_currency(@loanaccounts.sum { |item| item.account_balance }) %></td>
+						<td class="last"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>	
 
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.loanaccounts.name') %></h2>
-            <div class="container1">
-
-<table class="broom_table">
- <thead>
-  <tr>
-    <th scope="col"><%=  I18n.t('layout.loanaccounts.accountname') %></th>  
-    <th scope="col"><%=  I18n.t('layout.loanaccounts.accountbank') %></th>
-    <th scope="col"><%=  I18n.t('layout.loanaccounts.accountbalance') %></th>    
-    <th scope="col"></th>
-  </tr>
- </thead>
-<% @loanaccounts.each do |loanaccount| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h loanaccount.name %></td>
-    <td><%=h loanaccount.bank %></td>
-    <td><%=h number_to_currency(loanaccount.account_balance) %></td>
-    <td>
-    <%= link_to I18n.t('layout.application.edit'), edit_loanaccount_path(loanaccount),:class => 'table_edit' %>
-    <%= link_to I18n.t('layout.application.delete'), loanaccount_path(loanaccount), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%></td>
-  </tr>
-<% end %>
-<tr>
-<td></td>
-<td><%=  I18n.t('layout.loanaccounts.total') %></td>
-<td><%= number_to_currency(@loanaccounts.sum { |item| item.account_balance }) %></td>
-<td></td>
-</tr>
-</table>
-
-<br />
-
-<% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:spending_data => @spending_data
-    render_chart '/FusionCharts/FCF_MSLine.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%> 
-<% end-%> 
-</div><!--/end .container2-->
-   </div><!--/end .tabbertab-->
+	<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
+			<div class="boxin">
+				<div class="header">
+					<h3><%=  I18n.t('layout.application.movsbyday') %></h3>
+				</div>
+				<div class="content">
+	  			<div >
+					<% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:spending_data => @spending_data
+					    render_chart '/FusionCharts/FCF_MSLine.swf', '', str_xml, 'SpendingChart', 950, 250, false, false do-%> 
+					<% end-%>
+	  			</div>
+	     </div>
+	</div>
+       

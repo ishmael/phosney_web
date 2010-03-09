@@ -1,0 +1,22 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "movements.js" %>
+<% end %>
+<dt><%= form.label :description , I18n.t('layout.movements.description') %></dt>
+<dd><%= form.text_field :description , :class => 'txt' %></dd>
+<dt><%= form.label :amount,I18n.t('layout.movements.amount')  %></dt>
+<dd><%= form.text_field :amount , :class => 'txt'%></dd>
+<dt><%= form.label I18n.t('layout.movements.debit') %></dt>
+<dd><%= form.radio_button :mov_type,"-1"  %></dd>
+<dt><%= form.label I18n.t('layout.movements.credit') %></dt>
+<dd><%= form.radio_button :mov_type,"1"  %></dd>
+<dt><%= form.label :movdate,I18n.t('layout.movements.movdate') %></dt>
+<dd><div id="movements_controller"> <%= form.date_select :movdate %></div></dd>
+<% if @movement.user_id == @current_user.id %>
+	<dt><%= form.label :private,I18n.t('layout.movements.private') %></dt>
+	<dd><%= form.check_box :private %></dd>
+
+	<dt><%= form.label :category_id,I18n.t('layout.movements.category') %></dt>
+	<dd><div id="mov_category_container"></div><%= form.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => 'None' %></dd>
+	<dt><%= form.label :tag_list,I18n.t('layout.movements.tags') %></dt>
+	<dd><%= form.text_field :tag_list , :class => 'txt'%></dd>
+ <% end %>

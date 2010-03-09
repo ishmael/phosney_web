@@ -1,42 +1,57 @@
 <%= javascript_include_tag "FusionCharts"%>
-
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.bankaccounts.name') %></h2>
-            <div class="container1">
-
-<table class="broom_table">
- <thead>
-  <tr>
-    <th scope="col"><%=  I18n.t('layout.bankaccounts.accountname') %></th>  
-    <th scope="col"><%=  I18n.t('layout.bankaccounts.accountbank') %></th>
-    <th scope="col"><%=  I18n.t('layout.bankaccounts.accountbalance') %></th>    
-    <th scope="col"></th>
-  </tr>
- </thead>
-<% @bankaccountsdata.each do |bankaccount| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%=h bankaccount.name %></td>
-    <td><%=h bankaccount.bank %></td>
-    <td><%=h number_to_currency(bankaccount.account_balance) %></td>
-    <td>
-	<% if bankaccount.owner == '1' %>
-    <%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(bankaccount),:class => 'table_edit' %>
-	<%= link_to I18n.t('layout.application.delete'), bankaccount_path(bankaccount), :confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'table_delete'%>
-	<% end %></td>
-  </tr>
-<% end %>
-<tr class="total">
-<td></td>
-<td><%=  I18n.t('layout.bankaccounts.total') %></td>
-<td><%= number_to_currency(@bankaccountsdata.sum { |item| item.account_balance }) %></td>
-<td></td>
-</tr>
-</table>
-
-<br />
-
-<% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:spending_data => @spending_data
-    render_chart '/FusionCharts/FCF_MSLine.swf', '', str_xml, 'SpendingChart', 750, 250, false, false do-%> 
-<% end-%> 
-</div><!--/end .container2-->
-   </div><!--/end .tabbertab-->
+<div class="box box-first box-50 altbox "><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.bankaccounts.tagline') %></h3>
+		</div>
+		<div class="content">
+			<table cellspacing="0">
+				<thead>
+					<tr>
+						<th class="first"><%=  I18n.t('layout.bankaccounts.name') %></th>
+						<td class="tr"><%=  I18n.t('layout.bankaccounts.accountbalance') %></td>
+						<td class="tc last actions"><%=  I18n.t('layout.application.actions') %></td>
+					</tr>
+				</thead>
+				<tbody>
+				<% @bankaccountsdata.each_with_index do |bankaccount,i| %>	
+					<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+						<th class="first"><%=h bankaccount.name %></th>
+						<td class="tr"><%=h number_to_currency(bankaccount.account_balance) %></td>
+						<td class="tc last">
+							<% if bankaccount.owner == '1' %>
+							<ul class="actions">
+								<li>
+									<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_bankaccount_path(bankaccount),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
+								</li>
+								<li>
+						    <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  bankaccount_path(bankaccount) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
+								</li>
+							</ul>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>	
+					<tr>
+						<th class="first"><%=  I18n.t('layout.bankaccounts.total') %></th>
+						<td class="tr"><%= number_to_currency(@bankaccountsdata.sum { |item| item.account_balance }) %></td>
+						<td class="last"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>	
+	<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
+			<div class="boxin">
+				<div class="header">
+					<h3><%=  I18n.t('layout.application.movsbyday') %></h3>
+				</div>
+				<div class="content">
+	  			<div >
+					<% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:spending_data => @spending_data
+					    render_chart '/FusionCharts/FCF_MSLine.swf', '', str_xml, 'SpendingChart', 950, 250, false, false do-%> 
+					<% end-%>
+	  			</div>
+	     </div>
+	</div>

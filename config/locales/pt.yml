@@ -27,7 +27,9 @@ pt:
       send: "Enviar"
       or : "ou"     
       accounts: "Contas"
-      actions: "Acções" 
+      actions: "Acções"
+      movsbyday: "Movimentos por Dia"
+      movsbymonth: "Movimentos por Mês" 
     bankaccounts:
       name: "Conta Bancária"
       title: "Contas Bancárias"
@@ -220,7 +222,7 @@ pt:
       format:
         unit: '€'
         precision: 2
-        format: "%u%n"
+        format: "%n%u"
         separator: ','
         delimiter: '.'
     percentage:

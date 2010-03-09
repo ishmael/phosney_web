@@ -1,27 +1,24 @@
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.movements.title') %></h2>
-            <div class="container1">
-<p>
-  <b><%= I18n.t('layout.movements.description') %></b>
-  <%=h @movement.description %>
-</p>
-
-<p>
-  <b><%= I18n.t('layout.movements.amount') %></b>
-  <%=h @movement.amount %>
-</p>
-
-<p>
-  <b><%= I18n.t('layout.movements.movdate') %></b>
-  <%=h @movement.movdate %>
-</p>
-<% if (not @movement.lng.blank?) and (not @movement.lat.blank?) %>
-<p>
-<%= @map.div(:width => 400, :height => 300) %>
-
-</p>
-<% end %>
-
-
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->
+<div id="movements_div" class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.movements.title') %></h3>
+		</div>	
+		<div  class="inner-form">
+			<div class="basic">			
+			<dl>
+			  <dt><%= I18n.t('layout.movements.description') %></dt>
+			  <dd><%=h @movement.description %></dd>
+			  <dt><%= I18n.t('layout.movements.amount')  %></dt>
+			  <dd><%=h @movement.amount%></dd>
+			  <dt><%= I18n.t('layout.movements.movdate') %></dt>
+			  <dd><%=h @movement.movdate  %></dd>	
+				<dd class="submit">
+					<div>
+					<%= link_to I18n.t('layout.application.back'), polymorphic_path([@account,:movements]) %>
+					</div>
+				</dd>	   
+			</dl>			
+			</div>	
+		</div>
+	</div>
+</div>

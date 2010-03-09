@@ -30,9 +30,6 @@
 										container: "quickmov_category_container"
 					});
 
-		    var onMenuRenderCategory = function (type, args, button) { 
-						    button.set("selectedMenuItem", this.getItem(0)); 
-			};
 				
 			var onMenuRenderAccount = function (type, args, button) { 
 						    button.set("selectedMenuItem", this.getItem(0)); 
@@ -56,9 +53,6 @@
 
 					};
 
-
-           	var oMenuButtonCategoryMenu = oSelectButtonCategory.getMenu();
-				//oMenuButtonCategoryMenu.subscribe("render", onMenuRenderCategory, oSelectButtonCategory);
 		
 			var oMenuButtonAccountMenu = oSelectButtonAccount.getMenu();
 				oMenuButtonAccountMenu.subscribe("render", onMenuRenderAccount, oSelectButtonAccount);
@@ -114,10 +108,6 @@
             }
 			
         };
-
-		//Event.onContentReady("div-quickmovement-submit", function () {
-        //   var oPushButton2 = new YAHOO.widget.Button("qm-submit"); 
-        //});
 		
 		
 		Event.onContentReady("datefields", function () {
@@ -153,9 +143,9 @@
 						nDay = aDate[2];
 						nYear = aDate[0];
 						// Sync the Calendar instance's selected date with the date form fields
-						Dom.get("movement_movdate_2i").selectedIndex = (nMonth - 1);
-						Dom.get("movement_movdate_3i").selectedIndex = (nDay - 1);
-						Dom.get("movement_movdate_1i").value = nYear;
+						Dom.getChildren("datefields")[2].selectedIndex = (nMonth - 1);
+						Dom.getChildren("datefields")[1].selectedIndex = (nDay - 1);
+						Dom.getChildren("datefields")[3].value = nYear;
 						
 						if (String(nDay).length == 1)
 						{
@@ -259,9 +249,12 @@
 	
 	
 			var oDateFields = Dom.get("datefields");
-				oMonthField = Dom.get("movement_movdate_2i"),
-				oDayField = Dom.get("movement_movdate_3i"),
-				oYearField = Dom.get("movement_movdate_1i");
+				
+				oMonthField = Dom.getChildren("datefields")[2];
+				
+				oDayField = Dom.getChildren("datefields")[1];
+			
+				oYearField = Dom.getChildren("datefields")[3];
 				oDateLabel= "";
 	
 	

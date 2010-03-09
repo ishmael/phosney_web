@@ -54,8 +54,8 @@ STRUCTURE					 */
 #top_menu{width:1000px;margin-top:5px;}
 #quick_movement{margin:0 auto;padding: 3px;background:#ffffff;width:994px;height:50px;}
 #profile_info{ background:#4780ae;float:right; width:200px;height:50px;margin:5px 10px 0px 0px;color:#fff;line-height:10px;}
-#avatar{float:left;margin:0px 10px 0px 5px;padding-top:5px;}
-#footer{background:#ffffff;width:980px;margin:0px auto 10px auto;height:15px;padding:10px;}
+#avatar{float:left;margin:0px 10px 0px 5px;padding-top:5px;min-height:16px;min-width:16px;}
+#footer{background:#ffffff;width:980px;margin: 0 auto 0 auto;height:15px;padding:10px;}
 #footer p{background:none;padding:0px;margin:0px}
 #applicationmenu {
 	margin-bottom:5px;
@@ -219,7 +219,30 @@ LOGO				 */
 		-o-text-overflow: ellipsis;
 }
 
+
+#categorybutton button {
+        outline: none;
+		width:250px;
+}
+
+#categorybutton button em {
+        font-style: normal;
+        display: block;
+        text-align: left;
+        white-space: nowrap;
+        width: 210px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+}
+
+
 #calendarmenu {
+ position: absolute;
+z-index:10;
+ }
+
+#movementscalendarmenu {
  position: absolute;
 z-index:10;
  }
