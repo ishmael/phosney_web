@@ -3,7 +3,7 @@ class Movement < ActiveRecord::Base
   belongs_to :account
   belongs_to :category
   acts_as_taggable
-  validates_presence_of :description
+  validates_presence_of :description,:account_id
   validates_numericality_of :amount
   
   def self.data_by_month(*args)
