@@ -12,10 +12,11 @@ class CreditcardaccountsController < ApplicationController
   # GET /creditcardaccounts/1
   # GET /creditcardaccounts/1.xml
   def show
-    @creditcardaccount = @current_user.creditcardaccounts.find_by_id(params[:id])
+    @creditcardaccount = @current_user.creditcardaccounts.find_accounts_with_balance(params[:id])
 	if @creditcardaccount 
 		respond_to do |format|
 		  format.html # show.html.erb
+		  #
 		end
 	else
 		redirect_to(dashboard_url)

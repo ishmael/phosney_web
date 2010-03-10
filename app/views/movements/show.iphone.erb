@@ -1,10 +1,8 @@
-
-
-
-
 <div class="panel" title="<%=  I18n.t('layout.movements.title')%>" id="movement_details" selected="true">
 <div  class="javascript" >
+	<% if not @map.nil? %>
 <%= @map.to_html(:no_load => true, :no_script_tag=> true)%>
+<% end %>
 </div>
   <h2><%=  I18n.t('layout.application.details')%></h2>
   <fieldset>

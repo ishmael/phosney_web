@@ -1,29 +1,16 @@
 <ul id="home" title="Dashboard" selected="true">
 <li><%= link_to I18n.t('layout.movements.new'), quickmovement_url %></li> 
 <li><%= link_to I18n.t('layout.bankaccounts.name'), bankaccounts_path %></li>
-<li><a href="#loanaccounts"><%=  I18n.t('layout.loanaccounts.name') %></a></li>
-<li><a href="#creditcardaccounts"><%=  I18n.t('layout.creditcardaccounts.name') %></a></li>
+<!--<li><a href="#creditcardaccounts"><%=  I18n.t('layout.creditcardaccounts.name') %></a></li>-->
 <li><a href="#categories"><%=  I18n.t('layout.categories.title') %></a></li>
 <li><a href="#tags"><%=  I18n.t('layout.tags.title') %></a></li>
-<li><%= link_to I18n.t('layout.application.logout'), user_session_path, :method => :delete, :confirm => I18n.t('layout.users.logout') %></li>
+<li><%= link_to I18n.t('layout.application.logout'), logout_path, :method => :delete %></li>
 </ul>
-
-
-
-
-<% loanaccounts = current_user.loanaccounts.find(:all) %>
-<ul id="loanaccounts" title="<%= I18n.t('layout.loanaccounts.name') %>">
-<% loanaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
-<li><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
-<% end %>
-<li><%= link_to I18n.t('layout.loanaccounts.newaccount'), new_loanaccount_path %></li>
-</ul>
-
 
 <ul id="creditcardaccounts" title="<%= I18n.t('layout.creditcardaccounts.name') %>">
 <% creditcardaccounts = current_user.creditcardaccounts.find(:all) %>
 <% creditcardaccounts.sort_by(&:name).each_with_index do |menu,index| %>    
-<li><%= link_to menu.name,  polymorphic_path([menu,:movements]) %></li>
+<li><%= link_to menu.name,creditcardaccount_path(menu)  %></li>
 <% end %>
 <li><%= link_to I18n.t('layout.creditcardaccounts.newaccount'), new_creditcardaccount_path %></li>
 </ul>

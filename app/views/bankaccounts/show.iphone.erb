@@ -15,7 +15,7 @@
 	</div>	
 	<div class="row">
 		<label><%= I18n.t('layout.bankaccounts.accountbalance') %></label>
-		<p><%= @bankaccount.balance.nil? ? number_to_currency(0) : number_to_currency(@bankaccount.balance) %></p>
+		<p><%= number_to_currency(@bankaccount.account_balance) %></p>
 	</div>
 </fieldset>	
 <fieldset>
