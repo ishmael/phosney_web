@@ -11,7 +11,7 @@ class Notifier <ActionMailer::Base
 	
 	
 	def shared_account_invitation(user,invitation)
-	  subject       user..login + " wants to share an account with you"
+	  subject       user.login + " wants to share an account with you"
 	  from          "support@phosney.com"
 	  recipients    invitation.recipient_email
 	  sent_on       Time.now

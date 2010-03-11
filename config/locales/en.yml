@@ -25,7 +25,8 @@ en:
       accounts: "Accounts" 
       actions: "Actions"     
       movsbyday: "Movements by Day"
-      movsbymonth: "Movements by Month"  
+      movsbymonth: "Movements by Month"
+      newpassword: "New Password"  
     bankaccounts:
       name: "Account"
       title: "Accounts"
@@ -116,6 +117,7 @@ en:
        canupdate: "Update"
     accountsusers:
        name: "Shared Account"
+       title: "Shared Users"
        user: "User"
        candelete: "Delete"
        caninsert: "Insert"

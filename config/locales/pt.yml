@@ -30,6 +30,7 @@ pt:
       actions: "Acções"
       movsbyday: "Movimentos por Dia"
       movsbymonth: "Movimentos por Mês" 
+      newpassword: "Nova Password"
     bankaccounts:
       name: "Conta Bancária"
       title: "Contas Bancárias"
@@ -120,6 +121,7 @@ pt:
        canupdate: "Actualiza"
     accountsusers:
        name: "Conta Partilhada"
+       title: "Shared Users"       
        user: "Utilizador"
        candelete: "Apaga"
        caninsert: "Insere"

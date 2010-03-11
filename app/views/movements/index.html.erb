@@ -116,8 +116,9 @@
 			<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'button' %>
 			<% end %>
 		</div>
-		<div class="basic">
+		
 				<% if not sharedaccountinvitations.empty? %>
+				<div class="content"> 
 				<table cellspacing="0">
 					<thead>
 						<tr>
@@ -129,7 +130,7 @@
 						</tr>
 					</thead>
 					<tbody>
-					<% @sharedaccountinvitations.each_with_index do |sharedaccountinvitation,i| %>	
+					<% sharedaccountinvitations.each_with_index do |sharedaccountinvitation,i| %>	
 						<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
 							<th  class="first"><%=h sharedaccountinvitation.recipient_email %></td>
 							<td class="tc"><%= check_box_tag "allow_insert",sharedaccountinvitation.allow_insert,sharedaccountinvitation.allow_insert ==1,:disabled => true %></td>
@@ -146,26 +147,28 @@
 						</tr>
 					<% end %>	
 					</tbody>
-				</table>	
+				</table>
+				</div>	
 				<% else %>
+				<div class="basic"> 
 				<div class="tc" style="margin:10px;"><%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]) %></div>
+				</div>
 				<% end %>		
+				
  </div>
 </div>      
 	<% end %>	
 	
 	<% if not @shares.empty? %>	
-	<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="box box-50 altbox"><!-- .altbox for alternative box's color -->
 		<div class="boxin">
 			<div class="header">
-				<h3><%=  I18n.t('layout.sharedinvitations.pending') %></h3>
-				<% if not sharedaccountinvitations.empty? %>
+				<h3><%=  I18n.t('layout.accountsusers.title') %></h3>
+				<% if not @shares.empty?  and @account.owner == '1' %>
 				<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'button' %>
 				<% end %>
 			</div>
-			<div class="content">
-			<div >
-					
+			<div class="content">	
 					<table cellspacing="0">
 						<thead>
 							<tr>
@@ -183,13 +186,14 @@
 								<td class="tc"><%= check_box_tag "allow_insert",myshares.allow_insert,myshares.allow_insert ==1,:disabled => true %></td>
 								<td class="tc"><%= check_box_tag "allow_edit", myshares.allow_edit,myshares.allow_edit==1,:disabled => true %></td>
 								<td class="tc"><%= check_box_tag "allow_delete", myshares.allow_delete,myshares.allow_delete==1,:disabled => true %></td>    
-								<td><%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path([@account,myshares]),:class => 'table_edit' %></td>								
 								<td class="tc last">
+									<% if @account.type == 'Bankaccount' and @account.owner == '1' %>  
 									<ul class="actions">
 										<li>
 									<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_polymorphic_path([@account,myshares]),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>
 									   </li>
-									</ul>							
+									</ul>
+									<% end %>							
 								</td>
 							  </tr>
 							</tr>

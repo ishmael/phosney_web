@@ -1,30 +1,28 @@
-        <div class="tabbertab">
-            <h2><%=  I18n.t('layout.accountsusers.name') %></h2>
-            <div class="container1">
-<% form_for([@account,@sharedaccount]) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label I18n.t('layout.accountsusers.user') %><br />
-    <%= f.text_field :login,:disabled => :true %>
-  </p>
- <p>
-    <%= f.check_box :allow_insert %>
-	<%= f.label I18n.t('layout.accountsusers.caninsert') %><br />
-  </p>
-  <p>
-    <%= f.check_box :allow_edit %>
-	<%= f.label I18n.t('layout.accountsusers.canupdate') %><br />
-  </p>
-  <p>
-    <%= f.check_box :allow_delete %>
-	<%= f.label I18n.t('layout.accountsusers.candelete') %><br />
-  </p> 
-  <p>
-    <%= f.submit I18n.t('layout.application.update')  %>
-  </p>
-<% end %>
-
-<%= link_to I18n.t('layout.application.back'), polymorphic_path([@account,:movements]) %>
-            </div><!--/end .container1-->
-        </div><!--/end .tabbertab-->
+<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.accountsusers.name') %></h3>
+		</div>
+		<% form_for([@account,@sharedaccount],:html =>{:class => 'basic'}) do |f| %>
+   		<div class="inner-form">
+			<dl>
+				<dt><%= f.label :email , I18n.t('layout.accountsusers.user')  %></dt>
+				<dd><%= f.text_field  :login,:disabled => :true ,:class => 'txt' %></dd>	
+				<dt><%= f.label I18n.t('layout.accountsusers.caninsert') %></dt>
+				<dd><%= f.check_box :allow_insert %></dd>
+				<dt><%= f.label I18n.t('layout.accountsusers.canupdate') %></dt>
+				<dd><%= f.check_box :allow_edit %></dd>				
+				<dt><%= f.label I18n.t('layout.accountsusers.candelete') %></dt>
+				<dd><%= f.check_box :allow_delete %></dd>				
+				<dd class="submit">
+					<div>
+						<%= f.submit I18n.t('layout.application.update'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
+						<%= link_to I18n.t('layout.application.cancel'), polymorphic_path([@account,:movements]) %>
+					</div>
+				</dd>
+			</dl>				
+		</div>
+		<% end %>
+	</div>
+</div>
+ 
