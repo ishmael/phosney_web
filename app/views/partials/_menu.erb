@@ -7,7 +7,7 @@
 	 			<div id="accounts" class="yuimenu">
                     <div class="bd">
 	                    <ul>	
-							<% accounts_type = [Bankaccount,Loanaccount,Creditcardaccount] %>
+							<% accounts_type = [Bankaccount,Creditcardaccount,Loanaccount] %>
  							<% accounts_type.each do |tipo| %>  
 							<li class="yuimenuitem"><%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.name'), polymorphic_path(tipo.name.pluralize.downcase) , :class => 'yuimenuitemlabel'%>
 								<div id="<%= tipo%>" class="yuimenu">

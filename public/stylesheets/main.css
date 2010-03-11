@@ -257,13 +257,13 @@ LOGO				 */
 
 
 #calendarmenu {
- position: absolute;
-z-index:10;
+ 	position: absolute;	
+	z-index:10 !important;
  }
 
 #movementscalendarmenu {
- position: absolute;
-z-index:10;
+ 	position: absolute;
+	z-index:10 !important;
  }
 
 /* error/information messages */
@@ -282,7 +282,7 @@ z-index:10;
 .msg-info div {background: url("/images/led-ico/exclamation.png") 0 50% no-repeat;}
 .error {color: #b70b0b;}
 
-.box {float: left; width: 400px; margin: 0 0px 20px 0;}
+.box {float: left; width: 400px; margin: 0 0px 20px 0;z-index:0;}
 .box-25 {width: 250px;} /* 25% box */
 .box-50 {width: 490px;} /* 50% box */
 .box-75 {width: 730px;} /* 75% box */
@@ -384,7 +384,7 @@ form.fields span.loading {margin-left: 10px;}
 ul.actions {margin: 0;}
 ul.actions li {
 	display: inline;
-	margin-right: 5px;
+	/*margin-right: 5px;*/
 	
 	}
 ul.actions a { text-decoration: none; color: #fff ;}
@@ -485,4 +485,11 @@ ul.actions a { text-decoration: none; color: #fff ;}
 #login .box {float: none; margin: 0 auto;}
 #login .boxin {box-shadow: #111 0 0 10px; -webkit-box-shadow: #111 0 0 10px; -moz-box-shadow: #111 0 0 10px; border: 0;}
 #login a {text-decoration:none;}
+#login form.register dl dt { width: 25% !important;}
+#login form.register dl dd {width: 71% !important;}
+#login form.register dl dd.submit {padding: 3px 0px 5px 0px; width: 100% !important; }
+#login form.register dl dd.submit div {float:right;height:25px;margin-right:60px !important; }
+#login form.basic dl dd.submit div {margin-right:85px; }
 #login input.txt {width: 260px;}
+#login  h4{	color:#fff; width:225px;}
+#login  h3 {height:43;}

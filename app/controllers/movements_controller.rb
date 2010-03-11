@@ -44,7 +44,10 @@ class MovementsController < ApplicationController
 
   def quickcreate
   		@quick_movement = Movement.new(params[:movement])
-		@quick_movement.user_id = @current_user.id	
+		@quick_movement.user_id = @current_user.id
+		if @quick_movement.category_id = 0
+		  	@quick_movement.category_id = nil
+		end
 		if @quick_movement.save
 			@quick_movement.save_tags(current_user)
 			redirect_to( request.referer ) 

@@ -1,5 +1,6 @@
 <div class="header">
 	<h3><img src="/images/logo_top.png" alt="Phosney" /></h3>
+	<h4><%=  I18n.t('layout.application.tag')  %></h4>
 	<ul>
 		<li><%= link_to 'Login', login_path  , {:class => "active"} %></li><!-- .active for active tab -->
 		<li><%= link_to I18n.t('layout.users.register'), new_account_path %></li>
