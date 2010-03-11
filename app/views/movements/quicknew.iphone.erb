@@ -1,5 +1,5 @@
 
-<% form_for @quick_movement, :html => {  :class=>"dialog", :selected => "true"}, :url => quickmovement_path do |f| %>
+<% form_for @quick_movement, :url => { :controller => 'movements',:action => "quickcreate"}, :html => {  :class=>"dialog", :selected => "true"}, :url => quickmovement_path do |f| %>
   <fieldset>
    <h1><%=  I18n.t('layout.movements.new')%></h1>
    <a class="button leftButton" type="cancel"><%= I18n.t('layout.application.cancel') %></a>
@@ -19,11 +19,11 @@
     <%= f.radio_button :mov_type,"-1",:id => "radiobutton_debit" %><%=  I18n.t('layout.movements.debit') %>
     <%= f.radio_button :mov_type,"1" ,:id => "radiobutton_credit"%><%=  I18n.t('layout.movements.credit') %>
     <%= f.collection_select :category_id,  current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => I18n.t('layout.movements.category')  %>
-    <%= f.collection_select :account_id,current_user.accounts.find_accounts(:all), :id, :name,  :include_blank => I18n.t('layout.bankaccounts.title') %>
+    <%= f.collection_select :account_id,current_user.accounts.find_accounts(:all), :id, :name %>
   
 	<label class="altLabel"> tags:</label>
 	<%= f.text_field :tag_list ,:class=>"altInput" %>
-    
+	<%= f.hidden_field :movdate, :value => @quick_movement.movdate %>    
 	<%= f.hidden_field :lat, :value => @quick_movement.lat %>
 	<%= f.hidden_field :lng, :value => @quick_movement.lng %>
 	<%= f.hidden_field :accuracy, :value => @quick_movement.accuracy %>
