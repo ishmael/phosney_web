@@ -1,5 +1,5 @@
 <div class="header">
-	<h3><img src="/images/logo_top.png" alt="Phosney" /></h3>
+	<img src="/images/logo_top.png" alt="Phosney" />
 	<h4><%=  I18n.t('layout.application.tag')  %></h4>
 	<ul>
 		<li><%= link_to 'Login', login_path  %></li><!-- .active for active tab -->
@@ -15,12 +15,12 @@
 		</div>
   <% end %>
 <dl>
-	Fill out the form below and instructions to reset your password will be emailed to you:
+	<%= I18n.t('layout.users.recoverpasswordtag') %>
 	<dt><label class="label2">Email:</label></dt>
 	<dd><%= text_field_tag :email , nil,:class => 'txt' %></dd>	
 	<dd class="submit">
 		<div>
-		<%= submit_tag "Reset my password",:class => 'button' %> 
+		<%= submit_tag  I18n.t('layout.users.resetsubmit'),:class => 'button' %> 
 		</div>
 	</dd>
 </dl>

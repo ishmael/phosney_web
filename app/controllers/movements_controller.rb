@@ -43,13 +43,8 @@ class MovementsController < ApplicationController
   end
 
   def quickcreate
-  		@quick_movement = Movement.new(params[:movement])
-  		
+		@quick_movement = Movement.new(params[:movement])
 		@quick_movement.user_id = @current_user.id
-		if @quick_movement.category_id == 0
-		  	@quick_movement.category_id = nil
-		end
-
 
 		if @quick_movement.save
 			@quick_movement.save_tags(current_user)
@@ -102,6 +97,7 @@ class MovementsController < ApplicationController
 	if @account
 		@movement = @account.movements.build(params[:movement])
 		@movement.user_id = @current_user.id
+
 		respond_to do |format|
 		  if @movement.save
 			   @movement.save_tags(current_user)
@@ -123,7 +119,9 @@ class MovementsController < ApplicationController
   def update
 	if @account
 		@movement = @account.movements.find_by_id(params[:id])
-		
+		if @movement.category_id == 0
+		  	@movement.category_id = nil
+		end		
 		respond_to do |format|
 		  if @movement.update_attributes(params[:movement])
 			@movement.save_tags(current_user)

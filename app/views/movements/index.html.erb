@@ -63,9 +63,11 @@
 				</tbody>
 			</table>
 			<% else %>
-				<div class="basic tc" style="margin:10px;">	<% if @account.allow_insert == '1' %>
-					<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) %>
-					<% end %></div>
+				<div class="basic tc" style="margin:10px;">	
+					<% if @account.allow_insert == '1' %>
+						<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) %>
+					<% end %>
+				</div>
 			<% end %>
 		</div>
 	</div>
@@ -182,7 +184,7 @@
 						<tbody>
 						<% @shares.each_with_index do |myshares,i| %>	
 							<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-								<th  class="first"><%=h myshares.login %></td>
+								<th  class="first"><%=h myshares.login %></th>
 								<td class="tc"><%= check_box_tag "allow_insert",myshares.allow_insert,myshares.allow_insert ==1,:disabled => true %></td>
 								<td class="tc"><%= check_box_tag "allow_edit", myshares.allow_edit,myshares.allow_edit==1,:disabled => true %></td>
 								<td class="tc"><%= check_box_tag "allow_delete", myshares.allow_delete,myshares.allow_delete==1,:disabled => true %></td>    
@@ -196,7 +198,6 @@
 									<% end %>							
 								</td>
 							  </tr>
-							</tr>
 						<% end %>	
 						</tbody>
 					</table>	

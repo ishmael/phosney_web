@@ -2,7 +2,7 @@
 			<div class="quickmovement-div">
 				<label  for='quickmov_account'><%= I18n.t('layout.bankaccounts.accountname')%></label>	
 				<div id="quickmov_account_container"></div>	
-				<%= f.collection_select :account_id, current_user.accounts.find(:all, :order => 'name'), :id, :name,  {:include_blank => false }, { :id => 'quickmov_account' }%>
+				<%= f.collection_select :account_id, current_user.accounts.find_accounts(:all,:conditions =>  'accounts_users.allow_insert =1',:order => 'name'), :id, :name,  {:include_blank => false }, { :id => 'quickmov_account' }%>
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label :description, I18n.t('layout.movements.description') %>
@@ -19,14 +19,14 @@
 			<div class="quickmovement-div">
 				<label  for='quickmov_account'><%=  I18n.t('layout.movements.category') %></label>
 				<div id="quickmov_category_container"></div>	
-				<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name, { :include_blank => 'None'}, { :id => 'quickmov_category' } %>
+				<%= f.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name, { :include_blank => true}, { :id => 'quickmov_category' } %>
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label :tag_list, I18n.t('layout.tags.title') %>
 				<%= f.text_field :tag_list , :size => 20 , :class => 'txt' %>
 			</div>
 			<div class="quickmovement-div">
-				<label>Foi um...</label>
+				<label><%= I18n.t('layout.movements.typetag') %></label>
 				<div id="quickmovement_type_bgroup" class="yui-buttongroup">
 					<%= f.hidden_field :mov_type, {:id => "quickmovement_type"}%>
 					<input type="radio" id="qm_mov_debit" name="qm_mov_debit" value="<%=  I18n.t('layout.movements.debit') %>" />

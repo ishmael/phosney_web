@@ -17,7 +17,7 @@
     	<div  id="header">
 	    	<div id="profile_info" class="cr-all">
 				<img src="<%= gravatar_url(@current_user.email, :size=>"41px") %>" id="avatar" alt="avatar" />
-				<p>Welcome <%= @current_user.login	%>.</p> 
+				<p><%=  I18n.t('layout.application.welcome') %> <%= @current_user.login	%>.</p> 
 				<%= link_to I18n.t('layout.application.settings'), account_path, :id => 'settingsbutton' %>
 				<%= link_to I18n.t('layout.application.logout'), logout_path,  :id => 'logoutbutton' %>
 			</div>

@@ -14,6 +14,7 @@
 			});
 		
 		Event.onContentReady("quick_movement", function () {
+			document.getElementById("quickmov_category")[0].value = 0;
 			var oSelectButtonAccount = new YAHOO.widget.Button({  
 				                    id: "quickmov_accountbutton", 
 				                    type: "menu",   
@@ -54,9 +55,9 @@
 					};
 
 		
-			var oMenuButtonAccountMenu = oSelectButtonAccount.getMenu();
+			var oMenuButtonAccountMenu = oSelectButtonAccount.getMenu();		
 				oMenuButtonAccountMenu.subscribe("render", onMenuRenderAccount, oSelectButtonAccount);
-
+				
 				oSelectButtonAccount.on("selectedMenuItemChange", onSelectedMenuItemChangeAccount);
 			    oSelectButtonCategory.on("selectedMenuItemChange", onSelectedMenuItemChangeCategory);
 

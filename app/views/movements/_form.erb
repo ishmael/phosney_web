@@ -16,7 +16,9 @@
 	<dd><%= form.check_box :private %></dd>
 
 	<dt><%= form.label :category_id,I18n.t('layout.movements.category') %></dt>
-	<dd><div id="mov_category_container"></div><%= form.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name,  :include_blank => 'None' %></dd>
+	<dd><div id="mov_category_container"></div><%= form.collection_select :category_id, current_user.categories.find(:all, :order => 'name'), :id, :name, { :include_blank => true}, { :id => 'movement_category_id' } %>
+		
+		</dd>
 	<dt><%= form.label :tag_list,I18n.t('layout.movements.tags') %></dt>
 	<dd><%= form.text_field :tag_list , :class => 'txt'%></dd>
  <% end %>

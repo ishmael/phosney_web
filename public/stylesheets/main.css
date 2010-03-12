@@ -187,6 +187,7 @@ LOGO				 */
 	font-size:77%;
 }
 
+
 #quickmov_accountbutton button {
         outline: none;
 		width:110px;
@@ -220,6 +221,10 @@ LOGO				 */
 		-o-text-overflow: ellipsis;
 }
 
+a.yuimenuitemlabel {
+	border:0px !important;
+	min-height:18px;
+}
 
 #categorybutton button {
         outline: none;
@@ -483,6 +488,7 @@ ul.actions a { text-decoration: none; color: #fff ;}
 /* login page */
 #login {padding: 100px;font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif; color: #333;}
 #login .box {float: none; margin: 0 auto;}
+#login .header{height:90px;}
 #login .boxin {box-shadow: #111 0 0 10px; -webkit-box-shadow: #111 0 0 10px; -moz-box-shadow: #111 0 0 10px; border: 0;}
 #login a {text-decoration:none;}
 #login form.register dl dt { width: 30% !important;}
@@ -491,5 +497,4 @@ ul.actions a { text-decoration: none; color: #fff ;}
 #login form.register dl dd.submit div {float:right;height:25px;margin-right:50px !important; }
 #login form.basic dl dd.submit div {margin-right:85px; }
 #login input.txt {width: 260px;}
-#login  h4{	color:#fff; width:225px;}
-#login  h3 {height:43;}
+#login  h4{	color:#fff; width:305px;margin-top:-10px;}

@@ -4,26 +4,42 @@
 			Dom = YAHOO.util.Dom;	
 
 		Event.onContentReady("movements_div", function () {
+				document.getElementById("movement_category_id")[0].value = 0;
 
-				var oSelectButtonCategory = new YAHOO.widget.Button({  
-						                    id: "categorybutton", 
+				var oSelectButtonCategory = new YAHOO.widget.Button({
+					  						id: "categorybutton",
+											name:"categorybutton",
 						                    type: "menu",   
-						                    menu: "movement_category_id",
-											lazyloadmenu: false, 
+						                    menu: "movement_category_id",										
+											lazyloadmenu: false,
 											container: "mov_category_container"
 						});
-
-
+	
+				
+				var oMenuButtonCategoryMenu = oSelectButtonCategory.getMenu();
+				
 				var onSelectedMenuItemChangeCategory = function (event) {
+					
+					var oMenuItem = event.newValue;
 
-							var oMenuItem = event.newValue;
+					this.set("label", ("<em class=\"yui-button-label\">" + 
+					oMenuItem.cfg.getProperty("text") + "</em>"));
+				};
+					
+				var onCategoryRender = function (type, args, button) { 
+						 button.set("selectedMenuItem", this.getItem(button.get("selectedMenuItem").index) ); 
+				};
+				
+				if(oMenuButtonCategoryMenu != null)
+				{						
+					oMenuButtonCategoryMenu.subscribe("render", onCategoryRender, oSelectButtonCategory);
+					oSelectButtonCategory.on("selectedMenuItemChange", onSelectedMenuItemChangeCategory);
+				}				
+			
 
-							this.set("label", ("<em class=\"yui-button-label\">" + 
-										oMenuItem.cfg.getProperty("text") + "</em>"));
-
-						};
-							
-		    oSelectButtonCategory.on("selectedMenuItemChange", onSelectedMenuItemChangeCategory);
+		    
+		
+		
 			var oCalendarMenu;
 	
 			var onButtonClick = function () {
