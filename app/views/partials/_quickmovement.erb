@@ -2,7 +2,7 @@
 			<div class="quickmovement-div">
 				<label  for='quickmov_account'><%= I18n.t('layout.bankaccounts.accountname')%></label>	
 				<div id="quickmov_account_container"></div>	
-				<%= f.collection_select :account_id, current_user.accounts.find_accounts(:all,:conditions =>  'accounts_users.allow_insert =1',:order => 'name'), :id, :name,  {:include_blank => false }, { :id => 'quickmov_account' }%>
+				<%= f.collection_select :account_id, current_user.accounts.find_accounts_insert(:all,:order => 'name'), :id, :name,  {:include_blank => false }, { :id => 'quickmov_account' }%>
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label :description, I18n.t('layout.movements.description') %>

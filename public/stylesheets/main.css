@@ -274,18 +274,18 @@ a.yuimenuitemlabel {
 
 /* error/information messages */
 .msg {
-	border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;
-	border: 1px solid; margin: 0 0 15px 0; padding: 8px 10px 0 10px;
+	border-radius: 5px;
+	border: 1px solid; margin: 10px 0 5px 0; padding: 8px 10px 0 10px;
 }
-.msg div {margin: 0 0 8px 0; padding-left: 25px;}
+.msg p {margin: 0 0 8px 0; padding-left: 25px;}
 .msg-ok {border-color: #a6d877; background: #d2ecba url("/images/msg-ok.png") repeat-x; color: #336801;}
 .msg-error {border-color: #f3abab; background: #f9c9c9 url("/images/msg-error.png") repeat-x; color: #8d0d0d;}
 .msg-warn {border-color: #d7e059; background: #f3f7aa url("/images/msg-warn.png") repeat-x; color: #6c6600;}
 .msg-info {border-color: #9fd1f5; background: #c3e6ff url("/images/msg-info.png") repeat-x; color: #005898;}
-.msg-ok div {background: url("/images/led-ico/accept.png") 0 50% no-repeat;}
-.msg-error div {background: url("/images/led-ico/cross_octagon.png") 0 50% no-repeat;}
-.msg-warn div {background: url("/images/led-ico/exclamation_octagon_fram.png") 0 50% no-repeat;}
-.msg-info div {background: url("/images/led-ico/exclamation.png") 0 50% no-repeat;}
+.msg-ok p {background: url("/images/led-ico/accept.png") 0 50% no-repeat;}
+.msg-error p {background: url("/images/led-ico/cross_octagon.png") 0 50% no-repeat;}
+.msg-warn p {background: url("/images/led-ico/exclamation_octagon_fram.png") 0 50% no-repeat;}
+.msg-info p {background: url("/images/led-ico/exclamation.png") 0 50% no-repeat;}
 .error {color: #b70b0b;}
 
 .box {float: left; width: 400px; margin: 0 0px 20px 0;z-index:0;}

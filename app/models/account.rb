@@ -17,6 +17,12 @@ class Account < ActiveRecord::Base
       end
   end
   
+  def self.find_accounts_insert(*args)
+    with_scope(:find => {:select => "accounts.*,accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,accounts_users.owner",:conditions =>  'accounts_users.allow_insert =1',:order => "accounts.name asc"}) do
+      find(*args)
+    end
+  end
+  
   def pseudo_id
     new_record? ? 0 : id
   end
