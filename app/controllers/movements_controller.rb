@@ -72,7 +72,7 @@ class MovementsController < ApplicationController
     @movement.mov_type = -1
 	  @movement.user_id = @current_user.id
     respond_to do |format|
-		format.html # new.html.erb
+		  format.html # new.html.erb
 	    format.iphone  { render :layout => false }
     end
   end

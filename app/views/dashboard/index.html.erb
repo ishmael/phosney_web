@@ -16,7 +16,7 @@
 							<tbody>
 							<% @bankaccounts.each_with_index do |bankaccount,i| %>	
 								<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-									<th class="first"><%=h bankaccount.name %></th>
+									<th class="first"><%= link_to bankaccount.name,polymorphic_path([bankaccount,:movements]) %></th>
 									<td class="tr"><%=h number_to_currency(bankaccount.account_balance) %></td>
 								</tr>
 							<% end %>	

@@ -4,7 +4,7 @@
 			Dom = YAHOO.util.Dom;	
 
 		Event.onContentReady("category_div", function () {
-
+				document.getElementById("category_parent_id")[0].value = 0;
 				var oSelectButtonCategory = new YAHOO.widget.Button({  
 						                    id: "categorybutton", 
 						                    type: "menu",   
@@ -23,6 +23,13 @@
 
 						};
 							
+							
+				var onCategoryRender = function (type, args, button) { 
+								 button.set("selectedMenuItem", this.getItem(button.get("selectedMenuItem").index) ); 
+				};			
+
+			var oMenuButtonCategoryMenu = oSelectButtonCategory.getMenu();		
+			oMenuButtonCategoryMenu.subscribe("render", onCategoryRender, oSelectButtonCategory);		
 		    oSelectButtonCategory.on("selectedMenuItemChange", onSelectedMenuItemChangeCategory);
 		});
 	}());
