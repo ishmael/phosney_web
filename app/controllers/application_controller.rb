@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
 			@quick_movement = Movement.new
 			@quick_movement.movdate = Date.today
 			@quick_movement.mov_type = -1
+			@quick_movement.amount = 0
 		elsif flash[:quickmovement]
 			@quick_movement = flash[:quickmovement]
 		end

@@ -48,11 +48,11 @@ class MovementsController < ApplicationController
 		@quick_movement.user_id = @current_user.id
 
 		if @quick_movement.save
-			@quick_movement.save_tags(current_user)
-					  flash[:notice] = I18n.t('layout.movements.notice_message')  %   [@quick_movement.type_of_movement_desc,@template.number_to_currency(@quick_movement.amount),@quick_movement.movdate.to_date,@quick_movement.description]
-			redirect_to( request.referer ) 
-        else
-			flash[:quickmovement] = @quick_movement
+			  @quick_movement.save_tags(current_user)
+				flash[:notice] = I18n.t('layout.movements.notice_message')  %   [@quick_movement.type_of_movement_desc,@template.number_to_currency(@quick_movement.amount),@quick_movement.movdate.to_date,@quick_movement.description]
+			  redirect_to( request.referer ) 
+    else
+			  flash[:quickmovement] = @quick_movement
     		redirect_to request.referer 
 		end
   end

@@ -274,6 +274,8 @@ pt:
     attributes:
         account:
           name: "Nome"
+        movement:
+           description: "Descrição"
     errors:
       template:
         header:

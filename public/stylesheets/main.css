@@ -287,10 +287,10 @@ a.yuimenuitemlabel {
 .msg-error p {background: url("/images/led-ico/cross_octagon.png") 0 50% no-repeat;}
 .msg-warn p {background: url("/images/led-ico/exclamation_octagon_fram.png") 0 50% no-repeat;}
 .msg-info p {background: url("/images/led-ico/exclamation.png") 0 50% no-repeat;}
-.msg-ok div {background: url("/images/led-ico/accept.png") 0 50% no-repeat;}
-.msg-error div {background: url("/images/led-ico/cross_octagon.png") 0 50% no-repeat;}
-.msg-warn div {background: url("/images/led-ico/exclamation_octagon_fram.png") 0 50% no-repeat;}
-.msg-info div {background: url("/images/led-ico/exclamation.png") 0 50% no-repeat;}
+.msg-ok div {background: url("/images/led-ico/accept.png") 0 0 no-repeat;}
+.msg-error div {background: url("/images/led-ico/cross_octagon.png") 0 0 no-repeat;}
+.msg-warn div {background: url("/images/led-ico/exclamation_octagon_fram.png") 0 0 no-repeat;}
+.msg-info div {background: url("/images/led-ico/exclamation.png") 0 0 no-repeat;}
 .error {color: #b70b0b;}
 
 .box {float: left; width: 400px; margin: 0 0px 20px 0;z-index:0;}

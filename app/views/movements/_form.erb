@@ -1,6 +1,11 @@
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "movements.js" %>
 <% end %>
+	<% if not form.error_messages.blank? %>
+		<div class="msg msg-error">
+			<%= form.error_messages  :header_message => nil, :message => nil %>
+		</div>
+<% end %>
 <dt><%= form.label :description , I18n.t('layout.movements.description') %></dt>
 <dd><%= form.text_field :description , :class => 'txt' %></dd>
 <dt><%= form.label :amount,I18n.t('layout.movements.amount')  %></dt>
