@@ -68,16 +68,16 @@ class BankaccountsController < ApplicationController
     		@accountuser.allow_delete =  1
     		@accountuser.owner = 1
     		if @accountuser.save
-			flash[:notice] = 'Bankaccount was successfully created.'
-			format.html { redirect_to([@bankaccount,:movements]) }
+          flash[:notice] = I18n.t('layout.bankaccounts.notice_message')  %   [@bankaccount.name,@bankaccount.number,@bankaccount.bank]
+			    format.html { redirect_to([@bankaccount,:movements]) }
   		    format.iphone  { redirect_to([@bankaccount,:movements]) }
         else
-			format.html { render :action => "new" }
-		    format.iphone  { render :action => "new",:layout => false }
+			    format.html { render :action => "new" }
+		      format.iphone  { render :action => "new",:layout => false }
 
         end
       else
-			format.html { render :action => "new" }
+			  format.html { render :action => "new" }
 		    format.iphone  { render :action => "new",:layout => false }
       end
     end
@@ -90,12 +90,12 @@ class BankaccountsController < ApplicationController
 	if @bankaccount
 		respond_to do |format|
 		  if @bankaccount.update_attributes(params[:bankaccount])
-			flash[:notice] = 'Bankaccount was successfully updated.'
-			format.html { redirect_to([@bankaccount,:movements]) }
-			format.iphone  { redirect_to([@bankaccount,:movements])  }
+        flash[:notice] = I18n.t('layout.bankaccounts.notice_message')  %   [@bankaccount.name,@bankaccount.number,@bankaccount.bank]
+			  format.html { redirect_to([@bankaccount,:movements]) }
+			  format.iphone  { redirect_to([@bankaccount,:movements])  }
 		  else
-			format.html { render :action => "edit" }
-			format.iphone  { render :action => "edit", :layout => false }
+			  format.html { render :action => "edit" }
+			  format.iphone  { render :action => "edit", :layout => false }
 		  end
 		end
 	else
@@ -111,6 +111,7 @@ class BankaccountsController < ApplicationController
 		@bankaccount.destroy
 
 		respond_to do |format|
+          flash[:notice] = I18n.t('layout.bankaccounts.delete_message')  %   [@bankaccount.name,@bankaccount.number,@bankaccount.bank]
 		  format.html { redirect_to(bankaccounts_url) }
 		  format.iphone  { redirect_to(bankaccounts_url) }
 		end

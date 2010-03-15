@@ -63,7 +63,7 @@ class CreditcardaccountsController < ApplicationController
     		@accountuser.allow_delete =  1
     		@accountuser.owner = 1
     		if @accountuser.save
-        flash[:notice] = 'Creditcardaccount was successfully created.'
+          flash[:notice] = I18n.t('layout.creditcardaccounts.notice_message')  %   [@creditcardaccount.name,@creditcardaccount.number,@creditcardaccount.bank]
         format.html { redirect_to([@creditcardaccount,:movements]) }
         else
           format.html { render :action => "new" }
@@ -81,7 +81,7 @@ class CreditcardaccountsController < ApplicationController
 	if @creditcardaccount
 		respond_to do |format|
 		  if @creditcardaccount.update_attributes(params[:creditcardaccount])
-			flash[:notice] = 'creditcardaccount was successfully updated.'
+          flash[:notice] = I18n.t('layout.creditcardaccounts.notice_message')  %   [@creditcardaccount.name,@creditcardaccount.number,@creditcardaccount.bank]
 			format.html { redirect_to([@creditcardaccount,:movements]) }
 		  else
 			format.html { render :action => "edit" }
@@ -100,6 +100,7 @@ class CreditcardaccountsController < ApplicationController
 		@creditcardaccount.destroy
 
 		respond_to do |format|
+          flash[:notice] = I18n.t('layout.creditcardaccounts.delete_message')  %   [@creditcardaccount.name,@creditcardaccount.number,@creditcardaccount.bank]
 		  format.html { redirect_to(creditcardaccounts_url) }
 		end
 	else

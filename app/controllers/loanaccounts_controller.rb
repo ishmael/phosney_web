@@ -55,7 +55,7 @@ class LoanaccountsController < ApplicationController
 		@accountuser.allow_delete =  1
 		@accountuser.owner = 1
 		if @accountuser.save
-			flash[:notice] = 'Loanaccount was successfully created.'
+          flash[:notice] = I18n.t('layout.loanaccounts.notice_message')  %   [@loanaccount.name,@loanaccount.number,@loanaccount.bank]
 			format.html { redirect_to([@loanaccount,:movements]) }
 		else
 			format.html { render :action => "new" }
@@ -73,7 +73,7 @@ class LoanaccountsController < ApplicationController
 
     respond_to do |format|
       if @loanaccount.update_attributes(params[:loanaccount])
-        flash[:notice] = 'Loanaccount was successfully updated.'
+          flash[:notice] = I18n.t('layout.loanaccounts.notice_message')  %   [@loanaccount.name,@loanaccount.number,@loanaccount.bank]
         format.html { redirect_to([@loanaccount,:movements]) }
       else
         format.html { render :action => "edit" }
@@ -88,6 +88,7 @@ class LoanaccountsController < ApplicationController
     @loanaccount.destroy
 
     respond_to do |format|
+          flash[:notice] = I18n.t('layout.loanaccounts.delete_message')  %   [@loanaccount.name,@loanaccount.number,@loanaccount.bank]      
       format.html { redirect_to(bankaccounts_url) }
     end
   end

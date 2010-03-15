@@ -8,6 +8,7 @@ class SharedAccountInvitationsController < ApplicationController
      	  @sharedinvitation = @account.shared_account_invitations.new
 
 		    respond_to do |format|
+		      
 			    format.html # new.html.erb
 			    format.iphone  { render :layout => false }
 		    end
@@ -26,7 +27,7 @@ class SharedAccountInvitationsController < ApplicationController
     	respond_to do |format|
     	  if @sharedinvitation.save
     		@sharedinvitation.send_invitation(@current_user)
-    		flash[:notice] = 'Invitation was successfully created.'
+    		flash[:notice] = I18n.t('layout.sharedinvitations.notice_message')  %   [@sharedinvitation.recipient_email]
     		format.html { redirect_to(polymorphic_path([@account,:movements])) }
    			format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
     	  else
@@ -46,6 +47,7 @@ class SharedAccountInvitationsController < ApplicationController
       @sharedinvitation.destroy
 
       respond_to do |format|
+    		flash[:notice] = I18n.t('layout.sharedinvitations.delete_message')  %   [@sharedinvitation.recipient_email]        
 				format.html { redirect_to(polymorphic_path([@account,:movements])) }
 				format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
 			end
@@ -67,7 +69,7 @@ class SharedAccountInvitationsController < ApplicationController
         respond_to do |format|
       	  if @accountuser.save
       		@sharedinvitation.destroy
-      		flash[:notice] = 'Invitation was successfully created.'
+    		flash[:notice] = I18n.t('layout.accountsusers.save_message')
       		format.html { redirect_to(dashboard_url) }
       		format.iphone { redirect_to(dashboard_url) }
       	  end

@@ -37,6 +37,8 @@ en:
       accountnumber: "Number"
       accountbalance: "Balance"
       total: "Total"
+      notice_message: "The account with the name  '%s', number  '%s' from  '%s' was sucessfully saved."
+      delete_message: "The account with the name  '%s', number  '%s' from  '%s' was sucessfully deleted."
     loanaccounts:
       name: "Loans"
       title: "Loan"
@@ -46,6 +48,8 @@ en:
       accountnumber: "Number"
       accountbalance: "Balance"
       total: "Total"	  
+      notice_message: "The loan with the name  '%s', number  '%s' from  '%s' was sucessfully saved."
+      delete_message: "The loan with the name  '%s', number  '%s' from  '%s' was sucessfully deleted."
     creditcardaccounts:
       name: "Credit Cards"
       title: "Credit Card"
@@ -54,7 +58,9 @@ en:
       accountbank: "Bank"
       accountnumber: "Number"
       accountbalance: "Balance"
-      total: "Total"	  
+      total: "Total"
+      notice_message: "The credit card with the name  '%s', number  '%s' from  '%s' was sucessfully saved."
+      delete_message: "The credit card with the name  '%s', number  '%s' from  '%s' was sucessfully deleted."
     movements:
        name: "Movements"
        title: "Movement"
@@ -73,16 +79,22 @@ en:
        tags: "Tags"	   
        private: "Private"
        typetag: "It was a..."
+       notice_message: "The %s of %s done in %s with the description of: '%s' was sucessfully saved."
+       delete_message: "The %s of %s done in %s with the description of: '%s' was sucessfully deleted."       
     categories:
        name: "Category"
        title: "Categories"
        new: "New Category"
        mobile: "Display in Mobile Platforms (iPhone, Windows Mobile, Android)"
-       parent_id: "Parent Category"	
+       parent_id: "Parent Category"
+       notice_message: "The category with the name '%s' was sucessfully saved."
+       delete_message: "The category with the name '%s' was sucessfully deleted."       	
     tags:
        name: "Tag"
        title: "Tags"
        new: "New Tag"
+       notice_message: "The tag with the name '%s' was sucessfully saved."
+       delete_message: "The tag with the name '%s' was sucessfully deleted."
     fusioncharts:
       movements_by_month:
          caption: "Spending"
@@ -110,7 +122,8 @@ en:
        loginerror: "Unable to login: Username or Password are incorrect."
        lastlogin: "Never"
        resetsubmit: "Reset my Password"
-       changesubmit: "Update my password and log me in"       
+       changesubmit: "Update my password and log me in"     
+       notice_message: "Your Profile was sucessfully saved."
     sharedinvitations:
        name: "Share Account"
        new: "Shared this account"
@@ -119,6 +132,8 @@ en:
        candelete: "Delete"
        caninsert: "Insert"
        canupdate: "Update"
+       notice_message: "Your request to share this account with '%s' was sucessfully saved."
+       delete_message: "Your request to share this account with '%s' was sucessfully deleted."
     accountsusers:
        name: "Shared Account"
        title: "Shared Users"
@@ -126,6 +141,9 @@ en:
        candelete: "Delete"
        caninsert: "Insert"
        canupdate: "Update"
+       save_message: "The shared account configuration was sucessfully saved."
+       notice_message: "The shared account configuration with '%s' was sucessfully saved."
+       delete_message: "The shared account configuration with '%s' was sucessfully deleted."
 
   activerecord:
      attributes:

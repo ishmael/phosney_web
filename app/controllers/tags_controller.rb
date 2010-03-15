@@ -21,7 +21,7 @@ before_filter :require_user
 
 		respond_to do |format|
 		  if @tag.save
-			flash[:notice] = 'Tag was successfully created.'
+      flash[:notice] = I18n.t('layout.tags.notice_message')  %   @tag.name
 			format.html { redirect_to(tags_path) }
 		  else
 			format.html { render :action => "new" }
@@ -46,7 +46,7 @@ before_filter :require_user
 		if @tag
 			respond_to do |format|
 			  if @tag.update_attributes(params[:tag])
-				flash[:notice] = 'Tag was successfully updated.'
+          flash[:notice] = I18n.t('layout.tags.notice_message')  %   @tag.name
 				format.html { redirect_to(tags_path) }
 			  else
 				format.html { render :action => "edit" }
@@ -60,11 +60,12 @@ before_filter :require_user
 	
 	
     def destroy
-		@tags = @current_user.tags.find_by_id(params[:id])
+		@tag = @current_user.tags.find_by_id(params[:id])
 		if @tag
-			@tags.destroy
+			@tag.destroy
 
 			respond_to do |format|
+        flash[:notice] = I18n.t('layout.tags.delete_message')  %   @tag.name
 			  format.html { redirect_to(tags_url) }
 			end
 		else

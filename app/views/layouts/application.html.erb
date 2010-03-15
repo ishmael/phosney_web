@@ -34,6 +34,9 @@
 	    	<div id="top_menu">
 				<%= render :partial => 'partials/menu'  %>
 	    	</div>
+			<% if flash[:notice] -%> 
+			  <div class="msg msg-ok cr-all"><p><%= flash[:notice]%></p></div>
+			<% end -%>
 
 			<div id="content_main" class="cr-all clearfix">	
 				<%=	yield%>

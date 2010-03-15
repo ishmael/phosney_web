@@ -10,8 +10,7 @@ class UsersController < ApplicationController
     def create
       @user = User.new(params[:user])
       if @user.save
-		I18n.locale = @user.locale
-        flash[:notice] = "Account registered!"
+		    I18n.locale = @user.locale
         redirect_back_or_default root_url
       else
         render :action => :new
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
       @user = @current_user # makes our views "cleaner" and more consistent
       if @user.update_attributes(params[:user])
 		I18n.locale = @user.locale
-        flash[:notice] = "Account updated!"
+        flash[:notice] = I18n.t('layout.users.notice_message')  
         redirect_to root_url
       else
         render :action => :edit

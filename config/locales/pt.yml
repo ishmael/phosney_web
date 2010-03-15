@@ -41,6 +41,8 @@ pt:
       accountnumber: "Número"
       accountbalance: "Balanço"
       total: "Total"
+      notice_message: "A conta bancária '%s' com o número '%s' do banco '%s' foi gravada com sucesso."
+      delete_message: "A conta bancária '%s' foi apagada com sucesso."
     loanaccounts:
       name: "Empréstimos"
       title: "Empréstimo"
@@ -49,7 +51,9 @@ pt:
       accountbank: "Banco"
       accountnumber: "Número"
       accountbalance: "Balanço"
-      total: "Total"	  
+      total: "Total"
+      notice_message: "O empréstimo '%s' com o número '%s' do banco '%s' foi gravado com sucesso."
+      delete_message: "O empréstimo '%s' foi apagado com sucesso."
     creditcardaccounts:
       name: "Cartões de Crédito"
       title: "Cartão de Crédito"
@@ -58,7 +62,9 @@ pt:
       accountbank: "Banco"
       accountnumber: "Número"
       accountbalance: "Balanço"
-      total: "Total"	  
+      total: "Total"
+      notice_message: "O cartão de crédito '%s' com o número '%s' do banco '%s' foi gravado com sucesso."
+      delete_message: "O cartão de crédito '%s' foi apagado com sucesso."
     movements:
        name: "Movimentos"
        title: "Movimento"
@@ -76,17 +82,23 @@ pt:
        new: "Novo Movimento"
        tags: "Tags"
        private: "Privado"
-       typetag: "Foi um..."	   
+       typetag: "Foi um..."
+       notice_message: "O %s com o valor de %s, feito em %s com a descrição: '%s' foi gravado com sucesso."
+       delete_message: "O %s com o valor de %s, feito em %s com a descrição: '%s' foi apagado com sucesso."       
     categories:
        name: "Categoria"
        title: "Categorias"
        new: "Nova Categoria"
        mobile: "Mostrar em plataformas moveis (iPhone, Windows Mobile, Android)"	   
        parent_id: "Categoria Pai"
+       notice_message: "A categoria '%s' foi gravada com sucesso."
+       delete_message: "A categoria '%s' foi apagada com sucesso."
     tags:
        name: "Tag"
        title: "Tags"
-       new: "Nova Tag"	   
+       new: "Nova Tag"
+       notice_message: "A Tag '%s' foi gravada com sucesso."
+       delete_message: "A Tag '%s' foi apagada com sucesso."
     fusioncharts:
       movements_by_month:
          caption: "Gastos"
@@ -115,6 +127,7 @@ pt:
        lastlogin: "Nunca"
        resetsubmit: "Reiniciar a Password"
        changesubmit: "Actualizar a Password e autenticar-me"
+       notice_message: "O perfil foi gravada com sucesso."
     sharedinvitations:
        name: "Partilhar Conta"
        new: "Partilhar esta Conta"
@@ -123,13 +136,18 @@ pt:
        candelete: "Apaga"
        caninsert: "Insere"
        canupdate: "Actualiza"
+       notice_message: "O pedido de partilha de conta com '%s' foi gravada com sucesso."
+       delete_message: "O pedido de partilha de conta com '%s' foi apagado com sucesso."
     accountsusers:
        name: "Conta Partilhada"
-       title: "Shared Users"       
+       title: "Utilizadores Partilhados"       
        user: "Utilizador"
        candelete: "Apaga"
        caninsert: "Insere"
        canupdate: "Actualiza"
+       save_message: "A partilha da conta foi gravada com sucesso."
+       notice_message: "A partilha da conta com '%s' foi gravada com sucesso."
+       delete_message: "A partilha da conta com '%s' foi apagada com sucesso."       
 
   authlogic:
     error_messages:

@@ -52,7 +52,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        flash[:notice] = 'Category was successfully created.'
+        flash[:notice] = I18n.t('layout.categories.notice_message')  %   @category.name
         format.html { redirect_to(categories_path) }
       else
         format.html { render :action => "new" }
@@ -67,7 +67,7 @@ class CategoriesController < ApplicationController
 	if @category
 		respond_to do |format|
 		  if @category.update_attributes(params[:category])
-			flash[:notice] = 'Category was successfully updated.'
+			flash[:notice] = I18n.t('layout.categories.notice_message')  %   @category.name
 			format.html { redirect_to(categories_path) }
 		  else
 			format.html { render :action => "edit" }
@@ -86,6 +86,7 @@ class CategoriesController < ApplicationController
 		@category.destroy
 
 		respond_to do |format|
+		  flash[:notice] = I18n.t('layout.categories.delete_message')  %   @category.name
 		  format.html { redirect_to(categories_path) }
 		end
 	else

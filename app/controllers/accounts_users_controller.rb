@@ -4,16 +4,16 @@ class AccountsUsersController < ApplicationController
     
   def edit
 	  @account = @current_user.bankaccounts.find_by_id(params[:bankaccount_id])
-	  if
-		@sharedaccount = @account.accounts_users.find_by_id(params[:id], :select => "accounts_users.*, (select login from users where users.id = accounts_users.user_id) as login")
-		if @sharedaccount
-			respond_to do |format|
-			  format.html 
-			  format.iphone  { render :layout => false }
-			end
-		else
-			redirect_to(dashboard_url)
-		end
+	  if @account
+		    @sharedaccount = @account.accounts_users.find_by_id(params[:id], :select => "accounts_users.*, (select login from users where users.id = accounts_users.user_id) as login")
+		    if @sharedaccount
+			    respond_to do |format|
+			      format.html 
+			      format.iphone  { render :layout => false }
+			    end
+		    else
+			    redirect_to(dashboard_url)
+		    end
 	  else
 			redirect_to(dashboard_url)
 	  end	
@@ -25,7 +25,7 @@ class AccountsUsersController < ApplicationController
 	if @sharedaccount
 		respond_to do |format|
 		  if @sharedaccount.update_attributes(params[:accounts_user])
-			flash[:notice] = 'Acccounts Users was successfully updated.'
+        flash[:notice] = I18n.t('layout.accountsusers.notice_message')  %   [@sharedaccount.user.login]
 			format.html { redirect_to([@account,:movements]) }
 		  else
 			format.html { render :action => "edit" }

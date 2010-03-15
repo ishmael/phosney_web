@@ -30,6 +30,8 @@ class Movement < ActiveRecord::Base
      
   end
   
+
+  
   def self.data_by_month(*args)
     with_scope(:find => { :conditions => "accounts_users.account_id = accounts.id and (movements.user_id = accounts_users.user_id  or (movements.private = 0 and movements.user_id <> accounts_users.user_id))"  , :select => "movements.account_id,movements.movdate,accounts.name,sum(movements.amount) as total", :joins => "inner join accounts on accounts.id = movements.account_id inner join accounts_users on accounts_users.account_id = accounts.id",:group => "movements.account_id,movements.movdate,accounts.name"} ) do
       find(*args)
@@ -42,6 +44,9 @@ class Movement < ActiveRecord::Base
     end
   end
   
+  def type_of_movement_desc
+    case mov_type when -1 then I18n.t('layout.movements.debit') when 1 then I18n.t('layout.movements.credit') end 
+  end
   
   def type_of_movement
     case mov_type when -1 then I18n.t('layout.movements.type_mov_debit') when 1 then I18n.t('layout.movements.type_mov_credit') end 
