@@ -18,7 +18,7 @@
 	</div>  
     <%= f.radio_button :mov_type,"-1",:id => "radiobutton_debit" %><%=  I18n.t('layout.movements.debit') %>
     <%= f.radio_button :mov_type,"1" ,:id => "radiobutton_credit"%><%=  I18n.t('layout.movements.credit') %>
-    <%= f.collection_select :category_id,  current_user.categories.find(:all,:conditions => 'mobile = 1' :order => 'name'), :id, :name,  :include_blank => I18n.t('layout.movements.category')  %>
+    <%= f.collection_select :category_id,  current_user.categories.find(:all,:conditions => 'mobile = 1', :order => 'name'), :id, :name,  :include_blank => I18n.t('layout.movements.category')  %>
     <%= f.collection_select :account_id,current_user.accounts.find_accounts_insert(:all,:order => 'name'), :id, :name %>
   
 	<label class="altLabel"> tags:</label>
