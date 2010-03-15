@@ -31,6 +31,7 @@ class MovementsController < ApplicationController
 		@map.center_zoom_init([@movement.lat, @movement.lng], 18)
 		ianazones = GMarker.new([@movement.lat, @movement.lng])
 		@map.overlay_init(ianazones)
+		
 		end
 	
 		respond_to do |format|

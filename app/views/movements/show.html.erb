@@ -2,6 +2,9 @@
 	<div class="boxin">
 		<div class="header">
 			<h3><%=  I18n.t('layout.movements.title') %></h3>
+			<% if @account.allow_edit == '1' %>	
+			<%= link_to I18n.t('layout.application.edit'),edit_polymorphic_path([@account,@movement]),:class => 'button' %>
+			<% end %>			
 		</div>	
 		<div  class="inner-form">
 			<div class="basic">			
@@ -12,9 +15,13 @@
 			  <dd><%=h @movement.amount%></dd>
 			  <dt><%= I18n.t('layout.movements.movdate') %></dt>
 			  <dd><%=h @movement.movdate  %></dd>	
-				<dd class="submit">
+			  <dt><%= I18n.t('layout.movements.category') %></dt>
+			  <dd><%=h @movement.category_name %></dd>
+			  <dt><%= I18n.t('layout.movements.tags') %></dt>
+			  <dd><%=h @movement.tag_list  %></dd>	
+    		  <dd class="submit">
 					<div>
-					<%= link_to I18n.t('layout.application.back'), polymorphic_path([@account,:movements]) %>
+					<%= link_to I18n.t('layout.movements.back'), polymorphic_path([@account,:movements]) %>
 					</div>
 				</dd>	   
 			</dl>			
