@@ -63,7 +63,12 @@
 				</tbody>
 			</table>
 			<div class="pagination">
+				
+				<% if @movements.total_entries > @movements.per_page %>
 								<%= will_paginate @movements %>
+				<% else%>
+					<div></div>	
+				<% end %>
 			</div>
 			<% else %>
 				<div class="basic tc" style="margin:10px;">	

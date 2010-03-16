@@ -35,7 +35,7 @@
 			</table>
 			
 			<div class="pagination">
-				<% if @categories.count < @categories.per_page %>
+				<% if @categories.total_entries >  @categories.per_page %>
 								<%= will_paginate @categories %>
 				<% else%>
 					<div></div>	
