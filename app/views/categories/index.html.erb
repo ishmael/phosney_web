@@ -33,9 +33,14 @@
 						<% end %>	
 				</tbody>
 			</table>
+			
 			<div class="pagination">
+				<% if @categories.count < @categories.per_page %>
 								<%= will_paginate @categories %>
-			</div>			
+				<% else%>
+					<div></div>	
+			<% end %>
+			</div>		
 			<% else %>
 				<div class="tc" style="margin:10px;">
 					<%= link_to I18n.t('layout.categories.new'), new_category_path %>

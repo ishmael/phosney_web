@@ -401,8 +401,8 @@ ul.actions li {
 ul.actions a { text-decoration: none; color: #fff ;}
 
 
-.pagination {border-top: 1px solid #999;height:38px; background: #fff url("/images/pagination.gif") repeat-x; text-align: center; color: #333 !important;}
-.pagination div {position: relative; top: -1px; padding: 12px 10px 6px; }
+.pagination {border-top: 1px solid #999;min-height:19px;background: #fff url("/images/pagination.gif") repeat-x; text-align: center; color: #333 !important;}
+.pagination div {position: relative; top: -1px; padding: 12px 10px 6px; min-height:16px;}
 .pagination a {
 	border: 0; background: #ebebeb url("/images/pagination-item.gif") repeat-x; margin: 0 5px; padding: 6px 10px; color: #333 !important;
 	border-radius: 3px;
