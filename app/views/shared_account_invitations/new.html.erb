@@ -5,6 +5,11 @@
 		</div>
 		<% form_for([@account,@sharedinvitation],:html =>{:class => 'basic'}) do |f| %>
    		<div class="inner-form">
+				<% if not f.error_messages.blank? %>
+					<div class="msg msg-error">
+						<%= f.error_messages  :header_message => nil, :message => nil %>
+					</div>
+			<% end %>
 			<dl>
 				<dt><%= f.label :email , I18n.t('layout.sharedinvitations.email')  %></dt>
 				<dd><%= f.text_field :recipient_email,:class => 'txt' %></dd>	

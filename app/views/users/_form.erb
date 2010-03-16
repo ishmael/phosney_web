@@ -2,7 +2,7 @@
   <%= javascript_include_tag "users.js" %>
 <% end %>
 <dt><%= form.label :login,I18n.t('layout.users.username') %></dt>
-<dd><%= form.text_field :login , :class => 'txt' %></dd>
+<dd><%= form.text_field :login , :readonly => @user.new_record? ? false : true,:class => 'txt' %></dd>
 <dt><%= form.label :password, form.object.new_record? ? I18n.t('layout.users.password') : I18n.t('layout.users.changepassword')  %></dt>
 <dd><%= form.password_field :password , :class => 'txt' %></dd>
 <dt><%= form.label :password_confirmation, I18n.t('layout.users.passwordconfirmation') %></dt>

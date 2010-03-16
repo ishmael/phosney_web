@@ -1,9 +1,14 @@
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "category.js" %>
 <% end %>
-<dt><%= form.label :name , I18n.t('layout.categories.name') %></dt>
+	<% if not form.error_messages.blank? %>
+		<div class="msg msg-error">
+			<%= form.error_messages  :header_message => nil, :message => nil %>
+		</div>
+<% end %>
+<dt><%= form.label :name , I18n.t('activerecord.attributes.category.name') %></dt>
 <dd><%= form.text_field :name , :class => 'txt' %></dd>
 <dt><%= form.label :parent_id,I18n.t('layout.categories.parent_id')  %></dt>
 <dd><div id="category_container"></div><%= form.collection_select :parent_id, current_user.categories.find(:all, :conditions =>  'id<>' + @category.pseudo_id.to_s , :order => 'name'), :id, :name, { :include_blank => true}, { :id => 'category_parent_id' } %></dd>
-<dt><%= form.label :bank,I18n.t('layout.categories.mobile') %></dt>
-<dd><%= form.check_box :mobile %></dd>
+<dt><%= form.label :mobile,I18n.t('layout.categories.mobile') %></dt>
+<dd><%= form.check_box :mobile%></dd>

@@ -62,6 +62,9 @@
 						<% end %>	
 				</tbody>
 			</table>
+			<div class="pagination">
+								<%= will_paginate @movements %>
+			</div>
 			<% else %>
 				<div class="basic tc" style="margin:10px;">	
 					<% if @account.allow_insert == '1' %>

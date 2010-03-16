@@ -86,9 +86,10 @@ en:
        title: "Categories"
        new: "New Category"
        mobile: "Display in Mobile Platforms (iPhone, Windows Mobile, Android)"
-       parent_id: "Parent Category"
+       parent_id: "Parent"
        notice_message: "The category with the name '%s' was sucessfully saved."
-       delete_message: "The category with the name '%s' was sucessfully deleted."       	
+       delete_message: "The category with the name '%s' was sucessfully deleted."
+       duplicate: "already exists as a category."
     tags:
        name: "Tag"
        title: "Tags"
@@ -125,8 +126,8 @@ en:
        changesubmit: "Update my password and log me in"     
        notice_message: "Your Profile was sucessfully saved."
     sharedinvitations:
-       name: "Share Account"
-       new: "Shared this account"
+       name: "Shared Account"
+       new: "Share this account"
        pending: "Pending acceptances"
        email: "Email"
        candelete: "Delete"
@@ -148,4 +149,22 @@ en:
   activerecord:
      attributes:
        account:
+         name: "Name"
+         number: "Number"
+         bank: "Bank"
+         account_balance: "Balance"
+       category:
+         name: "Name"
+         mobile: "Mobile"
+       movement:
+        description: "Description"
+        amount: "Amount"
+        movdate: "Date"
+        lat: "Latitude"
+        lng: "Longitude"
+        mov_type: "Type of Movement"
+        private: "Privte"
+       shared_account_invitation:
+        recipient_email: "Email"
+       tag:
          name: "Name"

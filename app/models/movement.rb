@@ -5,6 +5,8 @@ class Movement < ActiveRecord::Base
   acts_as_taggable
   validates_presence_of :description,:account_id,:amount
   validates_numericality_of :amount
+  cattr_reader :per_page
+  @@per_page = 10
   
   def category_id=(category)
     if category  == "0" 

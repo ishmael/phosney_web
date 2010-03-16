@@ -11,7 +11,7 @@
 			<table cellspacing="0">
 				<thead>
 					<tr>
-						<th class="first"><%=  I18n.t('layout.categories.name') %></th>
+						<th class="first"><%=  I18n.t('activerecord.attributes.category.name') %></th>
 						<td class="tc last actions"><%=  I18n.t('layout.application.actions') %></td>
 					</tr>
 				</thead>
@@ -33,6 +33,9 @@
 						<% end %>	
 				</tbody>
 			</table>
+			<div class="pagination">
+								<%= will_paginate @categories %>
+			</div>			
 			<% else %>
 				<div class="tc" style="margin:10px;">
 					<%= link_to I18n.t('layout.categories.new'), new_category_path %>

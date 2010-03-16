@@ -5,7 +5,7 @@
 
 		Event.onContentReady("users_div", function () {
 
-				var oSelectButtonCategory = new YAHOO.widget.Button({  
+				var oSelectButtonLanguage= new YAHOO.widget.Button({  
 						                    id: "localebutton", 
 						                    type: "menu",   
 						                    menu: "user_locale",
@@ -14,7 +14,7 @@
 						});
 
 
-				var onSelectedMenuItemChangeCategory = function (event) {
+				var onSelectedMenuItemChangeLanguage = function (event) {
 
 							var oMenuItem = event.newValue;
 
@@ -22,8 +22,13 @@
 										oMenuItem.cfg.getProperty("text") + "</em>"));
 
 						};
-							
-		    oSelectButtonCategory.on("selectedMenuItemChange", onSelectedMenuItemChangeCategory);
+			  var onLanguageRender = function (type, args, button) { 
+							 button.set("selectedMenuItem", this.getItem(button.get("selectedMenuItem").index) ); 
+			};				
+		    oSelectButtonLanguage.on("selectedMenuItemChange", onSelectedMenuItemChangeLanguage);
+			var oMenuButtonLanguage = oSelectButtonLanguage.getMenu();		
+			oMenuButtonLanguage.subscribe("render", onLanguageRender, oSelectButtonLanguage);
+		
 		});
 		
 }());

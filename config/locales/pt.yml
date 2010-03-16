@@ -93,6 +93,7 @@ pt:
        parent_id: "Categoria Pai"
        notice_message: "A categoria '%s' foi gravada com sucesso."
        delete_message: "A categoria '%s' foi apagada com sucesso."
+       duplicate: "já existe como categoria."
     tags:
        name: "Tag"
        title: "Tags"
@@ -127,7 +128,7 @@ pt:
        lastlogin: "Nunca"
        resetsubmit: "Reiniciar a Password"
        changesubmit: "Actualizar a Password e autenticar-me"
-       notice_message: "O perfil foi gravada com sucesso."
+       notice_message: "O perfil foi gravado com sucesso."
     sharedinvitations:
        name: "Partilhar Conta"
        new: "Partilhar esta Conta"
@@ -273,9 +274,26 @@ pt:
   activerecord:
     attributes:
         account:
-          name: "Nome"
+             name: "Nome"
+             number: "Número"
+             bank: "Banco"
+             account_balance: "Balanço"
+        category:
+             name: "Nome"
+             mobile: "Mobile"
         movement:
            description: "Descrição"
+           amount: "Valor"
+           movdate: "Data"
+           lat: "Latitude"
+           lng: "Longitude"
+           mov_type: "Tipo de Movimento"
+           private: "Privado"
+        shared_account_invitation:
+            recipient_email: "Email"
+        tag:
+            name: "Nome"
+
     errors:
       template:
         header:

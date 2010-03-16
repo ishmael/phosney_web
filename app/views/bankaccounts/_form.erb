@@ -1,3 +1,8 @@
+	<% if not form.error_messages.blank? %>
+		<div class="msg msg-error">
+			<%= form.error_messages  :header_message => nil, :message => nil %>
+		</div>
+<% end %>
   <dt><%= form.label :name , I18n.t('layout.bankaccounts.accountname') %></dt>
   <dd><%= form.text_field :name , :class => 'txt' %></dd>
   <dt><%= form.label :number,I18n.t('layout.bankaccounts.accountnumber')  %></dt>

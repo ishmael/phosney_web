@@ -400,6 +400,22 @@ ul.actions li {
 	}
 ul.actions a { text-decoration: none; color: #fff ;}
 
+
+.pagination {border-top: 1px solid #999;height:38px; background: #fff url("/images/pagination.gif") repeat-x; text-align: center; color: #333 !important;}
+.pagination div {position: relative; top: -1px; padding: 12px 10px 6px; }
+.pagination a {
+	border: 0; background: #ebebeb url("/images/pagination-item.gif") repeat-x; margin: 0 5px; padding: 6px 10px; color: #333 !important;
+	border-radius: 3px;
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 5px;
+}
+.pagination  .disabled {visibility : hidden; }
+.pagination a:hover,
+.pagination a:active,
+.pagination a:focus {color: #0a80cf !important;}
+.pagination .current {background: url("/images/pagination-arrow.gif") 50% 0 no-repeat; padding: 15px 10px 8px;}
+
+
 /* stylish buttons with rounded corners */
 .button {text-decoration:none; border: 1px solid #00487a; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; background: #0567ad url("/images/button.gif") repeat-x; padding: 5px 9px 5px; text-shadow: #00487a 1px 1px 0; color: #fff; cursor: pointer;}
 	.button:hover,

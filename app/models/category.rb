@@ -3,6 +3,9 @@ acts_as_tree :order => "name"
 belongs_to :user
 has_many :movements, :dependent => :nullify
 validates_presence_of :name
+validates_uniqueness_of :name, :scope => :user_id , :message =>  I18n.t('layout.categories.duplicate')
+cattr_reader :per_page
+ @@per_page = 10
 
   def parent_id=(parent)
     if parent  == "0" 
