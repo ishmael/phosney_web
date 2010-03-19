@@ -14,16 +14,19 @@
 								</tr>
 							</thead>
 							<tbody>
-							<% @bankaccounts.each_with_index do |bankaccount,i| %>	
+							<% @accounts.each_with_index do |account,i| %>	
 								<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-									<th class="first"><%= link_to bankaccount.name,polymorphic_path([bankaccount,:movements]) %></th>
-									<td class="tr"><%=h number_to_currency(bankaccount.account_balance) %></td>
+									<th class="first"><%= link_to account.name,polymorphic_path([account,:movements]) %></th>
+									<td class="tr"><%= format_currency(account.balance) %></td>
 								</tr>
 							<% end %>	
+							<% %>
+							<% currencies(@accounts).each do |currency_type|   %>
 								<tr>
-									<th class="first"><%=  I18n.t('layout.bankaccounts.total') %></th>
-									<td class="tr"><%= number_to_currency(@bankaccounts.sum { |item| item.account_balance }) %></td>
+									<th class="first"><%=  I18n.t('layout.bankaccounts.total') %>(<%= currency_type %>)</th>
+									<td class="tr"><%= format_currency(@accounts.find_all{|item| item.currency == currency_type }.sum { |citem| citem.balance }) %></td>
 								</tr>
+							<% end %>
 							</tbody>
 						</table>
 					</div>
@@ -47,7 +50,7 @@
 								<% @last5movements.each_with_index do |movement,i| %>	
 									<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
 										<th class="first"><%=h movement.description %></th>
-										<td class="tr"><%=h  number_to_currency(movement.amount) %></td>
+										<td class="tr"><%=  format_currency(movement.amount) %></td>
 										<td ><%=h  movement.type_of_movement %></td>
 									</tr>
 								<% end %>	

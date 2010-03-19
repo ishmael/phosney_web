@@ -17,7 +17,7 @@
 				<% @creditcardaccounts.each_with_index do |creditcardaccount,i| %>	
 					<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
 						<th class="first"><%=h creditcardaccount.name %></th>
-						<td class="tr"><%=h number_to_currency(creditcardaccount.account_balance) %></td>
+						<td class="tr"><%= format_currency(creditcardaccount.balance) %></td>
 						<td class="tc last">
 							<ul class="actions">
 								<li>
@@ -32,7 +32,7 @@
 				<% end %>	
 					<tr>
 						<th class="first"><%=  I18n.t('layout.creditcardaccounts.total') %></th>
-						<td class="tr"><%= number_to_currency(@creditcardaccounts.sum { |item| item.account_balance }) %></td>
+						<td class="tr"></td>
 						<td class="last"></td>
 					</tr>
 				</tbody>

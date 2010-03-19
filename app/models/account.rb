@@ -4,9 +4,10 @@ class Account < ActiveRecord::Base
   has_many :movements, :dependent => :destroy
   has_many :shared_account_invitations, :dependent => :destroy
   validates_presence_of :name, :number,:bank
+  money :balance, :currency => :currency
   
   def self.find_accounts_with_balance(*args)
-      with_scope(:find => {:select => "accounts.id,accounts.name,accounts.number,  accounts.bank,(select sum(amount*mov_type) from movements where movements.account_id = accounts.id and (movements.user_id = accounts_users.user_id  or (movements.private = 0 and movements.user_id <> accounts_users.user_id))) as balance, accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,accounts_users.owner",:order => "accounts.name asc"}) do
+      with_scope(:find => {:select => "accounts.*, accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,accounts_users.owner",:order => "accounts.name asc"}) do
         find(*args)
       end
   end
@@ -27,8 +28,12 @@ class Account < ActiveRecord::Base
     new_record? ? 0 : id
   end
   
-  def account_balance
-    balance.nil? ? 0 : balance.to_f 
+  def after_save
+    if currency_changed?
+      self.movements.update_all("currency ='" + currency + "'")
+      #self.movements.save
+    end
   end
+  
   
 end

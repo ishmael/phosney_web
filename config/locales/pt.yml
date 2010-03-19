@@ -31,6 +31,7 @@ pt:
       movsbyday: "Movimentos por Dia"
       movsbymonth: "Movimentos por Mês" 
       newpassword: "Nova Password"
+      currency: "Moeda"
     bankaccounts:
       name: "Conta Bancária"
       title: "Contas Bancárias"

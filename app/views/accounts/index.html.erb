@@ -16,12 +16,12 @@
 							<% @bankaccounts.each_with_index do |bankaccount,i| %>	
 								<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
 									<th class="first"><%=h bankaccount.name %></th>
-									<td class="tr"><%=h number_to_currency(bankaccount.account_balance) %></td>
+									<td class="tr"><%= format_currency(bankaccount.balance) %></td>
 								</tr>
 							<% end %>	
 								<tr>
 									<th class="first"><%=  I18n.t('layout.bankaccounts.total') %></th>
-									<td class="tr"><%= number_to_currency(@bankaccounts.sum { |item| item.account_balance }) %></td>
+									<td class="tr"></td> 
 								</tr>
 							</tbody>
 						</table>
@@ -46,7 +46,7 @@
 								<% @last5movements.each_with_index do |movement,i| %>	
 									<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
 										<th class="first"><%=h movement.description %></th>
-										<td class="tr"><%=h  number_to_currency(movement.amount) %></td>
+										<td class="tr"><%= format_currency(movement.amount) %></td>
 										<td ><%=h  movement.type_of_movement %></td>
 									</tr>
 								<% end %>	
@@ -58,11 +58,11 @@
 				<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
 					<div class="boxin">
 						<div class="header">
-							<h3>Movimentos por Mês</h3>
+							<h3> <%=  I18n.t('layout.application.movsbyday') %></h3>
 						</div>
 						<div class="content">
 			  			<div >
-		 	   				<% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
+		 	   				<% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:spending_data => @year_data
 		        			render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 950, 250, false, false do-%><% end-%>
 			  			</div>
 			     </div>

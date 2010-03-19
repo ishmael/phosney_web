@@ -1,6 +1,16 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "accounts.js" %>
+<% end %>	
+<% if not form.error_messages.blank? %>
+	<div class="msg msg-error">
+		<%= form.error_messages  :header_message => nil, :message => nil %>
+	</div>
+<% end %>
   <dt><%= form.label :name , I18n.t('layout.loanaccounts.accountname') %></dt>
   <dd><%= form.text_field :name , :class => 'txt' %></dd>
   <dt><%= form.label :number,I18n.t('layout.loanaccounts.accountnumber')  %></dt>
   <dd><%= form.text_field :number , :class => 'txt'%></dd>
   <dt><%= form.label :bank,I18n.t('layout.loanaccounts.accountbank') %></dt>
   <dd><%= form.text_field :bank , :class => 'txt'%></dd>
+<dt><%= form.label :locale,I18n.t('layout.application.currency') %></dt>
+<dd><div id="currency_container"></div><%= form.select(:currency, [['Euro', 'EUR'], ['Dollar', 'USD'], ['Pound', 'GBP']]) %></dd>

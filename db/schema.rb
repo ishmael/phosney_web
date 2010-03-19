@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091026115450) do
+ActiveRecord::Schema.define(:version => 20100318153038) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20091026115450) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.integer  "balance_in_cents", :default => 0
+    t.string   "currency"
   end
 
   create_table "accounts_users", :force => true do |t|
@@ -45,19 +47,20 @@ ActiveRecord::Schema.define(:version => 20091026115450) do
   create_table "movements", :force => true do |t|
     t.integer  "account_id"
     t.string   "description"
-    t.decimal  "amount",                   :precision => 12, :scale => 2, :default => 0.0
+    t.integer  "amount_in_cents",                                            :default => 0
     t.datetime "movdate"
     t.datetime "created_at"
     t.datetime "created_on"
     t.datetime "updated_at"
     t.datetime "updated_on"
-    t.integer  "mov_type",    :limit => 1, :precision => 1,  :scale => 0, :default => 1
+    t.integer  "mov_type",        :limit => 1, :precision => 1, :scale => 0, :default => 1
     t.integer  "category_id"
     t.float    "lat"
     t.float    "lng"
     t.float    "accuracy"
-    t.integer  "user_id",                                                                  :null => false
-    t.integer  "private",     :limit => 1, :precision => 1,  :scale => 0, :default => 0
+    t.integer  "user_id",                                                                   :null => false
+    t.integer  "private",         :limit => 1, :precision => 1, :scale => 0, :default => 0
+    t.string   "currency"
   end
 
   create_table "sessions", :force => true do |t|

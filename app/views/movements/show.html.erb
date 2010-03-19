@@ -12,9 +12,9 @@
 			  <dt><%= I18n.t('layout.movements.description') %></dt>
 			  <dd><%=h @movement.description %></dd>
 			  <dt><%= I18n.t('layout.movements.amount')  %></dt>
-			  <dd><%=h number_to_currency(@movement.amount)%></dd>
+			  <dd><%=h format_currency(@movement.amount)%></dd>
 			  <dt><%= I18n.t('layout.movements.movdate') %></dt>
-			  <dd><%=h @movement.movdate  %></dd>	
+			  <dd><%=h @movement.movdate.to_date  %></dd>	
 			  <dt><%= I18n.t('layout.movements.category') %></dt>
 			  <dd><%=h @movement.category_name %></dd>
 			  <dt><%= I18n.t('layout.movements.tags') %></dt>

@@ -3,10 +3,11 @@ class Movement < ActiveRecord::Base
   belongs_to :account
   belongs_to :category
   acts_as_taggable
-  validates_presence_of :description,:account_id,:amount
-  validates_numericality_of :amount
+  validates_presence_of :description,:account_id,:amount_in_cents
+  validates_numericality_of :amount_in_cents
   cattr_reader :per_page
   @@per_page = 10
+  money :amount, :currency => :currency
   
   def category_id=(category)
     if category  == "0" 
@@ -32,16 +33,28 @@ class Movement < ActiveRecord::Base
      
   end
   
+  def after_save
+    if amount_in_cents_changed?
+      self.account.balance_in_cents+= ( (amount_in_cents * mov_type ) - (amount_in_cents_was * mov_type_was ) )
+      self.account.save
+    end
+  end
+  
+  def after_destroy
+      self.account.balance_in_cents-=  (amount_in_cents * mov_type ) 
+      self.account.save
+  end
+  
 
   
   def self.data_by_month(*args)
-    with_scope(:find => { :conditions => "accounts_users.account_id = accounts.id and (movements.user_id = accounts_users.user_id  or (movements.private = 0 and movements.user_id <> accounts_users.user_id))"  , :select => "movements.account_id,movements.movdate,accounts.name,sum(movements.amount) as total", :joins => "inner join accounts on accounts.id = movements.account_id inner join accounts_users on accounts_users.account_id = accounts.id",:group => "movements.account_id,movements.movdate,accounts.name"} ) do
+    with_scope(:find => { :conditions => "accounts_users.account_id = accounts.id and (movements.user_id = accounts_users.user_id  or (movements.private = 0 and movements.user_id <> accounts_users.user_id))"  , :select => "movements.account_id,movements.movdate,accounts.name,sum(movements.amount_in_cents/100) as total", :joins => "inner join accounts on accounts.id = movements.account_id inner join accounts_users on accounts_users.account_id = accounts.id",:group => "movements.account_id,movements.movdate,accounts.name"} ) do
       find(*args)
     end
   end
   
   def self.data_by_year(*args)
-    with_scope(:find => {:select=> "date_trunc('month',movdate) as movdate,sum(movements.amount) as balance,mov_type", :joins => "inner join accounts on accounts.id = movements.account_id inner join accounts_users on accounts_users.account_id = accounts.id",:conditions => "accounts_users.account_id = accounts.id and (movements.user_id = accounts_users.user_id  or (movements.private = 0 and movements.user_id <> accounts_users.user_id))" , :group => "date_trunc('month',movdate),mov_type"}) do
+    with_scope(:find => {:select=> "date_trunc('month',movdate) as movdate,sum(movements.amount_in_cents/100) as balance,mov_type", :joins => "inner join accounts on accounts.id = movements.account_id inner join accounts_users on accounts_users.account_id = accounts.id",:conditions => "accounts_users.account_id = accounts.id and (movements.user_id = accounts_users.user_id  or (movements.private = 0 and movements.user_id <> accounts_users.user_id))" , :group => "date_trunc('month',movdate),mov_type"}) do
       find(*args)
     end
   end

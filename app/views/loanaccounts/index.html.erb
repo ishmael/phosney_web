@@ -17,7 +17,7 @@
 				<% @loanaccounts.each_with_index do |loanaccount,i| %>	
 					<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
 						<th class="first"><%=h loanaccount.name %></th>
-						<td class="tr"><%=h number_to_currency(loanaccount.account_balance) %></td>
+						<td class="tr"><%= format_currency(loanaccount.balance) %></td>
 						<td class="tc last">
 							<ul class="actions">
 								<li>
@@ -32,7 +32,7 @@
 				<% end %>	
 					<tr>
 						<th class="first"><%=  I18n.t('layout.loanaccounts.total') %></th>
-						<td class="tr"><%= number_to_currency(@loanaccounts.sum { |item| item.account_balance }) %></td>
+						<td class="tr"></td>
 						<td class="last"></td>
 					</tr>
 				</tbody>

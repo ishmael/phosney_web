@@ -24,4 +24,26 @@ module ApplicationHelper
 			@loanaccount.class
 		end
 	end
+	
+	def currencies(accounts)
+	  currencies = Array.new
+	  accounts.each do |conta|
+	      currencies << conta.currency
+	  end
+	  currencies.uniq!
+	end
+	
+	def format_currency(value)
+	  case value.currency
+    when 'EUR'
+      number_to_currency(value.to_f,{:precision => 2,:unit=> '&euro;'})
+    when 'GBP'
+      number_to_currency(value.to_f,{:precision => 2,:unit=> '&pound;', :separator => ",", :delimiter => ""})
+    when 'USD'
+      value.format
+    else
+      value.format
+    end
+	end
 end
+#, :format => '%n%u' , :separator => ',' delimiter => '.'

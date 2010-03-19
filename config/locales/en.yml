@@ -26,7 +26,8 @@ en:
       actions: "Actions"     
       movsbyday: "Movements by Day"
       movsbymonth: "Movements by Month"
-      newpassword: "New Password"  
+      newpassword: "New Password"
+      currency: "Currency"      
     bankaccounts:
       name: "Account"
       title: "Accounts"
