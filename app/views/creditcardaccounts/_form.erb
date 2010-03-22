@@ -1,5 +1,6 @@
 <% content_for :javascript_includes do %>
-  <%= javascript_include_tag "accounts.js" %>
+<%= javascript_include_tag 'yui/dragdrop/dragdrop-min','yui/slider/slider-min','yui/colorpicker/colorpicker-min' ,'accounts.js' %>
+<%= stylesheet_link_tag  'yui/colorpicker/assets/skins/sam/colorpicker' ,'yui/slider/assets/skins/sam/slider'%>
 <% end %>	
 <% if not form.error_messages.blank? %>
 	<div class="msg msg-error">
@@ -13,4 +14,6 @@
   <dt><%= form.label :bank,I18n.t('layout.creditcardaccounts.accountbank') %></dt>
   <dd><%= form.text_field :bank , :class => 'txt'%></dd>
 <dt><%= form.label :locale,I18n.t('layout.application.currency') %></dt>
-<dd><div id="currency_container"></div><%= form.select(:currency, [['Euro', 'EUR'], ['Dollar', 'USD'], ['Pound', 'GBP']]) %></dd>
+<dd><div id="currency_container"></div><%= form.select(:currency, [['Euro', 'EUR'], ['Dollar', 'USD'], ['Pound', 'GBP']] ,{},{:id => "account_currency"} )%></dd>
+<dt><%= form.label :color,I18n.t('layout.application.color') %></dt>
+<dd><%= form.hidden_field :color ,:id => "color_value"%>    <div id="color_container"></div></dd>

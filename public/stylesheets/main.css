@@ -272,6 +272,11 @@ a.yuimenuitemlabel {
 	z-index:10 !important;
  }
 
+#currencybutton button{
+	width:150px;
+	text-align: left;
+}
+
 /* error/information messages */
 .msg {
 	border-radius: 5px;
@@ -360,7 +365,7 @@ div.basic dl {width: 100%; overflow: hidden;} /* basic layout for forms */
 div.basic dl dt,
 div.basic dl dd {float: left;}
 div.basic dl dt {padding: 3px 5px 3px 0; width: 20%;}
-div.basic dl dd {padding: 3px 0 3px 5px; width: 70%;height:16px;}
+div.basic dl dd {padding: 3px 0 3px 5px; width: 70%;min-height:16px;}
 div.basic dl dd.submit {padding: 3px 0px 0px 0px; width: 100%;height:50px;}
 div.basic dl dd.submit div {float:right;height:25px;margin-right:20px; margin-top:20px;}
 /* forms */
@@ -505,6 +510,77 @@ ul.actions a { text-decoration: none; color: #fff ;}
 .box .content .grid .item h4 span {margin-right: 5px; font-weight: normal; font-size: 90%;}
 .box .content .grid .item p {margin: 0 0 5px 0; color: #666;}
 .box .content .grid ul.actions {margin-top: 8px;}
+
+
+
+
+#color-picker-button {
+
+	vertical-align: baseline;
+
+}
+
+#color-picker-button button {
+
+	outline: none;  /* Safari */
+	line-height: 1.5;
+
+}
+
+
+/*
+	Style the Button instance's label as a square whose background color 
+	represents the current value of the ColorPicker instance.
+*/
+
+#current-color {
+
+	display: block;
+	display: inline-block;
+	*display: block;    /* For IE */
+	margin-top: .5em;
+	*margin: .25em 0;    /* For IE */
+	width: 1em;
+	height: 1em;
+	overflow: hidden;
+	text-indent: 1em;
+	
+	white-space: nowrap;
+	border: solid 1px #000;
+
+}
+
+
+/* Hide default colors for the ColorPicker instance. */
+
+#color-picker-container .yui-picker-controls,
+#color-picker-container .yui-picker-swatch,
+#color-picker-container .yui-picker-websafe-swatch {
+
+	display: none;
+
+}
+
+
+/*
+	Size the body element of the Menu instance to match the dimensions of 
+	the ColorPicker instance.
+*/
+		
+#color-picker-menu .bd {
+
+	width: 220px;    
+	height: 190px;
+
+}
+
+.account_color{
+	width:15px;
+	height:15px;
+	display:inline-block;
+	margin-right:10px;
+	vertical-align:bottom;
+}
 
 
 /* login page */

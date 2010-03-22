@@ -102,10 +102,10 @@
 						<ul class="actions">
 							
 							<li>
-							<%= link_to I18n.t('layout.application.edit'), edit_bankaccount_path(@account),:class  =>'button' %>
+							<%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path(@account),:class  =>'button' %>
 							</li>
 							<li>
-							<%= link_to I18n.t('layout.application.delete'),  bankaccount_path(@account), {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'button' } %>
+							<%= link_to I18n.t('layout.application.delete'),  polymorphic_path(@account), {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'button' } %>
 							</li>
 							</ul>
 						<% end %>

@@ -13,16 +13,13 @@
 								</tr>
 							</thead>
 							<tbody>
-							<% @bankaccounts.each_with_index do |bankaccount,i| %>	
+							<% @accounts.each_with_index do |account,i| %>	
 								<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-									<th class="first"><%=h bankaccount.name %></th>
-									<td class="tr"><%= format_currency(bankaccount.balance) %></td>
+									<th class="first"><div class="account_color" style="background-color:#<%= account.color%> ;"></div><%= link_to account.name,polymorphic_path([account,:movements]) %></th>
+									<td class="tr"><%= format_currency(account.balance) %></td>
 								</tr>
 							<% end %>	
-								<tr>
-									<th class="first"><%=  I18n.t('layout.bankaccounts.total') %></th>
-									<td class="tr"></td> 
-								</tr>
+							<%= currencies(@accounts,false)  %>
 							</tbody>
 						</table>
 					</div>
@@ -62,6 +59,7 @@
 						</div>
 						<div class="content">
 			  			<div >
+				
 		 	   				<% str_xml = render "fusioncharts/movements_by_month.builder",:layout => false,:spending_data => @year_data
 		        			render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 950, 250, false, false do-%><% end-%>
 			  			</div>

@@ -16,7 +16,7 @@
 				<tbody>
 				<% @bankaccountsdata.each_with_index do |bankaccount,i| %>	
 					<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-						<th class="first"><%=h bankaccount.name %></th>
+						<th class="first"><div class="account_color" style="background-color:#<%= bankaccount.color%> ;"></div><%= link_to bankaccount.name,polymorphic_path([bankaccount,:movements]) %></th>
 						<td class="tr"><%= format_currency(bankaccount.balance) %></td>
 						<td class="tc last">
 							<% if bankaccount.owner == '1' %>
@@ -31,12 +31,8 @@
 							<% end %>
 						</td>
 					</tr>
-				<% end %>	
-					<tr>
-						<th class="first"><%=  I18n.t('layout.bankaccounts.total') %></th>
-						<td class="tr"></td>
-						<td class="last"></td>
-					</tr>
+				<% end %>		
+				<%= currencies(@bankaccountsdata,true)  %>
 				</tbody>
 			</table>
 		</div>

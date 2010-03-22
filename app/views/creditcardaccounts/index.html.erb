@@ -16,7 +16,7 @@
 				<tbody>
 				<% @creditcardaccounts.each_with_index do |creditcardaccount,i| %>	
 					<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-						<th class="first"><%=h creditcardaccount.name %></th>
+						<th class="first"><div class="account_color" style="background-color:#<%= creditcardaccount.color%> ;"></div><%= link_to creditcardaccount.name,polymorphic_path([creditcardaccount,:movements]) %></th>
 						<td class="tr"><%= format_currency(creditcardaccount.balance) %></td>
 						<td class="tc last">
 							<ul class="actions">
@@ -30,11 +30,7 @@
 						</td>
 					</tr>
 				<% end %>	
-					<tr>
-						<th class="first"><%=  I18n.t('layout.creditcardaccounts.total') %></th>
-						<td class="tr"></td>
-						<td class="last"></td>
-					</tr>
+				<%= currencies(@creditcardaccounts,true)  %>
 				</tbody>
 			</table>
 		</div>

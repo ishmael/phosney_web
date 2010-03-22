@@ -16,7 +16,7 @@ xml.graph(:caption=>I18n.t('layout.fusioncharts.months_balance.caption'), :subCa
 	    xml.dataset(:seriesname=>  movtype == -1 ? I18n.t('layout.fusioncharts.months_balance.expenses') : I18n.t('layout.fusioncharts.months_balance.income'), :showValue=>'1' ,:color=> movtype == -1 ? 'ff0000': '02ff42' ) do
 	      months_in_year = Array.new(12)
         movement.each do |mov|  
-          months_in_year[mov.movdate.month-1] = mov.balance
+          months_in_year[mov.movdate.month-1] = mov.amount
         end
         months_in_year.each do |total|
           total.nil? ? xml.set(:value=>0)  : xml.set(:value=>total )

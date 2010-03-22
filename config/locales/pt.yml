@@ -29,9 +29,10 @@ pt:
       accounts: "Contas"
       actions: "Acções"
       movsbyday: "Movimentos por Dia"
-      movsbymonth: "Movimentos por Mês" 
+      movsbymonth: "Total por Mês" 
       newpassword: "Nova Password"
       currency: "Moeda"
+      color: "Côr"
     bankaccounts:
       name: "Conta Bancária"
       title: "Contas Bancárias"
@@ -149,7 +150,9 @@ pt:
        canupdate: "Actualiza"
        save_message: "A partilha da conta foi gravada com sucesso."
        notice_message: "A partilha da conta com '%s' foi gravada com sucesso."
-       delete_message: "A partilha da conta com '%s' foi apagada com sucesso."       
+       delete_message: "A partilha da conta com '%s' foi apagada com sucesso."
+    accounts:
+          total: "Total"              
 
   authlogic:
     error_messages:

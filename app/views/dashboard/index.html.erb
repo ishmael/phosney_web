@@ -16,17 +16,11 @@
 							<tbody>
 							<% @accounts.each_with_index do |account,i| %>	
 								<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-									<th class="first"><%= link_to account.name,polymorphic_path([account,:movements]) %></th>
+									<th class="first"><div class="account_color" style="background-color:#<%= account.color%> ;"></div><%= link_to account.name,polymorphic_path([account,:movements]) %></th>
 									<td class="tr"><%= format_currency(account.balance) %></td>
 								</tr>
 							<% end %>	
-							<% %>
-							<% currencies(@accounts).each do |currency_type|   %>
-								<tr>
-									<th class="first"><%=  I18n.t('layout.bankaccounts.total') %>(<%= currency_type %>)</th>
-									<td class="tr"><%= format_currency(@accounts.find_all{|item| item.currency == currency_type }.sum { |citem| citem.balance }) %></td>
-								</tr>
-							<% end %>
+							<%= currencies(@accounts,false)  %>
 							</tbody>
 						</table>
 					</div>
@@ -59,18 +53,20 @@
 						</div>
 					</div>
 				</div>
-				<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
+				<% @year_data.group_by(&:currency).each do |ycurrency,ydata| %>
+				<div class="box box-100 altbox">
 					<div class="boxin">
 						<div class="header">
-							<h3>Movimentos por Mês</h3>
+							<h3><%=  I18n.t('layout.application.movsbymonth') %> (<%= ycurrency%>)</h3>
 						</div>
 						<div class="content">
-			  			<div >
-		 	   				<% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => @year_data
-		        			render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart', 950, 250, false, false do-%><% end-%>
-			  			</div>
-			     </div>
-			</div>
-	</div>
+			  				<div >
+		 	   				<% str_xml = render "fusioncharts/income_expenditure_by_year.builder",:layout => false,:year_data => ydata
+		        			render_chart '/FusionCharts/FCF_MSColumn2D.swf', '', str_xml, 'SpendingChart' + ycurrency, 950, 250, false, false do-%><% end-%>
+			  				</div>
+			     		</div>
+				   </div>
+			 </div>
+			<% end %>
 </div>
          

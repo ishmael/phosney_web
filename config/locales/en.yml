@@ -25,9 +25,10 @@ en:
       accounts: "Accounts" 
       actions: "Actions"     
       movsbyday: "Movements by Day"
-      movsbymonth: "Movements by Month"
+      movsbymonth: "Total by Month"
       newpassword: "New Password"
-      currency: "Currency"      
+      currency: "Currency"
+      color: "Color"      
     bankaccounts:
       name: "Account"
       title: "Accounts"
@@ -146,6 +147,8 @@ en:
        save_message: "The shared account configuration was sucessfully saved."
        notice_message: "The shared account configuration with '%s' was sucessfully saved."
        delete_message: "The shared account configuration with '%s' was sucessfully deleted."
+    accounts:
+       total: "Total"
 
   activerecord:
      attributes:
