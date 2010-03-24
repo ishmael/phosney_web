@@ -65,7 +65,8 @@
 			<div class="pagination">
 				
 				<% if @movements.total_entries > @movements.per_page %>
-								<%= will_paginate @movements %>
+								<%= will_paginate @movements , :previous_label => I18n.t('layout.application.previous'), 
+								:next_label => I18n.t('layout.application.next') %>
 				<% else%>
 					<div></div>	
 				<% end %>
@@ -89,7 +90,7 @@
 			<div class="basic">
 			<dl>
 			  <dt><%= I18n.t('layout.bankaccounts.accountname') %></dt>
-			  <dd><%=h @account.name %></dd>
+			  <dd><div class="account_color" style="background-color:#<%= @account.color%>;"></div><%=h @account.name %></dd>
 			  <dt><%= I18n.t('layout.bankaccounts.accountnumber')  %></dt>
 			  <dd><%=h @account.number%></dd>
 			  <dt><%= I18n.t('layout.bankaccounts.accountbank') %></dt>

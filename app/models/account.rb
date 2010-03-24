@@ -31,7 +31,6 @@ class Account < ActiveRecord::Base
   def after_save
     if currency_changed?
       self.movements.update_all("currency ='" + currency + "'")
-      #self.movements.save
     end
   end
   

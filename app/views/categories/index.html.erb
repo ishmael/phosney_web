@@ -36,7 +36,8 @@
 			
 			<div class="pagination">
 				<% if @categories.total_entries >  @categories.per_page %>
-								<%= will_paginate @categories %>
+								<%= will_paginate @categories , :previous_label => I18n.t('layout.application.previous'), 
+								:next_label => I18n.t('layout.application.next') %>
 				<% else%>
 					<div></div>	
 			<% end %>

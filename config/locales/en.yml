@@ -28,7 +28,9 @@ en:
       movsbymonth: "Total by Month"
       newpassword: "New Password"
       currency: "Currency"
-      color: "Color"      
+      color: "Color"
+      previous: "Previous"
+      next: "Next"
     bankaccounts:
       name: "Account"
       title: "Accounts"

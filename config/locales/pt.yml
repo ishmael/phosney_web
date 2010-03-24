@@ -33,6 +33,8 @@ pt:
       newpassword: "Nova Password"
       currency: "Moeda"
       color: "Côr"
+      previous: "Anterior"
+      next: "Próxima"
     bankaccounts:
       name: "Conta Bancária"
       title: "Contas Bancárias"
