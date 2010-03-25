@@ -13,6 +13,7 @@
 ---------------------------------------------------------------------------------------*/
 body{ 
 	background:none repeat scroll 0 0 #DDDDDD;
+	padding-bottom:10px;
 	}
 
 .left{ float:left; }
