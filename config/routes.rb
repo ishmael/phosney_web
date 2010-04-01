@@ -1,15 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
   #map.resources :movements
   map.filter 'locale'
-  map.resources :bankaccounts  , :has_many => :movements
-  map.resources :loanaccounts  , :has_many => :movements
-  map.resources :creditcardaccounts  , :has_many => :movements
+  map.resources :bankaccounts  , :has_many => [:movements,:shared_account_invitations ,:accounts_users], :as => 'cheking'
+  map.resources :loanaccounts  , :has_many => :movements, :as => 'loans'
+  map.resources :creditcardaccounts  , :has_many => :movements, :as => 'creditcards'
   map.resources :categories  , :has_many => :movements
   map.resources :tags
   map.resources :password_resets
   map.resources :shared_account_invitations, :as => 'sharedaccount' ,:member => {:accept =>:get},:only => [:accept]
-  map.resources :bankaccounts, :has_many => :shared_account_invitations 
-  map.resources :bankaccounts, :has_many => :accounts_users 
   map.accounts '/accounts',:controller => 'accounts', :action => 'index'
  
   
