@@ -15,15 +15,13 @@
 <body class="yui-skin-sam">
 	<div id='mainheader'>
     	<div  id="header">
-	    	<div id="profile_info" class="cr-all">
-				<img src="<%= gravatar_url(@current_user.email, :size=>"41px") %>" id="avatar" alt="avatar" />
-				<p><%=  I18n.t('layout.application.welcome') %> <%= @current_user.login	%>.</p> 
-				<%= link_to I18n.t('layout.application.settings'), account_path, :id => 'settingsbutton' %>
-				<%= link_to I18n.t('layout.application.logout'), logout_path,  :id => 'logoutbutton' %>
-			</div>
 			<div id="logo"><h1><a href="/"><%=  I18n.t('layout.application.name') %></a></h1>
-			<h4><%=  I18n.t('layout.application.tag')  %></h4>
 			</div>
+			<div id="top_menu">
+				<%= render :partial => 'partials/menu'  %>
+	    	</div>
+			<%= link_to I18n.t('layout.application.logout'), logout_path,  :id => 'logoutbutton' %>
+			<%= link_to I18n.t('layout.application.settings'), account_path, :id => 'settingsbutton'  %>
 		</div>
 	</div>
 	<div id="quick_movement" class="cr-botton"> 
@@ -31,9 +29,7 @@
 	</div>
 	<div  id="container">
 		<div id="content" >
-	    	<div id="top_menu">
-				<%= render :partial => 'partials/menu'  %>
-	    	</div>
+	    	
 			<% if flash[:notice] -%> 
 			  <div class="msg msg-ok cr-all"><p><%= flash[:notice]%></p></div>
 			<% end -%>

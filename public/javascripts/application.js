@@ -7,12 +7,13 @@
 
 		var ButtonGroup = YAHOO.widget.ButtonGroup;
 		
-		Event.onContentReady("profile_info", function () {
-			 var oLinkSettingsButton = new YAHOO.widget.Button("settingsbutton");
-			 var curEvent = YAHOO.util.Dom.get('logoutbutton').onclick;   
-			 var oLinkLogoutButton = new YAHOO.widget.Button("logoutbutton", { onclick : { fn: curEvent } });	
-			});
-		
+		Event.onContentReady("header", function () {
+					 var oLinkSettingsButton = new YAHOO.widget.Button("settingsbutton");
+					// var curEvent = YAHOO.util.Dom.get('logoutbutton').onclick;   
+					 //var oLinkLogoutButton = new YAHOO.widget.Button("logoutbutton", { onclick : { fn: curEvent } });						
+					 var oLinkLogoutButton = new YAHOO.widget.Button("logoutbutton");	
+					});
+						
 		Event.onContentReady("quick_movement", function () {
 			document.getElementById("quickmov_category")[0].value = 0;
 			var oSelectButtonAccount = new YAHOO.widget.Button({  

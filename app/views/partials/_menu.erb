@@ -1,7 +1,7 @@
-<div id="applicationmenu" class="cr-all yuimenubar yuimenubarnav">
+<div id="applicationmenu" class="cr-top yuimenubar yuimenubarnav">
    <div class="bd">
    		<ul class="first-of-type">
-    		<li class="yuimenubaritem first-of-type" style="margin-left:5px;"><a class="menutop yuimenubaritemlabel" href="/">Dashboard</a></li>
+    		<li class="yuimenubaritem first-of-type firstli" ><a class="menutop yuimenubaritemlabel" href="/">Dashboard</a></li>
 
 			<li class="yuimenubaritem"><%= link_to I18n.t('layout.application.accounts'), accounts_path, :class =>  'menutop   yuimenubaritemlabel' %>
 	 			<div id="accounts" class="yuimenu">
@@ -30,7 +30,7 @@
 				</div>
 			</li>
 			<li class="yuimenubaritem"><%= link_to I18n.t('layout.categories.title'), categories_path, :class => 'menutop yuimenuitemlabel' %></li>			
-			<li class="yuimenubaritem"><%= link_to I18n.t('layout.tags.title'), tags_path, :class => 'menutop yuimenuitemlabel' %></li>		
+			<li class="yuimenubaritem lastli"><%= link_to I18n.t('layout.tags.title'), tags_path, :class => 'menutop yuimenuitemlabel' %></li>		
 		</ul>
 	</div>
 </div>

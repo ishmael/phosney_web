@@ -46,27 +46,63 @@ STRUCTURE					 */
 #container{	overflow:hidden;   width:1000px; margin:0px auto 0px auto;}
 #mainheader{
 	background:url("/images/header.png") repeat-x scroll 0 0 #0F508D;
+	padding-bottom:1px;
 	border-bottom:1px solid #2A9FEC;
-	height:70px;
 	width:100%;
 }
-#header{height:60px; background: transparent; width:1000px;margin:0 auto;}
+#header{height:40px; background: transparent; width:1000px;margin:0 auto;}
+
 #footer{clear:both; }
-#content_main{background:transparent;width:1000px;padding:10px 0px 0px 0px;;}
-#top_menu{width:1000px;margin-top:5px;}
+
+#content_main{background:transparent;width:1000px;padding:10px 0px 0px 0px;}
+
+#top_menu{display:inline-block;vertical-align:bottom;}
+
 #quick_movement{margin:0 auto;padding: 3px;background:#ffffff;width:994px;height:50px;}
-#profile_info{ background:#4780ae;float:right; width:200px;height:50px;margin:5px 10px 0px 0px;color:#fff;line-height:10px;}
+/*
+#profile_info{vertical-align:bottom;float:right;display:inline-block;}
+
 #avatar{float:left;margin:0px 10px 0px 5px;padding-top:5px;min-height:16px;min-width:16px;}
+*/
 #footer{background:#ffffff;width:980px;margin: 0 auto 0 auto;height:15px;padding:10px;}
+
 #footer p{background:none;padding:0px;margin:0px}
+
 #applicationmenu {
-	margin-bottom:5px;
 	border: 0px;
-	font-size:138.5% ;
+	height:25px;
 }
 
 .menutop {
 	border:0px !important;
+}
+
+#applicationmenu  .firstli {
+	margin-left:5px;
+}
+
+#applicationmenu  .lastli {
+	border-right:0px;
+	margin-right:5px;
+}
+
+
+#settingsbutton {
+    -moz-border-radius-bottomleft  :5px;
+    -webkit-border-bottom-left-radius :5px;
+    -moz-border-radius-bottomright  :5px;
+    -webkit-border-bottom-right-radius :5px;
+	border-top:0px;	
+	float:right;
+}
+
+#logoutbutton {
+    -moz-border-radius-bottomleft  :5px;
+    -webkit-border-bottom-left-radius :5px;
+    -moz-border-radius-bottomright  :5px;
+    -webkit-border-bottom-right-radius :5px;
+	float:right;
+	border-top:0px;		
 }
 
 #accountsbalance {
@@ -113,8 +149,8 @@ CORNERS
 /* ------------------------------------------------------------------------------------
 LOGO				 */
 #logo {
-	padding-top:5px;
 	width:300px;
+	display:inline-block;
 }
 div#logo h1{
 	padding:0px;
@@ -130,17 +166,13 @@ div#logo h1 a{
 	}
 div#logo h4{
 	color:#ffffff;
-	/*left:230px;
-	position:absolute;
-	top:95px;*/
-	
 }
-#profile_info p{
+/*#profile_info p{
 	font-size:11px;
 	padding-top:4px;
 	padding-bottom:4px;
 	}
-
+*/
 /* ------------------------------------------------------------------------------------
 LOGO				 */
 #quick_movement  .quickmovement-div {
@@ -181,13 +213,14 @@ LOGO				 */
 
 #profile_info span {
 	margin:0px;
+	vertical-align:bottom;
 }
-
+/*
 #profile_info a {
 	padding:0px 5px 0px 5px;
 	font-size:77%;
 }
-
+*/
 
 #quickmov_accountbutton button {
         outline: none;
