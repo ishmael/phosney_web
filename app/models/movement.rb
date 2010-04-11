@@ -1,10 +1,10 @@
 class Movement < ActiveRecord::Base
-
+  money :amount, :currency => :currency, :precision => 2
   belongs_to :user
   belongs_to :account
   belongs_to :category
   acts_as_taggable
-  money :amount, :currency => :currency, :precision => 2
+
   validates_presence_of :description,:account_id,:amount_in_cents
   validates_numericality_of :amount_in_cents
   cattr_reader :per_page

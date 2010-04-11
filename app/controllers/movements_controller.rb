@@ -48,8 +48,6 @@ class MovementsController < ApplicationController
 		@quick_movement.user_id = @current_user.id
     @account = Account.find @quick_movement.account_id
     @quick_movement.currency = @account.currency
-
-
 		if @quick_movement.save
 			  @quick_movement.save_tags(current_user)
 				flash[:notice] = I18n.t('layout.movements.notice_message')  %   [@quick_movement.type_of_movement_desc,@template.format_currency(Money.new(@quick_movement.amount_in_cents,@account.currency)),@quick_movement.movdate.to_date,@quick_movement.description]
