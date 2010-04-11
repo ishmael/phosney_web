@@ -1,40 +1,8 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-    require "fusioncharts_helper"
-    include FusionChartsHelper
 	
-	def accountnumber
-		if not @bankaccount.nil?
-			@bankaccount.pseudo_id
-		elsif not @creditcardaccount.nil?
-			@creditcardaccount.pseudo_id
-		elsif not @loanaccount.nil?
-			@loanaccount.pseudo_id
-		elsif not @account.nil? 
-			@account.pseudo_id
-		end
-	end
-	
-	def accounttype
-		if not @bankaccount.nil?
-			@bankaccount.class
-		elsif not @creditcardaccount.nil?
-			@creditcardaccount.class
-		elsif not @loanaccount.nil?
-			@loanaccount.class
-		end
-	end
-  
-
-	
-	def currencies(accounts,last)
+	def currencies(currencies,accounts,last)
 	  ret = ''
-	  currencies = Array.new
-	  accounts.each do |conta|
-	      currencies << conta.currency
-	  end
-	  currencies.uniq!
-	  
 	    currencies.each do |currency_type|
 	      ret += 	"<tr class=\""+ cycle('even', 'odd') +"\">"
 	      ret +="<th class=\"first\">"+ I18n.t('layout.accounts.total') +"(" + currency_type + ")</th>"
@@ -52,7 +20,7 @@ module ApplicationHelper
 	def format_currency(value)
 	  case value.currency
     when 'EUR'
-      number_to_currency(value.to_f,{:precision => 2,:unit=> '&euro;'})
+      number_to_currency(value.to_f,{:precision => 2,:unit=> '&euro;', :separator => ",", :delimiter => ""})
     when 'GBP'
       number_to_currency(value.to_f,{:precision => 2,:unit=> '&pound;', :separator => ",", :delimiter => ""})
     when 'USD'
@@ -61,5 +29,17 @@ module ApplicationHelper
       value.format
     end
 	end
+	
+	def chart_with_currency(value)
+	  case value.currency
+    when 'EUR'
+      number_to_currency(value.to_f.abs,{:precision => 2,:unit=> '&#x20AC;'})
+    when 'GBP'
+      number_to_currency(value.to_f.abs,{:precision => 2,:unit=> '&#x00A3;', :separator => ",", :delimiter => ""})
+    when 'USD'
+      number_to_currency(value.to_f.abs,{:precision => 2,:unit=> '&#x0024;', :separator => ",", :delimiter => ""})
+    else
+      number_to_currency(value.to_f.abs,{:precision => 2,:unit=> '', :separator => ",", :delimiter => ""})
+    end
+	end
 end
-#, :format => '%n%u' , :separator => ',' delimiter => '.'

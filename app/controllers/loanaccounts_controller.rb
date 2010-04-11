@@ -3,7 +3,7 @@ class LoanaccountsController < ApplicationController
 	
   def index
     @loanaccounts = @current_user.loanaccounts.find_accounts_with_balance(:all)
-    @spending_data =  Movement.data_by_month(:all, :conditions => ["movements.mov_type=-1 and accounts_users.user_id= :id and accounts.type =:account_type and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Loanaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
+#    @spending_data =  Movement.data_by_month(:all, :conditions => ["movements.mov_type=-1 and accounts_users.user_id= :id and accounts.type =:account_type and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Loanaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
     respond_to do |format|
       format.html # index.html.erb
     end

@@ -10,10 +10,12 @@
 <dd><%= form.text_field :description , :class => 'txt' %></dd>
 <dt><%= form.label :amount,I18n.t('layout.movements.amount')  %></dt>
 <dd><%= form.text_field :amount , :class => 'txt'%></dd>
-<dt><%= form.label I18n.t('layout.movements.debit') %></dt>
-<dd><%= form.radio_button :mov_type,"-1"  %></dd>
-<dt><%= form.label I18n.t('layout.movements.credit') %></dt>
-<dd><%= form.radio_button :mov_type,"1"  %></dd>
+<dt><%= form.label I18n.t('layout.movements.typetag') %></dt>
+<dd><div id="movement_type_bgroup" class="yui-buttongroup">
+	<%= form.hidden_field :mov_type, {:id => "movement_mov_type"}%>
+	<input type="radio" id="mov_debit" name="mov_debit" value="<%=  I18n.t('layout.movements.debit') %>" />
+	<input type="radio"  id="mov_credit" name="mov_credit" value="<%=  I18n.t('layout.movements.credit') %>" />				
+</div></dd>
 <dt><%= form.label :movdate,I18n.t('layout.movements.movdate') %></dt>
 <dd><div id="movements_controller"> <%= form.date_select :movdate %></div></dd>
 <% if @movement.user_id == @current_user.id %>
@@ -27,3 +29,4 @@
 	<dt><%= form.label :tag_list,I18n.t('layout.movements.tags') %></dt>
 	<dd><%= form.text_field :tag_list , :class => 'txt'%></dd>
  <% end %>
+<%= form.hidden_field :currency %>

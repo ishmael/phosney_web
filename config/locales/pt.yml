@@ -104,7 +104,8 @@ pt:
        new: "Nova Tag"
        notice_message: "A Tag '%s' foi gravada com sucesso."
        delete_message: "A Tag '%s' foi apagada com sucesso."
-    fusioncharts:
+    charts:
+      no_data: "Não existem dados para este periodo."
       movements_by_month:
          caption: "Gastos"
          subcaption: "Por Dia"

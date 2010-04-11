@@ -2,6 +2,29 @@
 	
 		var Event = YAHOO.util.Event,
 			Dom = YAHOO.util.Dom;	
+		Event.onContentReady("movement_type_bgroup", function () {
+		   var mov_type = document.getElementById("movement_mov_type");
+           var oButtonGroupQM = new YAHOO.widget.ButtonGroup("movement_type_bgroup");
+
+		   if (mov_type.value == "-1")
+			oButtonGroupQM.check(0);
+		   else 
+		   oButtonGroupQM.check(1);
+
+		   oButtonGroupQM.on("checkedButtonChange", onCheckedButtonChange);
+        });
+
+		 var onCheckedButtonChange = function (p_oEvent) {
+			var mov_type = document.getElementById("movement_mov_type");
+
+            if(p_oEvent.newValue.get("id") == "mov_debit") {
+				mov_type.value = "-1";      
+            }
+            if(p_oEvent.newValue.get("id") == "mov_credit") {
+				mov_type.value = "1";
+            }
+
+        };
 
 		Event.onContentReady("movements_div", function () {
 				document.getElementById("movement_category_id")[0].value = 0;

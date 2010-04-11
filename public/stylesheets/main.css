@@ -311,6 +311,12 @@ a.yuimenuitemlabel {
 	text-align: left;
 }
 
+
+.full_chart{
+	margin: 5px;
+}
+
+
 /* error/information messages */
 .msg {
 	border-radius: 5px;

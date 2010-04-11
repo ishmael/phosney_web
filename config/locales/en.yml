@@ -100,7 +100,8 @@ en:
        new: "New Tag"
        notice_message: "The tag with the name '%s' was sucessfully saved."
        delete_message: "The tag with the name '%s' was sucessfully deleted."
-    fusioncharts:
+    charts:
+      no_data: "No data for selected period."
       movements_by_month:
          caption: "Spending"
          subcaption: "By Day"
