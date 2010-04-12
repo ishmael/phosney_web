@@ -4,9 +4,12 @@ module ApplicationHelper
 	def currencies(currencies,accounts,last)
 	  ret = ''
 	    currencies.each do |currency_type|
+	      value = accounts.find_all{|item| item.currency == currency_type }.sum { |citem| citem.balance }
 	      ret += 	"<tr class=\""+ cycle('even', 'odd') +"\">"
 	      ret +="<th class=\"first\">"+ I18n.t('layout.accounts.total') +"(" + currency_type + ")</th>"
-				ret += "<td class=\"tr\">" + format_currency(accounts.find_all{|item| item.currency == currency_type }.sum { |citem| citem.balance }) +"</td>"
+	      logger.info value.format
+				ret += "<td class=\"tr\">" + value.format 
+				ret+="</td>"
 				if last 
 				  ret+= "<td class=\"last\"></td>"
 				end
@@ -17,29 +20,4 @@ module ApplicationHelper
 
 	end
 	
-	def format_currency(value)
-	  case value.currency
-    when 'EUR'
-      number_to_currency(value.to_f,{:precision => 2,:unit=> '&euro;', :separator => ",", :delimiter => ""})
-    when 'GBP'
-      number_to_currency(value.to_f,{:precision => 2,:unit=> '&pound;', :separator => ",", :delimiter => ""})
-    when 'USD'
-      value.format
-    else
-      value.format
-    end
-	end
-	
-	def chart_with_currency(value)
-	  case value.currency
-    when 'EUR'
-      number_to_currency(value.to_f.abs,{:precision => 2,:unit=> '&#x20AC;'})
-    when 'GBP'
-      number_to_currency(value.to_f.abs,{:precision => 2,:unit=> '&#x00A3;', :separator => ",", :delimiter => ""})
-    when 'USD'
-      number_to_currency(value.to_f.abs,{:precision => 2,:unit=> '&#x0024;', :separator => ",", :delimiter => ""})
-    else
-      number_to_currency(value.to_f.abs,{:precision => 2,:unit=> '', :separator => ",", :delimiter => ""})
-    end
-	end
 end

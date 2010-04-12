@@ -24,7 +24,7 @@
 						<% @movements.each_with_index do |movement,i| %>	
 							<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
 								<td class="first"><%= link_to movement.description, polymorphic_path([@account,movement])%></td>
-							    <td class="tr"><%= format_currency(movement.amount) %></td>
+							    <td class="tr"><%= movement.amount.format %></td>
 
 							    <td class="tc"><%=h movement.type_of_movement %></td>
 
@@ -96,7 +96,7 @@
 			  <dt><%= I18n.t('layout.bankaccounts.accountbank') %></dt>
 			  <dd><%=h @account.bank  %></dd>
 			  <dt><%= I18n.t('layout.bankaccounts.accountbalance') %></dt>
-			  <dd><%= format_currency(@account.balance)  %></dd>			
+			  <dd><%= @account.balance.format  %></dd>			
 			  <dd class="submit">
 					<div>
 						<% if @account.owner == '1' %>

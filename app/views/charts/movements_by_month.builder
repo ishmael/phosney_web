@@ -27,7 +27,7 @@ xml.chart do
               end
               days_of_month.each_with_index do |total,days_index|
                 if not total.nil? 
-                  xml.value(total,:xid=> days_index+1,:description =>  (movtype == -1 ? I18n.t('layout.charts.months_balance.expenses') : I18n.t('layout.charts.months_balance.income') )+ ' '+chart_with_currency(total) )
+                  xml.value(total.to_f,:xid=> days_index+1,:description =>  (movtype == -1 ? I18n.t('layout.charts.months_balance.expenses') : I18n.t('layout.charts.months_balance.income') )+ ' '+total.to_chart )
                 end
               end
               account_count+= 1 

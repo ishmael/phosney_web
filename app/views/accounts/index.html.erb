@@ -16,7 +16,7 @@
 							<% @accounts.each_with_index do |account,i| %>	
 								<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
 									<th class="first"><div class="account_color" style="background-color:#<%= account.color%> ;"></div><%= link_to account.name,polymorphic_path([account,:movements]) %></th>
-									<td class="tr"><%= format_currency(account.balance) %></td>
+									<td class="tr"><%= account.balance.format %></td>
 								</tr>
 							<% uniq_currencies << account.currency %>	
 							<% end %>	
@@ -46,7 +46,7 @@
 								<% @last5movements.each_with_index do |movement,i| %>	
 									<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
 										<th class="first"><%=h movement.description %></th>
-										<td class="tr"><%= format_currency(movement.amount) %></td>
+										<td class="tr"><%= movement.amount.format %></td>
 										<td ><%=h  movement.type_of_movement %></td>
 									</tr>
 								<% end %>	

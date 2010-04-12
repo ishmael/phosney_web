@@ -15,7 +15,7 @@
 	</div>	
 	<div class="row">
 		<label><%= I18n.t('layout.bankaccounts.accountbalance') %></label>
-		<p><%= format_currency(@bankaccount.balance) %></p>
+		<p><%= @bankaccount.balance.format %></p>
 	</div>
 </fieldset>	
 <fieldset>
