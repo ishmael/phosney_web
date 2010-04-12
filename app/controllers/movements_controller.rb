@@ -45,12 +45,10 @@ class MovementsController < ApplicationController
 
   def quickcreate
 		@quick_movement = Movement.new(params[:movement])
-		logger.info 'precision ' +@quick_movement.amount.precision.to_s
 		@quick_movement.user_id = @current_user.id
     @account = Account.find @quick_movement.account_id
     @quick_movement.currency = @account.currency
     @quick_movement.amount = Money.new(@quick_movement.amount_in_cents,@quick_movement.currency)
-		logger.info 'precision ' +@quick_movement.amount.precision.to_s
 		if @quick_movement.save
 			  @quick_movement.save_tags(current_user)
 				flash[:notice] = I18n.t('layout.movements.notice_message')  %   [@quick_movement.type_of_movement_desc,@quick_movement.amount.format,@quick_movement.movdate.to_date,@quick_movement.description]
@@ -87,6 +85,7 @@ class MovementsController < ApplicationController
   def edit
 	if @account
 		@movement = @account.movements.find_by_id(params[:id])
+
 		respond_to do |format|
 		  format.html # new.html.erb
 		  format.iphone  { render :layout => false }
@@ -108,6 +107,7 @@ class MovementsController < ApplicationController
 		respond_to do |format|
 		  if @movement.save
 			   @movement.save_tags(current_user)
+
 			flash[:notice] = I18n.t('layout.movements.notice_message')  %   [@movement.type_of_movement_desc,@movement.amount.format,@movement.movdate.to_date,@movement.description]
 			format.html { redirect_to(polymorphic_path([@account,:movements])) }
 			format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
@@ -126,15 +126,16 @@ class MovementsController < ApplicationController
   def update
 	if @account
 		@movement = @account.movements.find_by_id(params[:id])
-		if @movement.category_id == 0
-		  	@movement.category_id = nil
-		end		
-		@movement.currency = @account.currency
+#		if @movement.category_id == 0
+#		  	@movement.category_id = nil
+#		end		
+
 		
 		respond_to do |format|
 		  if @movement.update_attributes(params[:movement])
-			@movement.save_tags(current_user)
-					  flash[:notice] = I18n.t('layout.movements.notice_message')  %   [@movement.type_of_movement_desc,@movement.amount.format,@movement.movdate.to_date,@movement.description]
+			 @movement.save_tags(current_user)
+         @movement.amount = Money.new(@movement.amount_in_cents,@movement.currency)
+		  flash[:notice] = I18n.t('layout.movements.notice_message')  %   [@movement.type_of_movement_desc,@movement.amount.format,@movement.movdate.to_date,@movement.description]
 			format.html { redirect_to(polymorphic_path([@account,:movements])) }
 			format.iphone { redirect_to(polymorphic_path([@account,:movements])) }
 		  else
