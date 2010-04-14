@@ -18,7 +18,6 @@ xml.chart do
           	      months_in_year = Array.new(12)
                   movement.each do |mov|  
                     months_in_year[mov.movdate.month-1] = mov.amount* movtype
-                    logger.info 'months ' + months_in_year[mov.movdate.month-1].to_s
                   end
                   months_in_year.each_with_index do |total,month_index|
                     if not total.nil? 

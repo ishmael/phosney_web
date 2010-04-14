@@ -7,7 +7,6 @@ module ApplicationHelper
 	      value = accounts.find_all{|item| item.currency == currency_type }.sum { |citem| citem.balance }
 	      ret += 	"<tr class=\""+ cycle('even', 'odd') +"\">"
 	      ret +="<th class=\"first\">"+ I18n.t('layout.accounts.total') +"(" + currency_type + ")</th>"
-	      logger.info value.format
 				ret += "<td class=\"tr\">" + value.format 
 				ret+="</td>"
 				if last 
