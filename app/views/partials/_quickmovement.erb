@@ -19,7 +19,7 @@
 			<div class="quickmovement-div">
 				<label  for='quickmov_account'><%=  I18n.t('layout.movements.category') %></label>
 				<div id="quickmov_category_container"></div>	
-				<%= f.collection_select :category_id, current_user.categories.find(:all), :id, :name, { :include_blank => true}, { :id => 'quickmov_category' } %>
+				<%= f.collection_select :category_id, current_user.categories.shared( :all), :id, :name, { :include_blank => true}, { :id => 'quickmov_category' } %>
 			</div>
 			<div class="quickmovement-div">
 				<%= f.label :tag_list, I18n.t('layout.tags.title') %>

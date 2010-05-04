@@ -1,69 +1,85 @@
-<div class="box box-first box-50 altbox "><!-- .altbox for alternative box's color -->
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "accounts_dashboard.js" %>
+<% end %>
+<div class="box box-first box-50 altbox">
+	<!-- .altbox for alternative box's color -->
 	<div class="boxin">
 		<div class="header">
-			<h3><%=  I18n.t('layout.bankaccounts.tagline') %></h3>
+			<h3>
+				<%=  I18n.t('layout.bankaccounts.tagline') %>
+			</h3>
 		</div>
 		<div class="content">
 			<table cellspacing="0">
 				<thead>
 					<tr>
-						<th class="first"><%=  I18n.t('layout.bankaccounts.name') %></th>
-						<td class="tr"><%=  I18n.t('layout.bankaccounts.accountbalance') %></td>
-						<td class="tc last actions"><%=  I18n.t('layout.application.actions') %></td>
+						<th class="first">
+							<%=  I18n.t('layout.bankaccounts.name') %>
+						</th>
+						<td class="tr">
+							<%=  I18n.t('layout.bankaccounts.accountbalance') %>
+						</td>
+						<td class="tc last actions">
+							<%=  I18n.t('layout.application.actions') %>
+						</td>
 					</tr>
 				</thead>
 				<tbody>
-				<% uniq_currencies = Array.new %>
-				<% @bankaccountsdata.each_with_index do |bankaccount,i| %>	
-					<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-						<th class="first"><div class="account_color" style="background-color:#<%= bankaccount.color%> ;"></div><%= link_to bankaccount.name,polymorphic_path([bankaccount,:movements]) %></th>
-						<td class="tr"><%= bankaccount.balance.format %></td>
+					<% uniq_currencies = Array.new %><% @bankaccountsdata.each_with_index do |bankaccount,i| %>
+					<tr class="<% if i == 0 %>first<% else %><%= cycle('even', 'odd') %><% end%>">
+						<th class="first">
+							<div class="account_color" style="background-color:#<%= bankaccount.color%> ;"></div><%= link_to bankaccount.name,polymorphic_path([bankaccount,:movements]) %>
+						</th>
+						<td class="tr">
+							<%= bankaccount.balance.format %>
+						</td>
 						<td class="tc last">
 							<% if bankaccount.owner == '1' %>
 							<ul class="actions">
 								<li>
-									<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_bankaccount_path(bankaccount),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
+									<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_bankaccount_path(bankaccount),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>
 								</li>
 								<li>
-						    <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  bankaccount_path(bankaccount) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
+									<%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  bankaccount_path(bankaccount) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
 								</li>
-							</ul>
-							<% end %>
+							</ul><% end %>
 						</td>
-					</tr>
-					<% uniq_currencies << bankaccount.currency %>
-				<% end %>	
-				<% uniq_currencies.uniq! %>
-				<% uniq_currencies.sort! %>						
-				<%= currencies(uniq_currencies,@bankaccountsdata,true)  %>
+					</tr><% uniq_currencies << bankaccount.currency %><% end %><% uniq_currencies.uniq! %><% uniq_currencies.sort! %><%= currencies(uniq_currencies,@bankaccountsdata,true)  %>
 				</tbody>
 			</table>
 		</div>
 	</div>
-</div>	
-<% uniq_currencies.each do |ycurrency| %>
-	<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
-			<div class="boxin">
-				<div class="header">
-					<h3><%=  I18n.t('layout.application.movsbyday') %> (<%= ycurrency%>)</h3>
-				</div>
-				<div class="content">
-					<div id="<%='movementschart' +ycurrency %>" class="full_chart">
-					</div>	
-						<% chart_settings = render '/charts/expenditure_by_year_settings.xml',:layout => false %>
-						<% chart_settings= chart_settings.gsub(/\r\n?/, "") %>
-						<script type="text/javascript">
-						    // <![CDATA[    
-						    var so = new SWFObject("/amcharts/amcolumn.swf", "<%='movementschart'+ycurrency  %>", "988", "250", "8", "#ffffff");
-						    so.addVariable("path", "/amcharts/");
-						    so.addVariable("chart_settings","<%= chart_settings %>");
-						    so.addVariable("data_file", escape("<%=  expenditure_by_month_account_type_path :format =>:xml, :currency => ycurrency,:account_type => 'Bankaccount' %>"));									
-						    so.addVariable("preloader_color", "#000000");
-						    so.addVariable("additional_chart_settings", "<settings><strings><no_data><%=  I18n.t('layout.charts.no_data') %></no_data></strings></settings>");
-						    so.write("<%='movementschart'+ycurrency  %>");
-						    // ]]>
-						  </script>
-						</div>
-	     </div>
+</div>
+<div class="box box-100 altbox">
+	<div id="charts" class="yui-navset boxin">
+		<div class="header">
+			<h3>
+				<%=  I18n.t('layout.application.movsbyday') %>
+			</h3>
+			<ul class="yui-nav">
+				<% uniq_currencies.each_with_index do |ycurrency,i| %>
+				<li <% if i == 0  %> class="selected" <% end %>>
+					<a href="#tab<%=i.to_s%>"><%=ycurrency %></a>
+				</li><% end %>
+			</ul>
+		</div>
+		<div class="content">
+			<div class="yui-content">
+				<% uniq_currencies.each_with_index do |ycurrency,i| %>
+				<div id="<%='tab'+i.to_s %>">
+					<div id="<%='movementschart'+i.to_s %>" class="full_chart"></div><% chart_settings = render '/charts/expenditure_by_year_settings.xml',:layout => false %><% chart_settings = chart_settings.gsub(/\r\n?/, "") %><script type="text/javascript">
+		// <![CDATA[    
+								var so = new SWFObject("/amcharts/amcolumn.swf", "<%='movementschart'+i.to_s %>", "978", "250", "8", "#ffffff");
+								so.addVariable("path", "/amcharts/");
+								so.addVariable("chart_settings","<%= chart_settings %>");
+								so.addVariable("data_file", escape("<%=  expenditure_by_month_account_type_path :format =>:xml,:currency => ycurrency ,:account_type => 'Bankaccount' %>"));                                 
+								so.addVariable("additional_chart_settings", "<settings><strings><no_data><%=  I18n.t('layout.charts.no_data') %><\/no_data><\/strings><\/settings>");
+								so.addVariable("preloader_color", "#000000");
+								so.write("<%='movementschart'+i.to_s %>");
+								// ]]>
+					</script>
+				</div><% end %>
+			</div>
+		</div>
 	</div>
-<% end %>
+</div>

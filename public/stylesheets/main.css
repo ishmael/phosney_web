@@ -47,7 +47,7 @@ STRUCTURE					 */
 #mainheader{
 	background:url("/images/header.png") repeat-x scroll 0 0 #0F508D;
 	padding-bottom:1px;
-	border-bottom:1px solid #2A9FEC;
+	border-bottom:3px solid #2A9FEC;
 	width:100%;
 }
 #header{height:40px; background: transparent; width:1000px;margin:0 auto;}
@@ -58,7 +58,8 @@ STRUCTURE					 */
 
 #top_menu{display:inline-block;vertical-align:bottom;}
 
-#quick_movement{margin:0 auto;padding: 3px;background:#ffffff;width:994px;height:50px;}
+#quick_movement{
+	margin:0 auto;padding: 3px;background:#ffffff;width:994px;height:50px;	}
 /*
 #profile_info{vertical-align:bottom;float:right;display:inline-block;}
 
@@ -70,7 +71,7 @@ STRUCTURE					 */
 
 #applicationmenu {
 	border: 0px;
-	height:25px;
+	height:22px;
 }
 
 .menutop {
@@ -315,6 +316,30 @@ a.yuimenuitemlabel {
 .full_chart{
 	margin: 5px;
 }
+.yui-navset .yui-nav  {position: absolute; right: 9px; bottom: 0;
+	border:0 none !important;
+	font-family:inherit !important;
+	font-size:100% !important;
+	font-style:inherit !important;
+	font-weight:inherit !important;
+	margin:0 !important;
+	padding:0 !important;
+	vertical-align:baseline !important;}
+.yui-navset .yui-nav  li {display: inline;}
+.yui-navset .yui-nav  li a {
+	border-radius: 5px 5px 0 0 !important;
+   -moz-border-radius-topleft: 5px !important;
+   -moz-border-radius-topright: 5px !important;
+   -webkit-border-top-left-radius: 5px !important;
+   -webkit-border-top-right-radius: 5px !important;
+	background: #489CD4  !important; border: 0 !important; float: left; margin: 0 0 0 5px !important; padding: 8px 13px 6px !important; color: #fff !important;
+}
+.yui-navset .yui-nav li.selected a {background: #fff url("/images/headertab.png") repeat-x !important; color: #444 !important;}
+.yui-navset .yui-nav li  a:hover,
+.yui-navset .yui-nav li  a:focus,
+.yui-navset .yui-nav li  a:active {background: #fff url("/images/headertab.png") repeat-x !important; color: #444 !important;}
+
+#charts div.yui-content {border :0; background-color:transparent;}
 
 
 /* error/information messages */
@@ -520,6 +545,10 @@ ul.actions a { text-decoration: none; color: #fff ;}
 .box .content table thead tr td.actions 
 {
 	width:50px;
+} 
+.box .content table thead tr td.actionsshared 
+{
+	width:75px;
 } 
 
 

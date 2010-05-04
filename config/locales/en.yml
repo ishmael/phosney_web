@@ -31,6 +31,7 @@ en:
       color: "Color"
       previous: "Previous"
       next: "Next"
+      share: "Share"
     bankaccounts:
       name: "Account"
       title: "Accounts"
@@ -152,8 +153,18 @@ en:
        delete_message: "The shared account configuration with '%s' was sucessfully deleted."
     accounts:
        total: "Total"
-
+    categoriesusers:
+       name: "Shared Category"
+       title: "Shared Categories"
+       notice_message: "The share of '%s' with '%s' was sucessfully saved."
+       delete_message: "The share of '%s' with '%s' was sucessfully deleted."
+       share_category: "Share this category"
+       shared_with: "Shared with:"
+       duplicate: "is already shared with that user"
+              
   activerecord:
+     models:
+       category: "Category"
      attributes:
        account:
          name: "Name"
@@ -175,3 +186,6 @@ en:
         recipient_email: "Email"
        tag:
          name: "Name"
+       categories_user:
+         category_id: "Category" 
+         user_id: "User"

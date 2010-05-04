@@ -1,86 +1,94 @@
-    		<div class="box box-first box-50 altbox "><!-- .altbox for alternative box's color -->
-				<div class="boxin">
-					<div class="header">
-						<h3><%=  I18n.t('layout.bankaccounts.tagline') %></h3>
-					</div>
-					<div class="content">
-						<table cellspacing="0">
-							<thead>
-								<tr>
-									<th class="first"><%=  I18n.t('layout.bankaccounts.name') %></th>
-									<td class="last"><%=  I18n.t('layout.bankaccounts.accountbalance') %></td>
-								</tr>
-							</thead>
-							<tbody>
-								<% uniq_currencies = Array.new %>
-							<% @accounts.each_with_index do |account,i| %>	
-								<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-									<th class="first"><div class="account_color" style="background-color:#<%= account.color%> ;"></div><%= link_to account.name,polymorphic_path([account,:movements]) %></th>
-									<td class="tr"><%= account.balance.format %></td>
-								</tr>
-							<% uniq_currencies << account.currency %>	
-							<% end %>	
-							<% uniq_currencies.uniq! %>
-							<% uniq_currencies.sort! %>	
-							<%= currencies(uniq_currencies,@accounts,false)  %>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-				<div class="box box-last box-50  altbox"><!-- .altbox for alternative box's color -->
-					<div class="boxin">
-						<div class="header">
-							<h3> <%=  I18n.t('layout.movements.tag5line') %></h3>
-						</div>
-						<div class="content">
-							<table cellspacing="0">
-								<thead>
-									<tr>
-										<th class="first"> <%=  I18n.t('layout.movements.description') %></th>
-										<td class="tc"><%=  I18n.t('layout.movements.amount') %></td>
-										<td class="last"><%=  I18n.t('layout.movements.type') %></td>
-									</tr>
-								</thead>
-								<tbody>
-								<% @last5movements.each_with_index do |movement,i| %>	
-									<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-										<th class="first"><%=h movement.description %></th>
-										<td class="tr"><%= movement.amount.format %></td>
-										<td ><%=h  movement.type_of_movement %></td>
-									</tr>
-								<% end %>	
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<% uniq_currencies.each do |ycurrency| %>
-				<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
-					<div class="boxin">
-						<div class="header">
-							<h3> <%=  I18n.t('layout.application.movsbyday') %> (<%= ycurrency%>)</h3>
-						</div>
-						<div class="content">
-			  				<div id="<%='movementschart'+ycurrency  %>" class="full_chart">
-							</div>	
-								<% chart_settings = render '/charts/expenditure_by_year_settings.xml',:layout => false %>
-								<% chart_settings= chart_settings.gsub(/\r\n?/, "") %>
-								<script type="text/javascript">
-								    // <![CDATA[    
-								    var so = new SWFObject("/amcharts/amcolumn.swf", "<%='movementschart'+ycurrency  %>", "988", "250", "8", "#ffffff");
-								    so.addVariable("path", "/amcharts/");
-								    so.addVariable("chart_settings","<%= chart_settings %>");
-								    so.addVariable("data_file", escape("<%=  expenditure_by_month_path :format =>:xml, :currency => ycurrency %>"));									
-								    so.addVariable("preloader_color", "#000000");
-								    so.addVariable("additional_chart_settings", "<settings><strings><no_data><%=  I18n.t('layout.charts.no_data') %></no_data></strings></settings>");
-								    so.write("<%='movementschart'+ycurrency  %>");
-								    // ]]>
-								  </script>
-								  
-		 	   			</div>
-			  			
-			     </div>
-			</div>
-			<% end %>
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "accounts_dashboard.js" %>
+<% end %>
+<div class="box box-first box-50 altbox ">
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.bankaccounts.tagline') %></h3>
+		</div>
+		<div class="content">
+			<table cellspacing="0">
+				<thead>
+					<tr>
+						<th class="first"><%=  I18n.t('layout.bankaccounts.name') %></th>
+						<td class="last"><%=  I18n.t('layout.bankaccounts.accountbalance') %></td>
+					</tr>
+				</thead>
+				<tbody>
+					<% uniq_currencies = Array.new %>
+					<% @accounts.each_with_index do |account,i| %>	
+					<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+						<th class="first"><div class="account_color" style="background-color:#<%= account.color%> ;"></div><%= link_to account.name,polymorphic_path([account,:movements]) %></th>
+						<td class="tr"><%= account.balance.format %></td>
+					</tr>
+					<% uniq_currencies << account.currency %>	
+					<% end %>	
+					<% uniq_currencies.uniq! %>
+					<% uniq_currencies.sort! %>	
+					<%= currencies(uniq_currencies,@accounts,false)  %>
+				</tbody>
+			</table>
+		</div>
 	</div>
+</div>
+<div class="box box-last box-50  altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3> <%=  I18n.t('layout.movements.tag5line') %></h3>
+		</div>
+		<div class="content">
+			<table cellspacing="0">
+				<thead>
+					<tr>
+						<th class="first"> <%=  I18n.t('layout.movements.description') %></th>
+						<td class="tc"><%=  I18n.t('layout.movements.amount') %></td>
+						<td class="last"><%=  I18n.t('layout.movements.type') %></td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @last5movements.each_with_index do |movement,i| %>	
+					<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+						<th class="first"><%=h movement.description %></th>
+						<td class="tr"><%= movement.amount.format %></td>
+						<td ><%=h  movement.type_of_movement %></td>
+					</tr>
+					<% end %>	
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="box box-100 altbox">
+	<div id="charts" class="yui-navset boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.application.movsbyday') %> </h3>
+			<ul class="yui-nav"> 
+			<% uniq_currencies.each_with_index do |ycurrency,i| %>
+			    <li <% if i == 0  %>class="selected"<% end %>><a href="#tab<%= i%>"><%=ycurrency %></a></li> 
+			<% end %>
+			</ul>							
+		</div>
+		<div class="content">
+		 	<div class="yui-content"> 
+				<% uniq_currencies.each_with_index do |ycurrency,i| %>
+				<div id="<%='tab'+i.to_s %>">
+					<div id="<%='movementschart'+i.to_s %>" class="full_chart">
+					</div>	
+					<% chart_settings = render '/charts/expenditure_by_year_settings.xml',:layout => false %>
+					<% chart_settings = chart_settings.gsub(/\r\n?/, "") %>
+					<script type="text/javascript">
+					    var so = new SWFObject("/amcharts/amcolumn.swf", "<%='movementschart'+i.to_s %>", "978", "250", "8", "#ffffff");
+						    so.addVariable("path", "/amcharts/");
+					    	so.addVariable("chart_settings","<%= chart_settings %>");
+						    so.addVariable("data_file", escape("<%=  expenditure_by_month_path :format =>:xml,:currency => ycurrency %>"));									
+						    so.addVariable("additional_chart_settings", "<settings><strings><no_data><%=  I18n.t('layout.charts.no_data') %></no_data></strings></settings>");
+						    so.addVariable("preloader_color", "#000000");
+						    so.write("<%='movementschart'+i.to_s %>");
+					  </script>
+				</div>
+				<% end %>
+		    </div>
+   		</div>
+   </div>
+</div>
+

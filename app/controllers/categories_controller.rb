@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_filter :require_user 
   
   def index
-    @categories = @current_user.categories.paginate(:page => params[:page],:order => "name asc")
+    @categories = Category.sharedcats.paginate(:conditions => ["categories_users.user_id = ?",@current_user.id],:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,8 +12,10 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.xml
   def show
-    @categories = @current_user.categories.find_by_id(params[:id])
-	if @categories
+    @category = @current_user.categories.find_by_id(params[:id])
+
+	if @category 
+	 
 		respond_to do |format|
 		  format.html # show.html.erb
 		end
@@ -52,8 +54,15 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
+        @categoriesuser = CategoriesUser.new
+        @categoriesuser.user_id = @current_user.id
+        @categoriesuser.category_id =  @category.id
+        if @categoriesuser.save
         flash[:notice] = I18n.t('layout.categories.notice_message')  %   @category.name
         format.html { redirect_to(categories_path) }
+        else
+        format.html { render :action => "new" }
+        end
       else
         format.html { render :action => "new" }
       end

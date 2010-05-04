@@ -25,6 +25,8 @@ class Account < ActiveRecord::Base
     end
   end
   
+
+  
   def pseudo_id
     new_record? ? 0 : id
   end

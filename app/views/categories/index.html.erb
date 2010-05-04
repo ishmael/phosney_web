@@ -12,15 +12,19 @@
 				<thead>
 					<tr>
 						<th class="first"><%=  I18n.t('activerecord.attributes.category.name') %></th>
-						<td class="tc last actions"><%=  I18n.t('layout.application.actions') %></td>
+						<td class="tc last actionsshared"><%=  I18n.t('layout.application.actions') %></td>
 					</tr>
 				</thead>
 				<tbody>
 						<% @categories.each_with_index do |category,i| %>	
 							<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-								<th class="first"><%=h category.name %></th>
+								<th class="first"><%=link_to( category.name,category_path(category.id))%></th>
 								<td class="tc last">
+								<% if  (category.user_id == @current_user.id) %>
 									 <ul class="actions">
+										<li>
+											<%= link_to image_tag("/images/led-ico/arrow_divide.png",:alt => I18n.t('layout.application.edit')), new_polymorphic_path([category,:categories_user]),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
+										</li>
 										<li>
 											<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_category_path(category.id),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
 										</li>
@@ -28,6 +32,7 @@
 							    <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  category_path(category.id) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
 										</li>
 									</ul>
+								<% end %>
 								</td>
 							</tr>
 						<% end %>	

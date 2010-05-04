@@ -1,0 +1,72 @@
+<div id="movements_div" class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.categories.name') %></h3>
+			<% if @category.user_id == @current_user.id %>	
+			<%= link_to I18n.t('layout.application.edit'),edit_category_path(@category.id),:class => 'button' %>
+			<% end %>			
+		</div>	
+		<div  class="inner-form">
+			<div class="basic">			
+			<dl>
+			  <dt><%= I18n.t('activerecord.attributes.category.name') %></dt>
+			  <dd><%=h @category.name %></dd>
+    		  <dd class="submit">
+					<div>
+					<%= link_to I18n.t('layout.application.back'), categories_path %>
+					</div>
+				</dd>	   
+			</dl>			
+			</div>	
+		</div> 
+	</div>
+</div>
+<% if @category.user_id == @current_user.id %>
+<% @shared_categories = @category.categories_users.find(:all,:conditions => ['user_id <> :user_id',:user_id => @current_user.id]) %>
+
+<div class="box box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.categoriesusers.shared_with') %></h3>
+			<% if (not @shared_categories.empty?) %>
+			<%= link_to I18n.t('layout.application.new'),new_polymorphic_path([@category,:categories_user]),:class => 'button' %>
+			<% end %>
+		</div>
+		
+				<% if not @shared_categories.empty? %>
+				<div class="content"> 
+				<table cellspacing="0">
+					<thead>
+						<tr>
+							<th class="first"><%=  I18n.t('layout.users.username') %></th>
+							<td class="tc actions last"><%=  I18n.t('layout.application.actions') %></td>
+						</tr>
+					</thead>
+					<tbody>
+					<% @shared_categories.each_with_index do |shared_category,i| %>	
+						<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
+							<th  class="first"><%=h shared_category.user.login %></td>
+							<td class="tc last">
+								<ul class="actions">
+									<li>
+										 <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),   category_categories_user_path(shared_category.category_id,shared_category.id) , { :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
+									</li>
+								</ul>							
+							</td>
+						  </tr>
+						</tr>
+					<% end %>	
+					</tbody>
+				</table>
+				</div>	
+				<% else %>
+				<div class="basic"> 
+					<% if @category.user_id == @current_user.id%>
+					<div class="tc" style="margin:10px;"><%= link_to I18n.t('layout.categoriesusers.share_category'), new_polymorphic_path([@category,:categories_user])  %></div>
+					<% end %>
+				</div>
+				<% end %>		
+				
+ </div>
+</div>
+<% end %>

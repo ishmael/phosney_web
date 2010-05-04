@@ -5,7 +5,6 @@
 # If you need a previous version go to http://github.com/weppos/rails-i18n/
 # and choose between available tags.
 pt:
-
   layout:
     application:
       title: "Phosney | Mantendo as suas finanças em ordem..." 
@@ -35,6 +34,7 @@ pt:
       color: "Côr"
       previous: "Anterior"
       next: "Próxima"
+      share: "Partilhar"
     bankaccounts:
       name: "Conta Bancária"
       title: "Contas Bancárias"
@@ -155,7 +155,15 @@ pt:
        notice_message: "A partilha da conta com '%s' foi gravada com sucesso."
        delete_message: "A partilha da conta com '%s' foi apagada com sucesso."
     accounts:
-          total: "Total"              
+      total: "Total"
+    categoriesusers:
+      name: "Categoria Partilhada"
+      title: "Categorias Partilhadas"              
+      notice_message: "A partilha da categoria '%s' com '%s' foi gravada com sucesso."
+      delete_message: "A partilha da categoria '%s' com '%s' foi apagada com sucesso."
+      share_category: "Partilhe esta categoria"
+      shared_with: "Partilhada com:"
+      duplicate: "já está partilhada com esse utilizador"
 
   authlogic:
     error_messages:
@@ -187,7 +195,7 @@ pt:
     
   date:
     formats:
-      default: "%d/%m/%Y"
+      default: "%d-%m-%Y"
       short: "%d de %B"
       long: "%d de %B de %Y"
     day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
@@ -277,18 +285,20 @@ pt:
           mb: "MB"
           gb: "GB"
           tb: "TB"
- 
+
   activerecord:
+    models:
+       category: "Categoria"
     attributes:
-        account:
+       account:
              name: "Nome"
              number: "Número"
              bank: "Banco"
              account_balance: "Balanço"
-        category:
+       category:
              name: "Nome"
              mobile: "Mobile"
-        movement:
+       movement:
            description: "Descrição"
            amount: "Valor"
            movdate: "Data"
@@ -296,10 +306,13 @@ pt:
            lng: "Longitude"
            mov_type: "Tipo de Movimento"
            private: "Privado"
-        shared_account_invitation:
+       shared_account_invitation:
             recipient_email: "Email"
-        tag:
+       tag:
             name: "Nome"
+       categories_user:
+           category_id: "Categoria" 
+           user_id: "Utilizador"            
 
     errors:
       template:

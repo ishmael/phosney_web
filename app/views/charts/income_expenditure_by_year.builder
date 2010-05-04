@@ -1,12 +1,16 @@
+
 xml = Builder::XmlMarkup.new
 xml.instruct!   :xml, :version=>"1.0", :encoding=>"UTF-8"
+
 xml.chart do
    xml.series do
-    1.upto(12) {
-      |i| xml.value( I18n.t('date.month_names')[i] ,:xid=>i)
+      if not @year_data.empty? 
+        1.upto(12) {
+          |i| xml.value( I18n.t('date.month_names')[i] ,:xid=>i)
       } 
+      end
     end
-     
+   
     xml.graphs do
             @year_data.group_by(&:id).each do |acc,ydata|
               account_color = ydata[0].color
@@ -29,4 +33,5 @@ xml.chart do
       	    end
       end
     end
+
 end

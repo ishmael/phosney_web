@@ -103,7 +103,7 @@ class MovementsController < ApplicationController
 		@movement = @account.movements.build(params[:movement])
 		@movement.user_id = @current_user.id
     @movement.currency = @account.currency
-
+    @movement.amount = Money.new(@movement.amount_in_cents,@movement.currency)
 		respond_to do |format|
 		  if @movement.save
 			   @movement.save_tags(current_user)

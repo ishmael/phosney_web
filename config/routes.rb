@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :loanaccounts  , :has_many => :movements, :as => 'loans'
   map.resources :creditcardaccounts  , :has_many => :movements, :as => 'creditcards'
   map.resources :categories  , :has_many => :movements
+  map.resources :categories  , :has_many => :categories_users
   map.resources :tags
   map.resources :password_resets
   map.resources :shared_account_invitations, :as => 'sharedaccount' ,:member => {:accept =>:get},:only => [:accept]
