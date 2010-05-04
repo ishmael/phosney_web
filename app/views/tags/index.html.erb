@@ -2,8 +2,12 @@
 	<div class="boxin">
 		<div class="header">
 			<h3><%=  I18n.t('layout.tags.title') %></h3>
+			<% if not  @tags.empty? %>
+				<%= link_to I18n.t('layout.tags.new'), new_tag_path ,:class => 'button'%>
+			<% end%>
 		</div>
 		<div class="content">
+ 		    <% if not  @tags.empty? %>
 			<table cellspacing="0">
 				<thead>
 					<tr>
@@ -29,7 +33,19 @@
 						<% end %>	
 						</tbody>
 			</table>
-
+			<div class="pagination">
+				<% if @tags.total_entries >  @tags.per_page %>
+								<%= will_paginate @tags , :previous_label => I18n.t('layout.application.previous'), 
+								:next_label => I18n.t('layout.application.next') %>
+				<% else%>
+					<div></div>	
+			<% end %>
+			</div>
+				<% else %>
+					<div class="tc" style="margin:10px;">
+						<%= link_to I18n.t('layout.tags.new'), new_tag_path %>
+					</div>
+				<% end %>
 		</div>
 	</div>
 </div>

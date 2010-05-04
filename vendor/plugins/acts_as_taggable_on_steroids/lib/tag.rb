@@ -2,7 +2,8 @@ class Tag < ActiveRecord::Base
   belongs_to :user
   
   has_many :taggings, :dependent => :destroy
-  
+  cattr_reader :per_page
+  @@per_page = 10  
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => [:user_id,:name]
   

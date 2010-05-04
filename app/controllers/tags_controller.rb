@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
 before_filter :require_user
   def index
-		@tags = @current_user.tags.find(:all)
+		@tags = @current_user.tags.paginate(:page => params[:page])
 
 		respond_to do |format|
 		  format.html # index.html.erb
@@ -21,7 +21,7 @@ before_filter :require_user
 
 		respond_to do |format|
 		  if @tag.save
-      flash[:notice] = I18n.t('layout.tags.notice_message')  %   @tag.name
+      flash[:notice] = I18n.t('layout.tags.notice_message')  %  @tag.name
 			format.html { redirect_to(tags_path) }
 		  else
 			format.html { render :action => "new" }
