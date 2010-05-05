@@ -85,7 +85,8 @@ en:
        private: "Private"
        typetag: "It was a..."
        notice_message: "The %s of %s done in %s with the description of: '%s' was sucessfully saved."
-       delete_message: "The %s of %s done in %s with the description of: '%s' was sucessfully deleted."       
+       delete_message: "The %s of %s done in %s with the description of: '%s' was sucessfully deleted."
+       map: "Map"       
     categories:
        name: "Category"
        title: "Categories"
@@ -159,7 +160,7 @@ en:
        notice_message: "The share of '%s' with '%s' was sucessfully saved."
        delete_message: "The share of '%s' with '%s' was sucessfully deleted."
        share_category: "Share this category"
-       shared_with: "Shared with:"
+       shared_with: "Shared with"
        duplicate: "is already shared with that user"
               
   activerecord:

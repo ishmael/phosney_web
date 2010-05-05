@@ -18,3 +18,13 @@
 		<% end %>
 	</div>
 </div>
+<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="header">
+			<h3><%=  I18n.t('layout.movements.map') %></h3>	
+		</div>
+		<div class="content"> 
+			<%= @map.div(:width => 988, :height => 400) %>			
+		</div>
+ 	</div>
+</div>

@@ -26,12 +26,15 @@ class MovementsController < ApplicationController
   def show
 	if @account
 		@movement = @account.movements.find_by_id(params[:id])
-		if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
-		@map = GMap.new("map")
-		@map.center_zoom_init([@movement.lat, @movement.lng], 18)
-		ianazones = GMarker.new([@movement.lat, @movement.lng])
-		@map.overlay_init(ianazones)
-		
+		#if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
+		@map = GMap.new("map_show")
+    @map.control_init(:large_map => true,:map_type => false)
+    @map.interface_init(:dragging=> false)
+    if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
+		  @map.center_zoom_init([@movement.lat, @movement.lng], 18)
+		  @map.overlay_init(GMarker.new([@movement.lat, @movement.lng]))
+		else
+		    @map.center_zoom_init([38.134557,-95.537109],4)
 		end
 	
 		respond_to do |format|
@@ -75,6 +78,10 @@ class MovementsController < ApplicationController
     @movement = @account.movements.new
     @movement.mov_type = -1
 	  @movement.user_id = @current_user.id
+  	@map = GMap.new("map_show")
+    @map.control_init(:large_map => true,:map_type => true, :local_search => true)
+    @map.center_zoom_init([38.134557,-95.537109],4)
+    @map.event_init(@map,:click,'mapsclick')
     respond_to do |format|
 		  format.html # new.html.erb
 	    format.iphone  { render :layout => false }
@@ -85,7 +92,15 @@ class MovementsController < ApplicationController
   def edit
 	if @account
 		@movement = @account.movements.find_by_id(params[:id])
-
+  	@map = GMap.new("map_show")
+    @map.control_init(:large_map => true,:map_type => true, :local_search => true)
+    @map.event_init(@map,:click,'mapsclick')
+    if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
+		  @map.center_zoom_init([@movement.lat, @movement.lng], 18)
+		  @map.overlay_init(GMarker.new([@movement.lat, @movement.lng]))
+		else
+		    @map.center_zoom_init([38.134557,-95.537109],4)
+		end
 		respond_to do |format|
 		  format.html # new.html.erb
 		  format.iphone  { render :layout => false }

@@ -1,5 +1,7 @@
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "movements.js" %>
+	<%= GMap.header %>
+	<%= @map.to_html %>
 <% end %>
 	<% if not form.error_messages.blank? %>
 		<div class="msg msg-error">
@@ -28,5 +30,8 @@
 		</dd>
 	<dt><%= form.label :tag_list,I18n.t('layout.movements.tags') %></dt>
 	<dd><%= form.text_field :tag_list , :class => 'txt'%></dd>
+	
  <% end %>
 <%= form.hidden_field :currency %>
+<%= form.hidden_field :lat %>
+<%= form.hidden_field :lng %>

@@ -88,7 +88,8 @@ pt:
        private: "Privado"
        typetag: "Foi um..."
        notice_message: "O %s com o valor de %s, feito em %s com a descrição: '%s' foi gravado com sucesso."
-       delete_message: "O %s com o valor de %s, feito em %s com a descrição: '%s' foi apagado com sucesso."       
+       delete_message: "O %s com o valor de %s, feito em %s com a descrição: '%s' foi apagado com sucesso."
+       map: "Mapa"       
     categories:
        name: "Categoria"
        title: "Categorias"
@@ -162,7 +163,7 @@ pt:
       notice_message: "A partilha da categoria '%s' com '%s' foi gravada com sucesso."
       delete_message: "A partilha da categoria '%s' com '%s' foi apagada com sucesso."
       share_category: "Partilhe esta categoria"
-      shared_with: "Partilhada com:"
+      shared_with: "Partilhada com"
       duplicate: "já está partilhada com esse utilizador"
 
   authlogic:

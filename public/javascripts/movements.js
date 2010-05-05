@@ -277,3 +277,23 @@
 		});
 
 	}());
+	
+function mapsclick(overlay, latlng)
+{
+	
+    if (overlay)
+    {
+      map.removeOverlay(overlay);
+	  document.getElementById("movement_lat").value=null;
+	  document.getElementById("movement_lng").value=null;
+     
+    }
+    else
+    {
+	 map.clearOverlays();
+      map.addOverlay(new GMarker(latlng));
+	  document.getElementById("movement_lat").value=latlng.y;
+	  document.getElementById("movement_lng").value=latlng.x;
+     }}
+	
+		

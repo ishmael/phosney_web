@@ -112,6 +112,10 @@ STRUCTURE					 */
 	width: 400px;
 }
 
+#map_show {
+	margin:5px;
+}
+
 /* 
 CORNERS
 * -moz-border-radius-topleft  / -webkit-border-top-left-radius
