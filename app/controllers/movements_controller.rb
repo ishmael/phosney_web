@@ -31,10 +31,10 @@ class MovementsController < ApplicationController
     @map.control_init(:large_map => true,:map_type => false)
     @map.interface_init(:dragging=> false)
     if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
-		  @map.center_zoom_init([@movement.lat, @movement.lng], 18)
+		  @map.center_zoom_init([@movement.lat, @movement.lng], 16)
 		  @map.overlay_init(GMarker.new([@movement.lat, @movement.lng]))
 		else
-		    @map.center_zoom_init([38.134557,-95.537109],4)
+		    @map.center_zoom_init([38.134557,-95.537109],8)
 		end
 	
 		respond_to do |format|
@@ -80,8 +80,9 @@ class MovementsController < ApplicationController
 	  @movement.user_id = @current_user.id
   	@map = GMap.new("map_show")
     @map.control_init(:large_map => true,:map_type => true, :local_search => true)
-    @map.center_zoom_init([38.134557,-95.537109],4)
-    @map.event_init(@map,:click,'mapsclick')
+    @map.interface_init(:scroll_wheel_zoom => true,:double_click_zoom=> false)
+    @map.center_zoom_init([38.134557,-95.537109],8)
+    @map.event_init(@map,:dblclick,'mapsclick')
     respond_to do |format|
 		  format.html # new.html.erb
 	    format.iphone  { render :layout => false }
@@ -93,13 +94,14 @@ class MovementsController < ApplicationController
 	if @account
 		@movement = @account.movements.find_by_id(params[:id])
   	@map = GMap.new("map_show")
-    @map.control_init(:large_map => true,:map_type => true, :local_search => true)
-    @map.event_init(@map,:click,'mapsclick')
+    @map.control_init(:local_search => true)
+    @map.interface_init(:scroll_wheel_zoom => true,:double_click_zoom=> false,:set_ui_to_default => true)
+    @map.event_init(@map,:dblclick,'mapsclick')
     if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
-		  @map.center_zoom_init([@movement.lat, @movement.lng], 18)
+		  @map.center_zoom_init([@movement.lat, @movement.lng], 16)
 		  @map.overlay_init(GMarker.new([@movement.lat, @movement.lng]))
 		else
-		    @map.center_zoom_init([38.134557,-95.537109],4)
+		    @map.center_zoom_init([38.134557,-95.537109],8)
 		end
 		respond_to do |format|
 		  format.html # new.html.erb

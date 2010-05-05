@@ -1,6 +1,6 @@
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "movements.js" %>
-	<%= GMap.header %>
+	<%= GMap.header(:local_search => true) %>
 	<%= @map.to_html %>
 <% end %>
 	<% if not form.error_messages.blank? %>
