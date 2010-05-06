@@ -352,6 +352,7 @@ a.yuimenuitemlabel {
 	border: 1px solid; margin: 10px 0 5px 0; padding: 8px 10px 0 10px;
 }
 .msg p {margin: 0 0 8px 0; padding-left: 25px;}
+.msg p strong {font-weight:bold;}
 .msg div {margin: 0 0 8px 0; padding-left: 25px;}
 .msg-ok {border-color: #a6d877; background: #d2ecba url("/images/msg-ok.png") repeat-x; color: #336801;}
 .msg-error {border-color: #f3abab; background: #f9c9c9 url("/images/msg-error.png") repeat-x; color: #8d0d0d;}
