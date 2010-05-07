@@ -1,6 +1,8 @@
 <% content_for :javascript_includes do %>
+	<% if (not @movement.lng.blank?) and (not @movement.lat.blank?) %>
   	<%= GMap.header %>
 	<%= @map.to_html %>
+	<% end%>
 <% end %>
 <div id="movements_div" class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
 	<div class="boxin">
@@ -33,6 +35,7 @@
 		</div>
 	</div>
 </div>
+<% if (not @movement.lng.blank?) and (not @movement.lat.blank?) %>
 <div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
 	<div class="boxin">
 		<div class="header">
@@ -43,3 +46,4 @@
 		</div>
  	</div>
 </div>
+<% end %>

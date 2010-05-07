@@ -277,23 +277,26 @@
 		});
 
 	}());
-	
-function mapsclick(overlay, latlng)
+function mapsdoubleclick(overlay, latlng)
+{
+     map.clearOverlays();
+	 mymarker = new GMarker(latlng);
+	 GEvent.addListener(mymarker,"dblclick",markerclick);
+     map.addOverlay(mymarker);
+	 document.getElementById("movement_lat").value=latlng.y;
+	 document.getElementById("movement_lng").value=latlng.x;
+}	
+function markerclick(overlay, latlng)
 {
 	
     if (overlay)
     {
-      map.removeOverlay(overlay);
+      map.clearOverlays();
 	  document.getElementById("movement_lat").value=null;
 	  document.getElementById("movement_lng").value=null;
      
     }
-    else
-    {
-	 map.clearOverlays();
-      map.addOverlay(new GMarker(latlng));
-	  document.getElementById("movement_lat").value=latlng.y;
-	  document.getElementById("movement_lng").value=latlng.x;
-     }}
+    
+}
 	
 		

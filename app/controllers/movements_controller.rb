@@ -1,5 +1,6 @@
 class MovementsController < ApplicationController
-  include GeoKit::Mappable
+  #include GeoKit::Mappable
+
   before_filter(:get_account)
   before_filter :require_user
   
@@ -26,15 +27,12 @@ class MovementsController < ApplicationController
   def show
 	if @account
 		@movement = @account.movements.find_by_id(params[:id])
-		#if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
+		if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
 		@map = GMap.new("map_show")
     @map.control_init
-    @map.interface_init(:set_ui_to_default => true)
-    if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
-		  @map.center_zoom_init([@movement.lat, @movement.lng], 16)
-		  @map.overlay_init(GMarker.new([@movement.lat, @movement.lng]))
-		else
-		    @map.center_zoom_init([38.134557,-95.537109],8)
+    @map.interface_init(:scroll_wheel_zoom => true,:double_click_zoom=> false,:set_ui_to_default => true)
+    @map.center_zoom_init([@movement.lat, @movement.lng],14)
+		@map.overlay_init(GMarker.new([@movement.lat, @movement.lng]))
 		end
 	
 		respond_to do |format|
@@ -80,9 +78,10 @@ class MovementsController < ApplicationController
 	  @movement.user_id = @current_user.id
   	@map = GMap.new("map_show")
     @map.control_init( :local_search => true)
-    @map.interface_init(:scroll_wheel_zoom => true,:double_click_zoom=> false)
+    @map.interface_init(:scroll_wheel_zoom => true,:double_click_zoom=> false,:set_ui_to_default => true)
+
     @map.center_zoom_init([38.134557,-95.537109],8)
-    @map.event_init(@map,:dblclick,'mapsclick')
+    @map.event_init(@map,:dblclick,'mapsdoubleclick')
     respond_to do |format|
 		  format.html # new.html.erb
 	    format.iphone  { render :layout => false }
@@ -96,10 +95,13 @@ class MovementsController < ApplicationController
   	@map = GMap.new("map_show")
     @map.control_init(:local_search => true)
     @map.interface_init(:scroll_wheel_zoom => true,:double_click_zoom=> false,:set_ui_to_default => true)
-    @map.event_init(@map,:dblclick,'mapsclick')
+    @map.event_init(@map,:dblclick,'mapsdoubleclick')
     if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
 		  @map.center_zoom_init([@movement.lat, @movement.lng], 16)
-		  @map.overlay_init(GMarker.new([@movement.lat, @movement.lng]))
+		  @marker = GMarker.new([@movement.lat, @movement.lng])
+      @map.declare_init(@marker, 'mymarker')
+      @map.overlay_init(@marker)
+      @map.event_init(@marker, :click,'markerclick')
 		else
 		    @map.center_zoom_init([38.134557,-95.537109],8)
 		end
