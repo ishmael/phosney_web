@@ -1,4 +1,165 @@
-<div class="box box-100 altbox "><!-- .altbox for alternative box's color -->
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag 'alloy/yui/yui-min','alloy/aui-base/aui-base' %>
+<%= stylesheet_link_tag 'alloy/aui-skins/core/css/main.css'%>
+
+<style type="text/css">
+	.placeholder-test {
+		background: #fff;
+		height: 30px;
+		border: 1px dashed #000 !important;
+		opacity: .5;
+	}
+
+	.catnestedlist {
+		margin: 0px !important;
+		padding: 2px;
+		left:200px;
+		/*position: relative;*/
+	    width: 200px ;
+		/*background: #000;*/
+	}
+	.categoryname {
+		display:inline-block;
+		width:180px;
+		position:relative;
+		top:2px;
+		left:5px;
+		vertical-align:top;
+
+	}
+	.categoryname a {
+		float:right;
+		margin-left:4px;
+		
+	}
+	.categorytext {
+		width:120px;
+     	height:auto;
+		overflow:hidden;
+		display:inline-block;
+	}
+	
+	.categorytext a {
+		font-family:"myriad pro",helvetica,arial,sans-serif;
+		font-size:100%;
+		text-decoration: none; 
+		color: #fff !important;
+		float:none;
+	}
+	
+	.categorytext a:hover {
+		text-decoration: underline; 
+	}
+	
+	.catnestedlist li ul {
+	    left:10px;
+		position: relative;
+		width:0px;
+		display:inline-block;
+		padding-right:3px;
+		padding-top:0;
+		/*margin-top: -2px;
+		/*padding-bottom:16px;*/
+	}
+	.placeholder {
+		border-width: 0px ;
+		padding: 0px;
+		width: 200px;
+		/*background: #eee;*/
+	}
+
+	.catnestedlist li {
+		border: 0px solid #000;
+		position:relative;
+/*		margin: 10px 4px 10px 4px;*/
+		margin: 0px 4px 4px 4px;
+		padding: 0px 3px 3px 3px;
+		width:190px;
+		min-height:20px;
+		list-style: none;	
+		cursor:default;
+	}
+	.moveable {
+		cursor:move !important;
+	}
+	#categoriesnl {
+		margin:5px 5px 0px 0px !important;
+	}
+
+	.yui-dd-dragging {
+		visibility: hidden;
+	}
+	.categories_content {
+		overflow:auto;
+	}
+	
+
+	</style>
+
+<% end %>
+<% content_for :javascript_bottom do %>
+<script type="text/javascript">
+
+AUI().ready('aui-nested-list', function(A) {
+
+	var placeholder = A.Node.create('<li class="placeholder-test">Drop Here</li>');
+	var updateCategory = function(event) {
+		var drag = event.target;
+		var dragNode = drag.get('node');
+		var parent = dragNode.get('parentNode').get('id') ;
+		var id = dragNode.one('ul').get('id');
+		
+		YUI().use("io-base", function(Y) {
+			var uri = 'update_parent_id?id='+id + '&parent_id='+parent;
+		   	var cfg,
+					request;
+				// Create a configuration object for the synchronous transaction.
+				cfg = {
+					method: 'POST',
+					sync: true,
+					headers: {
+							'Content-Type': 'application/json',
+					}
+				};
+
+				/*
+				 * var request will contain the following fields, when the
+				 * transaction is complete:
+				 * - id
+				 * - status
+				 * - statusText
+				 * - getResponseHeader()
+				 * - getAllResponseHeaders()
+				 * - responseText
+				 * - responseXML
+				 * - arguments
+				 */
+				request = Y.io(uri, cfg);
+
+		});
+		//event.preventDefault();
+		//alert('parent '+ parent+ ' self '+ child);
+		//alert(drag.id);
+	};
+	var nl1 = new A.NestedList({
+			nodes: '#categoriesnl li.moveable',
+			dropContainer: 'ul.droppable',
+			dropCondition: function(event) {
+				return true;
+			},
+			dropOn: 'ul',
+			placeholder: placeholder,
+			//helper: A.Node.create('<div>Helper</div>'),
+			dd: {
+			}
+		});
+		nl1.on( 'drag:end' , updateCategory );
+
+});
+
+</script>
+<% end %>
+<div class="box box-first box-100 altbox "><!-- .altbox for alternative box's color -->
 	<div class="boxin">
 		<div class="header">
 			<h3><%=  I18n.t('layout.categories.title') %></h3>
@@ -6,47 +167,16 @@
 				<%= link_to I18n.t('layout.categories.new'), new_category_path ,:class => 'button'%>
 			<% end%>
 		</div>
-		<div class="content">
+		<div class="content categories_content">
 			<% if not  @categories.empty? %>
-			<table cellspacing="0">
-				<thead>
-					<tr>
-						<th class="first"><%=  I18n.t('activerecord.attributes.category.name') %></th>
-						<td class="tc last actionsshared"><%=  I18n.t('layout.application.actions') %></td>
-					</tr>
-				</thead>
-				<tbody>
-						<% @categories.each_with_index do |category,i| %>	
-							<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-								<th class="first"><%=link_to( category.name,category_path(category.id))%></th>
-								<td class="tc last">
-								<% if  (category.user_id == @current_user.id) %>
-									 <ul class="actions">
-										<li>
-											<%= link_to image_tag("/images/led-ico/arrow_divide.png",:alt => I18n.t('layout.application.edit')), new_polymorphic_path([category,:categories_user]),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
-										</li>
-										<li>
-											<%= link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_category_path(category.id),{:class  =>'ico', :title => I18n.t('layout.application.edit')} %>	
-										</li>
-										<li>
-							    <%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  category_path(category.id) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>
-										</li>
-									</ul>
-								<% end %>
-								</td>
-							</tr>
-						<% end %>	
-				</tbody>
-			</table>
-			
-			<div class="pagination">
-				<% if @categories.total_entries >  @categories.per_page %>
-								<%= will_paginate @categories , :previous_label => I18n.t('layout.application.previous'), 
-								:next_label => I18n.t('layout.application.next') %>
-				<% else%>
-					<div></div>	
-			<% end %>
-			</div>		
+			<div id="categoriesnl">
+				<ul  class="catnestedlist">
+				<% parent_categories =  @categories.select { |item| item.parent_id == nil }%>
+				<% parent_categories.sort_by(&:name).each  do |parents| %>
+					<%= nodes(parents) %>					
+				<% end%>
+				</ul>
+			</div>
 			<% else %>
 				<div class="tc" style="margin:10px;">
 					<%= link_to I18n.t('layout.categories.new'), new_category_path %>

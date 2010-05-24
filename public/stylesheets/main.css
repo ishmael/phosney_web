@@ -396,7 +396,7 @@ a.yuimenuitemlabel {
 	/*width:480px !important;*/
 }
 .altbox .header { border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x;}
-.box .header h3 {position: relative; top: 2px; display: inline; font-size: 150%; color: #fff; text-shadow: #151515 0 1px 0;}
+.box .header h3 {position: relative; top: 2px; display: inline; font-size: 150%; color: #fff; text-shadow: #151515 0 1px 0;font-weight:normal;}
 .altbox .header h3 {text-shadow: #003d68 0 1px 0;}
 .box .header .button {
 	margin-right: 15px;

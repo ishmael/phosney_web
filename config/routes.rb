@@ -13,7 +13,9 @@ ActionController::Routing::Routes.draw do |map|
   map.expenditure_by_year '/expenditure_by_year',:controller => "charts", :action => "expenditure_by_year",:conditions => { :method => :get }
   map.expenditure_by_month '/expenditure_by_month',:controller => "charts", :action => "expenditure_by_month",:conditions => { :method => :get }
   map.expenditure_by_month_account_type '/expenditure_by_month_account_type',:controller => "charts", :action => "expenditure_by_month_account_type",:conditions => { :method => :get }
-
+  
+  map.update_parent_id '/update_parent_id', :controller => "categories" ,:action => "update_parent_id", :conditions => { :method => [:post] }
+  
   map.quickmovement '/quickmovement', :controller => "movements" ,:action => "quickcreate", :conditions => { :method => [:post] } 
   map.quickmovement '/quickmovement', :controller => "movements" ,:action => "quicknew", :conditions => { :method => [:get] } 
 

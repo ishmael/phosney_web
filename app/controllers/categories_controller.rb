@@ -73,34 +73,56 @@ class CategoriesController < ApplicationController
   # PUT /categories/1.xml
   def update
     @category = @current_user.categories.find_by_id(params[:id])
-	if @category
-		respond_to do |format|
-		  if @category.update_attributes(params[:category])
-			flash[:notice] = I18n.t('layout.categories.notice_message')  %   @category.name
-			format.html { redirect_to(categories_path) }
-		  else
-			format.html { render :action => "edit" }
-		  end
-		end
-	else
-		redirect_to(categories_path)
-	end
+    	if @category
+    		respond_to do |format|
+    		  if @category.update_attributes(params[:category])
+    			flash[:notice] = I18n.t('layout.categories.notice_message')  %   @category.name
+    			format.html { redirect_to(categories_path) }
+    		  else
+    			format.html { render :action => "edit" }
+    		  end
+    		end
+    	else
+    		redirect_to(categories_path)
+    	end
   end
 
   # DELETE /categories/1
   # DELETE /categories/1.xml
   def destroy
     @category = @current_user.categories.find_by_id(params[:id])
-	if @category
-		@category.destroy
+  	if @category
+  		@category.destroy
 
-		respond_to do |format|
-		  flash[:notice] = I18n.t('layout.categories.delete_message')  %   @category.name
-		  format.html { redirect_to(categories_path) }
-		end
-	else
-		redirect_to(categories_path)
-	end
+  		respond_to do |format|
+  		  flash[:notice] = I18n.t('layout.categories.delete_message')  %   @category.name
+  		  format.html { redirect_to(categories_path) }
+  		end
+  	else
+  		redirect_to(categories_path)
+  	end
   end
+  
+  def update_parent_id
+     @category = @current_user.categories.find_by_id(params[:id])
+     if @category
+        parent_id = params[:parent_id]
+        if parent_id == '' 
+          @category.parent_id = nil
+        else
+          @category.parent_id = parent_id
+        end
+     		respond_to do |format|
+     		  if @category.save
+     		    format.json do 		      
+     		    render :status => 200, :nothing => true
+   		    end
+     		  end
+     		end
+     else
+      	redirect_to(categories_path)
+     end
+   end
+  
 
 end

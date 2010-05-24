@@ -16,7 +16,7 @@
 											<% contas = @menu_accounts.select { |item| item.class == tipo }%>
 											<% contas.sort_by(&:name).each  do |menu| %>        
 											<li class="yuimenuitem"><%= link_to menu.name,  polymorphic_path([menu,:movements]) , :class => 'yuimenuitemlabel'%></li>                
-							<% end %>
+											<% end %>
 		      								<li class="yuimenuitem">
 											<%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.newaccount'), new_polymorphic_path(tipo),:class => 'yuimenuitemlabel'%> 				
 											</li>
