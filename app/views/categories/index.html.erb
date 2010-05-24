@@ -171,10 +171,9 @@ AUI().ready('aui-nested-list', function(A) {
 			<% if not  @categories.empty? %>
 			<div id="categoriesnl">
 				<ul  class="catnestedlist">
-				<% parent_categories =  @categories.select { |item| item.parent_id == nil }%>
-				<% parent_categories.sort_by(&:name).each  do |parents| %>
-					<%= nodes(parents) %>					
-				<% end%>
+
+					<%= nodes(@categories,nil) %>					
+
 				</ul>
 			</div>
 			<% else %>

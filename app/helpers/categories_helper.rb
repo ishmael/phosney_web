@@ -1,24 +1,24 @@
 module CategoriesHelper
-	def nodes(parent_category)
+	def nodes(categories,parent_id)
 	  ret = ''
-	  
-    if  (parent_category.user_id == @current_user.id)
-	  ret += '<li class="moveable button"><div class="categoryname"><div class="categorytext">'+  link_to( parent_category.name,category_path(parent_category.id))+ '</div>'
-	  ret +=  link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  category_path(parent_category.id) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} 
-		ret +=  link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_category_path(parent_category.id),{:class  =>'ico', :title => I18n.t('layout.application.edit')} 
-		ret +=  link_to image_tag("/images/led-ico/arrow_divide.png",:alt => I18n.t('layout.application.share')), new_polymorphic_path([parent_category,:categories_user]),{:class  =>'ico', :title => I18n.t('layout.application.share')} 
-	  else
-	  ret += '<li class="button"><div class="categoryname"><div class="categorytext">'+  link_to( parent_category.name,category_path(parent_category.id))+ '</div>'
-		 end 	  
-	  ret +=  '</div>'
-	  if  (parent_category.user_id == @current_user.id)
-		ret += "<ul id=\"" +parent_category.id.to_s+ "\" class=\"catnestedlist droppable\">"
-		  parent_category.children.each do |children|
-        ret+= nodes(children)
-      end
-		ret +='</ul>'
-	  end
-		ret += '</li>'  
+	  tree= categories.select { |item| item.parent_id == parent_id } 
+	  tree.sort_by(&:name).each do |categoria|
+      if  (categoria.user_id == @current_user.id)
+    	  ret += '<li class="moveable button"><div class="categoryname"><div class="categorytext">'+  link_to( categoria.name,category_path(categoria.id))+ '</div>'
+    	  ret +=  link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  category_path(categoria.id) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} 
+    		ret +=  link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_category_path(categoria.id),{:class  =>'ico', :title => I18n.t('layout.application.edit')} 
+    		ret +=  link_to image_tag("/images/led-ico/arrow_divide.png",:alt => I18n.t('layout.application.share')), new_polymorphic_path([categoria,:categories_user]),{:class  =>'ico', :title => I18n.t('layout.application.share')} 
+  	  else
+    	  ret += '<li class="button"><div class="categoryname"><div class="categorytext">'+  link_to( categoria.name,category_path(categoria.id))+ '</div>'
+      end 	  
+  	  ret +=  '</div>'
+  	  if  (categoria.user_id == @current_user.id)
+    		ret += "<ul id=\"" +categoria.id.to_s+ "\" class=\"catnestedlist droppable\">"
+  		  ret+= nodes(categories,categoria.id)
+    		ret +='</ul>'
+  	  end
+    		ret += '</li>' 
+    end 
     return ret
 	end
 end

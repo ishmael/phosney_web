@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_filter :require_user 
   
   def index
-    @categories = Category.sharedcats.paginate(:conditions => ["categories_users.user_id = ?",@current_user.id],:page => params[:page])
+    @categories = Category.sharedcats.find(:all,:conditions => ["categories_users.user_id = ?",@current_user.id])
 
     respond_to do |format|
       format.html # index.html.erb
