@@ -5,11 +5,40 @@
 <title><%=  I18n.t('layout.application.title') %></title>
 
 <!--javascript-->
-<%= javascript_include_tag 'yui/yahoo-dom-event/yahoo-dom-event','yui/calendar/calendar-min','yui/container/container_core-min','yui/element/element-min','yui/button/button-min','yui/menu/menu-min','yui/tabview/tabview-min','application','swfobject' %>
-<!--css-->
-<%= stylesheet_link_tag 'reset','main','yui/fonts/fonts-min','yui/calendar/assets/skins/sam/calendar','yui/button/assets/skins/sam/button', 'yui/menu/assets/skins/sam/menu','yui/tabview/assets/skins/sam/tabview' %>
 
-<%= yield :javascript_includes %>
+<%= javascript_include_tag 'yui/yuiloader/yuiloader','swfobject' %>
+
+<!--css-->
+<script>
+	var loader = new YAHOO.util.YUILoader({
+
+   	 require: ['yahoo-dom-event','calendar','containercore','element','button','menu','fonts','tabview'], // what components?
+
+	    base: '/javascripts/yui/',//where do they live?
+
+		// The default skin, which is automatically applied if not
+		        // overriden by a component-specific skin definition.
+		        // Change this in to apply a different skin globally 
+	    defaultSkin: 'sam',
+
+	    // should a failure occur, the onFailure function will be executed
+	    onFailure: function(o) {
+	        alert("error: " + YAHOO.lang.dump(o));
+	    },
+
+ 
+		onSuccess: function(o) {
+			YAHOO.util.Get.script("/javascripts/application.js");
+			<%= yield :javascript_includes %>
+		}
+	});
+
+	// Calculate the dependency and insert the required scripts and css resources
+	// into the document
+	loader.insert();
+</script>
+<%= stylesheet_link_tag 'reset','main'%>
+
 
 </head>
 <body class="yui-skin-sam">

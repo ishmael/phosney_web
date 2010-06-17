@@ -1,5 +1,6 @@
 <% content_for :javascript_includes do %>
-  <%= javascript_include_tag "category.js" %>
+  <%= 'YAHOO.util.Get.script("/javascripts/category.js");' %>
+
 <% end %>
 	<% if not form.error_messages.blank? %>
 		<div class="msg msg-error">

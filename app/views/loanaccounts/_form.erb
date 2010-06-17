@@ -1,6 +1,5 @@
 <% content_for :javascript_includes do %>
-<%= javascript_include_tag 'yui/dragdrop/dragdrop-min','yui/slider/slider-min','yui/colorpicker/colorpicker-min' ,'accounts.js' %>
-<%= stylesheet_link_tag  'yui/colorpicker/assets/skins/sam/colorpicker' ,'yui/slider/assets/skins/sam/slider'%>
+  <%= 'YAHOO.util.Get.script("/javascripts/accounts.js");' %>
 <% end %>	
 <% if not form.error_messages.blank? %>
 	<div class="msg msg-error">

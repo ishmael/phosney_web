@@ -1,4 +1,4 @@
-<% content_for :javascript_includes do %>
+<% content_for :javascript_bottom do %>
 	<% if (not @movement.lng.blank?) and (not @movement.lat.blank?) %>
   	<%= GMap.header %>
 	<%= @map.to_html %>

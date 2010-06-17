@@ -1,5 +1,18 @@
 (function () {
+	var loader = new YAHOO.util.YUILoader({
+	    require: ['colorpicker'], // what components?
+	    base: '/javascripts/yui/',//where do they live?
+		// The default skin, which is automatically applied if not
+		        // overriden by a component-specific skin definition.
+		        // Change this in to apply a different skin globally 
+
+	    // should a failure occur, the onFailure function will be executed
+
+		onFailure: function(o) {
+	        alert("error: " + YAHOO.lang.dump(o));
+	    },
 	
+		onSuccess: function() {
 		var Event = YAHOO.util.Event,
 			Dom = YAHOO.util.Dom;	
 
@@ -32,8 +45,7 @@
 		
 		
 		});
-}());
-(function () {
+		
 		YAHOO.util.Event.onContentReady("color_container", function () {
 					cor = document.getElementById("color_value").value;
 		        function onButtonOption() {
@@ -134,4 +146,8 @@
 		        });
 
 		    });		
-}());
+				}
+
+			});
+			loader.insert();	
+		}());

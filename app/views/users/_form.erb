@@ -1,5 +1,5 @@
 <% content_for :javascript_includes do %>
-  <%= javascript_include_tag "users.js" %>
+	<%= 'YAHOO.util.Get.script("/javascripts/users.js");' %>
 <% end %>
 <dt><%= form.label :login,I18n.t('layout.users.username') %></dt>
 <dd><%= form.text_field :login , :readonly => @user.new_record? ? false : true,:class => 'txt' %></dd>

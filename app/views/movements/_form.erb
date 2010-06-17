@@ -1,8 +1,13 @@
 <% content_for :javascript_includes do %>
-  <%= javascript_include_tag "movements.js" %>
-	<%= GMap.header(:local_search => true) %>
-	<%= @map.to_html %>
+  <%= 'YAHOO.util.Get.script("/javascripts/movements.js");' %>
+
 <% end %>
+<% content_for :javascript_bottom do %>
+<%= GMap.header(:local_search => true) %>
+<%= @map.to_html %>
+<% end %>
+
+
 	<% if not form.error_messages.blank? %>
 		<div class="msg msg-error">
 			<%= form.error_messages  :header_message => nil, :message => nil %>
