@@ -670,3 +670,91 @@ ul.actions a { text-decoration: none; color: #fff ;}
 #login form.basic dl dd.submit div {margin-right:85px; }
 #login input.txt {width: 260px;}
 #login  h4{	color:#fff; width:305px;margin-top:-10px;}
+
+
+
+
+	.catnestedlist {
+		margin: 0px !important;
+		padding: 2px;
+		left:200px;
+		/*position: relative;*/
+	    width: 220px;
+		/*background: #000;*/
+		overflow:visible;
+		/*border:1px solid #000;*/
+	}
+	.categoryname {
+		display:inline-block;
+		width:200px;
+		/*position:relative;*/
+		vertical-align:top;
+		padding:5px;
+		margin-bottom:3px;
+		margin-left:5px;
+
+	}
+	.categoryname a {
+		float:right;
+		margin-left:4px;
+
+	}
+	.categorytext {
+		width:120px;
+     	height:auto;
+		overflow:hidden;
+		display:inline-block;
+	}
+
+	.categorytext a {
+		font-family:"myriad pro",helvetica,arial,sans-serif;
+		font-size:100%;
+		text-decoration: none; 
+		color: #fff !important;
+		float:none;
+	}
+
+	.categorytext a:hover {
+		text-decoration: underline; 
+	}
+
+	.catnestedlist li ul {
+	    /*left:190px;*/
+		/*position: relative;*/
+		width:200px;
+		/*top:-21px;*/
+		min-height:30px;
+		left:0px;
+		display:inline-block;
+		padding:0px;
+		/*padding-right:3px;
+		padding-top:0;
+		padding-bottom:0px  !important;
+		/*margin-top: -2px;
+		/*padding-bottom:16px;*/
+	}
+
+	.catnestedlist li {
+		position:relative;
+/*		margin: 10px 4px 10px 4px;*/
+		margin: 0px 4px 0px 0px;
+		padding: 0px 4px 0px 0px;
+		width:420px;
+		min-height:20px;
+		list-style: none;	
+		cursor:default;
+		/*border:1px solid #000;*/
+        
+	}
+	.moveable {
+		cursor:move !important;
+	}
+	#categoriesnl {
+		margin:5px 5px 0px 5px !important;
+		min-height:500px;
+	}
+
+
+	.categories_content {
+		overflow:auto;
+	}

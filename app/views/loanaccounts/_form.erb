@@ -1,5 +1,5 @@
 <% content_for :javascript_includes do %>
-  <%= 'YAHOO.util.Get.script("/javascripts/accounts.js");' %>
+  <%= javascript_include_tag 'accounts' %>
 <% end %>	
 <% if not form.error_messages.blank? %>
 	<div class="msg msg-error">

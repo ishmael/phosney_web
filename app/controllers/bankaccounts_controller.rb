@@ -16,15 +16,15 @@ class BankaccountsController < ApplicationController
   # GET /bankaccounts/1
   # GET /bankaccounts/1.xml
   def show
-    @bankaccount = @current_user.bankaccounts.find_accounts_with_balance(params[:id])
-	if @bankaccount
-		respond_to do |format|
-		  format.html # show.html.erb
-		  format.iphone { render :layout => false }
-		end
-	else
-		redirect_to(dashboard_url)
-	end
+    #@bankaccount = @current_user.bankaccounts.find_accounts_with_balance(params[:id])
+	  #if @bankaccount
+  	#	respond_to do |format|
+  	#	  format.html # show.html.erb
+  	#	  format.iphone { render :layout => false }
+  	#	end
+  	#else
+  		redirect_to(dashboard_url)
+  	#end
   end
 
   # GET /bankaccounts/new

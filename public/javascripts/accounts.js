@@ -1,18 +1,6 @@
 (function () {
-	var loader = new YAHOO.util.YUILoader({
-	    require: ['colorpicker'], // what components?
-	    base: '/javascripts/yui/',//where do they live?
-		// The default skin, which is automatically applied if not
-		        // overriden by a component-specific skin definition.
-		        // Change this in to apply a different skin globally 
-
-	    // should a failure occur, the onFailure function will be executed
-
-		onFailure: function(o) {
-	        alert("error: " + YAHOO.lang.dump(o));
-	    },
-	
-		onSuccess: function() {
+		YUI().use('yui2-button','yui2-menu','yui2-colorpicker', function(Y) {
+			var YAHOO = Y.YUI2;		
 		var Event = YAHOO.util.Event,
 			Dom = YAHOO.util.Dom;	
 
@@ -146,8 +134,8 @@
 		        });
 
 		    });		
-				}
+
 
 			});
-			loader.insert();	
+	
 		}());

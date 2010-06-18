@@ -1,5 +1,5 @@
 <% content_for :javascript_includes do %>
-  <%= 'YAHOO.util.Get.script("/javascripts/categories_user.js");' %>
+	<%= javascript_include_tag 'categories_user' %>
 <% end %>
 <div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
 	<div class="boxin">
@@ -16,7 +16,7 @@
 			<dl>
 				<dt><%= f.label :user_id , I18n.t('layout.users.username')  %></dt>
 				<dd><div id="shared_category_container"></div>	
-				<%= f.collection_select :user_id, AccountsUser.find_shared_accounts_users(:all,:conditions =>  ['accounts_users.account_id in (select accu.account_id from accounts_users accu where accu.user_id = :user_id) and users.id <>:user_id',  :user_id => @current_user.id,@current_user.id]), :id, :login, { :include_blank => false}, { :id => 'shared_category' } %></dd>	
+				<%= f.collection_select :user_id, AccountsUser.find_shared_accounts_users(:all,:conditions =>  ['accounts_users.account_id in (select accu.account_id from accounts_users accu where accu.user_id = :user_id) and users.id <>:user_id',  :user_id => @current_user.id,:user_id =>@current_user.id]), :id, :login, { :include_blank => false}, { :id => 'shared_category' } %></dd>	
 					
 				<dd class="submit">
 					<div>

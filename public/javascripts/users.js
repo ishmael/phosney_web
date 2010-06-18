@@ -1,6 +1,7 @@
 (function () {
-	
-		var Event = YAHOO.util.Event,
+		YUI().use('yui2-button','yui2-menu', function(Y) {
+		var YAHOO = Y.YUI2;
+		var	Event = YAHOO.util.Event,
 			Dom = YAHOO.util.Dom;	
 
 		Event.onContentReady("users_div", function () {
@@ -30,5 +31,6 @@
 			oMenuButtonLanguage.subscribe("render", onLanguageRender, oSelectButtonLanguage);
 		
 		});
+	});
 		
 }());

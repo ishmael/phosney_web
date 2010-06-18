@@ -1,8 +1,6 @@
 <% content_for :javascript_includes do %>
-  <%= 'YAHOO.util.Get.script("/javascripts/movements.js");' %>
+	<%= javascript_include_tag 'movements' %>
 
-<% end %>
-<% content_for :javascript_bottom do %>
 <%= GMap.header(:local_search => true) %>
 <%= @map.to_html %>
 <% end %>

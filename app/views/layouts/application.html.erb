@@ -5,38 +5,9 @@
 <title><%=  I18n.t('layout.application.title') %></title>
 
 <!--javascript-->
-
-<%= javascript_include_tag 'yui/yuiloader/yuiloader','swfobject' %>
-
+	<script type="text/javascript" src="http://yui.yahooapis.com/combo?3.1.1/build/yui/yui-min.js"></script>
 <!--css-->
-<script>
-	var loader = new YAHOO.util.YUILoader({
-
-   	 require: ['yahoo-dom-event','calendar','containercore','element','button','menu','fonts','tabview'], // what components?
-
-	    base: '/javascripts/yui/',//where do they live?
-
-		// The default skin, which is automatically applied if not
-		        // overriden by a component-specific skin definition.
-		        // Change this in to apply a different skin globally 
-	    defaultSkin: 'sam',
-
-	    // should a failure occur, the onFailure function will be executed
-	    onFailure: function(o) {
-	        alert("error: " + YAHOO.lang.dump(o));
-	    },
-
- 
-		onSuccess: function(o) {
-			YAHOO.util.Get.script("/javascripts/application.js");
-			<%= yield :javascript_includes %>
-		}
-	});
-
-	// Calculate the dependency and insert the required scripts and css resources
-	// into the document
-	loader.insert();
-</script>
+<%= javascript_include_tag 'swfobject' %>
 <%= stylesheet_link_tag 'reset','main'%>
 
 
@@ -73,6 +44,9 @@
 		<p class="left">Copyright &copy; </p>
 		<p class="right">Phosney.com 2009.</p>
 	</div>    
-	<%= yield :javascript_bottom %>
+
+	<!--<%= javascript_include_tag 'yui3/yui/yui-min','application','swfobject' %>-->
+	<%= javascript_include_tag 'application' %>
+	<%= yield :javascript_includes %>
 </body><!--/end #b_main-->
 </html>

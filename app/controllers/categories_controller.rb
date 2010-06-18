@@ -107,7 +107,7 @@ class CategoriesController < ApplicationController
      @category = @current_user.categories.find_by_id(params[:id])
      if @category
         parent_id = params[:parent_id]
-        if parent_id == '' 
+        if parent_id == '0' 
           @category.parent_id = nil
         else
           @category.parent_id = parent_id

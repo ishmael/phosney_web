@@ -12,11 +12,12 @@ class LoanaccountsController < ApplicationController
   # GET /loanaccounts/1
   # GET /loanaccounts/1.xml
   def show
-    @loanaccount = Loanaccount.find(params[:id])
+  #  @loanaccount = Loanaccount.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-    end
+  #  respond_to do |format|
+  #    format.html # show.html.erb
+  #  end
+    redirect_to(dashboard_url)
   end
 
   # GET /loanaccounts/new
