@@ -1,6 +1,6 @@
 (function () {
 	YUI().use('yui2-button','yui2-menu', function(Y) {
-		var YAHOO = Y.YUI2;	
+		window.YAHOO = window.YAHOO || Y.YUI2;
 		var Event = YAHOO.util.Event,
 			Dom = YAHOO.util.Dom;	
 

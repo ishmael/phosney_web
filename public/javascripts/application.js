@@ -2,9 +2,13 @@
 // This file is automatically included by javascript_include_tag :defaults
 (function () {
 	YUI().use('yui2-button','yui2-menu', 'yui2-calendar','yui2-fonts', function(Y) {
-	var YAHOO = Y.YUI2;
+		
+		window.YAHOO = window.YAHOO || Y.YUI2;
 		var Event = YAHOO.util.Event,
 			Dom = YAHOO.util.Dom;	
+
+
+
 
 		var ButtonGroup = YAHOO.widget.ButtonGroup;
 		
@@ -41,7 +45,7 @@
 			var onSelectedMenuItemChangeAccount = function (event) {
 
 					var oMenuItem = event.newValue;
-
+					
 					this.set("label", ("<em class=\"yui-button-label\">" + 
 								oMenuItem.cfg.getProperty("text") + "</em>"));
 
