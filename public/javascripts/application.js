@@ -18,7 +18,7 @@
 					// var curEvent = YAHOO.util.Dom.get('logoutbutton').onclick;   
 					 //var oLinkLogoutButton = new YAHOO.widget.Button("logoutbutton", { onclick : { fn: curEvent } });						
 					 var oLinkLogoutButton = new YAHOO.widget.Button("logoutbutton");
-					oLinkLogoutButton.setStyle( 'visibility', 'visible'); 	
+						oLinkLogoutButton.setStyle( 'visibility', 'visible'); 	
 					});
 						
 		Event.onAvailable("new_movement", function () {
@@ -317,8 +317,7 @@
 	    });
 	
 		Event.onContentReady("calendarpicker-button", function () {
-		   	
-		YAHOO.util.Dom.setStyle('new_movement', 'visibility', 'visible');
+		   	YAHOO.util.Dom.setStyle('new_movement', 'visibility', 'visible');
         });
 
 		 var onCheckedButtonChange = function (p_oEvent) {
@@ -334,11 +333,6 @@
         };
 		
 		
-		Event.onContentReady("quickmov_category_container", function () {
-
-			
-		
-		});
 	});
 	}());
 
