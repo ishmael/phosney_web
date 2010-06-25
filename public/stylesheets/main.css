@@ -50,16 +50,18 @@ STRUCTURE					 */
 	border-bottom:3px solid #2A9FEC;
 	width:100%;
 }
-#header{height:40px; background: transparent; width:1000px;margin:0 auto;}
+#header{height:40px; background: transparent; width:1000px;margin:0 auto; }
 
 #footer{clear:both; }
 
 #content_main{background:transparent;width:1000px;padding:10px 0px 0px 0px;}
 
-#top_menu{display:inline-block;vertical-align:bottom;}
+#top_menu{display:inline-block;vertical-align:bottom;visibility:hidden}
 
 #quick_movement{
 	margin:0 auto;padding: 3px;background:#ffffff;width:994px;height:50px;	}
+	
+#new_movement {visibility:hidden;}	
 /*
 #profile_info{vertical-align:bottom;float:right;display:inline-block;}
 
@@ -95,6 +97,7 @@ STRUCTURE					 */
     -webkit-border-bottom-right-radius :5px;
 	border-top:0px;	
 	float:right;
+	visibility:hidden
 }
 
 #logoutbutton {
@@ -103,7 +106,8 @@ STRUCTURE					 */
     -moz-border-radius-bottomright  :5px;
     -webkit-border-bottom-right-radius :5px;
 	float:right;
-	border-top:0px;		
+	border-top:0px;	
+	visibility:hidden	
 }
 
 #accountsbalance {
