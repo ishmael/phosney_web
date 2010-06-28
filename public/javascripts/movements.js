@@ -13,6 +13,8 @@
 		   oButtonGroupQM.check(1);
 
 		   oButtonGroupQM.on("checkedButtonChange", onCheckedButtonChange);
+		YAHOO.util.Dom.setStyle('mov_debit', 'visibility', 'visible');
+		YAHOO.util.Dom.setStyle('mov_credit', 'visibility', 'visible');
         });
 
 		 var onCheckedButtonChange = function (p_oEvent) {
@@ -274,7 +276,7 @@
 			// by the user.
 	
 			oButton.on("click", onButtonClick);
-		
+			YAHOO.util.Dom.setStyle('movements_controller', 'visibility', 'visible');
 		});
 				});
 

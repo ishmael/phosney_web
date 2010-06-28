@@ -3,10 +3,10 @@
 	var YAHOO = Y.YUI2;
 		var Event = YAHOO.util.Event;
 
-		Event.onContentReady("charts", function () {
+		Event.onAvailable("charts", function () {
 
 			var tabView = new YAHOO.widget.TabView('charts'); 	
-		
+			YAHOO.util.Dom.setStyle('charts_content', 'visibility', 'visible');
 		});
 	});
 }());

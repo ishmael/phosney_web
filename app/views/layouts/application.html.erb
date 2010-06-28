@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><%=  I18n.t('layout.application.title') %></title>
-<%= stylesheet_link_tag 'reset-min','main'%>
+<%= stylesheet_link_tag 'reset-min','main-min'%>
 <!--javascript-->
 	<script type="text/javascript" src="http://yui.yahooapis.com/combo?3.1.1/build/yui/yui-min.js"></script>
 
@@ -45,7 +45,6 @@
 		<p class="right">Phosney.com 2009.</p>
 	</div>    
 
-	<!--<%= javascript_include_tag 'yui3/yui/yui-min','application','swfobject' %>-->
 		<%= javascript_include_tag 'application' %>
 	<%= yield :javascript_includes %>
 </body><!--/end #b_main-->

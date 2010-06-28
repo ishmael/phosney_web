@@ -9,7 +9,7 @@
 			if ( parent.indexOf('yui') >=0)
 			{
 				parent = 0;
-				alert(parent);
+				
 			}
 			YUI().use("io-base", function(Y) {
 			var uri = 'update_parent_id?id='+id + '&parent_id='+parent;

@@ -78,7 +78,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="box box-100 altbox">
+	<div  id="charts_content" class="box box-100 altbox">
 		<div id="charts" class="yui-navset boxin">
 			<div class="header">
 				<h3>
@@ -91,14 +91,13 @@
 					</li><% end %>
 				</ul>
 			</div>
-			<div class="content">
+			<div   class="content">
 				<div class="yui-content">
+					<% chart_settings = render '/charts/expenditure_by_year_settings.xml',:layout => false %><% chart_settings = chart_settings.gsub(/\r\n?/, "") %>
 					<% uniq_currencies.each_with_index do |ycurrency,i| %>
 					<div id="<%='tab'+i.to_s %>">
 						<div id="<%='yearchart'+i.to_s %>" class="full_chart"></div>
-						<% chart_settings = render '/charts/expenditure_by_year_settings.xml',:layout => false %><% chart_settings = chart_settings.gsub(/\r\n?/, "") %>
 						<script type="text/javascript">
-			// <![CDATA[    
 									var so = new SWFObject("/amcharts/amcolumn.swf", "<%='yearchart'+i.to_s %>", "978", "250", "8", "#ffffff");
 									so.addVariable("path", "/amcharts/");
 									so.addVariable("chart_settings","<%= chart_settings %>");
@@ -106,8 +105,8 @@
 									so.addVariable("additional_chart_settings", "<settings><strings><no_data><%=  I18n.t('layout.charts.no_data') %><\/no_data><\/strings><\/settings>");
 									so.addVariable("preloader_color", "#000000");
 									so.write("<%='yearchart'+i.to_s %>");
-									// ]]>
 						</script>
+						
 					</div>
 					<% end %>
 				</div>
