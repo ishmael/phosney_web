@@ -34,7 +34,7 @@
 		
 		});
 		
-		YAHOO.util.Event.onContentReady("color_container", function () {
+		Event.onContentReady("color_container", function () {
 					cor = document.getElementById("color_value").value;
 		        function onButtonOption() {
 
@@ -42,15 +42,15 @@
 		                 Create a new ColorPicker instance, placing it inside the body 
 		                 element of the Menu instance.
 		            */
-
-		            var oColorPicker = new YAHOO.widget.ColorPicker(oColorPickerMenu.body.id, {
+					//alert(oColorPickerMenu.body.id);
+		            var oColorPicker = new Y.YUI2.widget.ColorPicker(oColorPickerMenu.body.id, {
 		                                    showcontrols: false,
 		                                    images: {
 		                                        PICKER_THUMB: "/javascripts/yui/colorpicker/assets/picker_thumb.png",
 		                                        HUE_THUMB: "/javascripts/yui/colorpicker/assets/hue_thumb.png"
 		                                    }
 		                                });
-
+					
 					
 		            /*
 		                Add a listener for the ColorPicker instance's "rgbChange" event
@@ -125,13 +125,14 @@
 				/*
 					Add a listener for the "click" event.  This listener will be used to apply the 
 					the background color to the photo.
-				*/
+				
 
 		        oButton.on("click", function () {
 
 		        
 
 		        });
+				*/
 
 		    });		
 

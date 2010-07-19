@@ -81,7 +81,23 @@
 		</div>
 	</div>
 </div>
+<% if not  @movements.empty? %>
 <div class="box box-25 altbox"><!-- .altbox for alternative box's color -->
+	<div class="boxin">
+		<div class="inner-form">
+			<div id="search" class="basic clearfix">
+				<div class="search-input">
+					<input type="text"  size="20" name="search-q" class="txt" id="search-q" >
+				</div>
+			  	<div id="calSearchContainer"></div>	
+			<%= link_to I18n.t('layout.application.search'), new_polymorphic_path([@account,:movement]) ,:class => 'button'%>				
+			</div>
+			
+		</div>
+	</div>
+</div>
+<% end %>
+<div class="box box-25 altbox" style="float:right;"><!-- .altbox for alternative box's color -->
 	<div class="boxin">
 		<div class="header">
 			<h3> <%=  I18n.t('layout.bankaccounts.name') %></h3>
@@ -117,11 +133,10 @@
 		</div>
 	</div>
 </div>
-
 <% if @account.type == 'Bankaccount' and @account.owner == '1' %>  
 <% sharedaccountinvitations = @account.shared_account_invitations.find(:all) %>
 
-<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+<div class="box box-first box-75 altbox"><!-- .altbox for alternative box's color -->
 	<div class="boxin">
 		<div class="header">
 			<h3><%=  I18n.t('layout.sharedinvitations.pending') %></h3>
@@ -173,7 +188,7 @@
 	<% end %>	
 	
 	<% if not @shares.empty? %>	
-	<div class="box box-50 altbox"><!-- .altbox for alternative box's color -->
+	<div class="box box-75 altbox"><!-- .altbox for alternative box's color -->
 		<div class="boxin">
 			<div class="header">
 				<h3><%=  I18n.t('layout.accountsusers.title') %></h3>
@@ -216,3 +231,7 @@
 			</div>
 	 </div>
 	</div>
+	
+	<% content_for :javascript_includes do %>
+		<%= javascript_include_tag 'bankaccount_dashboard' %>
+	<% end %>

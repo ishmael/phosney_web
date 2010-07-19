@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100322122353) do
+ActiveRecord::Schema.define(:version => 20100420071345) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(:version => 20100322122353) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
-    t.integer  "balance_in_cents", :default => 0
+    t.integer  "balance_in_cents", :limit => 8, :default => 0
     t.string   "currency"
-    t.string   "color",            :default => "#000000"
+    t.string   "color",                         :default => "#000000"
   end
 
   create_table "accounts_users", :force => true do |t|
@@ -45,10 +45,17 @@ ActiveRecord::Schema.define(:version => 20100322122353) do
 
   add_index "categories", ["user_id", "name"], :name => "categories_name_ukey", :unique => true
 
+  create_table "categories_users", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "category_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "movements", :force => true do |t|
     t.integer  "account_id"
     t.string   "description"
-    t.integer  "amount_in_cents",                                            :default => 0
+    t.integer  "amount_in_cents", :limit => 8,                               :default => 0
     t.datetime "movdate"
     t.datetime "created_at"
     t.datetime "created_on"

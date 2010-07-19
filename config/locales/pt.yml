@@ -35,6 +35,7 @@ pt:
       previous: "Anterior"
       next: "Próxima"
       share: "Partilhar"
+      search: "Pesquisar"
     bankaccounts:
       name: "Conta Bancária"
       title: "Contas Bancárias"

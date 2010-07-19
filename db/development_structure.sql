@@ -63,7 +63,7 @@ CREATE TABLE accounts (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     type character varying(255),
-    balance_in_cents integer DEFAULT 0,
+    balance_in_cents bigint DEFAULT 0,
     currency character varying(255),
     color character varying(255) DEFAULT '#000000'::character varying
 );
@@ -123,6 +123,38 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
+-- Name: categories_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE categories_users (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    category_id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: categories_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE categories_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: categories_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE categories_users_id_seq OWNED BY categories_users.id;
+
+
+--
 -- Name: movements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -130,7 +162,7 @@ CREATE TABLE movements (
     id integer NOT NULL,
     account_id integer,
     description character varying(255),
-    amount_in_cents integer DEFAULT 0,
+    amount_in_cents bigint DEFAULT 0,
     movdate timestamp without time zone,
     created_at timestamp without time zone,
     created_on timestamp without time zone,
@@ -377,6 +409,13 @@ ALTER TABLE categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE categories_users ALTER COLUMN id SET DEFAULT nextval('categories_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE movements ALTER COLUMN id SET DEFAULT nextval('movements_id_seq'::regclass);
 
 
@@ -445,6 +484,14 @@ ALTER TABLE ONLY categories
 
 ALTER TABLE ONLY categories
     ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY categories_users
+    ADD CONSTRAINT categories_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -571,6 +618,22 @@ ALTER TABLE ONLY categories
 
 
 --
+-- Name: categories_users_category_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY categories_users
+    ADD CONSTRAINT categories_users_category_id_fkey FOREIGN KEY (category_id) REFERENCES categories(id);
+
+
+--
+-- Name: categories_users_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY categories_users
+    ADD CONSTRAINT categories_users_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- Name: movements_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -693,3 +756,7 @@ INSERT INTO schema_migrations (version) VALUES ('20100318115922');
 INSERT INTO schema_migrations (version) VALUES ('20100318153038');
 
 INSERT INTO schema_migrations (version) VALUES ('20100322122353');
+
+INSERT INTO schema_migrations (version) VALUES ('20100413141711');
+
+INSERT INTO schema_migrations (version) VALUES ('20100420071345');

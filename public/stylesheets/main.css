@@ -206,6 +206,7 @@ LOGO				 */
 	padding-left:3px;
 	padding-bottom: 3px;
 	color: #000000;
+
 }
 
 #quick_movement .quickmovement-submit {
@@ -228,6 +229,10 @@ LOGO				 */
 	display : inline;
 	margin-top : 5px;
 	width: 900px;
+}
+
+#quickmov_category_container {
+	width:117px;
 }
 
 #profile_info span {
@@ -356,6 +361,26 @@ a.yuimenuitemlabel {
 .yui-navset .yui-nav li  a:hover,
 .yui-navset .yui-nav li  a:focus,
 .yui-navset .yui-nav li  a:active {background: #fff url("/images/background-sprites.png") repeat-x 0px -322px !important; color: #444 !important;}
+
+#calcontainerContainer {
+	min-height:431px;
+}
+
+.yui-calcontainer.multi {
+	background-color: #fff !important;
+	border-width: 0 !important;
+	width:227px;
+}
+.yui-calcontainer.multi {
+	background-color: #fff !important;
+	border-width: 0 !important;
+	width:227px;
+}
+
+.yui-calcontainer.groupcal {
+	margin-left:20px !important;
+}
+
 
 #charts div.yui-content {border :0; background-color:transparent;}
 
@@ -489,6 +514,16 @@ ul.actions li {
 	}
 ul.actions a { text-decoration: none; color: #fff ;}
 
+
+
+#calSearchContainer {
+	margin-bottom:10px;
+}
+
+#search a.button { text-decoration: none; color: #fff ; float:right;margin-right:20px;}
+
+
+.search-input input.txt { width: 194px; height: 14px; vertical-align: middle; margin: 1px 0 1px 20px; padding: 6px 2px; overflow: hidden; font-size: 100%;}
 
 .pagination {border-top: 1px solid #999;min-height:19px;background: #fff url("/images/background-sprites.png") repeat-x 0px -550px; text-align: center; color: #333 !important;}
 .pagination div {position: relative; top: -1px; padding: 12px 10px 6px; min-height:16px;}
@@ -690,7 +725,7 @@ ul.actions a { text-decoration: none; color: #fff ;}
 /* login page */
 #login {padding: 100px;font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif; color: #333;}
 #login .box {float: none; margin: 0 auto;}
-#login .header{height:90px;}
+#login .header{height:90px; border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x !important;}
 #login .boxin {box-shadow: #111 0 0 10px; -webkit-box-shadow: #111 0 0 10px; -moz-box-shadow: #111 0 0 10px; border: 0;}
 #login a {text-decoration:none;}
 #login form.register dl dt { width: 30% !important;}

@@ -32,6 +32,7 @@ en:
       previous: "Previous"
       next: "Next"
       share: "Share"
+      search: "Search"
     bankaccounts:
       name: "Account"
       title: "Accounts"
