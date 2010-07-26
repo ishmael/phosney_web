@@ -8,7 +8,7 @@ class Movement < ActiveRecord::Base
   validates_presence_of :description,:account_id,:amount_in_cents
   validates_numericality_of :amount_in_cents
   cattr_reader :per_page
-  @@per_page = 10
+  @@per_page = 20
   
   
   def category_id=(category)

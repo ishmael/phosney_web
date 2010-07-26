@@ -10,7 +10,9 @@ class MovementsController < ApplicationController
   # GET /movements.xml
   def index
 	if @account
-		@movements = @account.movements.paginate(:page => params[:page],:conditions => ["movements.user_id =:user_id or  (movements.private =0 and movements.user_id<> :user_id ) ",{:user_id => @current_user.id }],:order => "movdate desc")
+	  @startdate =   Date.today.beginning_of_month
+	  @enddate = Date.today.end_of_month
+		@movements = @account.movements.paginate(:page => params[:page],:conditions => ["(movements.user_id =:user_id or  (movements.private =0 and movements.user_id<> :user_id )) and movements.movdate between :start_date and :end_date ",{:user_id => @current_user.id, :start_date=> @startdate, :end_date => @enddate}],:order => "movdate desc")
 		
 		@shares = @account.accounts_users.find(:all,:select => "accounts_users.id,accounts_users.allow_insert,accounts_users.allow_edit,accounts_users.allow_delete,(select login from users where users.id = accounts_users.user_id) as login" ,:conditions => ["user_id != ?",@current_user.id])
 		respond_to do |format|
@@ -18,10 +20,24 @@ class MovementsController < ApplicationController
 		  format.iphone  { render :layout => false }
 		end
 	else
-	redirect_to(dashboard_url)
+	  redirect_to(dashboard_url)
 	end
   end
 
+
+  def search
+    if @account
+       @startdate =   Date.today.beginning_of_month
+    	  @enddate = Date.today.end_of_month
+    		@movements = @account.movements.paginate(:page => params[:page],:conditions => ["(movements.user_id =:user_id or  (movements.private =0 and movements.user_id<> :user_id )) and movements.movdate between :start_date and :end_date ",{:user_id => @current_user.id, :start_date=> @startdate, :end_date => @enddate}],:order => "movdate desc")
+        respond_to do |format|
+    		  format.html # index.html.erb
+    		  format.iphone  { render :layout => false }
+    		end
+    else
+    	  redirect_to(dashboard_url)
+  	end
+  end
   # GET /movements/1
   # GET /movements/1.xml
   def show

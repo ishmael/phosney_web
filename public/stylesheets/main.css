@@ -61,6 +61,12 @@ STRUCTURE					 */
 #quick_movement{
 	margin:0 auto;padding: 3px;background:#ffffff;width:994px;height:50px;	}
 	
+.quickboxin {
+	box-shadow: #aaa 0 0 10px; 
+	-webkit-box-shadow: #aaa 0 0 10px; 
+	-moz-box-shadow: #aaa 0 0 10px; 
+	}
+	
 #new_quick_movement {visibility:hidden;}
 
 #mov_debit, #mov_credit,#movements_controller ,#movement_category_id {visibility:hidden;}
@@ -369,16 +375,16 @@ a.yuimenuitemlabel {
 .yui-calcontainer.multi {
 	background-color: #fff !important;
 	border-width: 0 !important;
-	width:227px;
+	width:200px;
 }
 .yui-calcontainer.multi {
 	background-color: #fff !important;
 	border-width: 0 !important;
-	width:227px;
+	width:200px;
 }
 
 .yui-calcontainer.groupcal {
-	margin-left:20px !important;
+	margin-left:0px !important;
 }
 
 
@@ -436,7 +442,9 @@ a.yuimenuitemlabel {
 }
 .altbox .header { border-top-color: #0a81d0; background: #0f518e url("/images/background-sprites.png") repeat-x 0px -36px;}
 .box .header h3 {position: relative; top: 2px; display: inline; font-size: 150%; color: #fff; text-shadow: #151515 0 1px 0;font-weight:normal;}
+.box .header h4 {margin-left:20px;position: relative; top: 2px; display: inline; font-size: 100%; color: #fff; text-shadow: #151515 0 1px 0;font-weight:normal;}
 .altbox .header h3 {text-shadow: #003d68 0 1px 0;}
+.altbox .header h4 {text-shadow: #003d68 0 1px 0;}
 .box .header .button {
 	margin-right: 15px;
 	float:right;
@@ -520,10 +528,34 @@ ul.actions a { text-decoration: none; color: #fff ;}
 	margin-bottom:10px;
 }
 
-#search a.button { text-decoration: none; color: #fff ; float:right;margin-right:20px;}
+
+#search  a.button { text-decoration: none; color: #fff ; float:right;}
+#search .submit {
+	margin-left:0px;
+	height:30px;
+	}
+#search {
+	margin-left:0 !important;
+}
+#search .submit div {margin-top:0px;margin-right:15px;}
+#search  dl dt {
+	display:block !important;
+	width:100%;
+}
+#search dl dd {
+		width:100%;
+}
+.search_form {
+		padding:0 0 0 10px !important;	
+}
+
+#amountmax, #amountmin {
+	width:94px;
+	display:inline-block;
+}
 
 
-.search-input input.txt { width: 194px; height: 14px; vertical-align: middle; margin: 1px 0 1px 20px; padding: 6px 2px; overflow: hidden; font-size: 100%;}
+.search-input input.txt { width: 208px; height: 14px; vertical-align: middle; margin: 1px 0 1px 0px; padding: 6px 2px; overflow: hidden; font-size: 100%;}
 
 .pagination {border-top: 1px solid #999;min-height:19px;background: #fff url("/images/background-sprites.png") repeat-x 0px -550px; text-align: center; color: #333 !important;}
 .pagination div {position: relative; top: -1px; padding: 12px 10px 6px; min-height:16px;}

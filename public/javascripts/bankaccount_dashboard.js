@@ -158,6 +158,7 @@
 	            var b = (d1 <= d2);
 	            var l = b ? d1 : d2;
 	            var u = b ? d2 : d1;
+
 	            // Update configuration
 	            this.cfg.setProperty('selected', this._dateIntervalString(l, u), false);
 	            this._iState = 2;
@@ -201,6 +202,7 @@
 	        * @private
 	        */
 	        _intervalOnSelect : function(t,a,o) {
+		
 	            // Get selected dates
 	            var dates = this.getSelectedDates();
 	            if(dates.length > 1) {
@@ -237,21 +239,31 @@
 	        _intervalOnDeselect : function(t,a,o) {
 	            if(this._iState != 0) {
 	                // If part of an interval is already selected, then first deselect all
-	                this._iState = 0;
-	                this.deselectAll();
 
+
+	                if (this._iState== 2)
+					{
+						this._iState = 0;
+						this.deselectAll();
+						this.render();
+					}
+					else
+					{
+						this._iState = 0;
+	                	this.deselectAll();
 	                // Get individual date deselected and page containing it
 	                var d = a[0][0];
 	                var date = YAHOO.widget.DateMath.getDate(d[0], d[1] - 1, d[2]);
 	                var page = this.getCalendarPage(date);
 	                if(page) {
 	                    // Now (re)select the individual date
-	                    page.beforeSelectEvent.fire();
+	                   page.beforeSelectEvent.fire();
 	                    this.cfg.setProperty('selected', this._dateString(date), false);
 	                    page.selectEvent.fire([d]);
 	                }
 	                // Swallow up since we called deselectAll above
 	                return false;
+					}
 	            }
 	        }
 	    });
@@ -262,32 +274,44 @@
 
 	YAHOO.util.Event.onDOMReady(function() {
 
-	    /*inTxt = YAHOO.util.Dom.get("in"),
-	        outTxt = YAHOO.util.Dom.get("out"),*/
-	    var     inDate, outDate, interval;
+	    var inTxt = YAHOO.util.Dom.get("startdate"),
+	        outTxt = YAHOO.util.Dom.get("enddate"),
+	         inDate, outDate, interval;
 
 	    /*inTxt.value = "";
 	    outTxt.value = "";*/
 
-	    var cal = new YAHOO.example.calendar.IntervalCalendar("calSearchContainer", {pages:2});
+	    var cal = new YAHOO.example.calendar.IntervalCalendar("calSearchContainer", {pages:1,navigator:true});
 
-	    /*cal.selectEvent.subscribe(function() {
+		var oButtonGroup1 = new YAHOO.widget.ButtonGroup("buttongroup1");
+	    cal.selectEvent.subscribe(function() {
 	        interval = this.getInterval();
 
 	        if (interval.length == 2) {
 	            inDate = interval[0];
-	            inTxt.value = (inDate.getMonth() + 1) + "/" + inDate.getDate() + "/" + inDate.getFullYear();
+	            inTxt.value = inDate.getDate()  + "/" + (inDate.getMonth() + 1) + "/" + inDate.getFullYear();
 
 	            if (interval[0].getTime() != interval[1].getTime()) {
 	                outDate = interval[1];
-	                outTxt.value = (outDate.getMonth() + 1) + "/" + outDate.getDate() + "/" + outDate.getFullYear();
+	                outTxt.value = outDate.getDate() + "/" + (outDate.getMonth() + 1) + "/" + outDate.getFullYear();
 	            } else {
 	                outTxt.value = "";
 	            }
 	        }
-	    }, cal, true);*/
+	    }, cal, true);
 
+	
+		cal.deselectEvent.subscribe(function() {
+	        interval = this.getInterval();
+
+	        if (interval.length == 0) {
+	            inTxt.value = "";
+                outTxt.value = "";
+	        }
+	    }, cal, true);
+		cal.setInterval(new Date(inTxt.value),new Date(outTxt.value));
 	    cal.render();
+
 	});
 	});
 		}());
