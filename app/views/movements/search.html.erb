@@ -90,11 +90,11 @@
 				<dl >
 					<dt><%= I18n.t('layout.movements.description') %></dt>
 				<dd class="search-input">
-					<%= text_field_tag(:query,nil,:class=>'txt') %>
+					<%= text_field_tag(:description,nil,:class=>'txt') %>
 				</dd>
 				<dt><%= I18n.t('layout.movements.amount') %></dt>
 			<dd class="search-input">
-				<%= text_field_tag(:amountmin,nil,:class=>'txt') %> a <%= text_field_tag(:amountmax,nil,:class=>'txt') %>
+				<%= text_field_tag(:min_amount,nil,:class=>'txt') %> a <%= text_field_tag(:max_amount,nil,:class=>'txt') %>
 			</dd>
 				<dt><%= I18n.t('layout.movements.typetag') %></dt>
 				<dd>
@@ -107,8 +107,8 @@
 				</dd>
 				<dt><%= I18n.t('layout.movements.movdate') %></dt>
 			  	<dd ><div id="calSearchContainer" >
-			  	<%= hidden_field_tag(:startdate, @startdate) %>
-			  	<%= hidden_field_tag(:enddate, @enddate) %>	
+			  	<%= hidden_field_tag(:start_date, @startdate) %>
+			  	<%= hidden_field_tag(:end_date, @enddate) %>	
 				
 			  	</div></dd>	
 					<dd class="submit">

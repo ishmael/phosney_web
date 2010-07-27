@@ -274,8 +274,8 @@
 
 	YAHOO.util.Event.onDOMReady(function() {
 
-	    var inTxt = YAHOO.util.Dom.get("startdate"),
-	        outTxt = YAHOO.util.Dom.get("enddate"),
+	    var inTxt = YAHOO.util.Dom.get("start_date"),
+	        outTxt = YAHOO.util.Dom.get("end_date"),
 	         inDate, outDate, interval;
 
 	    /*inTxt.value = "";
