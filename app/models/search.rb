@@ -1,31 +1,37 @@
 class Search
   attr_reader :options
- 
-  def initialize(model, options)
+
+  def initialize(model, options,initial_conditions,initial_parameters)
     @model = model
     @options = options || {}
+    @initial_conditions = initial_conditions
+    @initial_parameters = initial_parameters
   end
  
   def start_date
-    date_from_options(:start_date)
+    options[:start_date]
   end
  
   def end_date
-    date_from_options(:end_date)
+    options[:end_date]
   end
  
   def max_amount 
-    date_from_options(:max_amount)
+    options[:max_amount].to_i != 0 ? options[:max_amount].to_i : nil
   end
  
   def min_amount
-    date_from_options(:min_amount)
+    options[:min_amount].to_i != 0 ? options[:min_amount].to_i : nil
   end
  
   def description
     options[:description]
   end
  
+  def type_mov_hidden
+    options[:type_mov_hidden]
+  end 
+  
   # method_missing will autogenerate an accessor for any attribute other
   # than the methods already written. I love this magic. :)
   def method_missing(method_id, *arguments)
@@ -37,29 +43,37 @@ class Search
   end
  
   def conditions
+     
     conditions = []
     parameters = []
- 
+
     return nil if options.empty?
  
-    if start_date
+    if not start_date.empty?
+      #conditions << "#{@model.table_name}.movdate >= to_date(?,'YYYY-MM-DD')"
       conditions << "#{@model.table_name}.movdate >= ?"
       parameters << start_date
     end
  
-    if end_date
+    if not end_date.empty?
+      #conditions << "#{@model.table_name}.movdate <= to_date(?,'YYYY-MM-DD')"
       conditions << "#{@model.table_name}.movdate <= ?"
       parameters << end_date
     end
  
     if min_amount
       conditions << "#{@model.table_name}.amount_in_cents >= ?"
-      parameters << min_amount
+      parameters << min_amount * 100
     end
  
     if max_amount
       conditions << "#{@model.table_name}.amount_in_cents <= ?"
-      parameters << max_amount
+      parameters << max_amount  * 100
+    end
+    
+    if not type_mov_hidden.empty?
+      conditions << "#{@model.table_name}.mov_type = ?"
+      parameters << type_mov_hidden
     end
  
     # note that we're using self.send to make sure we use the getter methods
@@ -72,12 +86,14 @@ class Search
         conditions << "#{@model.table_name}.#{k} = ?"
         parameters << v.to_i
       else
-        conditions << "#{@model.table_name}.#{k} LIKE ?"
+        conditions << "UPPER(#{@model.table_name}.#{k}) LIKE UPPER(?)"
         parameters << "%#{v}%"
       end
     end
  
     unless conditions.empty?
+      conditions.concat( @initial_conditions)
+      parameters.concat(@initial_parameters)
       [conditions.join(" AND "), *parameters]
     else
       nil

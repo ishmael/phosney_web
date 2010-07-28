@@ -36,6 +36,7 @@ pt:
       next: "Próxima"
       share: "Partilhar"
       search: "Pesquisar"
+      search_no_results: "Não foram encontrados registos"
     bankaccounts:
       name: "Conta Bancária"
       title: "Contas Bancárias"

@@ -547,9 +547,9 @@ ul.actions a { text-decoration: none; color: #fff ;}
 }
 .search_form {
 		padding:0 0 0 10px !important;	
-}
+} 
 
-#amountmax, #amountmin {
+#search_max_amount, #search_min_amount {
 	width:94px;
 	display:inline-block;
 }

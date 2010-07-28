@@ -33,6 +33,7 @@ en:
       next: "Next"
       share: "Share"
       search: "Search"
+      search_no_results: "No results found"
     bankaccounts:
       name: "Account"
       title: "Accounts"

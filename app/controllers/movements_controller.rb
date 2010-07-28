@@ -27,9 +27,12 @@ class MovementsController < ApplicationController
 
   def search
     if @account
-       @startdate =   Date.today.beginning_of_month
-    	  @enddate = Date.today.end_of_month
-    		@movements = @account.movements.paginate(:page => params[:page],:conditions => ["(movements.user_id =:user_id or  (movements.private =0 and movements.user_id<> :user_id )) and movements.movdate between :start_date and :end_date ",{:user_id => @current_user.id, :start_date=> @startdate, :end_date => @enddate}],:order => "movdate desc")
+        
+    		@movements  = [] 
+    		@search = Search.new( Movement , params[:search],["(movements.user_id =? or  (movements.private =0 and movements.user_id<> ? ))"],[@current_user.id,@current_user.id])
+    		if @search.conditions
+    		  @movements = @account.movements.paginate(:page => params[:page],:conditions => @search.conditions,:order => "movdate desc")
+    		end
         respond_to do |format|
     		  format.html # index.html.erb
     		  format.iphone  { render :layout => false }

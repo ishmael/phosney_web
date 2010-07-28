@@ -1,10 +1,10 @@
 <div class="box box-first box-75 altbox "><!-- .altbox for alternative box's color -->
 	<div class="boxin">
 		<div class="header">
-			<h3><%=  I18n.t('layout.movements.name') %></h3>
-			<h4><%= I18n.t('layout.movements.dates_interval')  %   [@startdate,@enddate]  %>	</h4>
+			<h3><%=  I18n.t('layout.movements.name') %></h3>		
 		</div>
-		<div class="content">
+		<div class="content"> 
+			
 			<% if not  @movements.empty? %>
 			<table cellspacing="0">
 				<thead>
@@ -70,7 +70,8 @@
 			<% else %>
 				<div class="basic tc" style="margin:10px;">	
 					<% if @account.allow_insert == '1' %>
-						<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) %>
+		
+						<%= label_tag I18n.t('layout.application.search_no_results') %>
 					<% end %>
 				</div>
 			<% end %>
@@ -82,40 +83,38 @@
 	<div class="boxin">
 		<div class="inner-form">
 			
-			<% form_tag(polymorphic_path([:search,@account,:movements]) , :method => "get", :class => "search_form") do %>
-
-			  
-			
+			<% form_for :search,@search ,:html=>{ :method => "get", :class => "search_form"} do |f| %>			
 			<div id="search" class="basic clearfix">
 				<dl >
 					<dt><%= I18n.t('layout.movements.description') %></dt>
 				<dd class="search-input">
-					<%= text_field_tag(:description,nil,:class=>'txt') %>
+					<%= f.text_field :description,:class=>'txt' %>
 				</dd>
 				<dt><%= I18n.t('layout.movements.amount') %></dt>
 			<dd class="search-input">
-				<%= text_field_tag(:min_amount,nil,:class=>'txt') %> a <%= text_field_tag(:max_amount,nil,:class=>'txt') %>
+				<%= f.text_field :min_amount,:class=>'txt' %> a <%= f.text_field :max_amount,:class=>'txt' %>
 			</dd>
 				<dt><%= I18n.t('layout.movements.typetag') %></dt>
 				<dd>
+					<%= f.hidden_field :type_mov_hidden %>
 					<div id="buttongroup1" class="yui-buttongroup">
-						<%= radio_button_tag(:radiofield1, I18n.t('layout.movements.debit')) %>
-						<%= radio_button_tag(:radiofield1, I18n.t('layout.movements.credit')) %>												
-						<%= radio_button_tag(:radiofield1, I18n.t('layout.movements.all_types'),true) %>						
+						<input type="radio" id="search_debit" name="mov_debit" value="<%=  I18n.t('layout.movements.debit') %>" />
+						<input type="radio" id="search_credit" name="mov_credit" value="<%=  I18n.t('layout.movements.credit') %>" />
+						<input type="radio" id="search_all" name="mov_all" value="<%=  I18n.t('layout.movements.all_types') %>" />							
 					</div>
 					
 				</dd>
 				<dt><%= I18n.t('layout.movements.movdate') %></dt>
 			  	<dd ><div id="calSearchContainer" >
-			  	<%= hidden_field_tag(:start_date, @startdate) %>
-			  	<%= hidden_field_tag(:end_date, @enddate) %>	
+			  	<%= f.hidden_field :start_date %>
+			  	<%= f.hidden_field :end_date %>	
 				
 			  	</div></dd>	
 					<dd class="submit">
 							<div>
 								<ul class="actions">
 									<li>
-										<%= submit_tag(I18n.t('layout.application.search'),:name=>nil ,:class => 'button') %>									
+										<%= f.submit I18n.t('layout.application.search'),{:name=>nil ,:class => 'button'} %>									
 									</li>
 									</ul>
 							</div>

@@ -112,7 +112,7 @@
 	        *                   including the lower and upper dates.
 	        */
 	        _dateIntervalString : function(l, u) {
-	            var s = this.cfg.getProperty(IntervalCalendar._DEFAULT_CONFIG.DATE_RANGE_DELIMITER.key);
+		        var s = this.cfg.getProperty(IntervalCalendar._DEFAULT_CONFIG.DATE_RANGE_DELIMITER.key);
 	            return (this._dateString(l)
 	                    + s + this._dateString(u));
 	        },
@@ -253,7 +253,10 @@
 	                	this.deselectAll();
 	                // Get individual date deselected and page containing it
 	                var d = a[0][0];
-	                var date = YAHOO.widget.DateMath.getDate(d[0], d[1] - 1, d[2]);
+					/*alert(d[0]);
+					alert(d[1]);
+					alert(d[2]);		*/								
+	                var date = YAHOO.widget.DateMath.getDate(d[2], d[1] - 1, d[0]);
 	                var page = this.getCalendarPage(date);
 	                if(page) {
 	                    // Now (re)select the individual date
@@ -272,44 +275,73 @@
 	    YAHOO.example.calendar.IntervalCalendar = IntervalCalendar;
 	})();
 
+	var onCheckedButtonChange = function (p_oEvent) {
+			var mov_type = document.getElementById("search_type_mov_hidden");
+
+	     if(p_oEvent.newValue.get("id") == "search_debit") {
+				mov_type.value = "-1";      
+	     }
+	     if(p_oEvent.newValue.get("id") == "search_credit") {
+				mov_type.value = "1";
+	     }
+		 if(p_oEvent.newValue.get("id") == "search_all") {
+				mov_type.value = "";
+	     }
+
+	 };
 	YAHOO.util.Event.onDOMReady(function() {
 
-	    var inTxt = YAHOO.util.Dom.get("start_date"),
-	        outTxt = YAHOO.util.Dom.get("end_date"),
-	         inDate, outDate, interval;
-
+	    var inTxt = YAHOO.util.Dom.get("search_start_date"),
+	        outTxt = YAHOO.util.Dom.get("search_end_date"),
+	         inDate, outDate, interval,
+		    mov_type =  YAHOO.util.Dom.get("search_type_mov_hidden");
 	    /*inTxt.value = "";
 	    outTxt.value = "";*/
 
-	    var cal = new YAHOO.example.calendar.IntervalCalendar("calSearchContainer", {pages:1,navigator:true});
-
+	    var cal = new YAHOO.example.calendar.IntervalCalendar("calSearchContainer", {pages:1,navigator:true,DATE_RANGE_DELIMITER:"/",DATE_FIELD_DELIMITER:"-",MDY_MONTH_POSITION:2,MDY_DAY_POSITION:3,MDY_YEAR_POSITION:1});
+//			cal.cfg.setProperty("DATE_FIELD_DELIMITER", "."); 
 		var oButtonGroup1 = new YAHOO.widget.ButtonGroup("buttongroup1");
-	    cal.selectEvent.subscribe(function() {
-	        interval = this.getInterval();
 
+		if (mov_type.value == "-1")
+			oButtonGroup1.check(0);
+	    else if (mov_type.value == "1")
+		   oButtonGroup1.check(1);
+		else
+		 oButtonGroup1.check(2);
+
+
+		oButtonGroup1.on("checkedButtonChange", onCheckedButtonChange);
+
+
+
+
+	   cal.selectEvent.subscribe(function() {
+	        interval = this.getInterval();
+			
 	        if (interval.length == 2) {
 	            inDate = interval[0];
-	            inTxt.value = inDate.getDate()  + "/" + (inDate.getMonth() + 1) + "/" + inDate.getFullYear();
-
+	            inTxt.value = inDate.getFullYear() + "-" + (inDate.getMonth() + 1) + "-" + inDate.getDate() ;
+				//inTxt.value= inDate;	
 	            if (interval[0].getTime() != interval[1].getTime()) {
 	                outDate = interval[1];
-	                outTxt.value = outDate.getDate() + "/" + (outDate.getMonth() + 1) + "/" + outDate.getFullYear();
+	                outTxt.value = outDate.getFullYear() + "-" + (outDate.getMonth() + 1) + "-" +outDate.getDate();
 	            } else {
 	                outTxt.value = "";
 	            }
 	        }
 	    }, cal, true);
 
-	
+
 		cal.deselectEvent.subscribe(function() {
 	        interval = this.getInterval();
 
 	        if (interval.length == 0) {
 	            inTxt.value = "";
-                outTxt.value = "";
+	            outTxt.value = "";
 	        }
-	    }, cal, true);
-		cal.setInterval(new Date(inTxt.value),new Date(outTxt.value));
+	    }, cal, true);	
+		//alert(new Date(inTxt.value));
+		//cal.setInterval(new Date(inTxt.value),new Date(outTxt.value));
 	    cal.render();
 
 	});
