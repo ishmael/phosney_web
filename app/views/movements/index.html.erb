@@ -2,7 +2,7 @@
 	<div class="boxin">
 		<div class="header">
 			<h3><%=  I18n.t('layout.movements.name') %></h3>
-			<h4><%= I18n.t('layout.movements.dates_interval')  %   [@startdate,@enddate]  %>	</h4>
+			<h4><%= I18n.t('layout.movements.dates_interval')  %   [@startdate.strftime("%d-%m-%Y"),@enddate.strftime("%d-%m-%Y")]  %>	</h4>
 			<% if not  @movements.empty? %>
 					<% if @account.allow_insert == '1' %>
 					<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) ,:class => 'button'%>
@@ -98,7 +98,7 @@
 				</dd>
 				<dt><%= I18n.t('layout.movements.amount') %></dt>
 			<dd class="search-input">
-				<%= f.text_field :min_amount,:class=>'txt' %> a <%= f.text_field :max_amount,:class=>'txt' %>
+				<%= f.text_field :min_amount,:value=> Money.new(0,@account.currency).to_s,:class=>'txt' %> a <%= f.text_field :max_amount,:value=> Money.new(0,@account.currency).to_s,:class=>'txt' %>
 			</dd>
 				<dt><%= I18n.t('layout.movements.typetag') %></dt>
 				<dd>
@@ -114,6 +114,7 @@
 			  	<dd ><div id="calSearchContainer" >
 			  	<%= f.hidden_field :start_date %>
 			  	<%= f.hidden_field :end_date %>	
+				<%= f.hidden_field :currency, :value => @account.currency %>	
 				
 			  	</div></dd>	
 					<dd class="submit">

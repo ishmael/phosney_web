@@ -17,11 +17,11 @@ class Search
   end
  
   def max_amount 
-    options[:max_amount].to_i != 0 ? options[:max_amount].to_i : nil
+    Money.new(options[:max_amount].to_money.cents,currency)
   end
  
   def min_amount
-    options[:min_amount].to_i != 0 ? options[:min_amount].to_i : nil
+    Money.new(options[:min_amount].to_money.cents,currency)
   end
  
   def description
@@ -31,6 +31,10 @@ class Search
   def type_mov_hidden
     options[:type_mov_hidden]
   end 
+  
+  def currency
+    options[:currency]
+  end
   
   # method_missing will autogenerate an accessor for any attribute other
   # than the methods already written. I love this magic. :)
@@ -61,14 +65,14 @@ class Search
       parameters << end_date
     end
  
-    if min_amount
+    if min_amount.cents != 0
       conditions << "#{@model.table_name}.amount_in_cents >= ?"
-      parameters << min_amount * 100
+      parameters << min_amount.cents
     end
  
-    if max_amount
+    if max_amount.cents != 0 
       conditions << "#{@model.table_name}.amount_in_cents <= ?"
-      parameters << max_amount  * 100
+      parameters << max_amount.cents
     end
     
     if not type_mov_hidden.empty?

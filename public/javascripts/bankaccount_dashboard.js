@@ -255,8 +255,8 @@
 	                var d = a[0][0];
 					/*alert(d[0]);
 					alert(d[1]);
-					alert(d[2]);		*/								
-	                var date = YAHOO.widget.DateMath.getDate(d[2], d[1] - 1, d[0]);
+					alert(d[2]);*/										
+	                var date = YAHOO.widget.DateMath.getDate(d[0], d[1] - 1, d[2]);
 	                var page = this.getCalendarPage(date);
 	                if(page) {
 	                    // Now (re)select the individual date
@@ -298,7 +298,7 @@
 	    /*inTxt.value = "";
 	    outTxt.value = "";*/
 
-	    var cal = new YAHOO.example.calendar.IntervalCalendar("calSearchContainer", {pages:1,navigator:true,DATE_RANGE_DELIMITER:"/",DATE_FIELD_DELIMITER:"-",MDY_MONTH_POSITION:2,MDY_DAY_POSITION:3,MDY_YEAR_POSITION:1});
+	    var cal = new YAHOO.example.calendar.IntervalCalendar("calSearchContainer", {pages:1,navigator:true,MDY_MONTH_POSITION:2,MDY_DAY_POSITION:1,MDY_YEAR_POSITION:3});
 //			cal.cfg.setProperty("DATE_FIELD_DELIMITER", "."); 
 		var oButtonGroup1 = new YAHOO.widget.ButtonGroup("buttongroup1");
 
@@ -320,11 +320,11 @@
 			
 	        if (interval.length == 2) {
 	            inDate = interval[0];
-	            inTxt.value = inDate.getFullYear() + "-" + (inDate.getMonth() + 1) + "-" + inDate.getDate() ;
+	            inTxt.value = inDate.getDate() + "/" + (inDate.getMonth() + 1) + "/" + inDate.getFullYear() ;
 				//inTxt.value= inDate;	
 	            if (interval[0].getTime() != interval[1].getTime()) {
 	                outDate = interval[1];
-	                outTxt.value = outDate.getFullYear() + "-" + (outDate.getMonth() + 1) + "-" +outDate.getDate();
+	                outTxt.value = outDate.getDate() + "/" + (outDate.getMonth() + 1) + "/" +outDate.getFullYear();
 	            } else {
 	                outTxt.value = "";
 	            }
@@ -340,8 +340,8 @@
 	            outTxt.value = "";
 	        }
 	    }, cal, true);	
-		//alert(new Date(inTxt.value));
-		//cal.setInterval(new Date(inTxt.value),new Date(outTxt.value));
+		//alert( new Date(Date.parse(outTxt.value)));
+		//cal.setInterval(inTxt.value,outTxt.value);
 	    cal.render();
 
 	});

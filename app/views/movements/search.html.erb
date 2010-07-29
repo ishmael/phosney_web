@@ -92,7 +92,7 @@
 				</dd>
 				<dt><%= I18n.t('layout.movements.amount') %></dt>
 			<dd class="search-input">
-				<%= f.text_field :min_amount,:class=>'txt' %> a <%= f.text_field :max_amount,:class=>'txt' %>
+				<%= f.text_field :min_amount,:value => @search.min_amount,:class=>'txt' %> a <%= f.text_field :max_amount,:class=>'txt' %>
 			</dd>
 				<dt><%= I18n.t('layout.movements.typetag') %></dt>
 				<dd>
@@ -108,7 +108,7 @@
 			  	<dd ><div id="calSearchContainer" >
 			  	<%= f.hidden_field :start_date %>
 			  	<%= f.hidden_field :end_date %>	
-				
+				<%= f.hidden_field :currency, :value => @account.currency %>
 			  	</div></dd>	
 					<dd class="submit">
 							<div>
