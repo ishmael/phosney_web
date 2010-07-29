@@ -526,9 +526,13 @@ ul.actions a { text-decoration: none; color: #fff ;}
 
 #calSearchContainer {
 	margin-bottom:10px;
+	min-height:216px;
 }
 
-
+#search_type_movements_group {
+		visibility:hidden;	
+	min-height:27px;
+}
 #search  a.button { text-decoration: none; color: #fff ; float:right;}
 #search .submit {
 	margin-left:0px;
@@ -546,7 +550,8 @@ ul.actions a { text-decoration: none; color: #fff ;}
 		width:100%;
 }
 .search_form {
-		padding:0 0 0 10px !important;	
+		padding:0 0 0 10px !important;
+		min-height:478px;	
 } 
 
 #search_max_amount, #search_min_amount {

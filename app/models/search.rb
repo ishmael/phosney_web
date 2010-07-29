@@ -1,6 +1,6 @@
 class Search
   attr_reader :options
-
+  
   def initialize(model, options,initial_conditions,initial_parameters)
     @model = model
     @options = options || {}

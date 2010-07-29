@@ -89,7 +89,7 @@
 			
 
 
-			<% form_for :search,:url => polymorphic_path([:search,@account,:movements]), :html=>{ :method => "get", :class => "search_form"} do |f| %>			
+			<% form_for :search,:url => polymorphic_path([:search,@account,:movements]), :html=>{ :method => "get", :class =>  "search_form"} do |f| %>			
 			<div id="search" class="basic clearfix">
 				<dl >
 					<dt><%= I18n.t('layout.movements.description') %></dt>
@@ -103,7 +103,7 @@
 				<dt><%= I18n.t('layout.movements.typetag') %></dt>
 				<dd>
 					<%= f.hidden_field :type_mov_hidden %>
-					<div id="buttongroup1" class="yui-buttongroup">
+					<div id="search_type_movements_group" class="yui-buttongroup">
 						<input type="radio" id="search_debit" name="mov_debit" value="<%=  I18n.t('layout.movements.debit') %>" />
 						<input type="radio" id="search_credit" name="mov_credit" value="<%=  I18n.t('layout.movements.credit') %>" />
 						<input type="radio" id="search_all" name="mov_all" value="<%=  I18n.t('layout.movements.all_types') %>" />							
@@ -271,4 +271,5 @@
 	
 	<% content_for :javascript_includes do %>
 		<%= javascript_include_tag 'bankaccount_dashboard' %>
+		<%= javascript_include_tag 'date' %>
 	<% end %>
