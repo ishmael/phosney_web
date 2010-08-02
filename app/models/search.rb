@@ -54,14 +54,14 @@ class Search
     return nil if options.empty?
  
     if not start_date.empty?
-      #conditions << "#{@model.table_name}.movdate >= to_date(?,'YYYY-MM-DD')"
-      conditions << "#{@model.table_name}.movdate >= ?"
+      conditions << "#{@model.table_name}.movdate >= to_date(?,'DD-MM-YYYY')"
+      #conditions << "#{@model.table_name}.movdate >= ?"
       parameters << start_date
     end
  
     if not end_date.empty?
-      #conditions << "#{@model.table_name}.movdate <= to_date(?,'YYYY-MM-DD')"
-      conditions << "#{@model.table_name}.movdate <= ?"
+      conditions << "#{@model.table_name}.movdate <= to_date(?,'DD-MM-YYYY')"
+      #conditions << "#{@model.table_name}.movdate <= ?"
       parameters << end_date
     end
  
@@ -102,18 +102,5 @@ class Search
     else
       nil
     end
-  end
- 
-  private
- 
-  # Just like the one in the Report model, but just for dates instead of times.
-  # Using a Proc to generate input parameter names like those for date_select.
-  def date_from_options(which)
-    part = Proc.new { |n| options["#{which}(#{n}i)"] }
-    y,m,d = part[1], part[2], part[3]
-    y = Date.today.year if y.blank?
-    Date.new(y.to_i, m.to_i, d.to_i)
-  rescue ArgumentError => e
-    return nil
   end
 end
