@@ -299,7 +299,7 @@
 	    outTxt.value = "";
 
 	    var cal = new YAHOO.example.calendar.IntervalCalendar("calSearchContainer", {pages:1,navigator:true,MDY_MONTH_POSITION:2,MDY_DAY_POSITION:1,MDY_YEAR_POSITION:3});
-//			cal.cfg.setProperty("DATE_FIELD_DELIMITER", "."); 
+
 		var oButtonGroup1 = new YAHOO.widget.ButtonGroup("search_type_movements_group");
 		oButtonGroup1.setStyle( 'visibility', 'visible');
 
@@ -322,7 +322,7 @@
 	        if (interval.length == 2) {
 	            inDate = interval[0];
 	            inTxt.value = inDate.getDate() + "/" + (inDate.getMonth() + 1) + "/" + inDate.getFullYear() ;
-				//inTxt.value= inDate;	
+
 	            if (interval[0].getTime() != interval[1].getTime()) {
 	                outDate = interval[1];
 	                outTxt.value = outDate.getDate() + "/" + (outDate.getMonth() + 1) + "/" +outDate.getFullYear();
@@ -341,9 +341,6 @@
 	            outTxt.value = "";
 	        }
 	    }, cal, true);	
-		//alert(  Date.parseExact(outTxt.value,"d/M/yyyy"));
-		//if( inTxt.value != '' && outTxt.value != '')
-		//cal.setInterval( Date.parseExact(inTxt.value,"d/M/yyyy"),Date.parseExact(outTxt.value,"d/M/yyyy"));
 	    cal.render();
 
 	});
