@@ -2,6 +2,7 @@
 	<%= javascript_include_tag 'dashboard' %>
 <% end %>
 <div id="dashboard">
+	<% if not @accounts.empty? %>
 	<div class="box box-first box-50 altbox">
 		<!-- .altbox for alternative box's color -->
 		<div class="boxin">
@@ -113,4 +114,5 @@
 			</div>
 		</div>
 	</div>
+	<% end %>
 </div>
