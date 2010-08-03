@@ -10,7 +10,7 @@
 					<dd class="submit">
 						<div>
 						<%= f.submit I18n.t('layout.application.update'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
-						<%= link_to I18n.t('layout.application.cancel'), polymorphic_path([@account,:movements]) %>
+						<%= link_to I18n.t('layout.application.cancel'), :back) %>
 						</div>
 					</dd>
 			</dl>				
