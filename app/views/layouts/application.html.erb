@@ -24,22 +24,13 @@
 			<%= link_to I18n.t('layout.application.settings'), account_path, :id => 'settingsbutton'  %>
 		</div>
 	</div>
-	<div id="quick_movement" class="cr-botton quickboxin"> 
-			<%= render :partial => 'partials/quickmovement'  %>
-	</div>
-	<div  id="container">
-		<div id="content" >
-	    	
-			<% if flash[:notice] -%> 
-			  <div class="msg msg-ok cr-all"><p><%= flash[:notice]%></p></div>
-			<% end -%>
-
-			<div id="content_main" class="cr-all clearfix">	
+	<%= render :partial => 'partials/quickmovement'  %>
+	<% if flash[:notice] -%> 
+  		<div class="msg msg-ok cr-all"><p><%= flash[:notice]%></p></div>
+	<% end -%>
+	<div id="content_main" >	
 				<%=	yield%>
-			</div>
-		</div>
 	</div>
-
 	<div  id="footer" class="cr-all">
 		<p class="left">Copyright &copy; </p>
 		<p class="right">Phosney.com 2009.</p>

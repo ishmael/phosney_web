@@ -1,10 +1,10 @@
-<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-50 cr-all"><!-- .altbox for alternative box's color -->
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.sharedinvitations.name') %></h3>
 		</div>
+   		<div class="basic cr-bottom">
 		<% form_for([@account,@sharedinvitation],:html =>{:class => 'basic'}) do |f| %>
-   		<div class="inner-form">
+
 				<% if not f.error_messages.blank? %>
 					<div class="msg msg-error">
 						<%= f.error_messages  :header_message => nil, :message => nil %>
@@ -20,13 +20,10 @@
 				<dt><%= f.label I18n.t('layout.sharedinvitations.candelete') %></dt>
 				<dd><%= f.check_box :allow_delete %></dd>				
 				<dd class="submit">
-					<div>
-						<%= f.submit I18n.t('layout.application.send'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
-						<%= link_to I18n.t('layout.application.cancel'), polymorphic_path([@account,:movements]) %>
-					</div>
+					<%= f.submit I18n.t('layout.application.send'),:class => 'phosney-button edit cr-bottom-left' %>
+					<%= link_to I18n.t('layout.application.cancel'), polymorphic_path([@account,:movements]),:class => 'phosney-button delete cr-bottom-right'  %>
 				</dd>
 			</dl>				
-		</div>
 		<% end %>
-	</div>
+		</div>
 </div>

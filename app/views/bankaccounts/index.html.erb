@@ -1,15 +1,13 @@
 <% content_for :javascript_includes do %>
 	<%= javascript_include_tag 'accounts_dashboard' %>
 <% end %>
-<div class="box box-first box-50 altbox">
-	<!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-first box-50 cr-all">
+		<div class="header cr-top">
 			<h3>
 				<%=  I18n.t('layout.bankaccounts.tagline') %>
 			</h3>
 		</div>
-		<div class="content">
+		<div class="content cr-bottom">
 			<table cellspacing="0">
 				<thead>
 					<tr>
@@ -26,7 +24,7 @@
 				</thead>
 				<tbody>
 					<% uniq_currencies = Array.new %><% @bankaccountsdata.each_with_index do |bankaccount,i| %>
-					<tr class="<% if i == 0 %>first<% else %><%= cycle('even', 'odd') %><% end%>">
+					<tr class="<% if i == 0 %>first<% else %><%= cycle('even', 'odd',:name=> "accounts") %><% end%>">
 						<th class="first">
 							<div class="account_color" style="background-color:#<%= bankaccount.color%> ;"></div><%= link_to bankaccount.name,polymorphic_path([bankaccount,:movements]) %>
 						</th>
@@ -48,11 +46,10 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
 </div>
-<div class="box box-100 altbox">
+<div class="box box-100 cr-all">
 	<div id="charts" class="yui-navset boxin">
-		<div class="header">
+		<div class="header cr-top">
 			<h3>
 				<%=  I18n.t('layout.application.movsbyday') %>
 			</h3>
@@ -63,7 +60,7 @@
 				</li><% end %>
 			</ul>
 		</div>
-		<div class="content">
+		<div class="content cr-bottom">
 			<div class="yui-content">
 				<% uniq_currencies.each_with_index do |ycurrency,i| %>
 				<div id="<%='tab'+i.to_s %>">

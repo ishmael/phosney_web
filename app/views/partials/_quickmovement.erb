@@ -1,4 +1,4 @@
-<% form_for @quick_movement, :url => { :controller => 'movements',:action => "quickcreate"},:html =>{:class => 'plain', :id => 'new_quick_movement'} do |f| %>
+<% form_for @quick_movement, :url => { :controller => 'movements',:action => "quickcreate"},:html =>{:class => 'plain cr-bottom', :id => 'quick_movement'} do |f| %>
 			<div class="quickmovement-div">
 				<label  for='quickmov_account'><%= I18n.t('layout.bankaccounts.accountname')%></label>	
 				<div id="quickmov_account_container"></div>	
@@ -34,6 +34,6 @@
 				</div>
 			</div>
 			<div class="quickmovement-submit" id="div-quickmovement-submit">
-				 <%= f.submit '+',{:id=> "qm-submit",:class => 'button altbutton' } %>
+				 <%= f.submit '+',{:id=> "qm-submit",:class => 'phosney-button' } %>
 			</div>
 <% end %>

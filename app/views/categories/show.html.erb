@@ -1,41 +1,31 @@
-
-<div id="movements_div" class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div id="movements_div" class="box box-first box-50 cr-all">
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.categories.name') %></h3>
 			<% if @category.user_id == @current_user.id %>	
-			<%= link_to I18n.t('layout.application.edit'),edit_category_path(@category.id),:class => 'button' %>
+			<%= link_to I18n.t('layout.application.edit'),edit_category_path(@category.id),:class => 'phosney-button' %>
 			<% end %>			
 		</div>	
-		<div  class="inner-form">
-			<div class="basic">			
+		<div class="basic cr-bottom">			
 			<dl>
 			  <dt><%= I18n.t('activerecord.attributes.category.name') %></dt>
 			  <dd><%=h @category.name %></dd>
     		  <dd class="submit">
-					<div>
-					<%= link_to I18n.t('layout.application.back'), categories_path %>
-					</div>
+					<%= link_to I18n.t('layout.application.back'), categories_path,:class => 'phosney-button back cr-bottom' %>
 				</dd>	   
 			</dl>			
 			</div>	
-		</div> 
-	</div>
 </div>
 <% if @category.user_id == @current_user.id %>
 <% @shared_categories = @category.categories_users.find(:all,:conditions => ['user_id <> :user_id',:user_id => @current_user.id]) %>
-
-<div class="box box-50 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-50 cr-all"><!-- .altbox for alternative box's color -->
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.categoriesusers.shared_with') %></h3>
 			<% if (not @shared_categories.empty?) %>
-			<%= link_to I18n.t('layout.application.new'),new_polymorphic_path([@category,:categories_user]),:class => 'button' %>
+			<%= link_to I18n.t('layout.application.new'),new_polymorphic_path([@category,:categories_user]),:class => 'phosney-button' %>
 			<% end %>
 		</div>
-		
-				<% if not @shared_categories.empty? %>
-				<div class="content"> 
+		<% if not @shared_categories.empty? %>
+		<div class="content cr-bottom"> 
 				<table cellspacing="0">
 					<thead>
 						<tr>
@@ -60,14 +50,13 @@
 					</tbody>
 				</table>
 				</div>	
-				<% else %>
-				<div class="basic"> 
+		<% else %>
+				<div class="basic cr-bottom"> 
 					<% if @category.user_id == @current_user.id%>
 					<div class="tc" style="margin:10px;"><%= link_to I18n.t('layout.categoriesusers.share_category'), new_polymorphic_path([@category,:categories_user])  %></div>
 					<% end %>
 				</div>
-				<% end %>		
-				
- </div>
+	<% end %>		
+			
 </div>
 <% end %>

@@ -1,30 +1,26 @@
-<div id="movements_div" class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div id="movements_div" class="box  box-50 cr-all"><!-- .altbox for alternative box's color -->
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.movements.title') %></h3>
 		</div>	
+		<div  class="basic cr-bottom">
 		<% form_for([@account,@movement],:html =>{:class => 'basic'}) do |f| %>
-		<div  class="inner-form">
+
 			<dl>    
 				<%= render :partial => "form", :object => f %>
 					<dd class="submit">
-						<div>
-						<%= f.submit I18n.t('layout.application.update'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
-						<%= link_to I18n.t('layout.application.cancel'), :back) %>
-						</div>
+						<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button edit cr-bottom-left' %> 
+						<%= link_to I18n.t('layout.application.cancel'), :back,:class => 'phosney-button delete cr-bottom-right' %>
 					</dd>
 			</dl>				
-		</div>
+
 		<% end %>
-	</div>
+		</div>
 </div>
-<div class="box box-100 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-100 cr-all"><!-- .altbox for alternative box's color -->
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.movements.map') %></h3>	
 		</div>
-		<div class="content"> 
+		<div class="basic cr-bottom" style="padding:5px 0;"> 
 			<%= @map.div(:width => 988, :height => 400) %>			
 		</div>
- 	</div>
 </div>

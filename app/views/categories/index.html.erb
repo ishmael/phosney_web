@@ -1,15 +1,14 @@
 <% content_for :javascript_includes do %>
    <%= javascript_include_tag 'categories_dashboard' %>
 <% end %>
-<div class="box box-first box-100 altbox "><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-first box-100 cr-all "><!-- .altbox for alternative box's color -->
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.categories.title') %></h3>
 			<% if not  @categories.empty? %>
-				<%= link_to I18n.t('layout.categories.new'), new_category_path ,:class => 'button'%>
+				<%= link_to I18n.t('layout.categories.new'), new_category_path ,:class => 'phosney-button'%>
 			<% end%>
 		</div>
-		<div class="content categories_content">
+		<div class="content categories_content cr-bottom">
 			<% if not  @categories.empty? %>
 			<div id="categoriesnl">
 				<ul  class="catnestedlist droppable">
@@ -24,5 +23,4 @@
 				</div>
 			<% end %>
 		</div>
-	</div>
 </div>

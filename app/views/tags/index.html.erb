@@ -1,12 +1,11 @@
-<div class="box box-first box-100 altbox "><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box  box-100 cr-all "><!-- .altbox for alternative box's color -->
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.tags.title') %></h3>
 			<% if not  @tags.empty? %>
-				<%= link_to I18n.t('layout.tags.new'), new_tag_path ,:class => 'button'%>
+				<%= link_to I18n.t('layout.tags.new'), new_tag_path ,:class => 'phosney-button'%>
 			<% end%>
 		</div>
-		<div class="content">
+		<div class="content cr-bottom">
  		    <% if not  @tags.empty? %>
 			<table cellspacing="0">
 				<thead>
@@ -47,5 +46,4 @@
 					</div>
 				<% end %>
 		</div>
-	</div>
 </div>

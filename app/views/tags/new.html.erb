@@ -1,20 +1,17 @@
-<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-50 cr-all">
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.tags.new') %></h3>
 		</div>
+   		<div class="basic cr-bottom">
 		<% form_for(@tag,:html =>{:class => 'basic'}) do |f| %>
-   		<div class="inner-form">
+
 			<dl>
 				<%= render :partial => "form", :object => f %>
 				<dd class="submit">
-					<div>
-						<%= f.submit I18n.t('layout.application.create'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
-						<%= link_to I18n.t('layout.application.cancel'), tags_path %>
-					</div>
+						<%= f.submit I18n.t('layout.application.create'),:class => 'phosney-button edit cr-bottom-left' %>
+						<%= link_to I18n.t('layout.application.cancel'), tags_path,:class => 'phosney-button delete cr-bottom-right'  %>
 				</dd>
 			</dl>				
+			<% end %>
 		</div>
-		<% end %>
-	</div>
 </div>

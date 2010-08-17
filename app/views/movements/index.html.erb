@@ -1,15 +1,14 @@
-<div class="box box-first box-75 altbox "><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-100 cr-all "><!-- .altbox for alternative box's color -->
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.movements.name') %></h3>
 			<h4><%= I18n.t('layout.movements.dates_interval')  %   [@startdate.strftime("%d-%m-%Y"),@enddate.strftime("%d-%m-%Y")]  %>	</h4>
 			<% if not  @movements.empty? %>
 					<% if @account.allow_insert == '1' %>
-					<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) ,:class => 'button'%>
+					<%= link_to I18n.t('layout.movements.new'), new_polymorphic_path([@account,:movement]) ,:class => 'phosney-button'%>
 					<% end %>
 			<% end %>
 		</div>
-		<div class="content">
+		<div id="search_content" class="content cr-bottom">
 			<% if not  @movements.empty? %>
 			<table cellspacing="0">
 				<thead>
@@ -80,17 +79,9 @@
 				</div>
 			<% end %>
 		</div>
-	</div>
-</div>
-
-<div class="box box-25 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="inner-form">
-			
-
-
+		<div id="search_sidebar" class="basic cr-bottom">
 			<% form_for :search,:url => polymorphic_path([:search,@account,:movements]), :html=>{ :method => "get", :class =>  "search_form"} do |f| %>			
-			<div id="search" class="basic clearfix">
+			<div id="search">
 				<dl >
 					<dt><%= I18n.t('layout.movements.description') %></dt>
 				<dd class="search-input">
@@ -118,29 +109,20 @@
 				
 			  	</div></dd>	
 					<dd class="submit">
-							<div>
-								<ul class="actions">
-									<li>
-										<%= f.submit I18n.t('layout.application.search'),{:name=>nil ,:class => 'button'} %>									
-									</li>
-									</ul>
-							</div>
+										<%= f.submit I18n.t('layout.application.search'),{:name=>nil ,:id => "search_submit",:class => 'phosney-button cr-bottom'} %>									
 						</dd>
 	
 				</dl>
 			</div>
 			<% end %>
 		</div>
-	</div>
 </div>
 
-<div class="box box-25 altbox" style="float:right;"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-25 cr-all" style="float:right;">
+		<div class="header cr-top">
 			<h3> <%=  I18n.t('layout.bankaccounts.name') %></h3>
 		</div>
-		<div class="inner-form">
-			<div class="basic">
+		<div class="basic cr-bottom">
 			<dl>
 			  <dt><%= I18n.t('layout.bankaccounts.accountname') %></dt>
 			  <dd><div class="account_color" style="background-color:#<%= @account.color%>;"></div><%=h @account.name %></dd>
@@ -151,39 +133,27 @@
 			  <dt><%= I18n.t('layout.bankaccounts.accountbalance') %></dt>
 			  <dd><%= @account.balance.format  %></dd>			
 			  <dd class="submit">
-					<div>
 						<% if @account.owner == '1' %>
-						<ul class="actions">
-							
-							<li>
-							<%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path(@account),:class  =>'button' %>
-							</li>
-							<li>
-							<%= link_to I18n.t('layout.application.delete'),  polymorphic_path(@account), {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'button' } %>
-							</li>
-							</ul>
+							<%= link_to I18n.t('layout.application.edit'), edit_polymorphic_path(@account),:class  =>'phosney-button edit cr-bottom-left' %>
+							<%= link_to I18n.t('layout.application.delete'),  polymorphic_path(@account), {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'phosney-button delete cr-bottom-right' } %>
 						<% end %>
-					</div>
 				</dd>
 			</dl>
-			</div>
 		</div>
-	</div>
 </div>
 <% if @account.type == 'Bankaccount' and @account.owner == '1' %>  
 <% sharedaccountinvitations = @account.shared_account_invitations.find(:all) %>
 
-<div class="box box-first box-75 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-first box-75 cr-all">
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.sharedinvitations.pending') %></h3>
 			<% if not sharedaccountinvitations.empty? %>
-			<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'button' %>
+			<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'phosney-button' %>
 			<% end %>
 		</div>
-		
-				<% if not sharedaccountinvitations.empty? %>
-				<div class="content"> 
+		<div class="content cr-bottom"> 
+		<% if not sharedaccountinvitations.empty? %>
+
 				<table cellspacing="0">
 					<thead>
 						<tr>
@@ -213,27 +183,25 @@
 					<% end %>	
 					</tbody>
 				</table>
-				</div>	
+
 				<% else %>
-				<div class="basic"> 
-				<div class="tc" style="margin:10px;"><%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]) %></div>
+				<div class="basic tc"> 
+				<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]) %>
 				</div>
 				<% end %>		
-				
- </div>
-</div>      
+				</div>				
+	</div>      
 	<% end %>	
 	
 	<% if not @shares.empty? %>	
-	<div class="box box-75 altbox"><!-- .altbox for alternative box's color -->
-		<div class="boxin">
-			<div class="header">
+	<div class="box box-75 cr-all">
+			<div class="header cr-top">
 				<h3><%=  I18n.t('layout.accountsusers.title') %></h3>
 				<% if not @shares.empty?  and @account.owner == '1' %>
-				<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'button' %>
+				<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'phosney-button' %>
 				<% end %>
 			</div>
-			<div class="content">	
+			<div class="content cr-bottom">	
 					<table cellspacing="0">
 						<thead>
 							<tr>
@@ -266,7 +234,6 @@
 					</table>	
 					<% end %>		
 			</div>
-	 </div>
 	</div>
 	
 	<% content_for :javascript_includes do %>

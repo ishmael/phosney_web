@@ -1,13 +1,12 @@
 <% content_for :javascript_includes do %>
 	<%= javascript_include_tag 'categories_user' %>
 <% end %>
-<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box  box-50 cr-all">
+		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.categoriesusers.name') %></h3>
 		</div>
 		<% form_for([@category,@categoryusers],:html =>{:class => 'basic'}) do |f| %>
-   		<div class="inner-form">
+   		<div class="basic cr-bottom">
 				<% if not f.error_messages.blank? %>
 					<div class="msg msg-error">
 						<%= f.error_messages  :header_message => nil, :message => nil %>
@@ -19,13 +18,10 @@
 				<%= f.collection_select :user_id, AccountsUser.find_shared_accounts_users(:all,:conditions =>  ['accounts_users.account_id in (select accu.account_id from accounts_users accu where accu.user_id = :user_id) and users.id <>:user_id',  :user_id => @current_user.id,:user_id =>@current_user.id]), :id, :login, { :include_blank => false}, { :id => 'shared_category' } %></dd>	
 					
 				<dd class="submit">
-					<div>
-						<%= f.submit I18n.t('layout.application.share'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
-						<%= link_to I18n.t('layout.application.cancel'), category_path(@category) %>
-					</div>
+						<%= f.submit I18n.t('layout.application.share'),:class => 'phosney-button edit cr-bottom-left' %> 
+						<%= link_to I18n.t('layout.application.cancel'), category_path(@category),:class => 'phosney-button delete cr-bottom-right' %>
 				</dd>
 			</dl>				
 		</div>
 		<% end %>
-	</div>
 </div>

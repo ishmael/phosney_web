@@ -1,17 +1,15 @@
 <% content_for :javascript_includes do %>
 	<%= javascript_include_tag 'dashboard' %>
 <% end %>
-<div id="dashboard">
+
 	<% if not @accounts.empty? %>
-	<div class="box box-first box-50 altbox">
-		<!-- .altbox for alternative box's color -->
-		<div class="boxin">
-			<div class="header">
+	<div class="box box-first box-50 cr-all">
+		<div class="header cr-top">
 				<h3>
 					<%=  I18n.t('layout.bankaccounts.tagline') %>
 				</h3>
-			</div>
-			<div class="content">
+		</div>
+		<div class="content cr-bottom">
 				<table cellspacing="0">
 					<thead>
 						<tr>
@@ -25,28 +23,30 @@
 					</thead>
 					<tbody>
 						<% uniq_currencies = Array.new %><% @accounts.each_with_index do |account,i| %>
-						<tr class="<% if i == 0 %>first<% else %><%= cycle('even', 'odd') %><% end%>">
+						<tr class="<% if i == 0 %>first<% else %><%= cycle('even', 'odd',:name=> "accounts") %><% end%>">
 							<th class="first">
 								<div class="account_color" style="background-color:#<%= account.color%> ;"></div><%= link_to account.name,polymorphic_path([account,:movements]) %>
 							</th>
 							<td class="tr">
 								<%= account.balance.format %>
 							</td>
-						</tr><% uniq_currencies << account.currency %><% end %><% uniq_currencies.uniq! %><% uniq_currencies.sort! %><%= currencies(uniq_currencies,@accounts,false)  %>
+						</tr>
+							<% uniq_currencies << account.currency %>
+						<% end %>
+						<% uniq_currencies.uniq! %>
+						<% uniq_currencies.sort! %>
+						<%= currencies(uniq_currencies,@accounts,false)  %>
 					</tbody>
 				</table>
-			</div>
 		</div>
 	</div>
-	<div class="box box-last box-50 altbox">
-		<!-- .altbox for alternative box's color -->
-		<div class="boxin">
-			<div class="header">
+	<div class="box box-last box-50 cr-all">
+			<div class="header cr-top">
 				<h3>
 					<%=  I18n.t('layout.movements.tag5line') %>
 				</h3>
 			</div>
-			<div class="content">
+			<div class="content cr-bottom">
 				<table cellspacing="0">
 					<thead>
 						<tr>
@@ -63,7 +63,7 @@
 					</thead>
 					<tbody>
 						<% @last5movements.each_with_index do |movement,i| %>
-						<tr class="<% if i == 0 %>first<% else %><%= cycle('even', 'odd') %><% end%>">
+						<tr class="<% if i == 0 %>first<% else %><%= cycle('even', 'odd',:name=> "movements") %><% end%>">
 							<th class="first">
 								<%=h movement.description %>
 							</th>
@@ -76,23 +76,22 @@
 						</tr><% end %>
 					</tbody>
 				</table>
-			</div>
-		</div>
 	</div>
-	<div  id="charts_content" class="box box-100 altbox">
-		<div id="charts" class="yui-navset boxin">
-			<div class="header">
+	</div>
+	<div  id="charts_content" class="box box-100 cr-all">
+		<div id="charts" class="yui-navset ">
+			<div class="header cr-top">
 				<h3>
 					<%=  I18n.t('layout.application.movsbymonth') %>
 				</h3>
-				<ul class="yui-nav">
+				<ul class="yui-nav ">
 					<% uniq_currencies.each_with_index do |ycurrency,i| %>
-					<li <% if i == 0  %> class="selected" <% end %>>
+					<li <% if i == 0  %>class="selected" <% end %>>
 						<a href="#tab<%=i.to_s%>"><%=ycurrency %></a>
 					</li><% end %>
 				</ul>
 			</div>
-			<div   class="content">
+			<div   class="content cr-bottom">
 				<div class="yui-content">
 					<% chart_settings = render '/charts/expenditure_by_year_settings.xml',:layout => false %><% chart_settings = chart_settings.gsub(/\r\n?/, "") %>
 					<% uniq_currencies.each_with_index do |ycurrency,i| %>
@@ -106,13 +105,11 @@
 									so.addVariable("additional_chart_settings", "<settings><strings><no_data><%=  I18n.t('layout.charts.no_data') %><\/no_data><\/strings><\/settings>");
 									so.addVariable("preloader_color", "#000000");
 									so.write("<%='yearchart'+i.to_s %>");
-						</script>
-						
+						</script>		
 					</div>
-					<% end %>
+				<% end %>
 				</div>
 			</div>
 		</div>
 	</div>
 	<% end %>
-</div>

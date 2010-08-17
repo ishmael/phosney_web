@@ -5,7 +5,7 @@ module ApplicationHelper
 	  ret = ''
 	    currencies.each do |currency_type|
 	      value = accounts.find_all{|item| item.currency == currency_type }.sum { |citem| citem.balance }
-	      ret += 	"<tr class=\""+ cycle('even', 'odd') +"\">"
+	      ret += 	"<tr class=\""+ cycle('even', 'odd',:name => "accounts") +"\">"
 	      ret +="<th class=\"first\">"+ I18n.t('layout.accounts.total') +"(" + currency_type + ")</th>"
 				ret += "<td class=\"tr\">" + value.format 
 				ret+="</td>"

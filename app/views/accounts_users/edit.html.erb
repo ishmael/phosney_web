@@ -1,10 +1,9 @@
-<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
-	<div class="boxin">
-		<div class="header">
+<div class="box box-50 cr-all">
+	<div class="header cr-top">
 			<h3><%=  I18n.t('layout.accountsusers.name') %></h3>
 		</div>
+   		<div class="basic cr-bottom">		
 		<% form_for([@account,@sharedaccount],:html =>{:class => 'basic'}) do |f| %>
-   		<div class="inner-form">
 			<dl>
 				<dt><%= f.label :email , I18n.t('layout.accountsusers.user')  %></dt>
 				<dd><%= f.text_field  :login,:disabled => :true ,:class => 'txt' %></dd>	
@@ -15,14 +14,11 @@
 				<dt><%= f.label I18n.t('layout.accountsusers.candelete') %></dt>
 				<dd><%= f.check_box :allow_delete %></dd>				
 				<dd class="submit">
-					<div>
-						<%= f.submit I18n.t('layout.application.update'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
-						<%= link_to I18n.t('layout.application.cancel'), polymorphic_path([@account,:movements]) %>
-					</div>
+					<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button edit cr-bottom-left' %>
+					<%= link_to I18n.t('layout.application.cancel'),  polymorphic_path([@account,:movements]),:class => 'phosney-button delete cr-bottom-right'  %>
 				</dd>
 			</dl>				
-		</div>
 		<% end %>
-	</div>
+		</div>		
 </div>
  

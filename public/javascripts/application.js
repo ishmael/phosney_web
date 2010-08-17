@@ -21,7 +21,7 @@
 						oLinkLogoutButton.setStyle( 'visibility', 'visible'); 	
 					});
 						
-		Event.onAvailable("new_quick_movement", function () {
+		Event.onAvailable("quick_movement", function () {
 			document.getElementById("quickmov_category")[0].value = 0;
 			var oSelectButtonAccount = new YAHOO.widget.Button({  
 				                    id: "quickmov_accountbutton", 
@@ -317,7 +317,7 @@
 	    });
 	
 		Event.onContentReady("calendarpicker-button", function () {
-		   	YAHOO.util.Dom.setStyle('new_quick_movement', 'visibility', 'visible');
+		   	YAHOO.util.Dom.setStyle('quick_movement', 'visibility', 'visible');
 		
         });
 
