@@ -5,7 +5,7 @@
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.categories.title') %></h3>
 			<% if not  @categories.empty? %>
-				<%= link_to I18n.t('layout.categories.new'), new_category_path ,:class => 'phosney-button'%>
+				<%= link_to I18n.t('layout.categories.new'), new_category_path ,:class => 'phosney-button phosney-header-button'%>
 			<% end%>
 		</div>
 		<div class="content categories_content cr-bottom">

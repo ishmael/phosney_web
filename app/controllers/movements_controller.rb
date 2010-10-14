@@ -4,12 +4,14 @@ class MovementsController < ApplicationController
   before_filter(:get_account)
   before_filter :require_user
   
+  add_breadcrumb "Dashboard",:root_path
   
   
   # GET /movements
   # GET /movements.xml
   def index
 	if @account
+	  add_breadcrumb @account.name,polymorphic_path([@account,:movements])
 	  @startdate =   Date.today.beginning_of_month
 	  @enddate = Date.today.end_of_month
 		@movements = @account.movements.paginate(:page => params[:page],:conditions => ["(movements.user_id =:user_id or  (movements.private =0 and movements.user_id<> :user_id )) and movements.movdate between :start_date and :end_date ",{:user_id => @current_user.id, :start_date=> @startdate, :end_date => @enddate}],:order => "movdate desc")
@@ -27,7 +29,7 @@ class MovementsController < ApplicationController
 
   def search
     if @account
-        
+        add_breadcrumb @account.name,polymorphic_path([@account,:movements])
     		@movements  = [] 
     		@search = Search.new( Movement , params[:search],["(movements.user_id =? or  (movements.private =0 and movements.user_id<> ? ))"],[@current_user.id,@current_user.id])
     		if @search.conditions
@@ -45,6 +47,7 @@ class MovementsController < ApplicationController
   # GET /movements/1.xml
   def show
 	if @account
+	  add_breadcrumb @account.name,polymorphic_path([@account,:movements])
 		@movement = @account.movements.find_by_id(params[:id])
 		if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
 		@map = GMap.new("map_show")
@@ -92,6 +95,9 @@ class MovementsController < ApplicationController
   # GET /movements/new
   # GET /movements/new.xml
   def new
+    if @account
+    add_breadcrumb @account.name,polymorphic_path([@account,:movements])
+    add_breadcrumb I18n.t('layout.movements.new'),new_polymorphic_path([@account,:movement])
     @movement = @account.movements.new
     @movement.mov_type = -1
 	  @movement.user_id = @current_user.id
@@ -105,12 +111,18 @@ class MovementsController < ApplicationController
 		  format.html # new.html.erb
 	    format.iphone  { render :layout => false }
     end
+    else
+  		redirect_to(dashboard_url)
+  	end
   end
 
   # GET /movements/1/edit
   def edit
 	if @account
+    add_breadcrumb @account.name,polymorphic_path([@account,:movements])
+  
 		@movement = @account.movements.find_by_id(params[:id])
+		add_breadcrumb I18n.t('layout.application.edit'),edit_polymorphic_path([@account,@movement])
   	@map = GMap.new("map_show")
     @map.control_init(:local_search => true)
     @map.interface_init(:scroll_wheel_zoom => true,:double_click_zoom=> false,:set_ui_to_default => true)

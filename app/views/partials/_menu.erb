@@ -1,15 +1,16 @@
 <div id="applicationmenu" class="cr-top yuimenubar yuimenubarnav">
    <div class="bd">
    		<ul class="first-of-type">
-    		<li class="yuimenubaritem first-of-type firstli" ><a class="menutop yuimenubaritemlabel" href="/">Dashboard</a></li>
+    		<li class="yuimenubaritem first-of-type firstli" ><%= link_to 'Dashboard',  root_path , :class => 'menutop yuimenubaritemlabel'%></li>
 
-			<li class="yuimenubaritem"><%= link_to I18n.t('layout.application.accounts'), accounts_path, :class =>  'menutop   yuimenubaritemlabel' %>
+			<li class="yuimenubaritem"><a class="menutop yuimenubaritemlabel" href="#"><%=  I18n.t('layout.application.accounts')%></a>
 	 			<div id="accounts" class="yuimenu">
                     <div class="bd">
 	                    <ul>	
 							<% accounts_type = [Bankaccount,Creditcardaccount,Loanaccount] %>
  							<% accounts_type.each do |tipo| %>  
-							<li class="yuimenuitem"><%= link_to I18n.t('layout.'+tipo.name.pluralize.downcase+'.name'), polymorphic_path(tipo.name.pluralize.downcase) , :class => 'yuimenuitemlabel'%>
+							<li class="yuimenuitem"><a class="yuimenuitemlabel" href="#"><%=  I18n.t('layout.'+tipo.name.pluralize.downcase+'.name')%></a>
+							
 								<div id="<%= tipo%>" class="yuimenu">
 	      							<div class="bd">
 	       								<ul class="first-of-type">

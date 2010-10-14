@@ -1,18 +1,13 @@
 <div id="category_div"  class="box  box-50 "><!-- .altbox for alternative box's color -->
+				<% form_for(@category,:html =>{:class => 'basic'}) do |f| %>
 				<div class="header cr-top">
 					<h3><%=  I18n.t('layout.categories.name') %></h3>
+						<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button phosney-header-button' %>
 				</div>	
 				<div class="basic cr-bottom">
-				<% form_for(@category,:html =>{:class => 'basic'}) do |f| %>
-
 					<dl>    
-						<%= render :partial => "form", :object => f %>
-							<dd class="submit">
-								<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button edit cr-bottom-left' %> 
-								<%= link_to I18n.t('layout.application.cancel'), categories_path,:class => 'phosney-button delete cr-bottom-right' %>
-							</dd>
-						</dl>				
-
-				<% end %>
+						<%= render :partial => "form", :object => f %>	
+					</dl>			
 				</div>				
+				<% end %>
 </div>

@@ -2,7 +2,7 @@
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.tags.title') %></h3>
 			<% if not  @tags.empty? %>
-				<%= link_to I18n.t('layout.tags.new'), new_tag_path ,:class => 'phosney-button'%>
+				<%= link_to I18n.t('layout.tags.new'), new_tag_path ,:class => 'phosney-button phosney-header-button'%>
 			<% end%>
 		</div>
 		<div class="content cr-bottom">
@@ -32,18 +32,16 @@
 						<% end %>	
 						</tbody>
 			</table>
-			<div class="pagination">
-				<% if @tags.total_entries >  @tags.per_page %>
-								<%= will_paginate @tags , :previous_label => I18n.t('layout.application.previous'), 
-								:next_label => I18n.t('layout.application.next') %>
-				<% else%>
-					<div></div>	
+			<% if @tags.total_entries >  @tags.per_page %>
+			<div class="pagination">				
+				<%= will_paginate @tags , :previous_label => I18n.t('layout.application.previous'), :next_label => I18n.t('layout.application.next') %>
+					</div>
 			<% end %>
-			</div>
-				<% else %>
-					<div class="basic tc" style="margin:10px;">
+	
+			<% else %>
+					<div class="basic tc blank">
 						<%= link_to I18n.t('layout.tags.new'), new_tag_path %>
 					</div>
-				<% end %>
+			<% end %>
 		</div>
 </div>

@@ -1,17 +1,13 @@
 <div class="box box-50 cr-all">
+		<% form_for(@tag,:html =>{:class => 'basic'}) do |f| %>
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.tags.new') %></h3>
+			<%= f.submit I18n.t('layout.application.create'),:class => 'phosney-button phosney-header-button' %>
 		</div>
    		<div class="basic cr-bottom">
-		<% form_for(@tag,:html =>{:class => 'basic'}) do |f| %>
-
 			<dl>
 				<%= render :partial => "form", :object => f %>
-				<dd class="submit">
-						<%= f.submit I18n.t('layout.application.create'),:class => 'phosney-button edit cr-bottom-left' %>
-						<%= link_to I18n.t('layout.application.cancel'), tags_path,:class => 'phosney-button delete cr-bottom-right'  %>
-				</dd>
 			</dl>				
-			<% end %>
 		</div>
+<% end %>
 </div>

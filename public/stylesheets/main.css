@@ -391,11 +391,17 @@ a.yuimenuitemlabel {
 
 #charts div.yui-content {border :0; background-color:transparent;}
 
+.blank {
+	padding:10px;
+}
 
 /* error/information messages */
 .msg {
 	border-radius: 5px;
-	border: 1px solid; margin: 10px 0 5px 0; padding: 8px 10px 0 10px;
+	border: 1px solid; 
+	margin: 10px auto 0 auto; 
+	padding: 8px 10px 0 10px;
+	width:980px;
 }
 .msg p {margin: 0 0 8px 0; padding-left: 25px;}
 .msg p strong {font-weight:bold;}
@@ -436,7 +442,7 @@ a.yuimenuitemlabel {
 	margin-left:0px !important;  
 	/*width:480px !important;*/
 }
-.box .header a {
+.box .header a,.box .header input {
 	padding:0 15px 0 20px;
 	float:right;
     font:100%/3.25 "myriad pro",helvetica,arial,sans-serif;
@@ -467,6 +473,7 @@ div.basic dl dd.submit {padding: 3px 0px 0px 0px; width: 100%;height:30px ;	marg
 /* forms */
 form.plain {padding: 0;} /* plain forms - used in tabular and grid data structures, TAKE CARE of it, please */
 form.plain fieldset {border: 0 !important; padding: 0 !important;}
+form.basic div.basic {padding-bottom:10px;}
 form.basic dl {width: 100%; overflow: hidden;} /* basic layout for forms */
 form.basic dl dt,
 form.basic dl dd {float: left;}
@@ -514,10 +521,9 @@ ul.actions a { text-decoration: none; color: #fff ;}
 }
 
 .delete {
-	width:40% !important;
+	width:38% !important;
 	float:left;
 	font:100%/2.5 "myriad pro",helvetica,arial,sans-serif !important;
-	
 }
 
 .back {
@@ -526,23 +532,40 @@ ul.actions a { text-decoration: none; color: #fff ;}
 	font:100%/2.5 "myriad pro",helvetica,arial,sans-serif !important;
 }
 
-.phosney-button:hover  {
-	background-color:#0567AD;
-	color:#fff !important;
-
+.msg-breadcrumb {
+	background:url("http://yui.yahooapis.com/2.8.0r4/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 transparent;
+	border:0 !important;
+	padding-bottom:4px;
+	padding-top:6px;
+	height:16px;
 }
+
+.phosney-button:hover  {
+	background-color:#7D98B8;/*0567AD*/
+	border-color:#7D98B8;
+	background-position:0 -1300px;
+	color:#000;
+}
+
 .phosney-button {
 	text-align:center;
 	text-decoration:none;
-	color:#000;
-	background-color:#8A8F85;
-	border:0 !important;
+	color:#fff;
+	background:url("http://yui.yahooapis.com/2.8.0r4/build/assets/skins/sam/sprite.png") repeat-x scroll 0 -1400px transparent;
+	/*background-color:#8A8F85;*/
+	border:1px solid #304369; !important;
 	height:inherit;
 	width:inherit;
 	font:100%/1 "myriad pro",helvetica,arial,sans-serif;
 }
 
+a.phosney-header-button {
+	height:39px !important;
+}
 
+input.phosney-header-button {
+	height:41px !important;
+}
 
 #calSearchContainer {
 	margin-bottom:10px;

@@ -1,20 +1,16 @@
-<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
-		<div class="boxin">
-			<div class="header">
+<div class="box box-first box-50 altbox">
+				<% form_for(@bankaccount ,:html =>{:class => 'basic'}) do |f| %>
+			<div class="header cr-top">
 				<h3><%=  I18n.t('layout.bankaccounts.name') %></h3>
+				<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button phosney-header-button' %>
 			</div>
-			<% form_for(@bankaccount ,:html =>{:class => 'basic'}) do |f| %>
-			<div class="inner-form">
+
+			<div class="basic cr-bottom">
 				<dl>
 						<%= render :partial => "form", :object => f %>
-					<dd class="submit">
-						<div>
-						<%= f.submit I18n.t('layout.application.update'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
-						<%= link_to I18n.t('layout.application.cancel'), polymorphic_path([@bankaccount,:movements]) %>
-						</div>
-					</dd>
 				</dl>				
 			</div>
-			<% end %>
+
 		</div>
+				<% end %>
 </div>

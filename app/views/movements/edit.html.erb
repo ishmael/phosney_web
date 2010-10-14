@@ -1,26 +1,22 @@
-<div id="movements_div" class="box  box-50 cr-all"><!-- .altbox for alternative box's color -->
+<div id="movements_div" class="box  box-50 cr-all box-first">
+	<% form_for([@account,@movement],:html =>{:class => 'basic'}) do |f| %>
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.movements.title') %></h3>
+			<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button phosney-header-button'  %> 
 		</div>	
 		<div  class="basic cr-bottom">
-		<% form_for([@account,@movement],:html =>{:class => 'basic'}) do |f| %>
-
+		
 			<dl>    
 				<%= render :partial => "form", :object => f %>
-					<dd class="submit">
-						<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button edit cr-bottom-left' %> 
-						<%= link_to I18n.t('layout.application.cancel'), :back,:class => 'phosney-button delete cr-bottom-right' %>
-					</dd>
-			</dl>				
-
-		<% end %>
+			</dl>			
 		</div>
+	<% end %>
 </div>
-<div class="box box-100 cr-all"><!-- .altbox for alternative box's color -->
+<div class="box box-50 cr-all box-last"><!-- .altbox for alternative box's color -->
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.movements.map') %></h3>	
 		</div>
 		<div class="basic cr-bottom" style="padding:5px 0;"> 
-			<%= @map.div(:width => 988, :height => 400) %>			
+			<%= @map.div(:width => 475, :height => 400) %>			
 		</div>
 </div>

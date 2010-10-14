@@ -1,17 +1,13 @@
 <div id="users_div" class="box  box-50 cr-all"><!-- .altbox for alternative box's color -->
+		<% form_for(@user , :url => account_path,:html =>{:class => 'basic'}) do |f| %>
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.users.title') %></h3>
+			<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button phosney-header-button' %>
 		</div>
 		<div class="basic cr-bottom">
-		<% form_for(@user , :url => account_path,:html =>{:class => 'basic'}) do |f| %>
-
 			<dl>
 			    <%= render :partial => "form", :object => f %>
-				<dd class="submit">
-					<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button edit cr-bottom-left' %>
-					<%= link_to I18n.t('layout.application.cancel'), account_path,:class => 'phosney-button delete cr-bottom-right'  %>
-				</dd>
 			</dl>				
-		<% end %>
 		</div>
+		<% end %>
 </div>   
