@@ -10,4 +10,4 @@
 <dd><%= form.password_field :password_confirmation , :class => 'txt' %></dd><dt><%= form.label :email%></dt>
 <dd><%= form.text_field :email , :class => 'txt'%></dd>
 <dt><%= form.label :locale,I18n.t('layout.users.locale') %></dt>
-<dd><div id="locale_container"></div><%= form.select(:locale, [['Português', 'pt'], ['English', 'en']],{},{:id => "user_locale"}) %></dd>
+<dd><div id="locale_container"></div><%= form.select(:locale, [['Portugues', 'pt'], ['English', 'en']],{},{:id => "user_locale"}) %></dd>

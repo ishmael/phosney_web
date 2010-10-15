@@ -1,8 +1,9 @@
 class TagsController < ApplicationController
 before_filter :require_user
+  add_breadcrumb "Dashboard",:root_path
   def index
 		@tags = @current_user.tags.paginate(:page => params[:page])
-
+    add_breadcrumb I18n.t('layout.tags.title'), tags_path
 		respond_to do |format|
 		  format.html # index.html.erb
 		end
@@ -10,7 +11,8 @@ before_filter :require_user
 	
 	def new
 		@tag = @current_user.tags.new
-    
+    add_breadcrumb I18n.t('layout.tags.title'), tags_path
+    add_breadcrumb I18n.t('layout.tags.new'), new_tag_path
 		respond_to do |format|
 		  format.html # new.html.erb
 		end
@@ -32,6 +34,8 @@ before_filter :require_user
 	def edit
 		@tag = @current_user.tags.find_by_id(params[:id])
 		if @tag
+		  add_breadcrumb I18n.t('layout.tags.title'), tags_path
+      add_breadcrumb I18n.t('layout.application.edit'), edit_tag_path(@tag.id)
 			respond_to do |format|
 			  format.html 
 			  format.iphone  { render :layout => false }

@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
   before_filter :require_user 
-  
+  add_breadcrumb "Dashboard",:root_path
   def index
     @categories = Category.sharedcats.find(:all,:conditions => ["categories_users.user_id = ?",@current_user.id])
-
+    add_breadcrumb I18n.t('layout.categories.title'), categories_path
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -13,7 +13,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1.xml
   def show
     @category = @current_user.categories.find_by_id(params[:id])
-
+    add_breadcrumb I18n.t('layout.categories.title'), categories_path
+    add_breadcrumb I18n.t('layout.categories.name'), category_path(@category.id)
 	if @category 
 	 
 		respond_to do |format|
@@ -28,7 +29,8 @@ class CategoriesController < ApplicationController
   # GET /categories/new.xml
   def new
     @category = @current_user.categories.new
-    
+    add_breadcrumb I18n.t('layout.categories.title'), categories_path
+    add_breadcrumb I18n.t('layout.categories.new'), new_category_path
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -38,6 +40,8 @@ class CategoriesController < ApplicationController
   def edit
     @category = @current_user.categories.find_by_id(params[:id])
 	if @category
+	  add_breadcrumb I18n.t('layout.categories.title'), categories_path
+    add_breadcrumb I18n.t('layout.application.edit'), edit_category_path(@category.id)
 		respond_to do |format|
 		  format.html 
 		  format.iphone  { render :layout => false }

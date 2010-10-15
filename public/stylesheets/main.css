@@ -12,7 +12,8 @@ input::-moz-focus-inner { border: 0; }
 --- BASICS
 ---------------------------------------------------------------------------------------*/
 body{ 
-	background:none repeat scroll 0 0 #DDDDDD;
+/*	background:none repeat scroll 0 0 #DDDDDD;*/
+	background:url("/images/background-tile3.png") ;
 	padding-bottom:10px;
 	}
 
@@ -221,6 +222,8 @@ LOGO				 */
 		width:30px;
 	   -moz-border-radius-bottomright: 5px;
 	   -webkit-border-bottom-right-radius: 5px;
+/*	   -moz-border-radius-topright: 0 !important;
+	   -webkit-border-top-right-radius: 0 !important;*/
 
 }
 		
@@ -345,34 +348,13 @@ a.yuimenuitemlabel {
 	margin: 5px;
 }
 
-.yui-navset .yui-nav  {
-	border:0 none !important;
-	font-family:inherit !important;
-	font-size:100% !important;
-	font-style:inherit !important;
-	font-weight:inherit !important;
+.box .yui-navset .yui-nav  {
+	border-bottom:0 none !important;
+
+	margin-top:14px;
+	margin-right:5px;
 	float:right;
-	padding:0 15px 0 20px !important;
 }
-.yui-navset .yui-nav  li {display: inline;}
-.yui-navset .yui-nav  li a {
-	border-radius:  0 !important;
-	background: #8A8F85  !important; 
-	padding: 0 5px  !important; 
-	color: #000 !important;
-}
-.yui-navset .yui-nav li.selected a {
-	background-color:#FFF !important; 
-	color: #000 !important; 	
-}
-.yui-navset .yui-nav li  a:hover,
-.yui-navset .yui-nav li  a:focus,
-.yui-navset .yui-nav li  a:active {background: #0567AD !important; color: #FFF  !important;}
-
-.yui-navset .yui-nav li.selected  a:hover,
-.yui-navset .yui-nav li.selected  a:focus,
-.yui-navset .yui-nav li.selected  a:active {background: #FFF !important; color: #000  !important;}
-
 
 #calcontainerContainer {
 	min-height:431px;
@@ -406,6 +388,14 @@ a.yuimenuitemlabel {
 .msg p {margin: 0 0 8px 0; padding-left: 25px;}
 .msg p strong {font-weight:bold;}
 .msg div {margin: 0 0 8px 0; padding-left: 25px;}
+.msg-breadcrumb {
+	background:url("http://yui.yahooapis.com/2.8.0r4/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 transparent;
+	border:0 !important;
+	padding-bottom:4px;
+	padding-top:4px;
+	height:16px;
+}
+.msg-breadcrumb p {background: url("/images/led-ico/house.png") 0 50% no-repeat;}
 .msg-ok {border-color: #a6d877; background: #d2ecba url("/images/background-sprites.png") repeat-x 0px -456px; color: #336801;}
 .msg-error {border-color: #f3abab; background: #f9c9c9 url("/images/background-sprites.png") repeat-x 0px -362px; color: #8d0d0d;}
 .msg-warn {border-color: #d7e059; background: #f3f7aa url("/images/background-sprites.png") repeat-x 0px -503px; color: #6c6600;}
@@ -420,7 +410,7 @@ a.yuimenuitemlabel {
 .msg-info div {background: url("/images/led-ico/exclamation.png") 0 0 no-repeat;}
 .error {color: #b70b0b;}
 
-.box {background: #DDD;float: left; width: 400px; margin: 0 0px 20px 0;z-index:0;}
+.box {/*background: #DDD;*/float: left; width: 400px; margin: 0 0px 20px 0;z-index:0;}
 .box-25 {width: 250px;} /* 25% box */
 .box-50 {width: 490px;} /* 50% box */
 .box-75 {width: 730px;} /* 75% box */
@@ -430,7 +420,8 @@ a.yuimenuitemlabel {
 	position: relative; 
 	margin: 0px 0px 0 0px; 
 	padding: 0px 0 0px 20px;
-	background-color:#FFF;
+	background:url("http://yui.yahooapis.com/2.8.0r4/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 transparent;
+/*	background-color:#FFF;*/
 	border-bottom:1px solid #000;
 	height:40px;
 }
@@ -442,17 +433,6 @@ a.yuimenuitemlabel {
 	margin-left:0px !important;  
 	/*width:480px !important;*/
 }
-.box .header a,.box .header input {
-	padding:0 15px 0 20px;
-	float:right;
-    font:100%/3.25 "myriad pro",helvetica,arial,sans-serif;
-
-   -moz-border-radius-topright: 5px;
-   -webkit-border-top-right-radius: 5px;
-}
-
-
-
 .box .header h3 {position: relative; top: 6px; display: inline; font-size: 150%; color: #000; font-weight:normal;}
 .box .header h4 {margin-left:20px;position: relative; top: 6px; display: inline; font-size: 100%; color: #000; font-weight:normal;}
 
@@ -462,7 +442,7 @@ a.yuimenuitemlabel {
 .ico-a { border: 0 !important; padding-left: 20px !important; }
 
 div.basic {margin:0;background-color:#FFF;}
-div.basic dl {width: 100%; overflow: hidden;padding-top:7px;} /* basic layout for forms */
+div.basic dl {width: 100%; overflow: hidden;padding-top:7px;padding-bottom:10px; } /* basic layout for forms */
 div.basic dl dt,
 div.basic dl dd {float: left;margin-left: 6px;}
 div.basic dl dt {padding: 3px 5px 3px 0; width: 20%;}
@@ -473,7 +453,7 @@ div.basic dl dd.submit {padding: 3px 0px 0px 0px; width: 100%;height:30px ;	marg
 /* forms */
 form.plain {padding: 0;} /* plain forms - used in tabular and grid data structures, TAKE CARE of it, please */
 form.plain fieldset {border: 0 !important; padding: 0 !important;}
-form.basic div.basic {padding-bottom:10px;}
+/*form.basic div.basic {padding-bottom:10px;}*/
 form.basic dl {width: 100%; overflow: hidden;} /* basic layout for forms */
 form.basic dl dt,
 form.basic dl dd {float: left;}
@@ -511,10 +491,10 @@ ul.actions a { text-decoration: none; color: #fff ;}
 
 	/*	background: #2A2A2A url('/images/search-inv.gif') no-repeat center left;*/
 /*}*/
-
+/*
 .edit {
 /*	height:30px ;*/
-	width:60% !important;
+/*	width:60% !important;
 	float:left;
 	font:100%/2.5 "myriad pro",helvetica,arial,sans-serif !important;
 	
@@ -530,15 +510,8 @@ ul.actions a { text-decoration: none; color: #fff ;}
 	width:100% !important;
 	float:left;
 	font:100%/2.5 "myriad pro",helvetica,arial,sans-serif !important;
-}
+}*/
 
-.msg-breadcrumb {
-	background:url("http://yui.yahooapis.com/2.8.0r4/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 transparent;
-	border:0 !important;
-	padding-bottom:4px;
-	padding-top:6px;
-	height:16px;
-}
 
 .phosney-button:hover  {
 	background-color:#7D98B8;/*0567AD*/
@@ -556,16 +529,26 @@ ul.actions a { text-decoration: none; color: #fff ;}
 	border:1px solid #304369; !important;
 	height:inherit;
 	width:inherit;
-	font:100%/1 "myriad pro",helvetica,arial,sans-serif;
+	padding:0 15px 0 20px;
+	float:right;
+    font:100%/3.25 "myriad pro",helvetica,arial,sans-serif;
 }
 
 a.phosney-header-button {
 	height:39px !important;
+	-moz-border-radius-topright: 5px;
+   -webkit-border-top-right-radius: 5px;
+   
 }
 
 input.phosney-header-button {
 	height:41px !important;
+	-moz-border-radius-topright: 5px;
+   -webkit-border-top-right-radius: 5px;
+   
 }
+
+
 
 #calSearchContainer {
 	margin-bottom:10px;
@@ -581,7 +564,6 @@ input.phosney-header-button {
 #search_content {
  	width: 742px; 
 	padding-bottom:10px;
-	background-color: rgb(255, 255, 255);
 	margin-bottom:0px;
 	display:inline-block;
 	vertical-align:top;
@@ -589,16 +571,18 @@ input.phosney-header-button {
 }
 
 #search_sidebar {
-	background-color: rgb(255, 255, 255);
 	width: 250px; 
 	display:inline-block;
 	vertical-align:top;	
 }
 #search {
 	margin:0 !important;
-
-
 }
+
+#search dl {
+	padding-bottom:0px !important;
+}
+
 #search  dl dt {
 	display:block !important;
 	width:100%;
@@ -649,7 +633,7 @@ input.phosney-header-button {
 .altbox .drag-button:hover,
 .altbox .drag-button:focus,
 .altbox .drag-button:active {border-color: #00487a; background: #0567ad url("/images/button.gif") repeat-x; text-shadow: #00487a 1px 1px 0; color: #fff;}
-
+/*
 .box .header ul {
 	padding:0 15px 0 20px;
 	float:right;
@@ -666,20 +650,20 @@ input.phosney-header-button {
    -moz-border-radius-topright: 5px;
    -webkit-border-top-left-radius: 5px;
    -webkit-border-top-right-radius: 5px;*/
-   -moz-border-radius-topright: 0px !important; 
+ /*  -moz-border-radius-topright: 0px !important; 
    -webkit-border-top-right-radius: 0px !important;
 	float: left; 
 	border: 0px !important;
 /*	border-color:#000 !important;
 	border-style:solid !important;*/
-	margin: 0 !important;
+/*	margin: 0 !important;
 	height:inherit;
 	}
 	.box .header ul a.active,
 	.box .header ul a:hover,
 	.box .header ul a:focus,
 	.box .header ul a:active {background: #fff url("/images/background-sprites.png") repeat-x 0px -322px; color: #444;}
-
+*/
 
 /* boxes' content types – tabular */
 .box .content {padding-bottom: 5px; background-color:#FFF;}

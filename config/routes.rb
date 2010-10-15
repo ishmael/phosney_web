@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :tags
   map.resources :password_resets
   map.resources :shared_account_invitations, :as => 'sharedaccount' ,:member => {:accept =>:get},:only => [:accept]
-  map.accounts '/accounts',:controller => 'accounts', :action => 'index'
+
   map.expenditure_by_year '/expenditure_by_year',:controller => "charts", :action => "expenditure_by_year",:conditions => { :method => :get }
   map.expenditure_by_month '/expenditure_by_month',:controller => "charts", :action => "expenditure_by_month",:conditions => { :method => :get }
   map.expenditure_by_month_account_type '/expenditure_by_month_account_type',:controller => "charts", :action => "expenditure_by_month_account_type",:conditions => { :method => :get }

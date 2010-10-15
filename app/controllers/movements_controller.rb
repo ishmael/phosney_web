@@ -30,6 +30,7 @@ class MovementsController < ApplicationController
   def search
     if @account
         add_breadcrumb @account.name,polymorphic_path([@account,:movements])
+        add_breadcrumb I18n.t('layout.application.search'),polymorphic_path([:search,@account,:movements])
     		@movements  = [] 
     		@search = Search.new( Movement , params[:search],["(movements.user_id =? or  (movements.private =0 and movements.user_id<> ? ))"],[@current_user.id,@current_user.id])
     		if @search.conditions
@@ -49,6 +50,7 @@ class MovementsController < ApplicationController
 	if @account
 	  add_breadcrumb @account.name,polymorphic_path([@account,:movements])
 		@movement = @account.movements.find_by_id(params[:id])
+    add_breadcrumb I18n.t('layout.movements.title'), polymorphic_path([@account,@movement])
 		if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
 		@map = GMap.new("map_show")
     @map.control_init

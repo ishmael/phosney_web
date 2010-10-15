@@ -141,7 +141,7 @@
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.sharedinvitations.pending') %></h3>
 			<% if not sharedaccountinvitations.empty? %>
-			<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'phosney-button ' %>
+			<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'phosney-button phosney-header-button' %>
 			<% end %>
 		</div>
 		<div class="content cr-bottom"> 
@@ -191,7 +191,7 @@
 			<div class="header cr-top">
 				<h3><%=  I18n.t('layout.accountsusers.title') %></h3>
 				<% if not @shares.empty?  and @account.owner == '1' %>
-				<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'phosney-button' %>
+				<%= link_to I18n.t('layout.sharedinvitations.new'), new_polymorphic_path([@account,:shared_account_invitation]),:class => 'phosney-button phosney-header-button' %>
 				<% end %>
 			</div>
 			<div class="content cr-bottom">	

@@ -25,7 +25,7 @@
 		</div>
 	</div>
 	<%= render :partial => 'partials/quickmovement'  %>
-	<div class="msg msg-breadcrumb cr-all"><p><%= render_breadcrumbs %></p></div>
+	<div class="msg msg-breadcrumb cr-all"><p><%= render_breadcrumbs :separator => ' / ' %></p></div>
 	<% if flash[:notice] -%> 
   		<div class="msg msg-ok cr-all"><p><%= flash[:notice]%></p></div>
 	<% end -%>

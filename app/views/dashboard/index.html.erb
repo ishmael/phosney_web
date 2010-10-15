@@ -87,7 +87,7 @@
 				<ul class="yui-nav ">
 					<% uniq_currencies.each_with_index do |ycurrency,i| %>
 					<li <% if i == 0  %>class="selected" <% end %>>
-						<a href="#tab<%=i.to_s%>"><%=ycurrency %></a>
+						<a href="#tab<%=i.to_s%>"><em><%=ycurrency %></em></a>
 					</li><% end %>
 				</ul>
 			</div>

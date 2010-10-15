@@ -1,11 +1,14 @@
 class CategoriesUsersController < ApplicationController
   before_filter :require_user 
-  
+  add_breadcrumb "Dashboard",:root_path
   def new
 	
     	@category = @current_user.categories.find_by_id(params[:category_id])
 	    if @category
      	  @categoryusers = @category.categories_users.new
+        add_breadcrumb I18n.t('layout.categories.title'), categories_path
+        add_breadcrumb I18n.t('layout.categories.name'), category_path(@category.id)
+        add_breadcrumb I18n.t('layout.application.share'), new_polymorphic_path([@category,:categories_user])             	  
 		    respond_to do |format|    
 			    format.html # new.html.erb
 		    end

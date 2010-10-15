@@ -1,6 +1,6 @@
 class CreditcardaccountsController < ApplicationController
 	before_filter :require_user
- 
+ add_breadcrumb "Dashboard",:root_path
    def index
     @creditcardaccounts = @current_user.creditcardaccounts.find_accounts_with_balance(:all)
    # @spending_data = Movement.data_by_month(:all,:conditions => ["movements.mov_type=-1 and accounts_users.user_id= :id and accounts.type =:account_type and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Creditcardaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
@@ -28,7 +28,7 @@ class CreditcardaccountsController < ApplicationController
   def new
     @creditcardaccount = Creditcardaccount.new
     #@bankaccount.user_id = @current_user.id
-    
+    add_breadcrumb I18n.t('layout.creditcardaccounts.newaccount'),new_creditcardaccount_path
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -37,6 +37,7 @@ class CreditcardaccountsController < ApplicationController
   # GET /creditcardaccounts/1/edit
   def edit
     @creditcardaccount = @current_user.creditcardaccounts.find_by_id(params[:id])
+    add_breadcrumb I18n.t('layout.application.edit'),edit_creditcardaccount_path(@creditcardaccount)
 	if @creditcardaccount
 		respond_to do |format|
 		  format.html 

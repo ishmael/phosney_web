@@ -1,20 +1,13 @@
-				<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
-						<div class="boxin">
-							<div class="header">
-								<h3><%=  I18n.t('layout.creditcardaccounts.newaccount') %></h3>
-							</div>
-<% form_for(@creditcardaccount,:html =>{:class => 'basic'}) do |f| %>
-	<div class="inner-form">
-		<dl>
-    <%= render :partial => "form", :object => f %>
-					<dd class="submit">
-						<div>
-						<%= f.submit I18n.t('layout.application.create'),:class => 'button' %> <%= I18n.t('layout.application.or') %> 
-						<%= link_to I18n.t('layout.application.cancel'), creditcardaccounts_path %>
-						</div>
-					</dd>
+<div class="box box-first box-50 altbox"><!-- .altbox for alternative box's color -->
+			<% form_for(@creditcardaccount ,:html =>{:class => 'basic'}) do |f| %>
+			<div class="header cr-top">
+				<h3><%=  I18n.t('layout.creditcardaccounts.newaccount') %></h3>
+				<%= f.submit I18n.t('layout.application.create'),:class => 'phosney-button phosney-header-button' %>
+			</div>
+			<div class="basic cr-bottom">
+				<dl>
+			    	<%= render :partial => "form", :object => f %>			
 				</dl>				
 			</div>
 			<% end %>
-		</div>
 	</div>

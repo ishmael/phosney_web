@@ -8,7 +8,7 @@
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.movements.title') %></h3>
 			<% if @account.allow_edit == '1' %>	
-			<%= link_to I18n.t('layout.application.edit'),edit_polymorphic_path([@account,@movement]),:class => 'phosney-button' %>
+			<%= link_to I18n.t('layout.application.edit'),edit_polymorphic_path([@account,@movement]),:class => 'phosney-button phosney-header-button' %>
 			<% end %>			
 		</div>	
 		<div  class=" basic cr-bottom">
@@ -22,15 +22,12 @@
 			  <dt><%= I18n.t('layout.movements.category') %></dt>
 			  <dd><%=h @movement.category_name %></dd>
 			  <dt><%= I18n.t('layout.movements.tags') %></dt>
-			  <dd><%=h @movement.tag_list  %></dd>	
-    		  <dd class="submit">
-					<%= link_to I18n.t('layout.application.back'), polymorphic_path([@account,:movements]),:class => 'phosney-button back cr-bottom' %>
-				</dd>	   
+			  <dd><%=h @movement.tag_list  %></dd>	   
 			</dl>			
 		</div>
 </div>
 <% if (not @movement.lng.blank?) and (not @movement.lat.blank?) %>
-<div class="box box-100 cr-all"><!-- .altbox for alternative box's color -->
+<div class="box box-50 cr-all box-last"><!-- .altbox for alternative box's color -->
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.movements.map') %></h3>	
 		</div>

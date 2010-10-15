@@ -1,12 +1,13 @@
 class SharedAccountInvitationsController < ApplicationController
   before_filter :require_user
-  
+  add_breadcrumb "Dashboard",:root_path
   def new
 	
     	@account = @current_user.bankaccounts.find_by_id(params[:bankaccount_id])
 	    if @account
      	  @sharedinvitation = @account.shared_account_invitations.new
-
+        add_breadcrumb @account.name,polymorphic_path([@account,:movements])
+        add_breadcrumb I18n.t('layout.sharedinvitations.new'),  new_polymorphic_path([@account,:shared_account_invitation])
 		    respond_to do |format|
 		      
 			    format.html # new.html.erb

@@ -1,9 +1,10 @@
 <div class="box box-50 cr-all">
+	<% form_for([@account,@sharedaccount],:html =>{:class => 'basic'}) do |f| %>
 	<div class="header cr-top">
 			<h3><%=  I18n.t('layout.accountsusers.name') %></h3>
+			<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button phosney-header-button' %>
 		</div>
    		<div class="basic cr-bottom">		
-		<% form_for([@account,@sharedaccount],:html =>{:class => 'basic'}) do |f| %>
 			<dl>
 				<dt><%= f.label :email , I18n.t('layout.accountsusers.user')  %></dt>
 				<dd><%= f.text_field  :login,:disabled => :true ,:class => 'txt' %></dd>	
@@ -13,12 +14,8 @@
 				<dd><%= f.check_box :allow_edit %></dd>				
 				<dt><%= f.label I18n.t('layout.accountsusers.candelete') %></dt>
 				<dd><%= f.check_box :allow_delete %></dd>				
-				<dd class="submit">
-					<%= f.submit I18n.t('layout.application.update'),:class => 'phosney-button edit cr-bottom-left' %>
-					<%= link_to I18n.t('layout.application.cancel'),  polymorphic_path([@account,:movements]),:class => 'phosney-button delete cr-bottom-right'  %>
-				</dd>
-			</dl>				
-		<% end %>
-		</div>		
+			</dl>						
+		</div>
+		<% end %>		
 </div>
  

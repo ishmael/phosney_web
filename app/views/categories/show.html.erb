@@ -2,26 +2,23 @@
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.categories.name') %></h3>
 			<% if @category.user_id == @current_user.id %>	
-			<%= link_to I18n.t('layout.application.edit'),edit_category_path(@category.id),:class => 'phosney-button' %>
+			<%= link_to I18n.t('layout.application.edit'),edit_category_path(@category.id),:class => 'phosney-button phosney-header-button' %>
 			<% end %>			
 		</div>	
 		<div class="basic cr-bottom">			
 			<dl>
 			  <dt><%= I18n.t('activerecord.attributes.category.name') %></dt>
 			  <dd><%=h @category.name %></dd>
-    		  <dd class="submit">
-					<%= link_to I18n.t('layout.application.back'), categories_path,:class => 'phosney-button back cr-bottom' %>
-				</dd>	   
 			</dl>			
-			</div>	
+		</div>	
 </div>
 <% if @category.user_id == @current_user.id %>
 <% @shared_categories = @category.categories_users.find(:all,:conditions => ['user_id <> :user_id',:user_id => @current_user.id]) %>
-<div class="box box-50 cr-all"><!-- .altbox for alternative box's color -->
+<div class="box box-50 cr-all">
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.categoriesusers.shared_with') %></h3>
 			<% if (not @shared_categories.empty?) %>
-			<%= link_to I18n.t('layout.application.new'),new_polymorphic_path([@category,:categories_user]),:class => 'phosney-button' %>
+			<%= link_to I18n.t('layout.application.new'),new_polymorphic_path([@category,:categories_user]),:class => 'phosney-button phosney-header-button' %>
 			<% end %>
 		</div>
 		<% if not @shared_categories.empty? %>

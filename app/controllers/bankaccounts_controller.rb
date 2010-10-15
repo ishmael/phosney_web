@@ -2,7 +2,7 @@ class BankaccountsController < ApplicationController
   # GET /bankaccounts
   # GET /bankaccounts.xml
   before_filter :require_user #, :only => [:new, :create,:edit,:update,:index,:destroy]
-  
+  add_breadcrumb "Dashboard",:root_path
   def index
     @bankaccountsdata = @current_user.bankaccounts.find_accounts_with_balance(:all)
 #    @spending_data = Movement.data_by_month(:all, :conditions => ["movements.mov_type=-1 and accounts_users.user_id= :id and accounts.type =:account_type and  movements.movdate BETWEEN :from  AND :to",{:id => @current_user.id,:account_type => 'Bankaccount', :from => Time.now.at_beginning_of_month, :to => Time.now.end_of_month}] )
@@ -32,7 +32,7 @@ class BankaccountsController < ApplicationController
   def new
     @bankaccount = Bankaccount.new
     #@bankaccount.user_id = @current_user.id
-    
+    add_breadcrumb I18n.t('layout.bankaccounts.newaccount'),new_bankaccount_path
     respond_to do |format|
       format.html # new.html.erb
 	  format.iphone  { render :layout => false }
@@ -42,6 +42,7 @@ class BankaccountsController < ApplicationController
   # GET /bankaccounts/1/edit
   def edit
     @bankaccount = @current_user.bankaccounts.find_by_id(params[:id])
+    add_breadcrumb I18n.t('layout.application.edit'),edit_bankaccount_path(@bankaccount)
 	if @bankaccount
 		respond_to do |format|
 		  format.html 
