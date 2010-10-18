@@ -9,14 +9,12 @@
 	YUI().use('yui2-fonts');
 </script>
 <%= yield :javascript_includes %>
-<%= stylesheet_link_tag 'reset-min','main-min' %>
+<%= stylesheet_link_tag 'reset-min','main' %>
 
 </head>
 <body id="login" class="yui-skin-sam">
-		<div class="box box-50 altbox">
-			<div class="boxin">
+		<div class="box box-50 cr-all">
 						 <%= yield %>	
-			</div>
 		</div>
 </body>
 </html>

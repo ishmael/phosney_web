@@ -13,7 +13,7 @@ input::-moz-focus-inner { border: 0; }
 ---------------------------------------------------------------------------------------*/
 body{ 
 /*	background:none repeat scroll 0 0 #DDDDDD;*/
-	background:url("/images/background-tile3.png") ;
+	background:url("/images/backgroundtile.png") ;
 	padding-bottom:10px;
 	}
 
@@ -791,18 +791,39 @@ input.phosney-header-button {
 
 /* login page */
 #login {padding: 100px;font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif; color: #333;}
-#login .box {float: none; margin: 0 auto;}
-#login .header{height:90px; border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x !important;}
-#login .boxin { border: 0;}
+#login .box {float: none; margin: 0 auto;background-color:#DDD;}
+#login .header{height:90px; border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x !important; padding-left:0 !important;}
+#login .header .tag {display:block; padding:10px 0 0 10px ;}
 #login a {text-decoration:none;}
 #login form.register dl dt { width: 30% !important;}
 #login form.register dl dd {width: 66% !important;}
 #login form.register dl dd.submit {padding: 3px 0px 5px 0px; width: 100% !important; }
 #login form.register dl dd.submit div {float:right;height:25px;margin-right:50px !important; }
+#login form dl dd.submit div input{padding-top:5px !important;padding-bottom:5px !important; }
 #login form.basic dl dd.submit div {margin-right:85px; }
 #login input.txt {width: 260px;}
-#login  h4{	color:#fff; width:305px;margin-top:-10px;}
-
+#login  h4{	color:#fff; width:305px;margin-left:10px !important; position:static !important;}
+#login .password_lost {margin:0 0 0 6px;} 
+#login .box .header ul {
+	padding:17px 15px 0 20px;
+	float:right;
+	height:22px;
+	
+}
+#login .box .header ul li {
+	display: inline;
+	height:inherit;
+}
+#login .box .header ul a {
+	margin: 0 !important;
+	background-color:#489CD4;
+	height:20px;
+	padding:8px 13px 6px 13px;
+	}
+#login	.box .header ul a.active,
+#login	.box .header ul a:hover,
+#login	.box .header ul a:focus,
+#login  .box .header ul a:active {background: #fff url("/images/background-sprites.png") repeat-x 0px -322px; color: #444;}
 
 
 

@@ -10,12 +10,12 @@ class UserSessionsController < ApplicationController
     def new
       @user_session = UserSession.new
 	  
-	  respond_to do |format|
-		  format.html # new.html.erb
-		  format.iphone do  #action.iphone.erb
-          render :layout => "application"
-		  end
-	  end
+	  #   respond_to do |format|
+    #	  format.html # new.html.erb
+    #	  format.iphone do  #action.iphone.erb
+     #       render :layout => "application"
+    #	  end
+    #  end
     end
 
     def create
