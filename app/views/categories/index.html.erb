@@ -1,5 +1,5 @@
 <% content_for :javascript_includes do %>
-   <%= javascript_include_tag 'categories_dashboard' %>
+
 <% end %>
 <div class="box box-first box-100 cr-all "><!-- .altbox for alternative box's color -->
 		<div class="header cr-top">
@@ -10,16 +10,46 @@
 		</div>
 		<div class="content categories_content cr-bottom">
 			<% if not  @categories.empty? %>
-			<div id="categoriesnl">
-				<ul  class="catnestedlist droppable">
-
-					<%= nodes(@categories,nil) %>					
-
-				</ul>
-			</div>
+			<table cellspacing="0">
+				<thead>
+					<tr>
+						<th class="first categoryname"><%=  I18n.t('layout.movements.description') %></th>
+						<th class="first categoryamount">Maio</th>
+						<th class="first categoryamount">Junho</th>
+						<th class="first categoryamount">Julho</th>
+						<th class="first categoryamount">Agosto</th>
+						<th class="first categoryamount">Setembro</th>
+						<th class="first categoryamount">Outubro</th>
+						<td class="tc last actionsshared"><%=  I18n.t('layout.application.actions') %></td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @categories.each_with_index do |category,i| %>	
+						<tr  >
+							<td class="first"><Categoria><%= category.name %><p class="category_children"></p></td>
+						    <td class="categoryamount">1000000</td>
+						    <td class="categoryamount">1000000</td>
+						    <td class="categoryamount">1000000</td>
+						    <td class="categoryamount">1000000</td>
+						    <td class="categoryamount">1000000</td>
+						    <td class="categoryamount">1000000</td>																								
+						    <td>  
+								<ul class="actions">
+									<li>
+					 <%=   link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  new_category_path , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %></li>
+						    	<li><%=	link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), new_category_path,{:class  =>'ico', :title => I18n.t('layout.application.edit')} %></li>
+								<% if  (category.user_id == @current_user.id) %>
+						    	<li><%=	  link_to image_tag("/images/led-ico/arrow_divide.png",:alt => I18n.t('layout.application.share')), new_category_path,{:class  =>'ico', :title => I18n.t('layout.application.share')} %></li>
+								<% end%>
+							</ul>
+							</td>						
+						</tr>
+					<% end %>	
+				</tbody>
+			</table>
 			<% else %>
-				<div class="tc" style="margin:10px;">
-					<%= link_to I18n.t('layout.categories.new'), new_category_path %>
+				<div class="basic tc blank" >	
+							<%= link_to I18n.t('layout.categories.new'), new_category_path  %>
 				</div>
 			<% end %>
 		</div>

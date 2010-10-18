@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :user_id , :message =>  I18n.t('layout.categories.duplicate')
   default_scope :order => :name
-  named_scope :sharedcats,  :select =>  "categories.id, case when categories.user_id = categories_users.user_id then categories.name when categories.user_id <> categories_users.user_id then categories.name || '(' || (select users.login from users where users.id = categories.user_id) || ')' end as name,categories.user_id,categories.created_at,categories.updated_at,categories.parent_id,categories.mobile",:joins => "INNER JOIN categories_users ON categories.id = categories_users.category_id"
+  named_scope :sharedcats,  :select =>  "categories.id, case when categories.user_id = categories_users.user_id then categories.name else categories.name || '(' || (select users.login from users where users.id = categories.user_id) || ')' end as name,categories.user_id,categories.created_at,categories.updated_at,categories.parent_id,categories.mobile",:joins => "INNER JOIN categories_users ON categories.id = categories_users.category_id"
 
   #acts_as_tree 
 
@@ -15,7 +15,7 @@ class Category < ActiveRecord::Base
 
 
   def self.shared(*args)
-      with_scope(:find => {:select => "categories.id, case when categories.user_id = categories_users.user_id then categories.name when categories.user_id <> categories_users.user_id then categories.name || '(' || (select users.login from users where users.id = categories.user_id) || ')' end as name,categories.user_id,categories.created_at,categories.updated_at,categories.parent_id,categories.mobile" }) do
+      with_scope(:find => {:select => "categories.id, case when categories.user_id = categories_users.user_id then categories.name else categories.name || '(' || (select users.login from users where users.id = categories.user_id) || ')' end as name,categories.user_id,categories.created_at,categories.updated_at,categories.parent_id,categories.mobile" }) do
          find(*args)
       end
   end

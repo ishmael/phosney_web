@@ -13,7 +13,7 @@
 			<table cellspacing="0">
 				<thead>
 					<tr>
-						<th class="first"><%=  I18n.t('layout.movements.description') %></th>
+						<th class="first "><%=  I18n.t('layout.movements.description') %></th>
 						<th class="first"><%=  I18n.t('layout.movements.amount') %></th>
 						<th class="first"><%=  I18n.t('layout.movements.type') %></th>
 						<th class="first"><%=  I18n.t('layout.movements.movdate') %></th>
@@ -23,7 +23,7 @@
 				<tbody>
 						<% @movements.each_with_index do |movement,i| %>	
 							<tr class="<% if i == 0  %>first<% else %><%= cycle('even', 'odd') %><% end%>" >
-								<td class="first"><%= link_to movement.description, polymorphic_path([@account,movement])%></td>
+								<td class="first "><%= link_to movement.description, polymorphic_path([@account,movement])%></td>
 							    <td class="tr"><%= movement.amount.format %></td>
 
 							    <td class="tc"><%=h movement.type_of_movement %></td>
