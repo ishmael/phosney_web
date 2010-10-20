@@ -24,29 +24,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% @categories.each_with_index do |category,i| %>	
-						<tr  >
-							<td class="first"><Categoria><%= category.name %><p class="category_children"></p></td>
-						    <td class="categoryamount">1000000</td>
-						    <td class="categoryamount">1000000</td>
-						    <td class="categoryamount">1000000</td>
-						    <td class="categoryamount">1000000</td>
-						    <td class="categoryamount">1000000</td>
-						    <td class="categoryamount">1000000</td>																								
-						    <td>  
-								<ul class="actions">
-									<li>
-					 <%=   link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  new_category_path , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %></li>
-						    	<li><%=	link_to image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), new_category_path,{:class  =>'ico', :title => I18n.t('layout.application.edit')} %></li>
-								<% if  (category.user_id == @current_user.id) %>
-						    	<li><%=	  link_to image_tag("/images/led-ico/arrow_divide.png",:alt => I18n.t('layout.application.share')), new_category_path,{:class  =>'ico', :title => I18n.t('layout.application.share')} %></li>
-								<% end%>
-							</ul>
-							</td>						
-						</tr>
-					<% end %>	
+					<%= nodes(@categories,nil,1) %>	
 				</tbody>
 			</table>
+			
 			<% else %>
 				<div class="basic tc blank" >	
 							<%= link_to I18n.t('layout.categories.new'), new_category_path  %>
