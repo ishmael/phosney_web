@@ -481,8 +481,7 @@ form.fields span.loading {margin-left: 10px;}
 ul.actions {margin: 0;}
 ul.actions li {
 	display: inline;
-	/*margin-right: 5px;*/
-	
+	margin-right: 5px;
 	}
 ul.actions a { text-decoration: none; color: #fff ;}
 
@@ -685,7 +684,8 @@ input.phosney-header-button {
 } 
 .box .content table thead tr td.actionsshared 
 {
-	width:55px;
+	width:60px;
+
 } 
 
 

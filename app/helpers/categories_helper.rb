@@ -51,9 +51,9 @@ module CategoriesHelper
 					    ret +='<td>  '
 					    if  (categoria.user_id == @current_user.id)		
     						ret +=	'<ul class="actions">'
-    						ret +=		'<li>' + link_to( image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  new_category_path , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')}) +'</li>'
-						    ret +=	'<li>'+ 	link_to(image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), new_category_path,{:class  =>'ico', :title => I18n.t('layout.application.edit')}) + '</li>'
-						    ret +=	'<li>' +  link_to(image_tag("/images/led-ico/arrow_divide.png",:alt => I18n.t('layout.application.share')), new_category_path,{:class  =>'ico', :title => I18n.t('layout.application.share')}) +'</li>'
+    						ret +=		'<li>' + link_to( image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  category_path(categoria.id) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')}) +'</li>'
+						    ret +=	'<li>'+ 	link_to(image_tag("/images/led-ico/pencil.png",:alt => I18n.t('layout.application.edit')), edit_category_path(categoria.id),{:class  =>'ico', :title => I18n.t('layout.application.edit')}) + '</li>'
+						    ret +=	'<li>' +  link_to(image_tag("/images/led-ico/arrow_divide.png",:alt => I18n.t('layout.application.share')),  new_polymorphic_path([categoria,:categories_user]),{:class  =>'ico', :title => I18n.t('layout.application.share')}) +'</li>'
              		ret +=	'</ul>'
               end
 						ret +='</td>'
