@@ -478,7 +478,7 @@ form.fields div.sep {display: block; margin-top: 6px;}
 form.fields label.check,
 form.fields label.radio {display: inline; margin-top: 0;}
 form.fields span.loading {margin-left: 10px;}
-ul.actions {margin: 0;}
+ul.actions {margin: 0;width:65px;}
 ul.actions li {
 	display: inline;
 	margin-right: 5px;
@@ -537,6 +537,7 @@ a.phosney-header-button {
 	height:39px !important;
 	-moz-border-radius-topright: 5px;
    -webkit-border-top-right-radius: 5px;
+	margin-right:0 !important;
    
 }
 
@@ -544,7 +545,7 @@ input.phosney-header-button {
 	height:41px !important;
 	-moz-border-radius-topright: 5px;
    -webkit-border-top-right-radius: 5px;
-   
+   margin-right:0 !important;
 }
 
 
@@ -684,10 +685,15 @@ input.phosney-header-button {
 } 
 .box .content table thead tr td.actionsshared 
 {
-	width:60px;
+	width:65px;
 
 } 
+.box .content table tbody tr td.actionsshared 
+{
+	width:65px;
+	padding:0 0 0 5px;
 
+}
 
 .box .content table a.ico-comms {border: 0; background: url("/images/ico-tablecomms.gif") 50% 60% no-repeat; padding: 10px; color: #fff;}
 .box .content table tfoot th,

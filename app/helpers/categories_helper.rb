@@ -48,7 +48,7 @@ module CategoriesHelper
                     ret+='<td class="categoryamount">'  + soma  				
 	          				ret+='</td'
 	          end
-					    ret +='<td>  '
+					    ret +='<td class="actionsshared">  '
 					    if  (categoria.user_id == @current_user.id)		
     						ret +=	'<ul class="actions">'
     						ret +=		'<li>' + link_to( image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  category_path(categoria.id) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')}) +'</li>'
