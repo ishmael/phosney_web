@@ -835,6 +835,15 @@ input.phosney-header-button {
 .categoryname {
 	width:auto;
 }
+.categoryname a {
+    display:inline-block;
+    width:16px;
+    height:16px;
+    float:right;
+    margin: 0;
+    text-align:center;
+/*    background: url("/images/led-ico/application_side_tree.png") 0 50% no-repeat;*/
+}
 
 .categoryamount {
 	width:70px;

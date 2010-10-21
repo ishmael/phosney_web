@@ -2,7 +2,9 @@ class CategoriesController < ApplicationController
   before_filter :require_user 
   add_breadcrumb "Dashboard",:root_path
   def index
-    @categories = Category.sharedcats.find(:all,:conditions => ["categories_users.user_id = ?",@current_user.id])
+    @month = 0
+    @month = params[:month] if params[:month] 
+    @categories = Category.sharedcats(:month_difference => params[:month],:conditions => ["categories_users.user_id = ?",@current_user.id])
     add_breadcrumb I18n.t('layout.categories.title'), categories_path
     respond_to do |format|
       format.html # index.html.erb
