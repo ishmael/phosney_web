@@ -35,7 +35,7 @@ class Category < ActiveRecord::Base
     	cate_moves.name as account_name,
     	cate_moves.color from categories   INNER JOIN categories_users ON categories.id = categories_users.category_id 
     	  left outer join (select account_id,category_id  ,accounts.currency,accounts.name,accounts.color from movements ,accounts
-        	where category_id is not null and date_trunc('month',movdate) >= date_trunc('month',CURRENT_TIMESTAMP + (:month +  -5) * interval '1 month') and accounts.id = movements.account_id
+        	where category_id is not null and date_trunc('month',movdate) between date_trunc('month',CURRENT_TIMESTAMP + (:month +  -5) * interval '1 month') and date_trunc('month',CURRENT_TIMESTAMP + (:month ) * interval '1 month') and accounts.id = movements.account_id
         	group by account_id,category_id,accounts.currency,accounts.name,accounts.color ) cate_moves on categories.id = cate_moves.category_id"
               
       sql += " WHERE " + sanitize_sql(args[:conditions])  if(args[:conditions])
