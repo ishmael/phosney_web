@@ -7,8 +7,6 @@ class Category < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :user_id , :message =>  I18n.t('layout.categories.duplicate')
   default_scope :order => :name
-  cattr_reader :month_difference
-  @@month_difference = 0
 
 
 
@@ -20,6 +18,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.sharedcats(args= {})
+      month_difference = 0
       sql = "select categories.id,
     	categories.parent_id,
     	categories.user_id ,
@@ -42,9 +41,9 @@ class Category < ActiveRecord::Base
       
       sql += " ORDER BY categories.name" 
       
-      @@month_difference = args[:month_difference]   if(args[:month_difference] and args[:month_difference] != "0") 
+      month_difference = args[:month_difference]   if(args[:month_difference] and args[:month_difference] != "0") 
 
-    	find_by_sql( [sql,{:month=> @@month_difference}])
+    	find_by_sql( [sql,{:month=> month_difference}])
   	
   end
 

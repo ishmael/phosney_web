@@ -9,7 +9,7 @@
 </div>
 
 <% form_for @user_session, :html => { :class => "basic"}, :url => user_session_path do |f| %>
-<div class="basic cr-bottom">
+<div class="basic cr-bottom " >
 	<% if not f.error_messages.blank? %>
   		<div class="msg msg-error">
 			<%= f.error_messages  :header_message => nil, :message => nil %>
@@ -21,7 +21,7 @@
 	<dt><%= f.label :password, I18n.t('layout.users.password')  %></dt>
 	<dd><%= f.password_field :password , :class => 'txt' %></dd>
 	<dd class="submit">
-		<div>
+		<div >
 		<%= f.submit 'Login',:class => 'phosney-button cr-all' %> 
 		</div>
 	</dd>
