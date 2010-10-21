@@ -44,10 +44,12 @@ module CategoriesHelper
     				      end
 
     				}										
+	          ret+= '<td></td>'
     				soma_linha.each do |soma|
-                    ret+='<td class="categoryamount">'  + soma  				
+                    ret+='<td class="tc categoryamount">'  + soma  				
 	          				ret+='</td'
 	          end
+
 					    ret +='<td class="actionsshared">  '
 					    if  (categoria.user_id == @current_user.id)		
     						ret +=	'<ul class="actions">'
@@ -57,6 +59,7 @@ module CategoriesHelper
              		ret +=	'</ul>'
               end
 						ret +='</td>'
+	          ret+= '<td></td>'
 					ret +='</tr>'
           ret +=nodes(categories,categoria.id,index+1)
     end

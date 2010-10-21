@@ -13,18 +13,25 @@
 			<table cellspacing="0">
 				<thead>
 					<tr>
-						<th class="first categoryname"><%=  I18n.t('layout.movements.description') %><%= link_to image_tag("/images/led-ico/arrow_left.png",:alt => I18n.t('layout.categories.title')), categories_path(:month=>(@month.to_i - 1).to_s ),{:class  =>'ico', :title => I18n.t('layout.categories.title')} %></th>
-						<th class="first categoryamount"> <%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-5).month] %></th>
-						<th class="first categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-4).month] %></th>
-						<th class="first categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-3).month] %></th>
-						<th class="first categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-2).month] %></th>
-						<th class="first categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-1).month] %></th>
-						<th class="first categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i).month] %></th>
-						<td class="tc last actionsshared">
-						<% if @month.to_i<0%>
-						<%= link_to image_tag("/images/led-ico/arrow_right.png",:alt => I18n.t('layout.categories.title')), categories_path(:month=>(@month.to_i + 1).to_s ),{:class  =>'ico', :title => I18n.t('layout.categories.title')} %>
-						<% end %>
-						<%=  I18n.t('layout.application.actions') %></td>
+						<th class="first categoryname">
+						<%=  I18n.t('layout.categories.name') %>
+						</th>
+						<th class="arrow"> <%= link_to image_tag("/images/led-ico/arrow_left.png",:alt => I18n.t('layout.categories.title')), categories_path(:month=>(@month.to_i - 1).to_s ),{:class  =>'ico', :title => I18n.t('layout.categories.title')} %></th>
+						<th class="tc categoryamount"> <%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-5).month] %></th>
+						<th class="tc categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-4).month] %></th>
+						<th class="tc categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-3).month] %></th>
+						<th class="tc categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-2).month] %></th>
+						<th class="tc categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i-1).month] %></th>
+						<th class="tc categoryamount"><%= I18n.t('date.month_names')[Time.now.months_since(@month.to_i).month] %></th>
+
+						<th class="actionsshared">
+						<%=  I18n.t('layout.application.actions') %>
+						</td>
+						<th class="last arrow">
+							<% if @month.to_i<0%>
+							<%= link_to image_tag("/images/led-ico/arrow_right.png",:alt => I18n.t('layout.categories.title')), categories_path(:month=>(@month.to_i + 1).to_s ),{:class  =>'ico', :title => I18n.t('layout.categories.title')} %>
+							<% end %>
+						</td>
 					</tr>
 				</thead>
 				<tbody>

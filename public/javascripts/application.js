@@ -9,7 +9,8 @@
 
 
 
-
+	//	var querystring = YAHOO.util.History.getQueryStringParameter('locale'); ,'yui2-history'
+	//	alert(locale);
 		var ButtonGroup = YAHOO.widget.ButtonGroup;
 		
 		Event.onContentReady("header", function () {
@@ -88,6 +89,16 @@
 					// element of the Overlay.
 
 					var oCalendar = new YAHOO.widget.Calendar("buttoncalendar", oCalendarMenu.body.id,{navigator:true});
+					
+					if (locale == "pt")
+					{
+						oCalendar.cfg.setProperty("MONTHS_SHORT",   ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dez"]); 
+						oCalendar.cfg.setProperty("MONTHS_LONG",    ["Janeiro", "Fevereiro", "Mar\u00E7o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]); 
+						oCalendar.cfg.setProperty("WEEKDAYS_1CHAR", ["D", "S", "T", "Q", "Q", "S", "S"]); 
+						oCalendar.cfg.setProperty("WEEKDAYS_SHORT", ["Do", "Se", "Te", "Qa", "Qi", "Se", "Sa"]); 
+						oCalendar.cfg.setProperty("WEEKDAYS_MEDIUM",["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "S\u00E1b"]); 
+						oCalendar.cfg.setProperty("WEEKDAYS_LONG",  ["Domingo", "Segunda", "Ter\u00E7a", "Quarta", "Quinta", "Sexta", "S\u00E1bado"]); 
+					}
 
 					oCalendar.render();
 

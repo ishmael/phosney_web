@@ -671,6 +671,7 @@ input.phosney-header-button {
 .box .content table th,
 .box .content table td {padding: 10px 10px 8px 10px;}
 .box .content table th {text-align: left; font-weight: normal;}
+.box .content table th.arrow {padding: 0 0  0 5px;}
 .box .content table tr.even th,
 .box .content table tr.even td {background: #f5f5f5;}
 .box .content table th.first,
@@ -845,17 +846,13 @@ input.phosney-header-button {
 /*    background: url("/images/led-ico/application_side_tree.png") 0 50% no-repeat;*/
 }
 
+
+
 .categoryamount {
 	width:70px;
 }
 
-th.categoryamount {
-	text-align:center !important;
-}
 
-td.categoryamount {
-	text-align:right !important;
-}
 
 .category_children {
 	display:inline-block;

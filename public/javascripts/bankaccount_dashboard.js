@@ -299,7 +299,16 @@
 	    outTxt.value = "";
 
 	    var cal = new YAHOO.example.calendar.IntervalCalendar("calSearchContainer", {pages:1,navigator:true,MDY_MONTH_POSITION:2,MDY_DAY_POSITION:1,MDY_YEAR_POSITION:3});
-
+		if (locale == "pt")
+		{
+			cal.cfg.setProperty("MONTHS_SHORT",   ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dez"]); 
+			cal.cfg.setProperty("MONTHS_LONG",    ["Janeiro", "Fevereiro", "Mar\u00E7o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]); 
+			cal.cfg.setProperty("WEEKDAYS_1CHAR", ["D", "S", "T", "Q", "Q", "S", "S"]); 
+			cal.cfg.setProperty("WEEKDAYS_SHORT", ["Do", "Se", "Te", "Qa", "Qi", "Se", "Sa"]); 
+			cal.cfg.setProperty("WEEKDAYS_MEDIUM",["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "S\u00E1b"]); 
+			cal.cfg.setProperty("WEEKDAYS_LONG",  ["Domingo", "Segunda", "Ter\u00E7a", "Quarta", "Quinta", "Sexta", "S\u00E1bado"]); 
+		}
+		
 		var oButtonGroup1 = new YAHOO.widget.ButtonGroup("search_type_movements_group");
 		oButtonGroup1.setStyle( 'visibility', 'visible');
 
