@@ -1,6 +1,6 @@
-<% content_for :javascript_bottom do %>
+<% content_for :javascript_includes do %>
 	<% if (not @movement.lng.blank?) and (not @movement.lat.blank?) %>
-  	<%= GMap.header %>
+	<%= GMap.header(:local_search => true) %>
 	<%= @map.to_html %>
 	<% end%>
 <% end %>
@@ -27,12 +27,12 @@
 		</div>
 </div>
 <% if (not @movement.lng.blank?) and (not @movement.lat.blank?) %>
-<div class="box box-50 cr-all box-last"><!-- .altbox for alternative box's color -->
+<div class="box box-50 cr-all box-last">
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.movements.map') %></h3>	
 		</div>
-		<div class="content cr-bottom"> 
-			<%= @map.div(:width => 988, :height => 400) %>			
+		<div class="basic cr-bottom" > 
+			<%= @map.div(:width => 490, :height => 400, :class => 'cr-all') %>			
 		</div>
 </div>
 <% end %>

@@ -121,11 +121,11 @@ STRUCTURE					 */
 	border-bottom-style:none;
 	width: 400px;
 }
-
+/*
 #map_show {
-	margin:5px;
+	margin:0px;
 }
-
+*
 /* 
 CORNERS
 * -moz-border-radius-topleft  / -webkit-border-top-left-radius
@@ -444,7 +444,7 @@ a.yuimenuitemlabel {
 div.basic {margin:0;background-color:#FFF;}
 div.basic dl {width: 100%; overflow: hidden;padding-top:7px;padding-bottom:10px; } /* basic layout for forms */
 div.basic dl dt,
-div.basic dl dd {float: left;margin-left: 6px;}
+div.basic dl dd {display:inline-block; margin-left: 6px;}
 div.basic dl dt {padding: 3px 5px 3px 0; width: 20%;}
 div.basic dl dd {padding: 3px 0 3px 5px; width: 70%;}
 div.basic dl dd.submit { padding: 3px 0px 0px 0px; width: 100%;height:30px ;	margin-left:0px}
@@ -456,9 +456,9 @@ form.plain fieldset {border: 0 !important; padding: 0 !important;}
 /*form.basic div.basic {padding-bottom:10px;}*/
 form.basic dl {width: 100%; overflow: hidden;} /* basic layout for forms */
 form.basic dl dt,
-form.basic dl dd {float: left;}
-form.basic dl dt {padding: 3px 5px 3px 0; width: 20%;}
-form.basic dl dd {padding: 3px 0 3px 5px; width: 76%;}
+form.basic dl dd {display:block;}
+form.basic dl dt {padding: 3px 5px 3px 0; width: auto;}
+form.basic dl dd {padding: 3px 15px 3px 5px; width: auto;}
 form.basic dl dd.submit {padding: 3px 0px 0px 0px; width: 100%;margin-left:0px;}
 /*form.basic dl dd.submit div {float:right;}*/
 form small {color: #999;}
@@ -576,10 +576,11 @@ input.phosney-header-button {
 	display:inline-block;
 	vertical-align:top;	
 }
+/*
 #search {
 	margin:0 !important;
 }
-
+*/
 #search dl {
 	padding-bottom:0px !important;
 }
@@ -590,6 +591,7 @@ input.phosney-header-button {
 }
 #search dl dd {
 		width:100%;
+		display:block !important;
 }
 .search_form {
 		padding:0 0 0 0px !important;

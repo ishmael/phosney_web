@@ -51,13 +51,17 @@ class MovementsController < ApplicationController
 	  add_breadcrumb @account.name,polymorphic_path([@account,:movements])
 		@movement = @account.movements.find_by_id(params[:id])
     add_breadcrumb I18n.t('layout.movements.title'), polymorphic_path([@account,@movement])
-		if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
-		@map = GMap.new("map_show")
-    @map.control_init
-    @map.interface_init(:scroll_wheel_zoom => true,:double_click_zoom=> false,:set_ui_to_default => true)
-    @map.center_zoom_init([@movement.lat, @movement.lng],14)
-		@map.overlay_init(GMarker.new([@movement.lat, @movement.lng]))
-		end
+    	@map = GMap.new("map_show")
+      @map.control_init(:local_search => true)
+      @map.interface_init(:scroll_wheel_zoom => true,:double_click_zoom=> false,:set_ui_to_default => true)
+      if (not @movement.lng.blank?) and (not @movement.lat.blank?) 
+  		  @map.center_zoom_init([@movement.lat, @movement.lng], 16)
+  		  @marker = GMarker.new([@movement.lat, @movement.lng])
+        @map.declare_init(@marker, 'mymarker')
+        @map.overlay_init(@marker)
+  		else
+  		    @map.center_zoom_init([38.134557,-95.537109],8)
+  		end
 	
 		respond_to do |format|
 		  format.html # show.html.erb
