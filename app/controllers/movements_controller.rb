@@ -50,6 +50,8 @@ class MovementsController < ApplicationController
 	if @account
 	  add_breadcrumb @account.name,polymorphic_path([@account,:movements])
 		@movement = @account.movements.find_by_id(params[:id])
+    add_breadcrumb I18n.t('layout.application.search'), request.env["HTTP_REFERER"] if request.env["HTTP_REFERER"] =~ /search/
+
     add_breadcrumb I18n.t('layout.movements.title'), polymorphic_path([@account,@movement])
     	@map = GMap.new("map_show")
       @map.control_init(:local_search => true)
@@ -126,7 +128,7 @@ class MovementsController < ApplicationController
   def edit
 	if @account
     add_breadcrumb @account.name,polymorphic_path([@account,:movements])
-  
+    add_breadcrumb I18n.t('layout.application.search'), request.env["HTTP_REFERER"] if request.env["HTTP_REFERER"] =~ /search/
 		@movement = @account.movements.find_by_id(params[:id])
 		add_breadcrumb I18n.t('layout.application.edit'),edit_polymorphic_path([@account,@movement])
   	@map = GMap.new("map_show")
