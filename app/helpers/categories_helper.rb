@@ -47,7 +47,7 @@ module CategoriesHelper
 	          ret+= '<td></td>'
     				soma_linha.each do |soma|
                     ret+='<td class="tc categoryamount">'  + soma  				
-	          				ret+='</td'
+	          				ret+='</td>'
 	          end
 
 					    ret +='<td class="actionsshared">  '

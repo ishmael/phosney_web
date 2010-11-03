@@ -13,7 +13,7 @@ input::-moz-focus-inner { border: 0; }
 ---------------------------------------------------------------------------------------*/
 body{ 
 	/*background:none repeat scroll 0 0 #DDDD00;*/
-	background:url("/images/backgroundtile.png") ;
+	background:url("/images/background.gif") ;
 	padding-bottom:10px;
 	}
 
@@ -800,10 +800,11 @@ input.phosney-header-button {
 
 
 /* login page */
-#login {padding: 100px;font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif; color: #333;}
-#login .box {float: none; margin: 0 auto;background-color:#DDD;}
-#login .header{height:90px; border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x !important; padding-left:0 !important;}
+#login {padding: 100px;font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif; color: #333;margin: 0 auto;float: none; }
+#login .box-50 {width:auto !important;}
+#login .header{height:72px; border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x !important; padding-left:0 !important;border-bottom:0 !important;}
 #login .header .tag {display:block; padding:10px 0 0 10px ;}
+
 #login a {text-decoration:none;}
 #login form.register dl dt { width: 30% !important;}
 #login form.register dl dd {width: 66% !important;}
@@ -812,28 +813,39 @@ input.phosney-header-button {
 #login form dl dd.submit div input{height:30px; }
 #login form.basic dl dd.submit div {margin-right:50px; }
 #login input.txt {width: 260px;}
-#login  h4{	color:#fff; width:305px;margin-left:10px !important; position:static !important;}
+#login  h4{	color:#fff; margin-left:10px !important;position:static !important;}
+
+#left-header {
+	display:inline-block;
+}
+
+#right-header {
+	display:inline-block;
+}
+
 #login .password_lost {margin:0 0 0 6px;} 
-#login .box .header ul {
+#login .header ul {
 	padding:17px 15px 0 20px;
-	float:right;
+/*	float:right;*/
 	height:22px;
 	
 }
-#login .box .header ul li {
+#login .header ul li {
 	display: inline;
 	height:inherit;
+
 }
-#login .box .header ul a {
+#login .header ul a {
 	margin: 0 !important;
 	background-color:#489CD4;
 	height:20px;
 	padding:8px 10px 6px 10px;
+
 	}
-#login	.box .header ul a.active,
-#login	.box .header ul a:hover,
-#login	.box .header ul a:focus,
-#login  .box .header ul a:active {background: #fff url("/images/background-sprites.png") repeat-x 0px -322px; color: #444;}
+#login .header ul a.active,
+#login .header ul a:hover,
+#login .header ul a:focus,
+#login .header ul a:active {background: #fff url("/images/background-sprites.png") repeat-x 0px -322px; color: #444;}
 
 
 .categoryname {

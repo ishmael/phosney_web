@@ -49,9 +49,9 @@ class ApplicationController < ActionController::Base
 	end
   
 	def adjust_format_for_iphone
-		if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(Mobile\/.+Safari)/]
-			request.format = :iphone
-		end
+		#if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(Mobile\/.+Safari)/]
+		#	request.format = :iphone
+		#end
 	end
 
 	def current_user_session
