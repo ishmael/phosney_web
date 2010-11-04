@@ -54,7 +54,7 @@ STRUCTURE					 */
 
 #footer{clear:both; }
 
-#content_main{background:transparent;width:1000px;padding:10px 0px 0px 0px;  margin:0px auto 0px auto;}
+#content_main{background:transparent;width:1000px;padding:0;  margin:10px auto 0px auto;}
 
 #top_menu{display:inline-block;vertical-align:bottom;visibility:hidden}
 
@@ -410,7 +410,7 @@ a.yuimenuitemlabel {
 .msg-info div {background: url("/images/led-ico/exclamation.png") 0 0 no-repeat;}
 .error {color: #b70b0b;}
 
-.box {/*background: #DDD;*/float: left; width: 400px; margin: 0 0px 20px 0;z-index:0;}
+.box {/*background: #DDD;*/display:inline-block; width: 400px; margin: 0 0px 20px 0;z-index:0;}
 .box-25 {width: 250px;} /* 25% box */
 .box-50 {width: 490px;} /* 50% box */
 .box-75 {width: 730px;} /* 75% box */
@@ -426,7 +426,7 @@ a.yuimenuitemlabel {
 	height:40px;
 }
 .box-first {
-	margin-right:20px !important;  
+	margin-right:16px !important;  
 	/*width:480px !important;*/
 }
 .box-last {
