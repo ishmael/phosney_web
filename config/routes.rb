@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :account_properties
+
   #map.resources :movements
   map.filter 'locale'
   map.resources :bankaccounts,:as  => 'cheking'  do |bankaccount|

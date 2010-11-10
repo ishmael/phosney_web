@@ -15,6 +15,7 @@ body{
 	/*background:none repeat scroll 0 0 #DDDD00;*/
 	background:url("/images/background.gif") ;
 	padding-bottom:10px;
+	font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif;
 	}
 
 .left{ float:left; }
@@ -351,7 +352,7 @@ a.yuimenuitemlabel {
 .box .yui-navset .yui-nav  {
 	border-bottom:0 none !important;
 
-	margin-top:14px;
+	margin-top:4px;
 	margin-right:5px;
 	float:right;
 }
@@ -423,7 +424,7 @@ a.yuimenuitemlabel {
 	background:url("http://yui.yahooapis.com/2.8.0r4/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 transparent;
 /*	background-color:#FFF;*/
 	border-bottom:1px solid #000;
-	height:40px;
+	height:30px;
 }
 .box-first {
 	margin-right:16px !important;  
@@ -433,7 +434,7 @@ a.yuimenuitemlabel {
 	margin-left:0px !important;  
 	/*width:480px !important;*/
 }
-.box .header h3 {position: relative; top: 6px; display: inline; font-size: 150%; color: #000; font-weight:normal;}
+.box .header h3 {position: relative; top: 6px; display: inline; font-size: 125%; color: #000; font-weight:normal;}
 .box .header h4 {margin-left:20px;position: relative; top: 6px; display: inline; font-size: 100%; color: #000; font-weight:normal;}
 
 
@@ -535,11 +536,11 @@ ul.actions a { text-decoration: none; color: #fff ;}
 }
 
 a.phosney-header-button {
-	height:39px !important;
+	height:29px !important;
 	-moz-border-radius-topright: 5px;
    -webkit-border-top-right-radius: 5px;
 	margin-right:0 !important;
-   font:100%/3.25 "myriad pro",helvetica,arial,sans-serif !important;
+   font:100%/2.25 "myriad pro",helvetica,arial,sans-serif !important;
 }
 
 input.phosney-header-button {
@@ -800,7 +801,7 @@ input.phosney-header-button {
 
 
 /* login page */
-#login {padding: 100px;font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif; color: #333;margin: 0 auto;float: none; }
+#login {margin: 100px auto 0 auto;font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif; color: #333;float: none; display:block !important;}
 #login .box-50 {width:auto !important;}
 #login .header{height:72px; border-top-color: #0a81d0; background: #0f518e url("/images/altheaderbox.png") repeat-x !important; padding-left:0 !important;border-bottom:0 !important;}
 #login .header .tag {display:block; padding:10px 0 0 10px ;}
