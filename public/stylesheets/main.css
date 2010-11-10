@@ -544,7 +544,7 @@ a.phosney-header-button {
 }
 
 input.phosney-header-button {
-	height:41px !important;
+	height:31px !important;
 	-moz-border-radius-topright: 5px;
    -webkit-border-top-right-radius: 5px;
    margin-right:0 !important;
