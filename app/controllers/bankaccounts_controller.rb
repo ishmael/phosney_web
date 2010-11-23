@@ -31,6 +31,9 @@ class BankaccountsController < ApplicationController
   # GET /bankaccounts/new.xml
   def new
     @bankaccount = Bankaccount.new
+    #overdraft = @bankaccount.account_attributes.build
+    #overdraft.attribute_type = 0
+
     #@bankaccount.user_id = @current_user.id
     add_breadcrumb I18n.t('layout.bankaccounts.newaccount'),new_bankaccount_path
     respond_to do |format|

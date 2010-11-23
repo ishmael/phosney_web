@@ -15,7 +15,7 @@ body{
 	/*background:none repeat scroll 0 0 #DDDD00;*/
 	background:url("/images/background.gif") ;
 	padding-bottom:10px;
-	font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif;
+	font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif !important;
 	}
 
 .left{ float:left; }
@@ -122,11 +122,16 @@ STRUCTURE					 */
 	border-bottom-style:none;
 	width: 400px;
 }
-/*
-#map_show {
-	margin:0px;
+
+.map_show {
+	vertical-align:top;
+	
 }
-*
+
+.map_show div.basic {
+	padding-bottom:5px ;
+}
+
 /* 
 CORNERS
 * -moz-border-radius-topleft  / -webkit-border-top-left-radius
@@ -352,7 +357,7 @@ a.yuimenuitemlabel {
 .box .yui-navset .yui-nav  {
 	border-bottom:0 none !important;
 
-	margin-top:4px;
+	margin-top:2px;
 	margin-right:5px;
 	float:right;
 }
@@ -383,12 +388,12 @@ a.yuimenuitemlabel {
 	border-radius: 5px;
 	border: 1px solid; 
 	margin: 10px auto 0 auto; 
-	padding: 8px 10px 0 10px;
+	padding: 4px 10px 4px 10px;
 	width:980px;
 }
-.msg p {margin: 0 0 8px 0; padding-left: 25px;}
+.msg p {margin: 0; padding-left: 25px;}
 .msg p strong {font-weight:bold;}
-.msg div {margin: 0 0 8px 0; padding-left: 25px;}
+.msg div {margin: 0 ; padding-left: 25px;}
 .msg-breadcrumb {
 	background:url("http://yui.yahooapis.com/2.8.0r4/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 transparent;
 	border:0 !important;

@@ -46,6 +46,7 @@ en:
       total: "Total"
       notice_message: "The account with the name  <strong>%s</strong>, number  <strong>%s</strong> from  <strong>%s</strong> was sucessfully saved."
       delete_message: "The account with the name  <strong>%s</strong>, number  <strong>%s</strong> from  <strong>%s</strong> was sucessfully deleted."
+      overdraft: "Overdraft amount"
     loanaccounts:
       name: "Loans"
       title: "Loan"

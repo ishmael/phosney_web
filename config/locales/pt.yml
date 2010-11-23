@@ -49,6 +49,7 @@ pt:
       total: "Total"
       notice_message: "A conta bancária <strong>%s</strong> com o número <strong>%s</strong> do banco <strong>%s</strong> foi gravada com sucesso."
       delete_message: "A conta bancária <strong>%s</strong> foi apagada com sucesso."
+      overdraft: "Valor a descoberto permitido"
     loanaccounts:
       name: "Empréstimos"
       title: "Empréstimo"
