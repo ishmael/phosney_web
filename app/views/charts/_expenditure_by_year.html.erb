@@ -1,0 +1,61 @@
+<%
+categories = Array.new
+1.upto(12) {
+|i| categories << I18n.t('date.month_names')[i] 
+}
+
+  @year_data = Movement.data_by_year(:all, :conditions => ["accounts_users.user_id= :id and  movements.movdate BETWEEN :from  AND :to and accounts.currency = :currency",{:id => @current_user.id, :from => Time.now.beginning_of_year, :to => Time.now.end_of_year,:currency =>currency}]  )
+	series = Array.new
+	@year_data.group_by(&:id).each do |acc,ydata|
+		account_color = ydata[0].color
+		account_name = ydata[0].name
+		account_currency = ydata[0].currency
+		account_count =0
+		ydata.group_by(&:mov_type).sort.each do |movtype,movement| 	        
+				months_in_year = Array.new(12)
+				movement.each do |mov|  
+					months_in_year[mov.movdate.month-1] = mov.amount.to_f* movtype
+				end
+				months_in_year.each_with_index do |total,month_index|
+					if total.nil? 
+ 						 months_in_year[month_index] = 0
+					end
+				end
+				series <<{
+					name:account_name,
+					data: months_in_year,
+					stack: 0,
+					color: '#'+ account_color
+				}
+		end          
+end
+
+  @chart = Highchart.column({
+	:chart => {
+		:renderTo => 'yearchart' + tab_index,
+	}	,
+	:title => {
+		:text => ''
+	},
+	:x_axis => {
+		:categories => categories
+	},
+	:legend => {
+		:enabled => false
+	},
+	:tooltip => {
+		:formatter => "function() {
+			return '<b>'+ this.x +'</b><br/>'+
+				 this.series.name +': '+ Math.abs(this.y) +'<br/>'+
+				 'Total: '+ Math.abs(this.point.stackTotal);
+		}"
+	},
+	:plotOptions => {
+		:column => {
+			:stacking => 'normal'
+		}
+	},
+		:series => series,
+		:format =>'options'
+}) %>
+<%= @chart %>  
