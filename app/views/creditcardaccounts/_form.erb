@@ -16,3 +16,5 @@
 <dd><div id="currency_container"></div><%= form.select(:currency, [['Euro', 'EUR'], ['Dollar', 'USD'], ['Pound', 'GBP']] ,{},{:id => "account_currency"} )%></dd>
 <dt><%= form.label :color,I18n.t('layout.application.color') %></dt>
 <dd><%= form.hidden_field :color ,:id => "color_value"%>    <div id="color_container"></div></dd>
+<dt><%= form.label :overdraft,I18n.t('layout.creditcardaccounts.accountlimit') %></dt>
+<dd><%= form.text_field :overdraft , :class => 'txt'%></dd>

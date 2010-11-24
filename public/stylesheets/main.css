@@ -293,6 +293,22 @@ LOGO				 */
 		-o-text-overflow: ellipsis;
 }
 
+.maxValueContainer {
+	float:right;
+}
+
+.minValueContainer {
+	float:left;
+}
+
+.textContainers {
+	width:200px;
+}
+
+.progressBar {
+	width: 90% !important;
+}
+
 a.yuimenuitemlabel {
 	border:0px !important;
 	min-height:18px;

@@ -72,6 +72,7 @@ pt:
       total: "Total"
       notice_message: "O cartão de crédito <strong>%s</strong> com o número <strong>%s</strong> do banco <strong>%s</strong> foi gravado com sucesso."
       delete_message: "O cartão de crédito <strong>%s</strong> foi apagado com sucesso."
+      accountlimit: "Limite"
     movements:
        name: "Movimentos"
        title: "Movimento"

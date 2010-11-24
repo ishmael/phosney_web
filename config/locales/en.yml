@@ -69,6 +69,7 @@ en:
       total: "Total"
       notice_message: "The credit card with the name  <strong>%s</strong>, number  <strong>%s</strong> from  <strong>%s</strong> was sucessfully saved."
       delete_message: "The credit card with the name  <strong>%s</strong>, number  <strong>%s</strong> from  <strong>%s</strong> was sucessfully deleted."
+      accountlimit: "Limit"
     movements:
        name: "Movements"
        title: "Movement"

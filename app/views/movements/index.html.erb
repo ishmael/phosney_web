@@ -129,8 +129,18 @@
 			  <dt><%= I18n.t('layout.bankaccounts.accountbank') %></dt>
 			  <dd><%=h @account.bank  %></dd>
 			  <dt><%= I18n.t('layout.bankaccounts.accountbalance') %></dt>
-			  <dd><%= @account.balance.format  %></dd>			
-			  
+			  <dd><%= @account.balance.format  %></dd>	
+        	  <% accounts_type = [Bankaccount,Creditcardaccount,Loanaccount] %>
+
+				<% if @account.class == accounts_type[0] %>
+			  		<dt><%= I18n.t('layout.bankaccounts.overdraft') %></dt>
+					<dd >	<%= @account.overdraft.format  %></dd>
+				<% elsif @account.class == accounts_type[1] %>
+			  		<dt><%= I18n.t('layout.creditcardaccounts.accountlimit') %></dt>
+					<dd >	<%= @account.overdraft.format  %></dd>
+				<% end %>
+				
+
 			</dl>
 		</div>
 </div>
