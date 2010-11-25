@@ -257,11 +257,11 @@ class Highchart
     end
     
     def set_y_axis  
-      if @x_axis.is_a?(Hash)
+      if @y_axis.is_a?(Hash)
           "yAxis: {  
             #{concatenate_attributes(@y_axis)}
           }"
-      elsif @x_axis.is_a?(Array) 
+      elsif @y_axis.is_a?(Array) 
           "yAxis: [  
             #{concatenate_attributes(@y_axis)}
           ]"
