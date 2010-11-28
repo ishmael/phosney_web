@@ -41,32 +41,39 @@ end
 	:chart => {
 		:renderTo => 'balancechart' + tab_index,
 	}	,
-	:title => {
-		:text => ''
-	},
-	:x_axis => {
-		:categories => categories
-	},
-	:legend => {
-		:enabled => false
-	},
-	:tooltip => {
-		:formatter => "function() {
-			return '<b>'+ this.x +'</b><br/>'+
-				 this.series.name +': '+ Math.abs(this.y) +'<br/>'+
-				 'Total: '+ Math.abs(this.point.stackTotal);
-		}"
-	},
-	:y_axis => {
-					:title => {
-						:text => "Temperature (\u00B0C)"
-					},
-				  :plotLines => [{
-						:value => 0,
-						:width => 1,
-						:color => '#808080'
-					}]
-				},
+		:title => {
+			:text => "Monthly Average Temperature",
+			:x => -20 
+		},
+		:subtitle => {
+			:text => 'Source: WorldClimate.com',
+			:x => -20
+		},
+		:x_axis => {
+			:categories => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+				'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		},
+		:y_axis => {
+			:title => {
+				:text => "Temperature (\u00B0C)"
+			},
+		  :plotLines => [{
+				:value => 0,
+				:width => 1,
+				:color => '#808080'
+			}]
+		},
+		:tooltip => {
+			:formatter => tooltip_formatter
+		},
+		:legend => {
+			:layout=> 'vertical',
+			:align=> 'right',
+			:verticalAlign=> 'top',
+			:x=> -10,
+			:y=> 100,
+			:borderWidth=> 0
+		},
 	:series => series,
 	:format =>'options'
 }) %>
