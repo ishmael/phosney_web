@@ -1,0 +1,73 @@
+<%
+categories = Array.new
+1.upto(12) {
+|i| categories << I18n.t('date.month_names')[i] 
+}
+
+  @year_data = Movement.data_by_year(:all, :conditions => ["accounts_users.user_id= :id and  movements.movdate BETWEEN :from  AND :to and accounts.currency = :currency",{:id => @current_user.id, :from => Time.now.beginning_of_year, :to => Time.now.end_of_year,:currency =>currency}]  )
+	series = Array.new
+	@year_data.group_by(&:id).each do |acc,ydata|
+		account_color = ydata[0].color
+		account_name = ydata[0].name
+		account_currency = ydata[0].currency
+		account_balance = Money.new( ydata[0].balance_in_cents.to_i,ydata[0].currency)
+		previous_month =0
+		total_spent = Money.new(0,ydata[0].currency)
+		months_in_year = Array.new(12)
+		ydata.each do |movement| 	        
+			if months_in_year[movement.movdate.month-1].nil?
+				months_in_year[movement.movdate.month-1] = 	 movement.amount* movement.mov_type
+			else
+				months_in_year[movement.movdate.month-1] = months_in_year[movement.movdate.month-1] + movement.amount* movement.mov_type
+			end
+				
+				total_spent = total_spent + (movement.amount * movement.mov_type)
+		end   
+		previous_month = account_balance - total_spent
+		months_in_year.each_with_index do |total,month_index|
+			if total.nil? 
+				 months_in_year[month_index] = 0
+			else
+				months_in_year[month_index] = months_in_year[month_index].to_f
+			end
+		end
+		series <<{
+			name:account_name,
+			data: months_in_year
+		}       
+end
+
+  @chart = Highchart.line({
+	:chart => {
+		:renderTo => 'balancechart' + tab_index,
+	}	,
+	:title => {
+		:text => ''
+	},
+	:x_axis => {
+		:categories => categories
+	},
+	:legend => {
+		:enabled => false
+	},
+	:tooltip => {
+		:formatter => "function() {
+			return '<b>'+ this.x +'</b><br/>'+
+				 this.series.name +': '+ Math.abs(this.y) +'<br/>'+
+				 'Total: '+ Math.abs(this.point.stackTotal);
+		}"
+	},
+	:y_axis => {
+					:title => {
+						:text => "Temperature (\u00B0C)"
+					},
+				  :plotLines => [{
+						:value => 0,
+						:width => 1,
+						:color => '#808080'
+					}]
+				},
+	:series => series,
+	:format =>'options'
+}) %>
+<%= @chart %>  

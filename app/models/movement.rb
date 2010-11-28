@@ -58,7 +58,7 @@ class Movement < ActiveRecord::Base
   end
   
   def self.data_by_year(*args)
-    with_scope(:find => {:select=> "accounts.id ,accounts.name,accounts.color,date_trunc('month',movdate) as movdate,sum(movements.amount_in_cents) as amount_in_cents,mov_type,movements.currency", :joins => "inner join accounts on accounts.id = movements.account_id inner join accounts_users on accounts_users.account_id = accounts.id",:conditions => "accounts_users.account_id = accounts.id and (movements.user_id = accounts_users.user_id  or (movements.private = 0 and movements.user_id <> accounts_users.user_id))" , :group => "date_trunc('month',movdate),accounts.id ,movements.currency,mov_type,accounts.name,accounts.color "}) do
+    with_scope(:find => {:select=> "accounts.id ,accounts.name,accounts.color,accounts.balance_in_cents,date_trunc('month',movdate) as movdate,sum(movements.amount_in_cents) as amount_in_cents,mov_type,movements.currency", :joins => "inner join accounts on accounts.id = movements.account_id inner join accounts_users on accounts_users.account_id = accounts.id",:conditions => "accounts_users.account_id = accounts.id and (movements.user_id = accounts_users.user_id  or (movements.private = 0 and movements.user_id <> accounts_users.user_id))" , :group => "date_trunc('month',movdate),accounts.id ,movements.currency,mov_type,accounts.name,accounts.color,accounts.balance_in_cents "}) do
       find(*args)
     end
   end

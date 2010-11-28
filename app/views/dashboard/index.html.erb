@@ -118,4 +118,42 @@
 			</div>
 		</div>
 	</div>
+	<div  id="charts_content1" class="box box-100 cr-all">
+		<div id="charts1" class="yui-navset ">
+			<div class="header cr-top">
+				<h3>
+					<%=  I18n.t('layout.application.movsbymonth') %>
+				</h3>
+				<ul class="yui-nav ">
+					<% uniq_currencies.each_with_index do |ycurrency,i| %>
+					<li <% if i == 0  %>class="selected" <% end %>>
+						<a href="#balancetab<%=i.to_s%>"><em><%=ycurrency %></em></a>
+					</li><% end %>
+				</ul>
+			</div>
+			<div   class="content cr-bottom">
+				<div class="yui-content">
+					<% uniq_currencies.each_with_index do |ycurrency,i| %>
+					<div id="<%='balancetab'+i.to_s %>">
+						<div id="<%='balancechart'+i.to_s %>" class="full_chart"></div>
+						<script type="text/javascript">
+						
+							YUI().use('yui2-tabview','event', function(Y) {
+
+							    // Event available, and ready for use.
+									var YAHOO = Y.YUI2;
+								Y.on("available", function () {	
+									var tabView = new YAHOO.widget.TabView('charts1'); 	
+								 	var chart;
+								    var options  = {<%= render 'charts/balance_by_year', :currency => ycurrency , :tab_index => i.to_s%>};
+										chart = new Highcharts.Chart(options);		
+								},'#charts1');
+							});				
+						</script>		
+					</div>
+				<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
 	<% end %>
