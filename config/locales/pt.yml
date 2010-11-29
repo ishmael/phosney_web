@@ -29,6 +29,8 @@ pt:
       actions: "Acções"
       movsbyday: "Movimentos por Dia"
       movsbymonth: "Total por Mês" 
+      balancebymonth: "Balanço por Mês"
+      chartcurrency: "%s"
       newpassword: "Nova Password"
       currency: "Moeda"
       color: "Côr"

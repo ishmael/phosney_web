@@ -5,14 +5,25 @@ categories = Array.new
 }
 
   @year_data = Movement.data_by_year(:all, :conditions => ["accounts_users.user_id= :id and  movements.movdate BETWEEN :from  AND :to and accounts.currency = :currency",{:id => @current_user.id, :from => Time.now.beginning_of_year, :to => Time.now.end_of_year,:currency =>currency}]  )
+	accounts_info = Account.find_by_sql(["select accounts.id ,accounts.name,accounts.color,accounts.currency,accounts.balance_in_cents,(select sum(movements.amount_in_cents* movements.mov_type) from movements  
+	where movements.account_id= accounts.id and movements.movdate < ?) starting_balance
+	from accounts,
+	accounts_users
+	where accounts_users.account_id = accounts.id
+	and accounts_users.user_id= ?",Time.now.beginning_of_year,@current_user.id])
+	
 	series = Array.new
 	@year_data.group_by(&:id).each do |acc,ydata|
-		account_color = ydata[0].color
-		account_name = ydata[0].name
-		account_currency = ydata[0].currency
-		account_balance = Money.new( ydata[0].balance_in_cents.to_i,ydata[0].currency)
-		previous_month =0
-		total_spent = Money.new(0,ydata[0].currency)
+		account = accounts_info.select{|item| item.id == ydata[0].id}
+		account_color = account[0].color
+		account_name = account[0].name
+		account_currency = account[0].currency
+		previous_month = nil
+		if not account[0].starting_balance.nil?
+			previous_month = Money.new( account[0].starting_balance.to_i,account[0].currency)
+		end
+		account_balance = Money.new( account[0].balance_in_cents.to_i,account[0].currency)
+		total_spent = Money.new(0,account[0].currency)
 		months_in_year = Array.new(12)
 		ydata.each do |movement| 	        
 			if months_in_year[movement.movdate.month-1].nil?
@@ -23,56 +34,47 @@ categories = Array.new
 				
 				total_spent = total_spent + (movement.amount * movement.mov_type)
 		end   
-		previous_month = account_balance - total_spent
+		
 		months_in_year.each_with_index do |total,month_index|
-			if total.nil? 
-				 months_in_year[month_index] = 0
+			if total.nil? and previous_month.nil?
+				 months_in_year[month_index] = 'null'
+			elsif total.nil? and not previous_month.nil?
+				 months_in_year[month_index] = previous_month.to_f
 			else
+				if previous_month.nil?
+					previous_month = account_balance - total_spent
+				else
+					previous_month+= account_balance - total_spent + months_in_year[month_index]
+				end
 				months_in_year[month_index] = months_in_year[month_index].to_f
 			end
 		end
 		series <<{
 			name:account_name,
-			data: months_in_year
+			data: months_in_year,
+			color: '#'+ account_color
 		}       
-end
+	end
 
   @chart = Highchart.line({
 	:chart => {
 		:renderTo => 'balancechart' + tab_index,
+		:width=> 978
 	}	,
 		:title => {
-			:text => "Monthly Average Temperature",
-			:x => -20 
-		},
-		:subtitle => {
-			:text => 'Source: WorldClimate.com',
-			:x => -20
+			:text => ''
 		},
 		:x_axis => {
-			:categories => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-				'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+			:categories =>categories
 		},
 		:y_axis => {
 			:title => {
-				:text => "Temperature (\u00B0C)"
+				:text => I18n.t('layout.application.chartcurrency') % [currency]
 			},
 		  :plotLines => [{
 				:value => 0,
-				:width => 1,
-				:color => '#808080'
+				:width => 1
 			}]
-		},
-		:tooltip => {
-			:formatter => tooltip_formatter
-		},
-		:legend => {
-			:layout=> 'vertical',
-			:align=> 'right',
-			:verticalAlign=> 'top',
-			:x=> -10,
-			:y=> 100,
-			:borderWidth=> 0
 		},
 	:series => series,
 	:format =>'options'

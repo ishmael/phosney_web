@@ -28,9 +28,7 @@ class Account < ActiveRecord::Base
       find(*args)
     end
   end
-  
-
-  
+    
   def pseudo_id
     new_record? ? 0 : id
   end

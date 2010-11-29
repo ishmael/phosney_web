@@ -70,7 +70,7 @@ STRUCTURE					 */
 
 #user_locale {visibility:hidden;}
 
-#charts_content {visibility:hidden;}
+#balance_content, #movements_content {visibility:hidden;}
 /*
 #profile_info{vertical-align:bottom;float:right;display:inline-block;}
 
@@ -393,7 +393,8 @@ a.yuimenuitemlabel {
 }
 
 
-#charts div.yui-content {border :0; background-color:transparent;}
+#charts_movements div.yui-content {border :0; background-color:transparent;}
+#charts_balance div.yui-content {border :0; background-color:transparent;}
 
 .blank {
 	padding:10px;

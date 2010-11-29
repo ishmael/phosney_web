@@ -78,8 +78,8 @@
 				</table>
 	</div>
 	</div>
-	<div  id="charts_content" class="box box-100 cr-all">
-		<div id="charts" class="yui-navset ">
+	<div  id="movements_content" class="box box-100 cr-all">
+		<div id="charts_movements" class="yui-navset ">
 			<div class="header cr-top">
 				<h3>
 					<%=  I18n.t('layout.application.movsbymonth') %>
@@ -103,12 +103,12 @@
 							    // Event available, and ready for use.
 									var YAHOO = Y.YUI2;
 								Y.on("available", function () {	
-									var tabView = new YAHOO.widget.TabView('charts'); 	
+									var tabView = new YAHOO.widget.TabView('charts_movements'); 	
 								 	var chart;
 								    var options  = {<%= render 'charts/expenditure_by_year', :currency => ycurrency , :tab_index => i.to_s%>};
 										chart = new Highcharts.Chart(options);
-									YAHOO.util.Dom.setStyle('charts_content', 'visibility', 'visible');
-								},'#charts');
+									YAHOO.util.Dom.setStyle('movements_content', 'visibility', 'visible');
+								},'#charts_movements');
 								
 							});							
 						</script>		
@@ -118,11 +118,11 @@
 			</div>
 		</div>
 	</div>
-	<div  id="charts_content1" class="box box-100 cr-all">
-		<div id="charts1" class="yui-navset ">
+	<div  id="balance_content" class="box box-100 cr-all">
+		<div id="charts_balance" class="yui-navset ">
 			<div class="header cr-top">
 				<h3>
-					<%=  I18n.t('layout.application.movsbymonth') %>
+					<%=  I18n.t('layout.application.balancebymonth') %>
 				</h3>
 				<ul class="yui-nav ">
 					<% uniq_currencies.each_with_index do |ycurrency,i| %>
@@ -143,11 +143,12 @@
 							    // Event available, and ready for use.
 									var YAHOO = Y.YUI2;
 								Y.on("available", function () {	
-									var tabView = new YAHOO.widget.TabView('charts1'); 	
+									var tabView = new YAHOO.widget.TabView('charts_balance'); 	
 								 	var chart;
 								    var options  = {<%= render 'charts/balance_by_year', :currency => ycurrency , :tab_index => i.to_s%>};
-										chart = new Highcharts.Chart(options);		
-								},'#charts1');
+										chart = new Highcharts.Chart(options);	
+									YAHOO.util.Dom.setStyle('balance_content', 'visibility', 'visible');											
+								},'#charts_balance');
 							});				
 						</script>		
 					</div>

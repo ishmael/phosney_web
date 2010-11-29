@@ -33,6 +33,7 @@ end
   @chart = Highchart.column({
 	:chart => {
 		:renderTo => 'yearchart' + tab_index,
+		:width=> 978
 	}	,
 	:title => {
 		:text => ''
@@ -42,6 +43,11 @@ end
 	},
 	:legend => {
 		:enabled => false
+	},
+	:y_axis => {
+		:title => {
+			:text => I18n.t('layout.application.chartcurrency') % [currency]
+		}
 	},
 	:tooltip => {
 		:formatter => "function() {
