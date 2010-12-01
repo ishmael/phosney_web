@@ -116,8 +116,8 @@ class BankaccountsController < ApplicationController
 
 		respond_to do |format|
           flash[:notice] = I18n.t('layout.bankaccounts.delete_message')  %   [@bankaccount.name,@bankaccount.number,@bankaccount.bank]
-		  format.html { redirect_to(bankaccounts_url) }
-		  format.iphone  { redirect_to(bankaccounts_url) }
+		  format.html { redirect_to(dashboard_url) }
+		  format.iphone  { redirect_to(dashboard_url) }
 		end
 	else
 		redirect_to(dashboard_url)
