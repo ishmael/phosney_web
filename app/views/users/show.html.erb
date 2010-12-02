@@ -1,4 +1,4 @@
-<div class="box box-50 cr-all">
+<div class="box box-first box-50 cr-all">
 		<div class="header cr-top">
 			<h3><%=  I18n.t('layout.users.title') %></h3>
 								<%= link_to I18n.t('layout.application.edit'), edit_account_path ,:class => 'phosney-button phosney-header-button' %>
@@ -11,4 +11,45 @@
 				  <dd><%=h @user.email%></dd>
 				</dl>			
 		   </div>
+</div>
+<div class="box box-last box-50 cr-all" style="vertical-align:top;">
+	<div class="header cr-top">
+			<h3>
+				<%=  I18n.t('layout.bankaccounts.tagline') %>
+			</h3>
+	</div>
+	<div class="content cr-bottom">
+			<table cellspacing="0">
+				<thead>
+					<tr>
+						<th class="first">
+							<%=  I18n.t('layout.bankaccounts.name') %>
+						</th>
+						<td class="last">
+							<%=  I18n.t('layout.bankaccounts.accountbank') %>
+						</td>
+						<td class="tc last actions"><%=  I18n.t('layout.application.actions') %></td>
+					</tr>
+				</thead>
+				<tbody>
+						<% @user_accounts.each_with_index do |account,i| %>
+						<tr class="<% if i == 0 %>first<% else %><%= cycle('even', 'odd',:name=> "accounts") %><% end%>">
+							<th class="first">
+								<%=h account.name %>
+							</th>
+							<td class="tr">
+								<%=  account.bank %>
+							</td>
+							<td class="tc last">
+								<ul class="actions">
+									<li>
+										<%= link_to image_tag("/images/led-ico/delete.png",:alt =>I18n.t('layout.application.delete')),  polymorphic_path(account) , {:confirm => I18n.t('layout.application.deletemessage'), :method => :delete ,:class => 'ico' , :title => I18n.t('layout.application.delete')} %>	
+									</li>
+								
+								</ul>		
+							</td>
+						</tr>
+						<% end %>
+			</table>
+	</div>
 </div>

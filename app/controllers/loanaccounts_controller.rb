@@ -91,7 +91,7 @@ class LoanaccountsController < ApplicationController
 
     respond_to do |format|
           flash[:notice] = I18n.t('layout.loanaccounts.delete_message')  %   [@loanaccount.name,@loanaccount.number,@loanaccount.bank]      
-      format.html { redirect_to(bankaccounts_url) }
+      format.html { redirect_to(dashboard_url) }
     end
   end
 

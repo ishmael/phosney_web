@@ -6,7 +6,7 @@ categories = Array.new
 
   @year_data = Movement.data_by_year(:all, :conditions => ["accounts_users.user_id= :id and  movements.movdate BETWEEN :from  AND :to and accounts.currency = :currency",{:id => @current_user.id, :from => Time.now.beginning_of_year, :to => Time.now.end_of_year,:currency =>currency}]  )
 	accounts_info = Account.find_by_sql(["select accounts.id ,accounts.name,accounts.color,accounts.currency,accounts.balance_in_cents,(select sum(movements.amount_in_cents* movements.mov_type) from movements  
-	where movements.account_id= accounts.id and movements.movdate < ?) starting_balance
+	where movements.account_id= accounts.id and movements.movdate < ?) as starting_balance
 	from accounts,
 	accounts_users
 	where accounts_users.account_id = accounts.id

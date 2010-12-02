@@ -102,7 +102,7 @@ class CreditcardaccountsController < ApplicationController
 
 		respond_to do |format|
           flash[:notice] = I18n.t('layout.creditcardaccounts.delete_message')  %   [@creditcardaccount.name,@creditcardaccount.number,@creditcardaccount.bank]
-		  format.html { redirect_to(creditcardaccounts_url) }
+		  format.html { redirect_to(dashboard_url) }
 		end
 	else
 		redirect_to(dashboard_url)

@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
     def show
       @user = @current_user
-	    add_breadcrumb I18n.t('layout.application.settings'), account_path
+      @user_accounts = @current_user.accounts.find(:all)
+ 	    add_breadcrumb I18n.t('layout.application.settings'), account_path
 	  respond_to do |format|
        format.html # show.html.erb
 	  end
