@@ -102,7 +102,7 @@
 
 							    // Event available, and ready for use.
 									var YAHOO = Y.YUI2;
-								Y.on("available", function () {	
+								Y.on("domready", function () {	
 									var tabView = new YAHOO.widget.TabView('charts_movements'); 	
 								 	var chart;
 								    var options  = {<%= render 'charts/expenditure_by_year', :currency => ycurrency , :tab_index => i.to_s%>};
@@ -142,7 +142,7 @@
 
 							    // Event available, and ready for use.
 									var YAHOO = Y.YUI2;
-								Y.on("available", function () {	
+								Y.on("domready", function () {	
 									var tabView = new YAHOO.widget.TabView('charts_balance'); 	
 								 	var chart;
 								    var options  = {<%= render 'charts/balance_by_year', :currency => ycurrency , :tab_index => i.to_s%>};
