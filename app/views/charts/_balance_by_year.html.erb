@@ -20,7 +20,7 @@ categories = Array.new
 		account_currency = account[0].currency
 		previous_month = nil
 		if not account[0].starting_balance.nil?
-			previous_month = Money.new( account[0].starting_balance.to_i,account[0].currency)
+			previous_month = Money.new( account[0].starting_balance.to_i ,account[0].currency)
 		end
 		account_balance = Money.new( account[0].balance_in_cents.to_i,account[0].currency)
 		total_spent = Money.new(0,account[0].currency)
@@ -42,11 +42,11 @@ categories = Array.new
 				 months_in_year[month_index] = previous_month.to_f
 			else
 				if previous_month.nil?
-					previous_month = account_balance - total_spent
+					previous_month =  account_balance - total_spent + total
 				else
-					previous_month+= account_balance - total_spent + months_in_year[month_index]
+					previous_month+=  total
 				end
-				months_in_year[month_index] = months_in_year[month_index].to_f
+				months_in_year[month_index] = previous_month.to_f
 			end
 		end
 		series <<{
