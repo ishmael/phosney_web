@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100420071345) do
+ActiveRecord::Schema.define(:version => 20101123104749) do
+
+  create_table "account_attributes", :force => true do |t|
+    t.integer  "account_id",     :null => false
+    t.integer  "attribute_type", :null => false
+    t.string   "value",          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -18,9 +26,10 @@ ActiveRecord::Schema.define(:version => 20100420071345) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
-    t.integer  "balance_in_cents", :limit => 8, :default => 0
+    t.integer  "balance_in_cents",   :limit => 8, :default => 0
     t.string   "currency"
-    t.string   "color",                         :default => "#000000"
+    t.string   "color",                           :default => "#000000"
+    t.integer  "overdraft_in_cents",              :default => 0
   end
 
   create_table "accounts_users", :force => true do |t|

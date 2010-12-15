@@ -120,6 +120,10 @@ module Ym4r
       def to_s
         @variable + ";"
       end
+      
+      def to_str
+         @variable + ";"
+      end
 
       UNDEFINED = Variable.new("undefined")
     end

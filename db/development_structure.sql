@@ -16,6 +16,39 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: account_attributes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE account_attributes (
+    id integer NOT NULL,
+    account_id integer NOT NULL,
+    attribute_type integer NOT NULL,
+    value character varying(255) NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: account_attributes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE account_attributes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: account_attributes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE account_attributes_id_seq OWNED BY account_attributes.id;
+
+
+--
 -- Name: accounts_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -65,7 +98,8 @@ CREATE TABLE accounts (
     type character varying(255),
     balance_in_cents bigint DEFAULT 0,
     currency character varying(255),
-    color character varying(255) DEFAULT '#000000'::character varying
+    color character varying(255) DEFAULT '#000000'::character varying,
+    overdraft_in_cents integer DEFAULT 0
 );
 
 
@@ -388,6 +422,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE account_attributes ALTER COLUMN id SET DEFAULT nextval('account_attributes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE accounts ALTER COLUMN id SET DEFAULT nextval('bankaccounts_id_seq'::regclass);
 
 
@@ -452,6 +493,14 @@ ALTER TABLE tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 --
 
 ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: account_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY account_attributes
+    ADD CONSTRAINT account_attributes_pkey PRIMARY KEY (id);
 
 
 --
@@ -591,6 +640,14 @@ CREATE INDEX index_taggings_on_taggable_id_and_taggable_type ON taggings USING b
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: account_attributes_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY account_attributes
+    ADD CONSTRAINT account_attributes_account_id_fkey FOREIGN KEY (account_id) REFERENCES accounts(id);
 
 
 --
@@ -760,3 +817,7 @@ INSERT INTO schema_migrations (version) VALUES ('20100322122353');
 INSERT INTO schema_migrations (version) VALUES ('20100413141711');
 
 INSERT INTO schema_migrations (version) VALUES ('20100420071345');
+
+INSERT INTO schema_migrations (version) VALUES ('20101111224638');
+
+INSERT INTO schema_migrations (version) VALUES ('20101123104749');
